@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2021 at 02:02 PM
+-- Generation Time: May 04, 2021 at 02:34 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -42,7 +42,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `email`, `type`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', 'admin123@gmail.com', 'admin', '0000-00-00 00:00:00', 1);
+(1, 'admin', 'admin@32', 'admin123@gmail.com', 'admin', '0000-00-00 00:00:00', 1),
+(2, 'customer', 'customer@234', 'customer@gmail.com', 'customer', '2021-05-04 06:15:19', 1),
+(3, 'consultant', 'consultant@2345', 'consultant@gmail.com', 'consultant', '2021-05-04 06:16:08', 1);
 
 --
 -- Indexes for dumped tables
@@ -62,7 +64,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

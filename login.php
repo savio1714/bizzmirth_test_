@@ -44,7 +44,7 @@
                 <nav aria-label="breadcrumb">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="#">Shop</a></li> -->
                         <li class="breadcrumb-item active" aria-current="page">Login/Register</li>
                     </ul>
                 </nav>
@@ -69,11 +69,11 @@
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Username</label>
-                                    <input type="email" class="form-control" id="Name1" placeholder="Enter username or email id">
+                                    <input type="email" class="form-control" id="username" placeholder="Enter username or email id">
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" id="email1" placeholder="Enter correct password">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter correct password">
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="checkbox-outer">
@@ -82,10 +82,11 @@
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="comment-btn">
-                                        <a href="#" class="btn-blue btn-red">Login</a>
+                                        <!-- <button id="login" class="btn-blue btn-red">Login</button> -->
+                                        <a id="login" class="btn-blue btn-red">Login</a>
                                     </div>
                                 </div>
-                                <div class="col-xs-12">
+                                <!-- <div class="col-xs-12">
                                     <div class="login-accounts">
                                         <a href="forgot-password.html" class="forgotpw">Forgot Password?</a>
                                         <h3>Login using</h3>
@@ -95,7 +96,7 @@
                                             <a class="btn-blue btn-twit" href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
@@ -162,6 +163,7 @@
     <script src="js/plugin.js"></script>
     <script src="js/main.js"></script>
     <script src="js/preloader.js"></script>
+    <script src="login/login.js"></script>
 
 </body>
 </html>
