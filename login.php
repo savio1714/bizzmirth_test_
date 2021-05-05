@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="checkbox-outer">
-                                        <input type="checkbox" name="vehicle2" value="Car"> Remember Me?
+                                        <input type="checkbox" name="remember_me" id="remember_me" value="1"> Remember Me?
                                     </div>
                                 </div>
                                 <div class="col-xs-12">

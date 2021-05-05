@@ -2,8 +2,9 @@ $(document).ready(function(){
   $("#login").click(function(){
   	let username = $('#username').val();
   	let password = $('#password').val();
+    let remember_me = $('#remember_me').val();
 
-  	var datastring='username='+username+'&password='+password;
+  	let datastring='username='+username+'&password='+password+'&remember_me='+remember_me;
 
 
   	if (username=='') {

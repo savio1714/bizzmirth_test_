@@ -27,7 +27,7 @@
                             <li><a href="#"><i class="sl sl-icon-settings"></i>Settings</a></li>
                             <li><a href="#"><i class="sl sl-icon-user"></i>Profile</a></li>
                             <li><a href="#"><i class="sl sl-icon-lock"></i>Change Password</a></li>
-                            <li><a href="#"><i class="sl sl-icon-power"></i>Logout</a></li>
+                            <li><a href="" class="mylogout" ><i class="sl sl-icon-power"></i>Logout</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['username2'])){
-    echo '<script>location.href = "index.php";</script>';
+    echo '<script>location.href = "../login.php";</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ if(!isset($_SESSION['username2'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard Profile | Yatra - Travel Agency HTML Template</title>
+    <title>Dashboard Profile | Bizzmirth Holidays</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../images/logo1.png">
     <!-- Bootstrap core CSS -->
@@ -136,7 +136,7 @@ if(!isset($_SESSION['username2'])){
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-                <p>2018 <i class="fa fa-copyright" aria-hidden="true"></i> Yatra by <a href="https://www.cyclonethemes.com" target="_blank">Cyclone Themes</a></p>
+                <p>2021  <i class="fa fa-copyright" aria-hidden="true"></i> Bizzmirth <a href="#" target="_blank"></a></p>
             </div>
         </div>
         <!-- Dashboard / End -->
@@ -159,5 +159,6 @@ if(!isset($_SESSION['username2'])){
     <script src="../js/dashboard-custom.js"></script>
     <script src="../js/jpanelmenu.min.js"></script>
     <script src="../js/counterup.min.js"></script>
+    <script type="text/javascript" src="../logout/logout.js"></script>
 </body>
 </html>

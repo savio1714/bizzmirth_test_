@@ -17,7 +17,7 @@
                         <li><a href="dashboard-booking.html"><i class="sl sl-icon-list"></i> Booking List</a></li>
                         <li><a href="dashboard-history.html"><i class="sl sl-icon-folder"></i> History</a></li>
                         <li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i> Reviews</a></li> -->
-                        <li><a href="#"><i class="sl sl-icon-power"></i> Logout</a></li>
+                        <li><a href="../login.php" class="mylogout"><i class="sl sl-icon-power"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
