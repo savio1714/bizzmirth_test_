@@ -17,13 +17,30 @@ if($stmt->rowCount()>0){
 
 		# code...
 		$_SESSION["username2"] = $row['username'];
-		$_SESSION["type"] = $row['type'];
+		$_SESSION["user_type_id"] = $row['user_type_id'];
 
-	if ($_SESSION["type"] =='customer' || $_SESSION["type"]== 'consultant'){
+	if ($_SESSION["user_type_id"] =='2' || $_SESSION["user_type_id"]== '3'){
 		echo '1';
 	}else{
 		echo '0';
 	}
+}
+	else{
+		echo '0';
+	}
+
+
+$stmt2 = $conn->prepare("SELECT * FROM user_type where id='".$_SESSION["user_type_id"]."' AND status='1' ");
+$stmt2->execute();
+
+    // set the resulting array to associative
+$stmt2->setFetchMode(PDO::FETCH_ASSOC);
+
+if($stmt2->rowCount()>0){
+	foreach (($stmt2->fetchAll()) as $key => $row2) 
+
+		# code...
+		$_SESSION["user_type_name"] = $row2['name'];
 }
 	else{
 		echo '0';

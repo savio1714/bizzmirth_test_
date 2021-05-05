@@ -18,8 +18,8 @@
                                     <img src="../images/comment.jpg" alt="">
                                 </div>
                                 <div class="dash-content">
-                                    <h4>Loural Teak</h4>
-                                    <span><?php echo $_SESSION['username2']; ?></span>
+                                    <h4><?php echo $_SESSION['username2']; ?></h4>
+                                    <span><?php echo $_SESSION['user_type_name']; ?></span>
                                 </div>
                             </div>
                         </a>
@@ -27,7 +27,7 @@
                             <li><a href="#"><i class="sl sl-icon-settings"></i>Settings</a></li>
                             <li><a href="#"><i class="sl sl-icon-user"></i>Profile</a></li>
                             <li><a href="#"><i class="sl sl-icon-lock"></i>Change Password</a></li>
-                            <li><a href="" class="mylogout" ><i class="sl sl-icon-power"></i>Logout</a></li>
+                            <li><a href="../login.php" class="mylogout"><i class="sl sl-icon-power"></i>Logout</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">

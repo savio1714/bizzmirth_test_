@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2021 at 02:34 PM
+-- Generation Time: May 05, 2021 at 12:19 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -31,8 +31,8 @@ CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `type` varchar(30) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_type_id` varchar(30) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1-present 0-deleted'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -41,10 +41,66 @@ CREATE TABLE `login` (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `username`, `password`, `email`, `type`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', 'admin123@gmail.com', 'admin', '0000-00-00 00:00:00', 1),
-(2, 'customer', 'customer@234', 'customer@gmail.com', 'customer', '2021-05-04 06:15:19', 1),
-(3, 'consultant', 'consultant@2345', 'consultant@gmail.com', 'consultant', '2021-05-04 06:16:08', 1);
+INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
+(1, 'admin', 'admin@32', 1, '1', '0000-00-00 00:00:00', 1),
+(2, 'savio', 'savio@234', 2, '2', '2021-05-04 06:15:19', 1),
+(3, 'apurva', 'apurva@2345', 3, '3', '2021-05-04 06:16:08', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_details`
+--
+
+CREATE TABLE `users_details` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(70) NOT NULL,
+  `lastname` varchar(70) NOT NULL,
+  `email` varchar(90) NOT NULL,
+  `contact_no` varchar(15) NOT NULL,
+  `date_of_birth` varchar(30) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `address` text NOT NULL,
+  `profile_pic` varchar(99) NOT NULL,
+  `id_proof` varchar(99) NOT NULL,
+  `user_type` int(11) NOT NULL,
+  `registrant` varchar(70) NOT NULL,
+  `register_by` int(11) NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted_date` varchar(30) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1-present 0-deleted'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_details`
+--
+
+INSERT INTO `users_details` (`id`, `firstname`, `lastname`, `email`, `contact_no`, `date_of_birth`, `gender`, `address`, `profile_pic`, `id_proof`, `user_type`, `registrant`, `register_by`, `register_date`, `deleted_date`, `status`) VALUES
+(1, 'Admin', 'Bizzmirth', 'bizzmirth.admin@gmail.com', '2345678906', '', 'male', 'xyz', '', '', 1, '', 1, '2021-05-05 07:54:21', '', 1),
+(2, 'Savio', 'Mirannda', 'saviomiranda@gmail.com', '23456789099', '', 'male', 'abc', '', '', 2, 'Apurva Naik', 3, '2021-05-05 07:55:41', '', 1),
+(3, 'Apurva', 'Naik', 'apurva.naik@gmail.com', '2345676909', '', 'female', 'asd', '', '', 3, 'Admin', 1, '2021-05-05 07:57:04', '', 1),
+(4, 'Upasana', 'xyz', 'upasana@gmail.com', '2377676909', '', 'female', 'fgfgfg', '', '', 2, 'Apurva Naik', 3, '2021-05-05 07:58:33', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_type`
+--
+
+CREATE TABLE `user_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(70) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0-deleted 1-present'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_type`
+--
+
+INSERT INTO `user_type` (`id`, `name`, `status`) VALUES
+(1, 'admin', 1),
+(2, 'customer', 1),
+(3, 'consultant', 1);
 
 --
 -- Indexes for dumped tables
@@ -57,6 +113,18 @@ ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_details`
+--
+ALTER TABLE `users_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_type`
+--
+ALTER TABLE `user_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -64,6 +132,18 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users_details`
+--
+ALTER TABLE `users_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user_type`
+--
+ALTER TABLE `user_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 

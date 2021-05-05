@@ -4,8 +4,6 @@ if(!isset($_SESSION['username2'])){
     echo '<script>location.href = "../login.php";</script>';
 }
 ?>
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 
