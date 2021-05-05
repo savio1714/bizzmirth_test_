@@ -15,7 +15,14 @@ if($stmt->rowCount()>0){
 	foreach (($stmt->fetchAll()) as $key => $row) 
 		# code...
 		$_SESSION["username"] = $row['username'];
+		$_SESSION["user_type_id"] = $row['user_type_id'];
+
+	if ($_SESSION["user_type_id"] =='1' ){
 		echo '1';
+	}else{
+		echo '0';
+	}
+
 
 	}else{
 		echo '0';
