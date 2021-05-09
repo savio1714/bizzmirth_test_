@@ -3,6 +3,7 @@ session_start();
 require '../connect.php';
 $username=$_POST['username'];
 $password=$_POST['password'];
+$remember_me=$_POST['remember_me'];
 
 
 
@@ -14,12 +15,18 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
 if($stmt->rowCount()>0){
 	foreach (($stmt->fetchAll()) as $key => $row) 
-
 		# code...
 		$_SESSION["username2"] = $row['username'];
 		$_SESSION["user_type_id"] = $row['user_type_id'];
 
 	if ($_SESSION["user_type_id"] =='2' || $_SESSION["user_type_id"]== '3'){
+		if ($remember_me == 'true') {
+				setcookie('user2',$username , time() + (86400 * 30), "/"); // 86400 = 1 day
+				setcookie('pass',$password , time() + (86400 * 30), "/"); // 86400 = 1 day
+			}else{
+				setcookie('user2',''); // 86400 = 1 day
+				setcookie('pass',''); // 86400 = 1 day
+			}
 		echo '1';
 	}else{
 		echo '0';

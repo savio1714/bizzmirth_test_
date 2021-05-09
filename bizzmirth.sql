@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2021 at 12:19 PM
+-- Generation Time: May 05, 2021 at 01:30 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -44,7 +44,8 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
 (1, 'admin', 'admin@32', 1, '1', '0000-00-00 00:00:00', 1),
 (2, 'savio', 'savio@234', 2, '2', '2021-05-04 06:15:19', 1),
-(3, 'apurva', 'apurva@2345', 3, '3', '2021-05-04 06:16:08', 1);
+(3, 'apurva', 'apurva@2345', 3, '3', '2021-05-04 06:16:08', 1),
+(4, 'upasana', 'upasana@234', 4, '2', '2021-05-04 06:15:19', 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_details`

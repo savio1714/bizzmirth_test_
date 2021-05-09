@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
+ 
     <!-- Preloader -->
     <div id="preloader">
         <div id="status"></div>
@@ -69,15 +70,16 @@
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Username</label>
-                                    <input type="email" class="form-control" id="username" placeholder="Enter username or email id">
+                                    <input type="email" class="form-control" id="username" placeholder="Enter username or email id" value="<?php if(isset($_COOKIE['user2'])){echo $_COOKIE['user2'];}?>" >
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Enter correct password">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter correct password" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];}?>" >
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="checkbox-outer">
-                                        <input type="checkbox" name="remember_me" id="remember_me" value="1"> Remember Me?
+                                        <input type="checkbox" name="remember_me" id="remember_me"  <?php if(isset($_COOKIE['user2'])){echo 'checked';}?>>
+                                        <label>Remember Me?</label> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
