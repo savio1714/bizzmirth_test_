@@ -1,11 +1,13 @@
 $(document).ready(function(){
-  $("#login").click(function(){
+  $("#login").click(function(e){
+    e.preventDefault();
 
   	let username = $('#username').val();
   	let password = $('#password').val();
     let remember_me = $('#remember_me').prop( "checked" );
 
 
+ 
 
     // alert(remember_me);
 

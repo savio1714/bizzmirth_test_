@@ -12,8 +12,13 @@ if(isset($_SESSION['username2'])){
     session_destroy();
   
 }
-	setcookie('user2',''); // 86400 = 1 day
+if(isset($_COOKIE['user2'])){
+	// echo '<script>alert("savio");</script>';
+	setcookie('user2',''); // 86400 = 1 day;
 	setcookie('pass',''); // 86400 = 1 day
+}
+	
+	
   header("location: ../login.php");
 
 

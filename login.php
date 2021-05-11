@@ -6,10 +6,11 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+ 
     <title>Bizzmirth Holidays</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
+    <link rel="shortcut icon" type="image/x-icon" href="images/fav.ico">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png"> -->
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->
@@ -20,6 +21,19 @@
     <link href="css/plugin.css" rel="stylesheet" type="text/css">
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+         #preview img{
+     display: none;
+   }
+         /*.preview{
+        }
+     width: 100px;
+     height: 100px;
+     border: 1px solid black;
+     margin: 0 auto;
+     background: white;
+   }*/
+    </style>
 </head>
 <body>
  
@@ -114,8 +128,29 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-xs-12">
-                                    <label>Name:</label>
-                                    <input type="text" class="form-control" id="Name" placeholder="Enter full name">
+                                    <label class="custom-file">Profile Picture: </label><br>
+                                    <!-- <input type="file" id="id_proof" class="custom-file-input"> -->
+                                    <div class="col-md-5 col-sm-5 ">
+                                    <input type="file" id="file2" name="file2" />
+                                  </div>
+                                 
+                                  <div class="col-md-3 col-sm-3 ">  <input type="hidden" name="profile_pic" id="profile_pic" disabled></div>
+                                   <div class='preview col-md-4 col-sm-12' id="preview">
+                                    <img src="" id="img2" width="100" height="100" align="right" alt="Profile Image">
+                                  </div>
+                                   
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Firstname:</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+                                </div>
+                               <!--  <div class="form-group col-xs-12">
+                                    <label>Middlename:</label>
+                                    <input type="text" class="form-control" id="mname" placeholder="Enter Middle Name">
+                                </div> -->
+                                 <div class="form-group col-xs-12">
+                                    <label>Lastname:</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Email:</label>
@@ -123,16 +158,54 @@
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Phone Number:</label>
-                                    <input type="text" class="form-control" id="date1" placeholder="Select Date">
+                                    <input type="text" class="form-control" id="phone_no" placeholder="Phone Number">
                                 </div>
-                                <div class="form-group col-xs-6">
+                                <div class="form-group col-xs-12">
+                                    <label>Gender:</label>
+                                    <div class="form-check form-check-inline">
+                                        <div class="form-group col-xs-3">
+                                      <input type="radio" name="gender" class="form-check-input gender" value="male"> 
+                                      <label class="form-check-label" for="male">Male</label>
+                                      </div>
+                                      <div class="form-group col-xs-3">
+                                         <input type="radio"  class="form-check-input gender" name="gender" value="female">
+                                          <label class="form-check-label" for="female">Female</label>
+                                      </div>
+                                      <div class="form-group col-xs-3">
+                                          <input type="radio"  class="form-check-input gender" name="gender" value="others">
+                                          <label class="form-check-label" for="others">Others</label>
+                                      </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Age:</label>
+                                    <input type="text" class="form-control" id="age" placeholder="Enter Age">
+                                </div>
+                                 <div class="form-group col-xs-12">
+                                    <label>Date of Birth:</label>
+                                    <input class="form-control" type="date" id="bdate">
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label class="custom-file">PAN / Aadhar Card: </label><br>
+                                    <!-- <input type="file" id="id_proof" class="custom-file-input"> -->
+                                    <div class="col-md-3 col-sm-3 ">
+                                    <input type="file" id="file" name="file" />
+                                  </div>
+                                 <!--  <div class='preview col-md-2'>
+                                    <img src="" id="img" width="100" height="100" align="right">
+                                  </div> -->
+                                  <div class="col-md-6 col-sm-6 ">  <input type="hidden" name="id_proof" id="id_proof" disabled></div>
+                                   
+                                </div>
+                                <!-- <div class="form-group col-xs-6">
                                     <label>Select Password :</label>
                                     <input type="password" class="form-control" id="date" placeholder="Enter Password">
                                 </div>
                                 <div class="form-group col-xs-6 col-left-padding">
                                     <label>Confirm Password :</label>
                                     <input type="password" class="form-control" id="phnumber" placeholder="Re-enter Password">
-                                </div>
+                                </div> -->
                                 <div class="col-xs-12">
                                     <div class="checkbox-outer">
                                         <input type="checkbox" name="vehicle2" value="Car"> I agree to the <a href="#">terms and conditions.</a>
@@ -140,7 +213,7 @@
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="comment-btn">
-                                        <a href="#" class="btn-blue btn-red">Register Now</a>
+                                        <a href="#" id="register" class="btn-blue btn-red">Register Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -166,6 +239,8 @@
     <script src="js/main.js"></script>
     <script src="js/preloader.js"></script>
     <script src="login/login.js"></script>
+    <script src="assets/js/register.js"></script>
+    <script src="assets/js/upload_file.js"></script>
 
 </body>
 </html>
