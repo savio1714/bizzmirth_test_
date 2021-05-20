@@ -46,9 +46,9 @@
                             <div class="footer-links-list footer-margin">
                                 <h3>Browse Tour</h3>
                                 <ul>
-                                    <li><a href="#">Cyclades <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="#">North Ionian <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="#">Sporades <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">Goa <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">Shimla <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">Manali <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <li><a href="#">View all Destinations <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <!-- <li><a href="#">View all Yatchs <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
                                   <!--   <li><a href="#">View all Cruises <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
@@ -57,41 +57,14 @@
                         </div>
                         <div class="col-md-3 col-sm-4">
                             <div class="footer-recent-post footer-margin">
-                                <h3>Recent Posts</h3>
+                                <h3>Quick Links</h3>
                                 <ul>
-                                    <li>
-                                        <div class="recent-post-item">
-                                            <div class="recent-post-image">
-                                                <img src="images/bucket1.jpg" alt="Image">
-                                            </div>
-                                            <div class="recent-post-content">
-                                                <h4><a href="#">A trip to heaven</a></h4>
-                                                <p>June 17, 2018</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recent-post-item">
-                                            <div class="recent-post-image">
-                                                <img src="images/bucket2.jpg" alt="Image">
-                                            </div>
-                                            <div class="recent-post-content">
-                                                <h4><a href="#">Diving in Atlantic</a></h4>
-                                                <p>June 17, 2018</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- <li>
-                                        <div class="recent-post-item">
-                                            <div class="recent-post-image">
-                                                <img src="images/bucket3.jpg" alt="Image">
-                                            </div>
-                                            <div class="recent-post-content">
-                                                <h4><a href="#">Travellers History</a></h4>
-                                                <p>June 17, 2018</p>
-                                            </div>
-                                        </div>
-                                    </li> -->
+                                    <li><a href="#">Home <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">About us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">Contact us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">FAQ <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="#">Privacy Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                  <!--   <li><a href="#">View all Cruises <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -100,6 +73,7 @@
                                 <div class="footer-instagram">
                                     <h3>Instagram</h3>
                                     <ul>
+                                    
                                         <li><img src="images/insta1.jpg" alt="Image"></li>
                                         <li><img src="images/insta2.jpg" alt="Image"></li>
                                         <li><img src="images/insta3.jpg" alt="Image"></li>

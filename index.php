@@ -68,7 +68,7 @@
                                 <div class="table_item">
                                     <div class="form-group">
                                         <select name="custom-select-1" class="selectpicker form-control" tabindex="0">
-                                            <option value="0"> US</option>
+                                            <option value="0"> India</option>
                                              <option value="1"> UK</option>
                                               <option value="2"> America</option>
                                                <option value="3"> Singapore</option>
@@ -143,42 +143,42 @@
         <div class="container">
             <div class="section-title text-center">
                 <h2>Amazing Tours</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Duis aute irure dolor in reprehenderit..</p>
+                <p>Bizzmirth holidays offers best deals on India tour packages. Book your perfect holiday packages from a wide range of customised vacation packages.</p>
             </div>
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="at-item box-item">
                         <div class="at-image">
-                            <img src="images/at2.jpg" alt="Image">
+                            <img src="images/amazing/goa.jpg" alt="Image">
                             <div class="at-overlay"></div>
                         </div>
                         <div class="at-content">
-                            <h3><a href="#">Italy</a></h3>
-                            <span>The colosseum</span>
+                            <h3><a href="#">Goa</a></h3>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-6">
                     <div class="at-item box-item">
                         <div class="at-image">
-                            <img src="images/at1.jpg" alt="Image">
+                            <img src="images/amazing/manali.jpg" alt="Image">
                             <div class="at-overlay"></div>
                         </div>
                         <div class="at-content">
-                            <h3><a href="#">Brazil</a></h3>
-                            <span>The colosseum</span>
+                            <h3><a href="#">Manali</a></h3>
+                           
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-6">
                     <div class="at-item box-item">
                         <div class="at-image">
-                            <img src="images/at3.jpg" alt="Image">
+                            <img src="images/amazing/shimla.jpg" alt="Image">
                             <div class="at-overlay"></div>
                         </div>
                         <div class="at-content">
-                            <h3><a href="#">Venezuela</a></h3>
-                            <span>The colosseum</span>
+                            <h3><a href="#">Shimla</a></h3>
+                            
                         </div>
                     </div>
                 </div>
@@ -187,36 +187,36 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="at-item box-item">
                         <div class="at-image">
-                            <img src="images/at1.jpg" alt="Image">
+                            <img src="images/amazing/coorg.jpg" alt="Image">
                             <div class="at-overlay"></div>
                         </div>
                         <div class="at-content">
-                            <h3><a href="#">Kenya</a></h3>
-                            <span>The colosseum</span>
+                            <h3><a href="#">Coorg</a></h3>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-6">
                     <div class="at-item box-item">
                         <div class="at-image">
-                            <img src="images/at3.jpg" alt="Image">
+                            <img src="images/amazing/kochi.jpg" alt="Image">
                             <div class="at-overlay"></div>
                         </div>
                         <div class="at-content">
-                            <h3><a href="#">Greece</a></h3>
-                            <span>The colosseum</span>
+                            <h3><a href="#">Kochi</a></h3>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="at-item box-item">
                         <div class="at-image">
-                            <img src="images/at2.jpg" alt="Image">
+                            <img src="images/amazing/jammu.jpg" alt="Image">
                             <div class="at-overlay"></div>
                         </div>
                         <div class="at-content">
-                            <h3><a href="#">Iceland</a></h3>
-                            <span>The colosseum</span>
+                            <h3><a href="#">Jammu</a></h3>
+                            
                         </div>
                     </div>
                 </div>
@@ -233,14 +233,14 @@
                 <div class="section-icon">
                     <i class="flaticon-diamond"></i>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Duis aute irure dolor in reprehenderit..</p>
+                <p>Our holiday packages cover the most amazing holiday destinations. So pick your favourite package for the best India trip. </p>
             </div>
             <div class="row slider-button">
                 <div class="col-sm-6">
                     <div class="package-item box-item">
                         <div class="package-image">
-                            <img src="images/package1.jpg" alt="Image">
-                            <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
+                            <img src="images/amazing/popgoa.jpg" alt="Image">
+                            <!-- <p class="package-days"><i class="flaticon-time"></i> 5 days</p> -->
                         </div>
                         <div class="package-content">
                             <h4>Surfing Goa, India</h4>
@@ -252,11 +252,11 @@
                                     <span class="fa fa-star-o"></span>
                                     <span class="fa fa-star-o"></span>
                                 </div>
-                                <p><span>$659</span> / PER </p>
+                                <p><span>₹20,000</span> / PER </p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            <p>Best Place to surf in Goa. Explore water sport activities and many more.</p>
                             <div class="package-info">
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View more details</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View more details</a>
                             </div>
                         </div>
                     </div>
@@ -264,11 +264,11 @@
                 <div class="col-sm-6">
                     <div class="package-item box-item">
                         <div class="package-image">
-                            <img src="images/package2.jpg" alt="Image">
-                            <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
+                            <img src="images/amazing/popcoorg.jpg" alt="Image">
+                            <!-- <p class="package-days"><i class="flaticon-time"></i> 3 days</p> -->
                         </div>
                         <div class="package-content">
-                            <h4>Hot Air Ballooning</h4>
+                            <h4>Adventure in Coorg</h4>
                             <div class="package-price">
                                 <div class="deal-rating">
                                     <span class="fa fa-star checked"></span>
@@ -277,11 +277,11 @@
                                     <span class="fa fa-star-o"></span>
                                     <span class="fa fa-star-o"></span>
                                 </div>
-                                <p><span>$659</span> / PER </p>
+                                <p><span>₹20,000</span> / PER </p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            <p>Coorg offers a variety of treks for adventure lovers. Pick one as per your comfort and experience.</p>
                             <div class="package-info">
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View more details</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View more details</a>
                             </div>
                         </div>
                     </div>
@@ -289,11 +289,11 @@
                 <div class="col-sm-6">
                     <div class="package-item box-item">
                         <div class="package-image">
-                            <img src="images/package3.jpg" alt="Image">
-                            <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
+                            <img src="images/amazing/popmanali.jpg" alt="Image">
+                            <!-- <p class="package-days"><i class="flaticon-time"></i> 1 days</p> -->
                         </div>
                         <div class="package-content">
-                            <h4>Lake Tohoe Advanture</h4>
+                            <h4>Hot Air Ballooning, Manali</h4>
                             <div class="package-price">
                                 <div class="deal-rating">
                                     <span class="fa fa-star checked"></span>
@@ -302,11 +302,11 @@
                                     <span class="fa fa-star-o"></span>
                                     <span class="fa fa-star-o"></span>
                                 </div>
-                                <p><span>$659</span> / PER </p>
+                                <p><span>₹20,000</span> / PER </p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            <p>Hot air ballooning in Manali is one of the most exotic adventure sports in Manali.</p>
                             <div class="package-info">
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View more details</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View more details</a>
                             </div>
                         </div>
                     </div>
@@ -314,11 +314,11 @@
                 <div class="col-sm-6">
                     <div class="package-item box-item">
                         <div class="package-image">
-                            <img src="images/package1.jpg" alt="Image">
-                            <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
+                            <img src="images/amazing/popshimla.jpg" alt="Image">
+                            <!-- <p class="package-days"><i class="flaticon-time"></i> 2 days</p> -->
                         </div>
                         <div class="package-content">
-                            <h4>Surfing at Goa, India</h4>
+                            <h4>Skiing in Shimla </h4>
                             <div class="package-price">
                                 <div class="deal-rating">
                                     <span class="fa fa-star checked"></span>
@@ -327,11 +327,11 @@
                                     <span class="fa fa-star-o"></span>
                                     <span class="fa fa-star-o"></span>
                                 </div>
-                                <p><span>$659</span> / PER </p>
+                                <p><span>₹20,000</span> / PER </p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            <p>Skiing in Shimla is enjoyed by honeymooners, families, and adventurers alike. </p>
                             <div class="package-info">
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View more details</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View more details</a>
                             </div>
                         </div>
                     </div>
@@ -340,6 +340,18 @@
         </div>
     </section>
     <!-- Popular Packages Ends -->
+     <section class="countdown-section">
+        <div class="container">
+            <div class="countdown-title">
+                <h2>Special Tour in August, Discover <span>Goa</span> <!-- for 50 Customers  -->with <span>Discount 30%</span></h2>
+                <p>It’s limited seating! Hurry up</p>
+            </div>
+            <div class="countdown countdown-container container">
+                <p id="demo"></p>
+            </div><!-- /.countdown-wrapper -->
+        </div>
+        <div class="testimonial-overlay"></div>
+    </section>
 
     <!-- Deals -->
     <!-- <section class="deals">
@@ -427,32 +439,32 @@
     <!-- Deals Ends -->
 
     <!-- Trip Ad -->
-    <section class="trip-ad">
+    <!-- <section class="trip-ad">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     
                     <div class="trip-ad-content">
                         <div class="ad-title">
-                            <h2>Explore The <span>Thailand Trip</span></h2>
+                            <h2>Explore The <span>Goa Trip</span></h2>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismody tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim adi minim veniam, qu nostrud exerci tation dolore magna aliquam erat volutpat.</p>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismody tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim adi minim veniam, qu nostrud exerci tation dolore magna aliquam erat volutpat.</p>
                         <div class="trip-ad-btn">
-                            <a href="tour-detail.html" class="btn-blue btn-red">BOOK NOW</a>
+                            <a href="#" class="btn-blue btn-red">BOOK NOW</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="ad-price">
                         <div class="ad-price-inner">
-                            <span>Starting at <span class="rate">$300</span></span>
+                            <span>Starting at <span class="rate">₹2,000</span></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Trip Ad Ends -->
 
     <!-- Bucket Lists -->
@@ -527,18 +539,18 @@
                 <div class="section-icon">
                     <i class="flaticon-diamond"></i>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Duis aute irure dolor in reprehenderit..</p>
+                <p>Looking for the best holiday destinations? We've rounded up the top places to visit in India. </p>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="destination-item-1 box-item">
                         <div class="destination-image-1">
-                            <img src="images/destination-fw1.jpg" alt="Image">
+                            <img src="images/package1.jpg" alt="Image">
                         </div>
                         <div class="destination-content-1">
                             <div class="destination-upper">
-                                <h4><a href="tour-detail.html">Lake Tohoe Adventure</a></h4>
-                                <p class="top-price"><span>$659</span> / PER </p>
+                                <h4><a href="#">Goa Package</a></h4>
+                                <p class="top-price"><span>₹20,000</span> / PER </p>
                             </div>
                             <div class="destination-lower clearfix">
                                 <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
@@ -556,12 +568,12 @@
                 <div class="col-sm-4">
                     <div class="destination-item-1 box-item">
                         <div class="destination-image-1">
-                            <img src="images/destination-fw2.jpg" alt="Image">
+                            <img src="images/package3.jpg" alt="Image">
                         </div>
                         <div class="destination-content-1">
                             <div class="destination-upper">
-                                <h4><a href="tour-detail.html">Lake Tohoe Adventure</a></h4>
-                                <p class="top-price"><span>$659</span> / PER </p>
+                                <h4><a href="#">Himachal Package</a></h4>
+                                <p class="top-price"><span>₹20,000</span> / PER </p>
                             </div>
                             <div class="destination-lower clearfix">
                                 <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
@@ -579,12 +591,12 @@
                 <div class="col-sm-4">
                     <div class="destination-item-1 box-item">
                         <div class="destination-image-1">
-                            <img src="images/destination-fw3.jpg" alt="Image">
+                            <img src="images/package2.jpg" alt="Image">
                         </div>
                         <div class="destination-content-1">
                             <div class="destination-upper">
-                                <h4><a href="tour-detail.html">Lake Tohoe Adventure</a></h4>
-                                <p class="top-price"><span>$659</span> / PER </p>
+                                <h4><a href="#">Coorg Package</a></h4>
+                                <p class="top-price"><span>₹20,000</span> / PER </p>
                             </div>
                             <div class="destination-lower clearfix">
                                 <p class="package-days"><i class="flaticon-time"></i> 5 days</p>
@@ -604,131 +616,9 @@
     </section>
     <!-- Top Destination Ends -->
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="section-title text-center section-title-white">
-            <h2>Best Rated Travel Agency</h2>
-            <div class="section-icon section-icon-white">
-                <i class="flaticon-diamond"></i>
-            </div>       
-        </div>
-        <!-- Paradise Slider -->
-        <div id="testimonial_094" class="carousel slide testimonial_094_indicators thumb_scroll_x swipe_x ps_easeOutSine" data-ride="carousel" data-pause="hover" data-interval="3000" data-duration="1000">
-
-
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#testimonial_094" data-slide-to="0" class="active">
-                    <img src="images/testemonial1.jpg" alt="testimonial_094_01"> <!-- 1st Image -->
-                </li>
-                <li data-target="#testimonial_094" data-slide-to="1">
-                    <img src="images/testemonial2.jpg" alt="testimonial_094_02"> <!-- 2nd Image -->
-                </li>
-                <li data-target="#testimonial_094" data-slide-to="2">
-                    <img src="images/testemonial3.jpg" alt="testimonial_094_03"> <!-- 3rd Image -->
-                </li>
-                <li data-target="#testimonial_094" data-slide-to="3">
-                    <img src="images/testemonial4.jpg" alt="testimonial_094_04"> <!-- 4th Image -->
-                </li>
-                <li data-target="#testimonial_094" data-slide-to="4">
-                    <img src="images/testemonial5.jpg" alt="testimonial_094_05"> <!-- 5th Image -->
-                </li>
-            </ol>
-
-            <!-- Wrapper For Slides -->
-            <div class="carousel-inner" role="listbox">
-
-                <!-- First Slide -->
-                <div class="item active">
-                    <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
-                        <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
-                        <div class="deal-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
-                <!-- End of First Slide -->
-
-                <!-- Second Slide -->
-                <div class="item">
-                    <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
-                        <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
-                        <div class="deal-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
-                <!-- End of Second Slide -->
-
-                <!-- Third Slide -->
-                <div class="item">
-                    <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
-                        <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
-                        <div class="deal-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
-                <!-- End of Third Slide -->
-
-                <!-- Fourth Slide -->
-                <div class="item">
-                    <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
-                        <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
-                        <div class="deal-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
-                <!-- End of Fourth Slide -->
-
-                <!-- Fifth Slide -->
-                <div class="item">
-                    <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
-                        <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
-                        <div class="deal-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
-                <!-- End of Fifth Slide -->
-            </div> <!-- End of Wrapper For Slides -->
-        </div> <!-- End Paradise Slider -->
-    </section>
-    <!-- Testimonials -->
 
     <!-- Deals On Sale -->
-    <section class="deals-on-sale">
+    <!-- <section class="deals-on-sale">
         <div class="container">
             <div class="section-title text-center">
                 <h2>Deals On Sale</h2>
@@ -741,7 +631,7 @@
                 <div class="col-md-12">
                     <div class="sale-item box-item">
                         <div class="sale-image">
-                            <img src="images/sale1.jpg" alt="Image">
+                            <img src="images/amazing/goad.jpg" alt="Image">
                         </div>
                         <div class="sale-content-1 sale-content">
                             <div class="sale-review">
@@ -751,16 +641,16 @@
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                             </div>
-                            <h3><a href="#">Surfing at Bahamas</a></h3>
+                            <h3><a href="#">Surfing at Goa</a></h3>
                             <div class="sale-content-inner">
                                 <p><i class="flaticon-time"></i> 5 days</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View More</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View More</a>
                             </div>
                         </div>
                         <div class="sale-tag">
-                            <span class="old-price">$1449</span>
-                            <span class="new-price"> $900</span>
+                            <span class="old-price"><del>₹40,000</del></span>
+                            <span class="new-price"> ₹20,000</span>
                         </div>
                         <div class="sale-overlay"></div>
                     </div>
@@ -768,7 +658,7 @@
                 <div class="col-md-12">
                     <div class="sale-item box-item">
                         <div class="sale-image">
-                            <img src="images/sale2.jpg" alt="Image">
+                            <img src="images/amazing/manalid.png" alt="Image">
                         </div>
                         <div class="sale-content-1 sale-content">
                             <div class="sale-review">
@@ -778,16 +668,16 @@
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                             </div>
-                            <h3><a href="#">Surfing at Bahamas</a></h3>
+                            <h3><a href="#">Hot Air Balooning, Manali</a></h3>
                             <div class="sale-content-inner">
                                 <p><i class="flaticon-time"></i> 5 days</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View More</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View More</a>
                             </div>
                         </div>
                         <div class="sale-tag">
-                            <span class="old-price">$1449</span>
-                            <span class="new-price"> $900</span>
+                            <span class="old-price"><del>₹40,000</del></span>
+                            <span class="new-price">₹20,000</span>
                         </div>
                         <div class="sale-overlay"></div>
                     </div>
@@ -795,7 +685,7 @@
                 <div class="col-md-12">
                     <div class="sale-item box-item">
                         <div class="sale-image">
-                            <img src="images/sale3.jpg" alt="Image">
+                            <img src="images/amazing/shimlad.jpg" alt="Image">
                         </div>
                         <div class="sale-content-1 sale-content">
                             <div class="sale-review">
@@ -805,16 +695,16 @@
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                             </div>
-                            <h3><a href="#">Surfing at Bahamas</a></h3>
+                            <h3><a href="#">Skiing in Shimla</a></h3>
                             <div class="sale-content-inner">
                                 <p><i class="flaticon-time"></i> 5 days</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View More</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View More</a>
                             </div>
                         </div>
                         <div class="sale-tag">
-                            <span class="old-price">$1449</span>
-                            <span class="new-price"> $900</span>
+                            <span class="old-price"><del>₹40,000</del></span>
+                            <span class="new-price">₹20,000</span>
                         </div>
                         <div class="sale-overlay"></div>
                     </div>
@@ -822,7 +712,7 @@
                 <div class="col-md-12">
                     <div class="sale-item box-item">
                         <div class="sale-image">
-                            <img src="images/sale4.jpg" alt="Image">
+                            <img src="images/amazing/coorgd.jpg" alt="Image">
                         </div>
                         <div class="sale-content-1 sale-content">
                             <div class="sale-review">
@@ -832,23 +722,23 @@
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                             </div>
-                            <h3><a href="#">Surfing at Bahamas</a></h3>
+                            <h3><a href="#">Coorg Adventure</a></h3>
                             <div class="sale-content-inner">
                                 <p><i class="flaticon-time"></i> 5 days</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                <a href="tour-detail.html" class="btn-blue btn-red btn-style-1">View More</a>
+                                <a href="#" class="btn-blue btn-red btn-style-1">View More</a>
                             </div>
                         </div>
                         <div class="sale-tag">
-                            <span class="old-price">$1449</span>
-                            <span class="new-price"> $900</span>
+                            <span class="old-price"><del>₹40,000</del></span>
+                            <span class="new-price"> ₹20,000</span>
                         </div>
                         <div class="sale-overlay"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Deals On Sale Ends -->
 
     <!-- Countdown -->
@@ -951,9 +841,10 @@
     <!-- Blog Ends -->
 
     <!-- Trusted Partners -->
-    <section class="trusted-partners">
+   <!--  <section class="trusted-partners">
         <div class="container">
             <ul class="partners-logo partners-slider">
+
                 <li><a href="#"><img src="images/partner1.png" alt="Image"></a></li>
                 <li><a href="#"><img src="images/partner2.png" alt="Image"></a></li>
                 <li><a href="#"><img src="images/partner3.png" alt="Image"></a></li>
@@ -961,14 +852,10 @@
                 <li><a href="#"><img src="images/partner5.png" alt="Image"></a></li>
                 <li><a href="#"><img src="images/partner6.png" alt="Image"></a></li>
                 <li><a href="#"><img src="images/partner1.png" alt="Image"></a></li>
-                <li><a href="#"><img src="images/partner2.png" alt="Image"></a></li>
-                <li><a href="#"><img src="images/partner3.png" alt="Image"></a></li>
-                <li><a href="#"><img src="images/partner4.png" alt="Image"></a></li>
-                <li><a href="#"><img src="images/partner5.png" alt="Image"></a></li>
-                <li><a href="#"><img src="images/partner6.png" alt="Image"></a></li>
+                
             </ul>
         </div>
-    </section>
+    </section> -->
     <!-- Trusted Partners Ends -->
 
     <!-- Footer -->

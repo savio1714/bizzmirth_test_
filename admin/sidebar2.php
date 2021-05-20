@@ -47,6 +47,8 @@
                                     </li>
                                     <li><a href="../customer/travel_agent_customer.php">Travel Agent Customer</a>
                                     </li>
+                                    <!-- <li><a href="../customer/b2c_test.php">B2C test</a>
+                                    </li> -->
                                     
                                 </ul>
                             </div>

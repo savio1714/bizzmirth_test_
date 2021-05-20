@@ -3,7 +3,7 @@
                     <ul>
                         <li class="active"><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
                         <li><a href="dashboard_my_profile.php"><i class="sl sl-icon-user"></i> Edit Profile</a></li>
-                        <li><a href="#"><i class="sl sl-icon-folder"></i> History</a></li>
+                        <li><a href="mytrips.php"><i class="sl sl-icon-folder"></i>My Trips</a></li>
                         <li><a href="#"><i class="sl sl-icon-plus"></i>Offers</a></li>
                         <!-- <li><a href="dashboard-addtour.html"><i class="sl sl-icon-plus"></i> Add Tour</a></li>
                         <li>

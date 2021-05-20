@@ -15,6 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/styles.css" rel="stylesheet" type="text/css">
     <!--Flaticons CSS-->
     <link href="font/flaticon.css" rel="stylesheet" type="text/css">
     <!--Plugin CSS-->
@@ -132,17 +133,23 @@
                                     <!-- <input type="file" id="id_proof" class="custom-file-input"> -->
                                     <div class="col-md-5 col-sm-5 ">
                                     <input type="file" id="file2" name="file2" />
+                                    <div id="profileError" class=" errorMessage2"></div>
+                                    
                                   </div>
                                  
                                   <div class="col-md-3 col-sm-3 ">  <input type="hidden" name="profile_pic" id="profile_pic" disabled></div>
                                    <div class='preview col-md-4 col-sm-12' id="preview">
                                     <img src="" id="img2" width="100" height="100" align="right" alt="Profile Image">
                                   </div>
+
                                    
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Firstname:</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+                                    <input type="text" class="form-control " id="fname" placeholder="Enter First Name">
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
                                 </div>
                                <!--  <div class="form-group col-xs-12">
                                     <label>Middlename:</label>
@@ -151,20 +158,30 @@
                                  <div class="form-group col-xs-12">
                                     <label>Lastname:</label>
                                     <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Email:</label>
                                     <input type="email" class="form-control" id="email" placeholder="abc@xyz.com">
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Phone Number:</label>
                                     <input type="text" class="form-control" id="phone_no" placeholder="Phone Number">
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
                                 </div>
-                                <div class="form-group col-xs-12">
+                                <div class="form-group col-xs-12" >
                                     <label>Gender:</label>
                                     <div class="form-check form-check-inline">
                                         <div class="form-group col-xs-3">
                                       <input type="radio" name="gender" class="form-check-input gender" value="male"> 
+
                                       <label class="form-check-label" for="male">Male</label>
                                       </div>
                                       <div class="form-group col-xs-3">
@@ -176,21 +193,32 @@
                                           <label class="form-check-label" for="others">Others</label>
                                       </div>
                                     </div>
+                                    <div id="errorMessage" class=""></div>
                                   
                                 </div>
+
+
+                                    
                                 <div class="form-group col-xs-12">
                                     <label>Age:</label>
                                     <input type="text" class="form-control" id="age" placeholder="Enter Age">
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
                                 </div>
                                  <div class="form-group col-xs-12">
                                     <label>Date of Birth:</label>
                                     <input class="form-control" type="date" id="bdate">
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small id="messagedate">Error Message</small>
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label class="custom-file">PAN / Aadhar Card: </label><br>
                                     <!-- <input type="file" id="id_proof" class="custom-file-input"> -->
-                                    <div class="col-md-3 col-sm-3 ">
+                                    <div class="col-md-6 col-sm-6 ">
                                     <input type="file" id="file" name="file" />
+                                     <div id="idProofError" class=" errorMessage2"></div>
                                   </div>
                                  <!--  <div class='preview col-md-2'>
                                     <img src="" id="img" width="100" height="100" align="right">
@@ -214,6 +242,7 @@
                                 <div class="col-xs-12">
                                     <div class="comment-btn">
                                         <a href="#" id="register" class="btn-blue btn-red">Register Now</a>
+                                        <div id="errorMessageText" class="errorMessage2"></div>
                                     </div>
                                 </div>
                             </div>

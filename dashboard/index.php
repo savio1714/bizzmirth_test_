@@ -55,9 +55,9 @@ if(!isset($_SESSION['username2'])){
                     <!-- Item -->
                     <div class="col-lg-3 col-md-6 col-xs-6">
                         <div class="dashboard-stat color-1">
-                            <div class="dashboard-stat-content"><h4>6</h4> <span>Active Listings</span></div>
+                            <div class="dashboard-stat-content"><h4>6</h4> <span>Total Activities</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
-                            <div class="dashboard-stat-item"><p>Someone bookmarked your listing!</p></div>
+                            <div class="dashboard-stat-item"><p>Check your total activities</p></div>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@ if(!isset($_SESSION['username2'])){
                         <div class="dashboard-stat color-2">
                             <div class="dashboard-stat-content"><h4>726</h4> <span>Total Bookings</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Line-Chart"></i></div>
-                            <div class="dashboard-stat-item"><p>Someone bookmarked your listing!</p></div>
+                            <div class="dashboard-stat-item"><p>Check your total bookings</p></div>
                         </div>
                     </div>
 
@@ -76,15 +76,15 @@ if(!isset($_SESSION['username2'])){
                         <div class="dashboard-stat color-3">
                             <div class="dashboard-stat-content"><h4>95</h4> <span>Total Reviews</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
-                            <div class="dashboard-stat-item"><p>Someone bookmarked your listing!</p></div>
+                            <div class="dashboard-stat-item"><p>Check your reviews</p></div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-xs-6">
                         <div class="dashboard-stat color-4">
-                            <div class="dashboard-stat-content"><h4>126</h4> <span>Bookmarks</span></div>
+                            <div class="dashboard-stat-content"><h4>126</h4> <span>Total Offers</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
-                            <div class="dashboard-stat-item"><p>Someone bookmarked your listing!</p></div>
+                            <div class="dashboard-stat-item"><p>Your offers</p></div>
                         </div>
                     </div>
                 </div>
@@ -101,6 +101,7 @@ if(!isset($_SESSION['username2'])){
                                             <th>Destination</th>
                                             <th>No of Tickets</th>
                                             <th>Price</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -110,6 +111,7 @@ if(!isset($_SESSION['username2'])){
                                             <td>Dubai</td>
                                             <td>5</td>
                                             <td>$300.00</td>
+                                            <td><a href="#" class="button">View</a></td>
                                         </tr>
                                         <tr>
                                             <td>01/01/2017</td>
@@ -117,6 +119,7 @@ if(!isset($_SESSION['username2'])){
                                             <td>Grece - Zakynthos</td>
                                             <td>5</td>
                                             <td>$300.00</td>
+                                            <td><a href="#" class="button">View</a></td>
                                         </tr>
                                         <tr>
                                             <td>01/01/2017</td>
@@ -124,6 +127,7 @@ if(!isset($_SESSION['username2'])){
                                             <td>Bulgary - Sunny Beach</td>
                                             <td>5</td>
                                             <td>$300.00</td>
+                                            <td><a href="#" class="button">View</a></td>
                                         </tr>
                                         <tr>
                                             <td>01/01/2017</td>
@@ -131,6 +135,7 @@ if(!isset($_SESSION['username2'])){
                                             <td>France - Paris</td>
                                             <td>5</td>
                                             <td>$300.00</td>
+                                            <td><a href="#" class="button">View</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -140,7 +145,7 @@ if(!isset($_SESSION['username2'])){
                 </div>
                 <div class="row">      
                     <!-- Recent Activity -->
-                    <div class="col-lg-7 col-md-12 col-xs-12 traffic">
+                    <div class="col-lg-12 col-md-12 col-xs-12 traffic">
                         <div class="dashboard-list-box with-icons margin-top-20">
                             <h4 class="gray">Recent Activities</h4>
                             <ul>
@@ -172,9 +177,11 @@ if(!isset($_SESSION['username2'])){
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-12 col-xs-12 traffic">
+                </div>
+                <div class="row"> 
+                    <div class="col-lg-12 col-md-12 col-xs-12 traffic">
                         <div class="dashboard-list-box margin-top-20 user-list">
-                            <h4 class="gray">User List</h4>
+                            <h4 class="gray">Referral Customer</h4>
                             <ul>
                                 <li>
                                     <div class="user-list-item">
@@ -254,30 +261,9 @@ if(!isset($_SESSION['username2'])){
                             </ul>
                         </div>
                     </div>
+                   
                 </div>
-                <div class="row">
-                    <!-- site traffic -->
-                    <div class="col-lg-4 col-md-4 mar-b-30">
-                        <div class="dashboard-list-box">
-                            <h4 class="gray">Site Traffic</h4>
-                            <div id="chartContainer" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 mar-b-30">
-                        <div class="dashboard-list-box">
-                            <h4 class="gray">Bar Chart</h4>
-                            <div id="barchart" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4">
-                        <div class="dashboard-list-box">
-                            <h4 class="gray">Search Engine</h4>
-                            <div id="piechart" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <!-- Content / End -->
             <!-- Copyrights -->

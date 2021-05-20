@@ -66,8 +66,11 @@ if(!isset($_SESSION['username2'])){
                                             <span><i class="fa fa-upload"></i> Upload Photo</span>
                                             <input type="file" class="upload" />
                                         </div>
+
                                     </div>
+
                                 </div>
+                                
             
                                 <!-- Details -->
                                 <div class="my-profile">
@@ -131,6 +134,7 @@ if(!isset($_SESSION['username2'])){
 
                 </div>
             </div>
+
             </div>
 
             <!-- Content / End -->

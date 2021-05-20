@@ -4,25 +4,6 @@ session_start();
 if(!isset($_SESSION['username'])){
     echo '<script>location.href = "../index.php";</script>';
 }
-
-
-require '../connect.php';
-$stmt = $conn->prepare("SELECT count(id) as pending_record FROM users_details where status='2' ");
-$stmt->execute();
-
-                                                   
-$stmt->setFetchMode(PDO::FETCH_ASSOC);
-    if($stmt->rowCount()>0){
-    foreach (($stmt->fetchAll()) as $key => $row) {
-        $pending_record= $row['pending_record'];
-    }
-                                                          
-     }
-    else{
-        $pending_record=0;
-    }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +31,9 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 </head>
 
 <body>
@@ -80,14 +61,12 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                 <div class="tab-inn">
                                    
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 "style="padding: 15% 10%;" > 
-                                            <a href="../customer/pending_customer.php" class="waves-effect waves-light btn-large">Pending Customer
-                                                <span class="badge badge-danger" style="margin-top: -38px;
-                                                color: white;margin-left: 230px;background: #F44336; "><?php echo $pending_record ;?></span></a>
+                                        <div class="col-md-6 col-sm-4 "style="padding: 17% 13% ;" > 
+                                            <a href="../customer/b2c.php" class="waves-effect waves-light btn-large">Pending Customer</a>
                                         </div>
-                                        <div class="col-md-6 col-sm-6 "style="padding: 15% 8%;margin: 0 auto; "> 
+                                        <div class="col-md-6 col-sm-4 "style="padding: 17% 13%; "> 
 
-                                   <a href="../customer/registered_customer.php" class="waves-effect waves-light btn-large">Register Customer</a>
+                                   <a href="../customer/b2c.php" class="waves-effect waves-light btn-large">Register Customer</a>
                                         </div>
                                             
                                         </div>
