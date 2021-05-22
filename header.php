@@ -9,8 +9,13 @@
                         <i class="flaticon-mail"></i><p> Mail: <span>support@bizzmirth.com</span></p>
                     </div>
                     <div class="login-btn pull-right">
-                        <a href="login.php"><i class="fa fa-user-plus"></i> Register</a>
-                        <a href="login.php"><i class="fa fa-unlock-alt"></i> Login</a>
+                        <?php if(isset($_SESSION['username2'])){echo ' <a href="dashboard/" target="_blank"><i class="fa fa-user-plus"></i> Dashboard</a>
+                        <a href="login.php"><i class="fa fa-user-plus mylogout"></i> Logout</a>';
+
+                    }else { echo ' <a href="login.php"><i class="fa fa-user-plus"></i> Register</a>
+                        <a href="login.php"><i class="fa fa-unlock-alt"></i> Login</a>';}?>
+                       
+                       
                     </div>
                 </div>
             </div>

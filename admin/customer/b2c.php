@@ -74,12 +74,28 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 </div>
                 <div class="sb2-2-3">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="box-inn-sp">
+                        <div class="col-md-12" style="padding: 0 0 30% 0;">
+                            <div class="box-inn-sp" >
                                 
-                                <div class="tab-inn">
-                                   
-                                    <div class="row">
+                                <div class="tab-inn" >
+                                    <ul class="collapsible" data-collapsible="accordion">
+                                        <li>
+                                            <div class="collapsible-header coll-head"><i class="material-icons dp48">view_list</i>Pending Customer <span class="badge badge-danger" style="color:white;background: #F44336; "><?php echo $pending_record ;?></span></div>
+                                            <div class="collapsible-body coll-body"><span>
+                                                <a href="../customer/pending_customer.php" class="waves-effect waves-light btn-large">Preview</a>
+                                            </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="collapsible-header coll-head"><i class="material-icons dp48">view_list</i>Registered Customer</div>
+                                            <div class="collapsible-body coll-body"><span>
+                                                 <a href="../customer/registered_customer.php" class="waves-effect waves-light btn-large">Preview</a>
+                                            </span>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                          <!-- <div class="row">
                                         <div class="col-md-6 col-sm-6 "style="padding: 15% 10%;" > 
                                             <a href="../customer/pending_customer.php" class="waves-effect waves-light btn-large">Pending Customer
                                                 <span class="badge badge-danger" style="margin-top: -38px;
@@ -90,7 +106,8 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                    <a href="../customer/registered_customer.php" class="waves-effect waves-light btn-large">Register Customer</a>
                                         </div>
                                             
-                                        </div>
+                                        </div>  --> 
+
                                 </div>
                             </div>
                         </div>
@@ -101,7 +118,7 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
     </div>
 
     <!--== BOTTOM FLOAT ICON ==-->
-    <section>
+    <!-- <section>
         <div class="fixed-action-btn vertical">
             <a class="btn-floating btn-large red pulse">
                 <i class="large material-icons">mode_edit</i>
@@ -117,7 +134,7 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 </li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!--======== SCRIPT FILES =========-->
     <script src="../js/jquery.min.js"></script>

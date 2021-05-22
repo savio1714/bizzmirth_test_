@@ -243,5 +243,6 @@ if(!isset($_SESSION['username2'])){
     <script src="../js/dashboard-custom.js"></script>
     <script src="../js/jpanelmenu.min.js"></script>
     <script src="../js/counterup.min.js"></script>
+    <script type="text/javascript" src="../logout/logout.js"></script>
 </body>
 </html>

@@ -149,7 +149,7 @@ if(!isset($_SESSION['username'])){
     </div>
 
     <!--== BOTTOM FLOAT ICON ==-->
-    <section>
+   <!--  <section>
         <div class="fixed-action-btn vertical">
             <a class="btn-floating btn-large red pulse">
                 <i class="large material-icons">mode_edit</i>
@@ -165,7 +165,7 @@ if(!isset($_SESSION['username'])){
                 </li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!--======== SCRIPT FILES =========-->
     <script src="../js/jquery.min.js"></script>

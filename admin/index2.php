@@ -67,16 +67,16 @@ if(!isset($_SESSION['username'])){
 								<div class="ad-hom-box ad-hom-box-1">
 									<span class="ad-hom-col-com ad-hom-col-1"><i class="fa fa-bar-chart"></i></span>
 									<div class="ad-hom-view-com">
-									<p><i class="fa  fa-arrow-up up"></i> Today Views</p>
+									<p><i class="fa  fa-arrow-up up"></i> Total Franchisee</p>
 									<h3>22,520</h3>
 									</div>
-								</div>
+		 						</div>
 							</li>
 							<li>
 								<div class="ad-hom-box ad-hom-box-2">
 									<span class="ad-hom-col-com ad-hom-col-2"><i class="fa fa-usd"></i></span>
 									<div class="ad-hom-view-com">
-									<p><i class="fa  fa-arrow-up up"></i> Earnings</p>
+									<p><i class="fa  fa-arrow-up up"></i> Total Travel Agent</p>
 									<h3>22,520</h3>
 									</div>
 								</div>
@@ -85,7 +85,7 @@ if(!isset($_SESSION['username'])){
 								<div class="ad-hom-box ad-hom-box-3">
 									<span class="ad-hom-col-com ad-hom-col-3"><i class="fa fa-address-card-o"></i></span>
 									<div class="ad-hom-view-com">
-									<p><i class="fa  fa-arrow-up up"></i> Users</p>
+									<p><i class="fa  fa-arrow-up up"></i> Total Customer</p>
 									<h3>22,520</h3>
 									</div>
 								</div>
@@ -104,24 +104,24 @@ if(!isset($_SESSION['username'])){
                 </div>
                 <div class="sb2-2-3">
                     <div class="row">
-                        <!--== Country Campaigns ==-->
+                        <!--== Travel Agent ==-->
                         <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Country Campaigns</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                                    <h4>Travel Agent</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a>
                                     <!-- Dropdown Structure -->
                                     <ul id='dropdown1' class='dropdown-content'>
                                         <li><a href="#!">Add New</a>
                                         </li>
-                                        <li><a href="#!">Edit</a>
+                                        <!-- <li><a href="#!">Edit</a>
                                         </li>
                                         <li><a href="#!">Update</a>
                                         </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
-                                        </li>
+ -->                                        <li class="divider"></li>
+                                       <!--  <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
                                         <li><a href="#!"><i class="material-icons">subject</i>View All</a>
                                         </li>
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
@@ -133,54 +133,54 @@ if(!isset($_SESSION['username'])){
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Country</th>
-                                                    <th>Client</th>
-                                                    <th>Changes</th>
-                                                    <th>Budget</th>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <!-- <th>Budget</th> -->
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">Australia</span>
+                                                    <td><span class="txt-dark weight-500">2</span>
                                                     </td>
                                                     <td>Beavis</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>2.43%</span></span>
+                                                    <td>xyyz
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <span class="txt-dark weight-500">$1478</span>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
                                                         <span class="label label-success">Active</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">Cuba</span>
+                                                    <td><span class="txt-dark weight-500">3</span>
                                                     </td>
                                                     <td>Felix</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>1.43%</span></span>
+                                                    <td>abc
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <span class="txt-dark weight-500">$951</span>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
                                                         <span class="label label-danger">Closed</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">France</span>
+                                                    <td><span class="txt-dark weight-500">4</span>
                                                     </td>
                                                     <td>Cannibus</td>
-                                                    <td><span class="txt-danger"><i class="fa fa-angle-up" aria-hidden="true"></i><span>-8.43%</span></span>
+                                                    <td>dgf
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <span class="txt-dark weight-500">$632</span>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
                                                         <span class="label label-default">Hold</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td><span class="txt-dark weight-500">Norway</span>
                                                     </td>
                                                     <td>Neosoft</td>
@@ -205,7 +205,7 @@ if(!isset($_SESSION['username'])){
                                                     <td>
                                                         <span class="label label-success">Active</span>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -213,24 +213,24 @@ if(!isset($_SESSION['username'])){
                             </div>
                         </div>
 
-                        <!--== Country Campaigns ==-->
+                        <!--== Customer ==-->
                         <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Country Campaigns</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                                    <h4>Customer</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown2'><i class="material-icons">more_vert</i></a>
                                     <!-- Dropdown Structure -->
                                     <ul id='dropdown2' class='dropdown-content'>
                                         <li><a href="#!">Add New</a>
                                         </li>
-                                        <li><a href="#!">Edit</a>
+                                        <!-- <li><a href="#!">Edit</a>
                                         </li>
                                         <li><a href="#!">Update</a>
-                                        </li>
+                                        </li> -->
                                         <li class="divider"></li>
-                                        <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
-                                        </li>
+                                        <!-- <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
                                         <li><a href="#!"><i class="material-icons">subject</i>View All</a>
                                         </li>
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
@@ -242,55 +242,55 @@ if(!isset($_SESSION['username'])){
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>State</th>
-                                                    <th>Client</th>
-                                                    <th>Changes</th>
-                                                    <th>Budget</th>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <!-- <th>Budget</th> -->
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">California</span>
+                                                    <td><span class="txt-dark weight-500">2</span>
                                                     </td>
                                                     <td>Beavis</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>2.43%</span></span>
+                                                    <td>xyyz
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <span class="txt-dark weight-500">$1478</span>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
                                                         <span class="label label-success">Active</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">Florida</span>
+                                                    <td><span class="txt-dark weight-500">3</span>
                                                     </td>
                                                     <td>Felix</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>1.43%</span></span>
+                                                    <td>abc
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <span class="txt-dark weight-500">$951</span>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
                                                         <span class="label label-danger">Closed</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">Hawaii</span>
+                                                    <td><span class="txt-dark weight-500">4</span>
                                                     </td>
                                                     <td>Cannibus</td>
-                                                    <td><span class="txt-danger"><i class="fa fa-angle-up" aria-hidden="true"></i><span>-8.43%</span></span>
+                                                    <td>dgf
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <span class="txt-dark weight-500">$632</span>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
                                                         <span class="label label-default">Hold</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">Alaska</span>
+                                                <!-- <tr>
+                                                    <td><span class="txt-dark weight-500">Norway</span>
                                                     </td>
                                                     <td>Neosoft</td>
                                                     <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>7.43%</span></span>
@@ -303,7 +303,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="txt-dark weight-500">New Jersey</span>
+                                                    <td><span class="txt-dark weight-500">South Africa</span>
                                                     </td>
                                                     <td>Hencework</td>
                                                     <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>9.43%</span></span>
@@ -314,7 +314,7 @@ if(!isset($_SESSION['username'])){
                                                     <td>
                                                         <span class="label label-success">Active</span>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -325,7 +325,7 @@ if(!isset($_SESSION['username'])){
                 </div>
 
                 <!--== User Details ==-->
-                <div class="sb2-2-3">
+               <!--  <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-inn-sp">
@@ -348,7 +348,7 @@ if(!isset($_SESSION['username'])){
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
                                         </li>
                                     </ul>
-                                    <!-- Dropdown Structure -->
+               
 
                                 </div>
                                 <div class="tab-inn">
@@ -480,11 +480,11 @@ if(!isset($_SESSION['username'])){
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="sb2-2-3">
-                    <div class="row">
+                </div> -->
+                <!-- <div class="sb2-2-3">
+                    <div class="row"> -->
                         <!--== Listing Enquiry ==-->
-                        <div class="col-md-6">
+                       <!--  <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Travel Package Enquiry</h4>
@@ -505,7 +505,7 @@ if(!isset($_SESSION['username'])){
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
                                         </li>
                                     </ul>
-                                    <!-- Dropdown Structure -->
+                              
 
                                 </div>
                                 <div class="tab-inn">
@@ -602,10 +602,10 @@ if(!isset($_SESSION['username'])){
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!--== Hotel Bookings ==-->
-                        <div class="col-md-6">
+                       <!--  <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Hotel Bookings</h4>
@@ -626,7 +626,7 @@ if(!isset($_SESSION['username'])){
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
                                         </li>
                                     </ul>
-                                    <!-- Dropdown Structure -->
+                            
 
                                 </div>
                                 <div class="tab-inn">
@@ -723,30 +723,30 @@ if(!isset($_SESSION['username'])){
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </div> -->
+                   <!--  </div>
+                </div> -->
 
                 <!--== Latest Activity ==-->
                 <div class="sb2-2-3">
                     <div class="row">
                         <!--== Latest Activity ==-->
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Latest Activity</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-activ"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-activ" class="dropdown-content">
                                         <li><a href="#!">Add New</a>
                                         </li>
-                                        <li><a href="#!">Edit</a>
+                                        <!-- <li><a href="#!">Edit</a>
                                         </li>
                                         <li><a href="#!">Update</a>
-                                        </li>
+                                        </li> -->
                                         <li class="divider"></li>
-                                        <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
-                                        </li>
+                                        <!-- <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
                                         <li><a href="#!"><i class="material-icons">subject</i>View All</a>
                                         </li>
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
@@ -788,7 +788,7 @@ if(!isset($_SESSION['username'])){
                         </div>
 
                         <!--== Social Media ==-->
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Social Media</h4>
@@ -809,7 +809,7 @@ if(!isset($_SESSION['username'])){
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
                                         </li>
                                     </ul>
-                                    <!-- Dropdown Structure -->
+                             
 
                                 </div>
                                 <div class="tab-inn">
@@ -918,11 +918,11 @@ if(!isset($_SESSION['username'])){
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!--== User Details ==-->
-                <div class="sb2-2-3">
+                <!-- <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-inn-sp">
@@ -945,7 +945,6 @@ if(!isset($_SESSION['username'])){
                                         <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
                                         </li>
                                     </ul>
-                                    <!-- Dropdown Structure -->
 
                                 </div>
                                 <div class="tab-inn">
@@ -956,14 +955,14 @@ if(!isset($_SESSION['username'])){
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>
     </div>
 
     <!--== BOTTOM FLOAT ICON ==-->
-    <section>
+   <!--  <section>
         <div class="fixed-action-btn vertical">
             <a class="btn-floating btn-large red pulse">
                 <i class="large material-icons">mode_edit</i>
@@ -980,7 +979,7 @@ if(!isset($_SESSION['username'])){
             </ul>
         </div>
     </section>
-
+ -->
     <!--======== SCRIPT FILES =========-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

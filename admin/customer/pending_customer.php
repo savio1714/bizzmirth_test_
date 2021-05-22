@@ -92,8 +92,8 @@ if(!isset($_SESSION['username'])){
                                                     <th>Email</th>
                                                     <!-- <th>Listings</th> -->
                                                     <th>View</th>
-                                                    <th>Edit</th>
                                                     <th>Delete</th>
+                                                    <th>Confirm</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -115,13 +115,14 @@ if(!isset($_SESSION['username'])){
                                                     <td>'.$row['contact_no'].'</td>
                                                     <td>'.$row['email'].'</td>
                                                     <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                        <a href="view_customer.php?vkvbvjfgfikix='.$row["id"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    
                                                     <td>
                                                         <a href="" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["firstname"]. '")\'><i class="material-icons dp48">verified_user</i></a>
                                                     </td>
                                                 </tr>';
 
@@ -149,7 +150,7 @@ if(!isset($_SESSION['username'])){
     </div>
 
     <!--== BOTTOM FLOAT ICON ==-->
-    <section>
+    <!-- <section>
         <div class="fixed-action-btn vertical">
             <a class="btn-floating btn-large red pulse">
                 <i class="large material-icons">mode_edit</i>
@@ -165,7 +166,7 @@ if(!isset($_SESSION['username'])){
                 </li>
             </ul>
         </div>
-    </section>
+    </section> -->
 
     <!--======== SCRIPT FILES =========-->
     <script src="../js/jquery.min.js"></script>
@@ -178,6 +179,13 @@ if(!isset($_SESSION['username'])){
 <!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-all.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:20 GMT -->
 </html>
 <script type="text/javascript">
+
+    function viewfunc(id)
+    { 
+        window.location.href='view_customer.php?id='+id;  
+    };
+
+
     function deletefunc(id)
     { 
     var dataString = 'id='+ id;
@@ -190,6 +198,8 @@ if(!isset($_SESSION['username'])){
         cache: false,
           success:function(data){
             if(data == 1){
+
+            alert("deletion failed");
              window.location.reload();
           }
           else{
@@ -199,5 +209,30 @@ if(!isset($_SESSION['username'])){
       }
       });
           
-        };
+    };
+
+
+    function confirmfunc(id,name)
+    { 
+    var dataString = 'id='+ id+'&uname='+name;
+
+
+      $.ajax({
+        type: "POST",
+        url: "confirm_customer.php",
+        data: dataString,
+        cache: false,
+          success:function(data){
+            if(data == 1){
+                   alert("Username and Password send via sms and email");
+             window.location.reload();
+          }
+          else{
+
+          alert("Failed to confirm");
+        }
+      }
+      });
+          
+    };
 </script>

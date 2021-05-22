@@ -2,31 +2,33 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../index.php";</script>';
+    echo '<script>location.href = "index.php";</script>';
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
+
+<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/setting.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:16 GMT -->
 <head>
     <title>Bizzmirth Holidays</title>
     <!--== META TAGS ==-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!--== FAV ICON ==-->
-    <link rel="shortcut icon" href="../images/fav.ico">
+    <link rel="shortcut icon" href="images/fav.ico">
 
     <!-- GOOGLE FONTS -->
     <link href="../../../../../fonts.googleapis.com/cssbcc5.css?family=Open+Sans:300,400,600|Quicksand:300,400,500" rel="stylesheet">
 
     <!-- FONT-AWESOME ICON CSS -->
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <!--== ALL CSS FILES ==-->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/mob.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/materialize.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mob.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/materialize.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,19 +39,20 @@ if(!isset($_SESSION['username'])){
 </head>
 
 <body>
-    <!--== MAIN CONTRAINER ==-->
-<?php include '../header2.php';?>
+        <!--== MAIN CONTRAINER ==-->
+<?php include 'header.php';?>
+   
 
     <!--== BODY CONTNAINER ==-->
-    
-        <?php include '../sidebar2.php';?>
-           
+<?php include 'sidebar.php';?>
+   
+  
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Add Travel Agent</a>
+                        <li class="active-bre"><a href="#"> Setting</a>
                         </li>
                     </ul>
                 </div>
@@ -58,58 +61,58 @@ if(!isset($_SESSION['username'])){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Add New User</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                                    <h4>Setting</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
                                     <form>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="first_name" type="text" class="validate">
-                                                <label for="first_name">First Name</label>
+                                                <input id="website" type="text" value="www.websitename.com" class="validate">
+                                                <label for="website">Website</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="last_name" type="text" class="validate">
-                                                <label for="last_name">Last Name</label>
+                                                <input id="blog_name" type="text" value="www.websitename.com/blog" class="validate">
+                                                <label for="blog_name">Blog</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="phone" type="number" class="validate">
+                                                <input id="phone" type="text" value="+01 1234 4654" class="validate">
                                                 <label for="phone">Mobile</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="cphone" type="number" class="validate">
+                                                <input id="cphone" type="text" value="+01 6541 32145" class="validate">
                                                 <label for="cphone">Phone</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="city" type="text" class="validate">
-                                                <label for="city">City</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input id="country" type="text" class="validate">
-                                                <label for="country">Country</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id="password" type="password" class="validate">
+                                                <input id="password" type="password" value="aksdjfhasdf" class="validate">
                                                 <label for="password">Password</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="password1" type="password" class="validate">
+                                                <input id="password1" type="password" value="asdfaefrerfg" class="validate">
                                                 <label for="password1">Confirm Password</label>
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="f_name" type="text" value="www.websitename.com/facebook" class="validate">
+                                                <label for="f_name">Facebook</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="g_name" type="text" value="www.websitename.com/google plus" class="validate">
+                                                <label for="g_name">Google plus</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="email" type="email" class="validate">
+                                                <input id="email" type="email" value="marshahi@mail.com" class="validate">
                                                 <label for="email">Email</label>
                                             </div>
                                             <div class="input-field col s12">
-                                                <input id="email1" type="email" class="validate">
+                                                <input id="email1" type="email" value="marshahi@mail.com" class="validate">
                                                 <label for="email1">Alternate Email</label>
                                             </div>
                                         </div>
@@ -129,7 +132,7 @@ if(!isset($_SESSION['username'])){
     </div>
 
     <!--== BOTTOM FLOAT ICON ==-->
-    <!-- <section>
+    <section>
         <div class="fixed-action-btn vertical">
             <a class="btn-floating btn-large red pulse">
                 <i class="large material-icons">mode_edit</i>
@@ -145,15 +148,15 @@ if(!isset($_SESSION['username'])){
                 </li>
             </ul>
         </div>
-    </section> -->
+    </section>
 
     <!--======== SCRIPT FILES =========-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/materialize.min.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-add.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:19 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/setting.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:17 GMT -->
 </html>

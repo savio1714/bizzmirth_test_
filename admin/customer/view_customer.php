@@ -4,6 +4,32 @@ session_start();
 if(!isset($_SESSION['username'])){
     echo '<script>location.href = "../index.php";</script>';
 }
+
+$id = $_GET['vkvbvjfgfikix'];
+
+    require '../connect.php';
+    $stmt = $conn->prepare("SELECT * FROM users_details where id = '".$id."'");
+    $stmt->execute();
+     // set the resulting array to associative
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($stmt->rowCount()>0){
+    foreach (($stmt->fetchAll()) as $key => $row) {
+        $firstname=$row['firstname'];
+        $lastname=$row['lastname'];
+        $email=$row['email'];
+        $contact_no=$row['contact_no'];
+        $date_of_birth=$row['date_of_birth'];
+        $gender=$row['gender'];
+ 
+    }
+    }                                                      
+    else{
+                                                            
+    }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,13 +69,12 @@ if(!isset($_SESSION['username'])){
     <!--== BODY CONTNAINER ==-->
     
         <?php include '../sidebar2.php';?>
-           
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Add Travel Agent</a>
+                        <li class="active-bre"><a href="#"> View Customer Details </a>
                         </li>
                     </ul>
                 </div>
@@ -58,64 +83,102 @@ if(!isset($_SESSION['username'])){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Add New User</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                                    <h4>View Customer Details</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
                                     <form>
                                         <div class="row">
+                                            
+                                            <div class="input-field col s12">
+                                                <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" readonly>
+                                                <label for="first_name">Name</label>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                            
                                             <div class="input-field col s6">
-                                                <input id="first_name" type="text" class="validate">
+                                                <input id="first_name" type="text" value="<?php echo $firstname;?>" readonly>
                                                 <label for="first_name">First Name</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="last_name" type="text" class="validate">
+                                                <input id="last_name" type="text" value="<?php echo $lastname;?>" readonly>
                                                 <label for="last_name">Last Name</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="phone" type="number" class="validate">
+                                                <input id="phone" type="text" value="<?php echo $contact_no;?>" readonly>
                                                 <label for="phone">Mobile</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="cphone" type="number" class="validate">
-                                                <label for="cphone">Phone</label>
+                                                <input id="email" type="email" value="<?php echo $email;?>" readonly>
+                                                <label for="email">Email</label>
                                             </div>
+
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="city" type="text" class="validate">
+                                                <input id="gender" type="text" value="<?php if($gender == 'male'){ echo "Male";} else if ($gender == 'female'){echo "Female";}else{echo "Others";} ;  ?>" readonly>
+                                                <label for="phone">Gender</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="bdate" type="email" value="<?php echo $date_of_birth;?>" readonly>
+                                                <label for="email">Date of Birth</label>
+                                            </div>
+
+                                        </div>
+                                         <!-- <div class="row">
+                                            
+                                            <div class="input-field col s6">
+                                                <input name="group1" type="radio" id="test1" />
+                                                <label for="test1">Male</label>
+                                                <input name="group1" type="radio" id="test1" />
+                                                <label for="test1">Female</label>
+                                                <input name="group1" type="radio" id="test1" />
+                                                <label for="test1">Others</label>
+                                            </div>
+                                             <div class="input-field col s6">
+                                               
+                                            <input type="date" id="date-picker" class="datepicker">
+                                            </div>
+
+                                        </div> -->
+                                      <!--   <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="city" type="text" value="Illunois" class="validate">
                                                 <label for="city">City</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="country" type="text" class="validate">
+                                                <input id="country" type="text" value="United States" class="validate">
                                                 <label for="country">Country</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="password" type="password" class="validate">
+                                                <input id="password" type="password" value="aksdjfhasdf" class="validate">
                                                 <label for="password">Password</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="password1" type="password" class="validate">
+                                                <input id="password1" type="password" value="asdfaefrerfg" class="validate">
                                                 <label for="password1">Confirm Password</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="email" type="email" class="validate">
+                                                <input id="email" type="email" value="marshahi@mail.com" class="validate">
                                                 <label for="email">Email</label>
                                             </div>
                                             <div class="input-field col s12">
-                                                <input id="email1" type="email" class="validate">
+                                                <input id="email1" type="email" value="marshahi@mail.com" class="validate">
                                                 <label for="email1">Alternate Email</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input type="submit" class="waves-effect waves-light btn-large">
+                                                <a href="pending_customer.php" class="waves-effect waves-light btn-large">Back</a>
+                                                <!-- <input type="submit" class="waves-effect waves-light btn-large" value="Back"> -->
                                             </div>
                                         </div>
                                     </form>
@@ -129,7 +192,7 @@ if(!isset($_SESSION['username'])){
     </div>
 
     <!--== BOTTOM FLOAT ICON ==-->
-    <!-- <section>
+  <!--   <section>
         <div class="fixed-action-btn vertical">
             <a class="btn-floating btn-large red pulse">
                 <i class="large material-icons">mode_edit</i>
@@ -155,5 +218,5 @@ if(!isset($_SESSION['username'])){
 </body>
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-add.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:19 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-view.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:24 GMT -->
 </html>

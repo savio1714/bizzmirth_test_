@@ -37,7 +37,7 @@ $(document).ready(function(){
           // alert("login ");
           // window.open("index2.php");
           // alert();
-          location.href = "dashboard/index.php";
+          location.href = "index.php";
         }
         else{
           alert("username and password not correct");

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 
@@ -876,5 +879,6 @@
     <script src="js/main-1.js"></script>
     <script src="js/custom-countdown.js"></script>
     <script src="js/preloader.js"></script>
+    <script type="text/javascript" src="logout/logout.js"></script>
 </body>
 </html>
