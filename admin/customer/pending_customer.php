@@ -108,7 +108,7 @@ if(!isset($_SESSION['username'])){
                                                 if($stmt->rowCount()>0){
                                                     foreach (($stmt->fetchAll()) as $key => $row) {
                                                         echo ' <tr>
-                                                    <td><span class="list-img"><img src="../../upload/'.$row['id_proof'].'" alt=""></span>
+                                                    <td><span class="list-img"><img src="../../'.$row['profile_pic'].'" alt=""></span>
                                                     </td>
                                                     <td>'.$row['firstname'].' '.$row['lastname'].'
                                                     </td>

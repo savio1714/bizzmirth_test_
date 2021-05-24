@@ -21,6 +21,8 @@ $id = $_GET['vkvbvjfgfikix'];
         $contact_no=$row['contact_no'];
         $date_of_birth=$row['date_of_birth'];
         $gender=$row['gender'];
+        $address=$row['address'];
+        $id_proof=$row['id_proof'];
  
     }
     }                                                      
@@ -129,6 +131,35 @@ $id = $_GET['vkvbvjfgfikix'];
                                             </div>
 
                                         </div>
+                                         <div class="row">
+                                            
+                                            <div class="input-field col s12">
+                                                <input id="name" type="text" value="<?php echo $address;?>" readonly>
+                                                <!-- <textarea id="address" style="margin-top: 1.5%;" readonly><?php echo $address;?></textarea> -->
+                                            
+                                                <label for="first_name">Address</label>
+                                            </div>
+                                        
+                                        </div>
+
+                                       
+
+                                        <div class="row">
+                                            <label style="padding: 10px;">ID Proof</label>
+                                            <div class="col s12">
+                                                
+                                                <?php echo '<a href="../../upload/'.$id_proof.'" target="_blank" title="id proof"><img src="../../upload/'.$id_proof.'" alt="id proof" style="width: 250px;height: 250px"></a>';?>
+
+
+                                            </div>
+                                            
+
+                                        </div>
+
+
+                                        
+
+
                                          <!-- <div class="row">
                                             
                                             <div class="input-field col s6">
@@ -178,8 +209,10 @@ $id = $_GET['vkvbvjfgfikix'];
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <a href="pending_customer.php" class="waves-effect waves-light btn-large">Back</a>
+                                                 <a href="#" class="waves-effect waves-light btn-large" <?php echo 'onclick=\'confirmfunc("' .$id. '","' .$firstname. '")\'';?>>Confirm</a>
                                                 <!-- <input type="submit" class="waves-effect waves-light btn-large" value="Back"> -->
                                             </div>
+                                           
                                         </div>
                                     </form>
                                 </div>
@@ -215,8 +248,33 @@ $id = $_GET['vkvbvjfgfikix'];
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/materialize.min.js"></script>
     <script src="../js/custom.js"></script>
+    <script type="text/javascript">
+    function confirmfunc(id,name)
+    { 
+    var dataString = 'id='+ id+'&uname='+name;
+
+
+      $.ajax({
+        type: "POST",
+        url: "confirm_customer.php",
+        data: dataString,
+        cache: false,
+          success:function(data){
+            if(data == 1){
+                   alert("Username and Password send via sms and email");
+             location.href = "pending_customer.php";
+          }
+          else{
+
+          alert("Failed to confirm");
+        }
+      }
+      });
+          
+    };
+</script>
+
 </body>
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-view.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:24 GMT -->
 </html>

@@ -176,6 +176,14 @@
                                     <i class="fa fa-exclamation-circle"></i>
                                     <small>Error Message</small>
                                 </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Address:</label>
+                                    <textarea id="address" class="form-control" placeholder="Address"  rows="5"></textarea>
+                                    <!-- <input type="text" class="form-control" id="phone_no" placeholder="Phone Number"> -->
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
+                                </div>
                                 <div class="form-group col-xs-12" >
                                     <label>Gender:</label>
                                     <div class="form-check form-check-inline">

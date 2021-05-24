@@ -7,6 +7,7 @@ $(document).ready(function(){
   const email = $('#email');
   const phone_no = $('#phone_no');
   const age = $('#age');
+  const address = $('#address');
 
 
 
@@ -17,6 +18,7 @@ $(document).ready(function(){
   // let genderValue = '';
   let phone_noValue = '';
   let ageValue = '';
+  let addressValue = '';
   // let bdateValue = '';
   // let id_proof = $('#id_proof');
 
@@ -108,6 +110,18 @@ $(document).ready(function(){
     }
 
   });
+   $(address).keyup(function () { 
+    addressValue =address.val();
+
+    if(addressValue ===''){
+      setError(address,"*Address cannot be blank");
+    }
+    else{
+      // validateInput(addressValue,address,"*address cannot be blank"); 
+      setSuccess(address);
+    }
+
+  });
 
  //    $(bdate).click(function () { 
  //   bdateValue = bdate.val();
@@ -182,6 +196,7 @@ const validatePhone= (phone) => {
     let emailHas = classHas(email);
     let phone_noHas = classHas(phone_no);
     let ageHas = classHas(age);
+    let addressHas = classHas(address);
 
      if(profile_pic == ''){
         $('#profileError').text("*Select your profile.");
@@ -199,10 +214,10 @@ const validatePhone= (phone) => {
            validateInput(bdate,$('#bdate'),"");
             $('#idProofError').text("*Select Id Proof.");
             $('#errorMessageText').text("*All fields are required");
-    }else if(fnameHas === true && lnameHas === true && emailHas === true && phone_noHas === true && ageHas === true){
+    }else if(fnameHas === true && lnameHas === true && emailHas === true && phone_noHas === true && ageHas === true && addressHas === true){
        $('#idProofError').addClass('hideDiv');
  $('#errorMessageText').text("*All fields are required");
-    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&phone_no='+phone_noValue+'&age='+ageValue+'&bdate='+bdate+'&id_proof='+id_proof;
+    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&phone_no='+phone_noValue+'&age='+ageValue+'&bdate='+bdate+'&id_proof='+id_proof+'&address='+addressValue;
 
        $.ajax({
         type: "POST",
