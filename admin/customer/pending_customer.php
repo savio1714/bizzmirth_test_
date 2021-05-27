@@ -99,7 +99,7 @@ if(!isset($_SESSION['username'])){
                                             <tbody>
                                                 <?php
                                                 require '../connect.php';
-                                                $stmt = $conn->prepare("SELECT * FROM users_details where user_type='2' and status='2' ");
+                                                $stmt = $conn->prepare("SELECT * FROM customer where user_type='2' and status='2' ");
                                                 $stmt->execute();
 
                                                     // set the resulting array to associative

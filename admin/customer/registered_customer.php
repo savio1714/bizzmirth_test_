@@ -89,7 +89,7 @@ if(!isset($_SESSION['username'])){
                                                     <th>User</th>
                                                     <th>Name</th>
                                                     <th>Phone</th>
-                                                    <th>Email2</th>
+                                                    <th>Email</th>
                                                     <!-- <th>Listings</th> -->
                                                     <th>View</th>
                                                     <th>Edit</th>
@@ -99,7 +99,7 @@ if(!isset($_SESSION['username'])){
                                             <tbody>
                                                 <?php
                                                 require '../connect.php';
-                                                $stmt = $conn->prepare("SELECT * FROM users_details where user_type='2' and register_by='1' and  status='1' ");
+                                                $stmt = $conn->prepare("SELECT * FROM customer where user_type='2' and register_by='1' and  status='1' ");
                                                 $stmt->execute();
 
                                                     // set the resulting array to associative
@@ -108,17 +108,17 @@ if(!isset($_SESSION['username'])){
                                                 if($stmt->rowCount()>0){
                                                     foreach (($stmt->fetchAll()) as $key => $row) {
                                                         echo ' <tr>
-                                                    <td><span class="list-img"><img src="../../upload/'.$row['id_proof'].'" alt=""></span>
+                                                    <td><span class="list-img"><img src="../../'.$row['profile_pic'].'" alt=""></span>
                                                     </td>
                                                     <td>'.$row['firstname'].' '.$row['lastname'].'
                                                     </td>
                                                     <td>'.$row['contact_no'].'</td>
                                                     <td>'.$row['email'].'</td>
                                                     <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                        <a href="view_register_customer.php?vkvbvjfgfikix='.$row["id"]. '&jdjdfdjs='.$row["cust_id"]. '&ghghhj='.$row["user_type"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_customer.php?vkvbvjfgfikix='.$row['cust_id']. '&jdjdfdjs='.$row['cust_id']. '&ghghhj='.$row["user_type"]. ' "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -130,7 +130,7 @@ if(!isset($_SESSION['username'])){
                                                 }
                                                     else{
                                                         echo '<tr>
-                                                    <td colspan="7">No Pending Customer
+                                                    <td colspan="7">No Customer Register
                                                     </td>
                                                     <tr>';
                                                     }

@@ -10,7 +10,7 @@ $status= '0';
 
 
 
-	$sql1 = "UPDATE users_details SET status=:status, deleted_date=:deleted_date WHERE id=:id";
+	$sql1 = "UPDATE customer SET status=:status, deleted_date=:deleted_date WHERE id=:id";
 	$stmt = $conn->prepare($sql1);
 	$result=  $stmt->execute(array(
 		':status' => $status,

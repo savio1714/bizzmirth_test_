@@ -103,7 +103,7 @@ $(document).ready(function(){
     }else if(validateOnlyCharacter(ageValue)){
        setError(age,"*Enter proper age");
     }
-    else if(ageValue<18 ||  ageValue>150 ){
+    else if(ageValue<18 ||  ageValue>60 ){
       setError(age,"*Age should be greter then 17 and proper age");
     }else{
       setSuccess(age);
@@ -226,6 +226,7 @@ const validatePhone= (phone) => {
         success: function (res) {
         if (res==1) {
           alert("Register Successfully ,You will receive username and password via sms");
+          window.location.reload();
         }
         else{
           alert("failed");

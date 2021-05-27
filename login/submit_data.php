@@ -40,7 +40,6 @@ if($stmt->rowCount()>0){
 $stmt2 = $conn->prepare("SELECT * FROM user_type where id='".$_SESSION["user_type_id"]."' AND status='1' ");
 $stmt2->execute();
 
-    // set the resulting array to associative
 $stmt2->setFetchMode(PDO::FETCH_ASSOC);
 
 if($stmt2->rowCount()>0){
@@ -53,9 +52,9 @@ if($stmt2->rowCount()>0){
 		echo '0';
 	}
 
-	// if(isset($_SESSION["username"])) {
- //    header("Location:index.php");
- //    }
+	if(isset($_SESSION["username"])) {
+    header("Location:index.php");
+    }
 
 
 // if ($result->num_rows > 0) {

@@ -6,26 +6,28 @@ if(!isset($_SESSION['username'])){
 }
 
 $id = $_GET['vkvbvjfgfikix'];
-// $user_id = $_GET['jdjdfdjs'];
-// $user_id = $_GET['rgist'];
+$user_id = $_GET['jdjdfdjs'];
+$user_type = $_GET['ghghhj'];
+
+// $register = $_GET['rgist'];
 
 
     require '../connect.php';
 
 
-// $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id."' and id='".$id."' ");
-//     $stmt2->execute();
+$stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id."' and (id='".$id."' or user_type_id='".$user_type."') ");
+    $stmt2->execute();
 
-//     $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
 
-//     if($stmt2->rowCount()>0){
-//     foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-//         $username=$row2['username'];
-//     }
-//     }                                                      
-//     else{
+    if($stmt2->rowCount()>0){
+    foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+        $username=$row2['username'];
+    }
+    }                                                      
+    else{
                                                             
-//     }
+    }
 
 
 
@@ -48,6 +50,7 @@ $id = $_GET['vkvbvjfgfikix'];
         $gender=$row['gender'];
         $address=$row['address'];
         $id_proof=$row['id_proof'];
+        $profile_pic=$row['profile_pic'];
  
     }
     }                                                      
@@ -117,12 +120,26 @@ $id = $_GET['vkvbvjfgfikix'];
                                     <form>
                                         <div class="row">
                                             
+                                            <div class="input-field col s6">
+                                                <input id="name" type="text" value="<?php echo 'cust'.$user_id;?>" readonly>
+                                                <label for="first_name">Customer Id</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="username" type="text" value="<?php echo $username ;?>" readonly>
+                                                <label for="first_name">Username</label>
+                                            </div>
+                                        
+                                        </div>
+                                       <div class="row">
+                                            
                                             <div class="input-field col s12">
                                                 <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" readonly>
                                                 <label for="first_name">Name</label>
                                             </div>
+                                           
                                         
                                         </div>
+                                       
                                         <div class="row">
                                             
                                             <div class="input-field col s6">
@@ -169,16 +186,31 @@ $id = $_GET['vkvbvjfgfikix'];
 
                                        
 
+                                        <!-- -->
                                         <div class="row">
-                                            <label style="padding: 10px;">ID Proof</label>
-                                            <div class="col s12">
+                                        
+                                            <div class="input-field col s6 col-sm-12">
+                                              <label style="margin-top: -25px;font-size: 0.8rem;">Profile</label>
+                                                    <div >
+                                                        <?php echo '<a href="../../'.$profile_pic.'" target="_blank" title="Profile"><img src="../../'.$profile_pic.'" alt="Profile" style="width: 150px;height: 150px;    margin-top: 4%;"></a>';?>
+                                                    
+                                                    </div>
+                                                   
+                                                    
                                                 
-                                                <?php echo '<a href="../../upload/'.$id_proof.'" target="_blank" title="id proof"><img src="../../upload/'.$id_proof.'" alt="id proof" style="width: 250px;height: 250px"></a>';?>
-
-
                                             </div>
-                                            
+                                             <div class="input-field col s6 col-sm-12">
+                                              <label style="margin-top: -25px;font-size: 0.8rem;">PAN / Aadhar Card</label>
+                                                   
+                                                    <div >
+                                                    <?php echo '<a href="../../upload/'.$id_proof.'" target="_blank" title="id proof" ><img src="../../upload/'.$id_proof.'" alt="id proof" style="width: 150px;height: 150px;    margin-top: 4%;" ></a>';?>
+                                                    </div>
+                                                
+                                            </div>
+                                          <!--   <div class="input-field col s6" >
 
+                                            </div> -->
+                                   
                                         </div>
 
 
@@ -233,8 +265,8 @@ $id = $_GET['vkvbvjfgfikix'];
                                         </div> -->
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <a href="pending_customer.php" class="waves-effect waves-light btn-large">Back</a>
-                                                 <a href="#" class="waves-effect waves-light btn-large" <?php echo 'onclick=\'confirmfunc("' .$id. '","' .$firstname. '")\'';?>>Confirm</a>
+                                                <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a>
+                                                 <a href="<?php echo 'edit_customer.php?vkvbvjfgfikix='.$id. '&jdjdfdjs='.$user_id. '&ghghhj='.$user_type. '' ;?>" class="waves-effect waves-light btn-large" >Edit</a>
                                                 <!-- <input type="submit" class="waves-effect waves-light btn-large" value="Back"> -->
                                             </div>
                                            
@@ -297,6 +329,8 @@ $id = $_GET['vkvbvjfgfikix'];
       });
           
     };
+
+     
 </script>
 
 </body>

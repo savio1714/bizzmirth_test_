@@ -7,7 +7,7 @@ if(!isset($_SESSION['username'])){
 
 
 require '../connect.php';
-$stmt = $conn->prepare("SELECT count(id) as pending_record FROM users_details where status='2' ");
+$stmt = $conn->prepare("SELECT count(id) as pending_record FROM customer where status='2' ");
 $stmt->execute();
 
                                                    

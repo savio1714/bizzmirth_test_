@@ -15,7 +15,9 @@ $address=$_POST['address'];
 $user_type="2";
 
 
-$sql= "INSERT INTO users_details (firstname,lastname, email, contact_no , date_of_birth, gender,address,profile_pic, id_proof,user_type) VALUES (:fname ,:lname, :email, :phone_no, :bdate, :gender , :address,:profile_pic ,:id_proof,  :user_type)";
+
+
+$sql= "INSERT INTO customer (firstname,lastname, email, contact_no , date_of_birth, gender,address,profile_pic, id_proof,user_type) VALUES (:fname ,:lname, :email, :phone_no, :bdate, :gender , :address,:profile_pic ,:id_proof,  :user_type)";
 $stmt3 =$conn->prepare($sql);
 
 $result2=$stmt3->execute(array(
