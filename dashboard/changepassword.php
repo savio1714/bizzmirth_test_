@@ -3,6 +3,30 @@ session_start();
 if(!isset($_SESSION['username2'])){
     echo '<script>location.href = "../login.php";</script>';
 }
+
+
+ require '../connect.php';
+
+ $uid=$_SESSION["user_id"];
+ $user_type_id= $_SESSION["user_type_id"];
+
+
+    $stmt2 = $conn->prepare("SELECT password FROM login where user_id = '".$uid."' and  user_type_id='".$user_type_id."' ");
+    $stmt2->execute();
+
+    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($stmt2->rowCount()>0){
+    foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+        $password=$row2['password'];
+    }
+    }                                                      
+    else{
+                                                            
+    }
+
+
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
@@ -12,7 +36,7 @@ if(!isset($_SESSION['username2'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard Profile | Bizzmirth Holidays</title>
+    <title>Change Password | Bizzmirth Holidays</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../images/logo1.png">
     <!-- Bootstrap core CSS -->
@@ -38,6 +62,8 @@ if(!isset($_SESSION['username2'])){
 
         <!-- Dashboard -->
         <div id="dashboard">
+            <input  type="hidden" id="uid" value="<?php echo $uid;?>">
+            <input  type="hidden" id="utid" value="<?php echo $user_type_id;?>">
 
             <!-- Responsive Navigation Trigger -->
             <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>  
@@ -48,24 +74,86 @@ if(!isset($_SESSION['username2'])){
 
             <div class="dashboard-content">
 
-                <div class="cp-profile">
+                <!-- <div class="row">
+                    
+                   
+                    <div class="col-lg-12 col-md-12">
+                        <div class="dashboard-list-box">
+                            <h4 class="gray">Offers</h4>
+                            <div class="cp-profile">
 
-                                    <label> <h3> Change Password </h3> </label>
-                                    <label class="cp"> Enter Old Password</label>
-                                    <input  type="password">
+                                    <label class="cp">Enter Old Password</label>
+                                    <input  type="password" id="oldPassword">
 
                                     <label class="cp">Enter New Password</label>
-                                    <input  type="password">
-
+                                    <input  type="password" id="newPassword">
+ 
                                     <label class="cp">Confirm New Password</label>
-                                    <input type="password"> 
+                                    <input type="password" id="confirmPassword"> 
 
 
                                 </div>
             
-                               <br> <button class="button">Save Changes</button>
+                               <br> <button class="button" id="save">Save Changes</button>
+                            
+                        </div>
+                                                 
+                    </div>
+                </div> -->
+
+
+                 <!-- Change Password -->
+                 <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 ">
+                        <div class="dashboard-list-box margin-top-0">
+                            <h4 class="gray">Change Password </h4>
+                            <div class="dashboard-list-box-static">
+
+                                <!-- Change Password -->
+                                <div class="my-profile">
+                                    <input  type="hidden" id="pass" value="<?php echo $password;?>">
+
+                                    <label class="cp">Enter Old Password</label>
+                                    <input  type="password" id="oldPassword">
+
+                                    <label class="cp">Enter New Password</label>
+                                    <input  type="password" id="newPassword">
+ 
+                                    <label class="cp">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword"> 
+                                </div>
+
+                                <button class="button" id="save">Save Changes</button>
 
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+           <!--  <div class="dashboard-content">
+
+                <div class="cp-profile">
+
+                                    <label> <h3> Change Password </h3> </label>
+                                    <label class="cp">Enter Old Password</label>
+                                    <input  type="password" id="oldPassword">
+
+                                    <label class="cp">Enter New Password</label>
+                                    <input  type="password" id="newPassword">
+ 
+                                    <label class="cp">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword"> 
+
+
+                                </div>
+            
+                               <br> <button class="button" id="save">Save Changes</button>
+
+                            </div> -->
             <div class="copyrights">
                 <p>2021  <i class="fa fa-copyright" aria-hidden="true"></i> Bizzmirth <a href="#" target="_blank"></a></p>
             </div>
@@ -87,6 +175,7 @@ if(!isset($_SESSION['username2'])){
     <script src="../js/dashboard-custom.js"></script>
     <script src="../js/jpanelmenu.min.js"></script>
     <script src="../js/counterup.min.js"></script>
+    <script src="../assets/js/confirm_pass.js"></script>
     <script type="text/javascript" src="../logout/logout.js"></script>
 </body>
 </html>
