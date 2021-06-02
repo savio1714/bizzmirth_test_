@@ -6,8 +6,9 @@ $(document).ready(function(){
   const lname = $('#lname');
   const email = $('#email');
   const phone_no = $('#phone_no');
-  const age = $('#age');
+  // const age = $('#age');
   const address = $('#address');
+
 
 
 
@@ -17,7 +18,7 @@ $(document).ready(function(){
   let emailValue = '';
   // let genderValue = '';
   let phone_noValue = '';
-  let ageValue = '';
+  // let ageValue = '';
   let addressValue = '';
   // let bdateValue = '';
   // let id_proof = $('#id_proof');
@@ -83,8 +84,24 @@ $(document).ready(function(){
         
         if(!validatePhone(phone_noValue)){
           setError(phone_no,"*Please enter correct phone number");
+        }else if(phone_noValue ==='')
+        {
+          setError(phone_no,"*phone number cannot be blank");
         }else{
-          validateInput(phone_noValue,phone_no,"*phone number cannot be blank");
+          $.ajax({
+        type:'POST',
+         url:'registration/phonetest.php',
+        data:'phone='+phone_noValue,
+          success:function(response){
+            if(response == 1){
+              setError(phone_no,"*phone number already taken");
+            }else{
+              setSuccess(phone_no);
+            }
+          
+          }
+        }); 
+          
         }
         
  });
@@ -95,21 +112,21 @@ $(document).ready(function(){
  // });
 
 
-   $(age).keyup(function () { 
-    ageValue =age.val().trim();
+  //  $(age).keyup(function () { 
+  //   ageValue =age.val().trim();
 
-    if(ageValue ===''){
-      setError(age,"*Age cannot be blank");
-    }else if(validateOnlyCharacter(ageValue)){
-       setError(age,"*Enter proper age");
-    }
-    else if(ageValue<18 ||  ageValue>60 ){
-      setError(age,"*Age should be greter then 17 and proper age");
-    }else{
-      setSuccess(age);
-    }
+  //   if(ageValue ===''){
+  //     setError(age,"*Age cannot be blank");
+  //   }else if(validateOnlyCharacter(ageValue)){
+  //      setError(age,"*Enter proper age");
+  //   }
+  //   else if(ageValue<18 ||  ageValue>60 ){
+  //     setError(age,"*Age should be greter then 17 and proper age");
+  //   }else{
+  //     setSuccess(age);
+  //   }
 
-  });
+  // });
    $(address).keyup(function () { 
     addressValue =address.val();
 
@@ -123,12 +140,6 @@ $(document).ready(function(){
 
   });
 
- //    $(bdate).click(function () { 
- //   bdateValue = bdate.val();
- //          validateInput(bdateValue,bdate,"*Please Select date");
- 
-        
- // });
 
   const validateInput = (inputValue,idOfInput,message) =>{
   if(inputValue ==='')
@@ -191,18 +202,56 @@ const validatePhone= (phone) => {
     let bdate = $('#bdate').val();
     let profile_pic = $('#profile_pic').val();
     let id_proof = $('#id_proof').val();
+    let agevalue = $('#age').val();
+    let country = $('#country').val();
+    let state = $('#state').val();
+    let city = $('#city').val();
+    let pin = $('#pin').val();
+
     let fnameHas = classHas(fname);
     let lnameHas = classHas(lname);
     let emailHas = classHas(email);
     let phone_noHas = classHas(phone_no);
-    let ageHas = classHas(age);
+    // let ageHas = classHas(age);
     let addressHas = classHas(address);
 
-     if(profile_pic == ''){
+    let countrycode = $('#countrycode').val();
+
+    let agree = $('#agree').prop( "checked" );
+
+    var phone= countrycode+""+phone_noValue;
+
+
+    // alert(phone);
+
+
+
+
+    // var age =getdob(bdate);
+    // alert(agevalue);
+
+
+
+   
+
+
+
+
+    // alert(bdate);
+
+     if(agree == false){
+        $('#agreeError').text("*Please Agree Terms and Conditions");
+        $('#errorMessageText').text("*All fields are required");
+    }else if(profile_pic == ''){
+      $('#agreeError').addClass('hideDiv');
         $('#profileError').text("*Select your profile.");
         $('#errorMessageText').text("*All fields are required");
-    }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+    }else if(countrycode == ''){
         $('#profileError').addClass('hideDiv');
+        $('#countryCodeError').text("*Select Country Code");
+        $('#errorMessageText').text("*All fields are required");
+    }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+        $('#countryCodeError').addClass('hideDiv');
         $('#errorMessage').text("*Select Gender.");
         $('#errorMessageText').text("*All fields are required");
     }
@@ -210,14 +259,40 @@ const validatePhone= (phone) => {
       $('#errorMessage').addClass('hideDiv');
       validateInput(bdate,$('#bdate'),"*Please Select date");
       $('#errorMessageText').text("*All fields are required");
+    }else if(agevalue<18 ||  agevalue>90 ){
+      validateInput(bdate,$('#bdate'),"");
+      $('#ageError').text("*You are not eligible");
+        $('#errorMessageText').text("*All fields are required");
+    }else if(country == ''){
+      $('#errorMessage').addClass('hideDiv');
+      $('#ageError').addClass('hideDiv');
+            $('#countryError').text("*Select Country.");
+            $('#errorMessageText').text("*All fields are required");
+    }else if(state == ''){
+      $('#countryError').addClass('hideDiv');
+            $('#stateError').text("*Select State.");
+            $('#errorMessageText').text("*All fields are required");
+    }else if(city == ''){
+      $('#stateError').addClass('hideDiv');
+      $('#countryError').addClass('hideDiv');
+            $('#cityError').text("*Select City.");
+            $('#errorMessageText').text("*All fields are required");
     }else if(id_proof == ''){
-           validateInput(bdate,$('#bdate'),"");
+      $('#errorMessage').addClass('hideDiv');
+      $('#stateError').addClass('hideDiv');
+      $('#countryError').addClass('hideDiv');
+      $('#cityError').addClass('hideDiv');
             $('#idProofError').text("*Select Id Proof.");
             $('#errorMessageText').text("*All fields are required");
-    }else if(fnameHas === true && lnameHas === true && emailHas === true && phone_noHas === true && ageHas === true && addressHas === true){
-       $('#idProofError').addClass('hideDiv');
+    }else if(fnameHas === true && lnameHas === true && emailHas === true && phone_noHas === true && addressHas === true){
+      
+      $('#agreeError').addClass('hideDiv');$('#profileError').addClass('hideDiv');$('#countryCodeError').addClass('hideDiv');
+      $('#errorMessage').addClass('hideDiv');$('#ageError').addClass('hideDiv');$('#countryError').addClass('hideDiv');
+      $('#stateError').addClass('hideDiv');$('#cityError').addClass('hideDiv');$('#idProofError').addClass('hideDiv');
  $('#errorMessageText').text("*All fields are required");
-    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&phone_no='+phone_noValue+'&age='+ageValue+'&bdate='+bdate+'&id_proof='+id_proof+'&address='+addressValue;
+
+
+    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&phone_no='+phone+'&age='+agevalue+'&bdate='+bdate+'&id_proof='+id_proof+'&address='+addressValue+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
 
        $.ajax({
         type: "POST",
@@ -278,7 +353,112 @@ const classHas = (input) =>{
 }
 
 
+var getdob =(bdate)=>{
+   var birthday =Date.parse(bdate);
+
+     var todaysDate = Date.now();
+
+     var age= todaysDate - birthday ;
+
+
+
+     // var millsecond= toage;
+    var second = 1000;
+    var minute = second*60;
+    var hour = minute *60;
+    var day = hour*24;
+    var year = day*365;
+
+    // alert(bdate.getMonth());
+
+    var dob= Math.floor(age/year);
+
+
+// $('#age').val(dob);
+
+
+return dob;
+}
+
+
+$('#country').on('change', function(){
+  // alert("ok");
+        var countryID = $(this).val();
+
+        // alert(countryID);
+        if(countryID){
+            $.ajax({
+                type:'POST',
+                url:'registration/countrydata.php',
+                data:'country_id='+countryID,
+                success:function(html){
+                    $('#state').html(html);
+                    $('#city').html('<option value="">Select state first</option>'); 
+                }
+            }); 
+        }else{
+            $('#state').html('<option value="">Select country first</option>');
+            $('#city').html('<option value="">Select state first</option>'); 
+        }
+    });
+    
+    $('#state').on('change', function(){
+        var stateID = $(this).val();
+        if(stateID){
+            $.ajax({
+                type:'POST',
+                url:'registration/countrydata.php',
+                data:'state_id='+stateID,
+                success:function(html){
+                    $('#city').html(html);
+                   
+                }
+            }); 
+        }else{
+            $('#city').html('<option value="">Select state first</option>'); 
+        }
+    });
+
+    $('#city').on('change', function(){
+        var cityID = $(this).val();
+        if(cityID){
+             $.ajax({
+                      type:'POST',
+                      url:'registration/pincode.php',
+                      data:'city_id='+cityID,
+                      success:function(response){
+                         // $('#pin').html(response);
+                         $('#pin').val(response); 
+                      }
+                  }); 
+        }else{
+            // $('#city').html('<option value="">Select state first</option>'); 
+        }
+    });
+
+    $('#bdate').on('change', function(){
+      // alert("ok");
+    let bdate = $('#bdate').val();
+
+    var age =getdob(bdate);
+    if(age <=0){
+      $('#age').val(0); 
+    }else{
+      $('#age').val(age); 
+    }
+    
+
+        
+    });
+
+
+
+
 
 
 
 });
+
+
+
+

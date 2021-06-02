@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 
@@ -26,6 +25,8 @@
          #preview img{
      display: none;
    }
+
+
          /*.preview{
         }
      width: 100px;
@@ -169,22 +170,61 @@
                                     <i class="fa fa-exclamation-circle"></i>
                                     <small>Error Message</small>
                                 </div>
+
                                 <div class="form-group col-xs-12">
                                     <label>Phone Number:</label>
-                                    <input type="text" class="form-control" id="phone_no" placeholder="Phone Number">
-                                    <i class="fa fa-check-circle"></i>
-                                    <i class="fa fa-exclamation-circle"></i>
-                                    <small>Error Message</small>
+                                    <div class="relative">
+                                      <div class="form-group phnocode">
+                                        <?php
+                                            require 'connect.php';
+                                            $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                            $stmt->execute();
+
+                                                                                               
+                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                            ?>
+                                            <select style="padding: 10px;" id="countrycode">
+                                            <option value="">Select</option>
+                                            <?php 
+                                            if($stmt->rowCount()>0){
+                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                    echo '<option value="'.$row['country_code'].'">'.$row['country_code'].'('.$row['sortname'].')</option>'; 
+                                                } 
+                                            }else{ 
+                                                echo '<option value="">No Country Code available</option>'; 
+                                            } 
+                                            ?>
+                                            </select>
+                                        <div id="countryCodeError" class=" errorMessage2"></div>
+                                        </div>
+                                        <div class="form-group phno">
+                                         <input type="text" class="form-control" id="phone_no" placeholder="Phone Number">
+                                        <i class="fa fa-check-circle" style="top: 15px;"></i>
+                                        <i class="fa fa-exclamation-circle" style="top: 15px;"></i>
+                                        <small>Error Message</small>
+                                        </div>
+                                    </div>
+                                   
                                 </div>
-                                <div class="form-group col-xs-12">
-                                    <label>Address:</label>
-                                    <textarea id="address" class="form-control" placeholder="Address"  rows="5"></textarea>
-                                    <!-- <input type="text" class="form-control" id="phone_no" placeholder="Phone Number"> -->
-                                    <i class="fa fa-check-circle"></i>
-                                    <i class="fa fa-exclamation-circle"></i>
-                                    <small>Error Message</small>
-                                </div>
-                                <div class="form-group col-xs-12" >
+
+
+                               <!--  <div class="form-group col-xs-12">
+                                    <label>Phone Number:</label>
+
+                                    <div class="form-group col-3">
+                                        
+                                    </div>
+
+                                     <div class="form-group col-4">
+                                        
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                </div> -->
+
+                                 <div class="form-group col-xs-12" >
                                     <label>Gender:</label>
                                     <div class="form-check form-check-inline">
                                         <div class="form-group col-xs-3">
@@ -205,15 +245,6 @@
                                   
                                 </div>
 
-
-                                    
-                                <div class="form-group col-xs-12">
-                                    <label>Age:</label>
-                                    <input type="text" class="form-control" id="age" placeholder="Enter Age">
-                                    <i class="fa fa-check-circle"></i>
-                                    <i class="fa fa-exclamation-circle"></i>
-                                    <small>Error Message</small>
-                                </div>
                                  <div class="form-group col-xs-12">
                                     <label>Date of Birth:</label>
                                     <input class="form-control" type="date" id="bdate">
@@ -221,6 +252,79 @@
                                     <i class="fa fa-exclamation-circle"></i>
                                     <small id="messagedate">Error Message</small>
                                 </div>
+                                 <div class="form-group col-xs-12">
+                                    <label>Age:</label>
+                                    <input type="number" class="form-control" id="age" placeholder="Age" readonly>
+                                    <div id="ageError" class=" errorMessage2"></div>
+                                </div>
+
+
+
+                                <div class="form-group col-xs-12">
+                                    <label>Country:</label>
+
+                                    <?php
+                                    require 'connect.php';
+                                    $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                    $stmt->execute();
+
+                                                                                       
+                                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                    ?>
+                                    <select id="country">
+                                    <option value="">Select Country</option>
+                                    <?php 
+                                    if($stmt->rowCount()>0){
+                                         foreach (($stmt->fetchAll()) as $key => $row) {  
+                                            echo '<option value="'.$row['id'].'">'.$row['country_name'].'</option>'; 
+                                        } 
+                                    }else{ 
+                                        echo '<option value="">Country not available</option>'; 
+                                    } 
+                                    ?>
+                                    </select>
+                                    <div id="countryError" class=" errorMessage2"></div>
+     
+                                </div>
+
+                                
+                                <div class="form-group col-xs-12">
+                                    <label>State:</label>
+                                    <select id="state">
+                                        <option value="">Select country first</option>
+                                    </select>
+                                    <div id="stateError" class=" errorMessage2"></div>
+                                </div>
+
+                                <div class="form-group col-xs-12">
+                                    <label>City:</label>
+                                    <select id="city">
+                                        <option value="">Select state first</option>
+                                    </select>
+                                    <div id="cityError" class=" errorMessage2"></div>                 
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Pincode:</label>
+                                    <input type="text" class="form-control" id="pin" placeholder="Pincode" readonly>
+                                    
+                                </div>
+
+
+                                <div class="form-group col-xs-12">
+                                    <label>Full Address:</label>
+                                    <textarea id="address" class="form-control" placeholder="Address"  rows="5"></textarea>
+                                    <!-- <input type="text" class="form-control" id="phone_no" placeholder="Phone Number"> -->
+                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <small>Error Message</small>
+                                </div>
+                               
+
+
+                                    
+                               
+                                
+
                                 <div class="form-group col-xs-12">
                                     <label class="custom-file">PAN / Aadhar Card: </label><br>
                                     <!-- <input type="file" id="id_proof" class="custom-file-input"> -->
@@ -244,7 +348,8 @@
                                 </div> -->
                                 <div class="col-xs-12">
                                     <div class="checkbox-outer">
-                                        <input type="checkbox" name="vehicle2" value="Car"> I agree to the <a href="#">terms and conditions.</a>
+                                        <input type="checkbox" name="agree" id="agree" > I agree to the <a href="#">terms and conditions.</a>
+                                        <div id="agreeError" class=" errorMessage2"></div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12">

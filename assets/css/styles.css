@@ -55,3 +55,29 @@ color: #e74c3c;
 .showDiv{
 	visibility: visible;
 }
+
+
+   div.relative {
+  position: relative;
+  /*width: 400px;*/
+  /*height: 2%;*/
+padding-bottom: 12%;
+  /*border: 3px solid #73AD21;*/
+} 
+
+div.phno {
+  position: absolute;
+  /*top: 80px;*/
+  right: 0;
+  width: 70%;
+  height: 8%;
+  /*border: 3px solid #73AD21;*/
+}
+div.phnocode {
+  position: absolute;
+  /*top: 80px;*/
+  left: 0;
+  width: 28%;
+  height: 10%;
+  /*border: 3px solid #73AD21;*/
+}
