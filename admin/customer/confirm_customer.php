@@ -9,6 +9,8 @@ $password = substr(str_shuffle($string), 0,8);
 $status= '1';
 $user_type_id= '2';
 $register_by = '1';
+// $uid=0;
+// $cust_id=0;
 
 // $uid='';
 $sql2= $conn->prepare("SELECT cust_id,CAST(cust_id as SIGNED) AS casted_column  from customer where user_type='2'  ORDER BY casted_column desc limit 1");
@@ -16,11 +18,18 @@ $sql2->execute();
 $sql2->setFetchMode(PDO::FETCH_ASSOC);
 if($sql2->rowCount()>0){
 	foreach (($sql2->fetchAll()) as $key3 => $row3) {
+
 		 $cust_id=$row3["cust_id"];
+
 	}
 	// $uid=substr($user_id, 4);
 	// $uid = intval($uid);
-	$uid = $cust_id + 1;
+	if($cust_id ==''){
+		$uid= 1;
+	}else{
+		$uid = $cust_id + 1;
+	}
+
 
 
 }else

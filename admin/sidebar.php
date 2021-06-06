@@ -16,14 +16,14 @@
                 <!--== LEFT MENU ==-->
                 <div class="sb2-13">
                     <ul class="collapsible" data-collapsible="accordion">
-                        <li><a href="index2.php" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                        <li><a href="index2.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index2.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
                         </li>
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Travel Agent</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                     <li><a href="travel_agent/travel_agent_add.php">Add New Travel Agent</a>
+                                     <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent_add.php')? 'menu-active':''?>" href="travel_agent/travel_agent_add.php">Add New Travel Agent</a>
                                     </li>
-                                    <li><a href="travel_agent/travel_agent_all.php">All Travel Agent</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent_all.php')? 'menu-active':''?>" href="travel_agent/travel_agent_all.php">All Travel Agent</a>
                                     </li>
                                    
                                 </ul>
@@ -32,9 +32,9 @@
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Franchisee</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a href="#">abc</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='abc.php')? 'menu-active':''?>" href="#">abc</a>
                                     </li>
-                                    <li><a href="#">xyz</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='xyz.php')? 'menu-active':''?>" href="#">xyz</a>
                                     </li>
                                     
                                 </ul>
@@ -43,9 +43,9 @@
                          <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Customer</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a href="customer/b2c.php">B2C</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='b2c.php')? 'menu-active':''?>" href="customer/b2c.php">B2C</a>
                                     </li>
-                                    <li><a href="customer/travel_agent_customer.php">Travel Agent Customer</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent_customer.php')? 'menu-active':''?>" href="customer/travel_agent_customer.php">Travel Agent Customer</a>
                                     </li>
                                     
                                 </ul>

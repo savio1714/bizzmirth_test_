@@ -115,13 +115,13 @@ if(!isset($_SESSION['username'])){
                                                     <td>'.$row['contact_no'].'</td>
                                                     <td>'.$row['email'].'</td>
                                                     <td>
-                                                        <a href="view_register_customer.php?vkvbvjfgfikix='.$row["id"]. '&jdjdfdjs='.$row["cust_id"]. '&ghghhj='.$row["user_type"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                        <a href="view_register_customer.php?vkvbvjfgfikix='.$row["id"]. '&jdjdfdjs='.$row["cust_id"]. '&ghghhj='.$row["user_type"]. '&ncy='.$row["country"]. '&mst='.$row["state"]. '&hct='.$row["city"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="edit_customer.php?vkvbvjfgfikix='.$row['cust_id']. '&jdjdfdjs='.$row['cust_id']. '&ghghhj='.$row["user_type"]. ' "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_customer.php?vkvbvjfgfikix='.$row['cust_id']. '&jdjdfdjs='.$row['cust_id']. '&ghghhj='.$row["user_type"]. ' &ncy='.$row["country"]. '&mst='.$row["state"]. '&hct='.$row["city"]. '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["cust_id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>';
 
@@ -178,9 +178,9 @@ if(!isset($_SESSION['username'])){
 <!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-all.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:20 GMT -->
 </html>
 <script type="text/javascript">
-    function deletefunc(id)
+    function deletefunc(id,cust_id)
     { 
-    var dataString = 'id='+ id;
+    var dataString = 'id='+ id+'&cust_id='+cust_id;
 
 
       $.ajax({
@@ -189,7 +189,8 @@ if(!isset($_SESSION['username'])){
         data: dataString,
         cache: false,
           success:function(data){
-            if(data == 1){
+            if(data == 11){
+            alert("Delete Succesfully");
              window.location.reload();
           }
           else{

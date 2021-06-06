@@ -115,11 +115,11 @@ if(!isset($_SESSION['username'])){
                                                     <td>'.$row['contact_no'].'</td>
                                                     <td>'.$row['email'].'</td>
                                                     <td>
-                                                        <a href="view_customer.php?vkvbvjfgfikix='.$row["id"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                        <a href="view_customer.php?vkvbvjfgfikix='.$row["id"]. '&ncy='.$row["country"]. '&mst='.$row["state"]. '&hct='.$row["city"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     </td>
                                                     
                                                     <td>
-                                                        <a href="" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["firstname"]. '")\'><i class="material-icons dp48">verified_user</i></a>
@@ -128,7 +128,7 @@ if(!isset($_SESSION['username'])){
 
                                                     }
                                                       
-                                                }
+                                                } 
                                                     else{
                                                         echo '<tr>
                                                     <td colspan="7">No Pending Customer
@@ -199,7 +199,7 @@ if(!isset($_SESSION['username'])){
           success:function(data){
             if(data == 1){
 
-            alert("deletion failed");
+            alert("Delete Succesfully");
              window.location.reload();
           }
           else{

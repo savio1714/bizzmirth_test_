@@ -1,10 +1,10 @@
  <div class="dashboard-nav">
                 <div class="dashboard-nav-inner">
                     <ul>
-                        <li class="active"><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-                        <li><a href="dashboard_my_profile.php"><i class="sl sl-icon-user"></i> Edit Profile</a></li>
-                        <li><a href="mytrips.php"><i class="sl sl-icon-folder"></i>My Trips</a></li>
-                        <li><a href="offers.php"><i class="sl sl-icon-plus"></i>Offers</a></li>
+                        <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'active':''?>"><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+                        <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='dashboard_my_profile.php')? 'active':''?>"><a href="dashboard_my_profile.php"><i class="sl sl-icon-user"></i> Edit Profile</a></li>
+                        <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='mytrips.php')? 'active':''?>"><a href="mytrips.php"><i class="sl sl-icon-folder"></i>My Trips</a></li>
+                        <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='offers.php')? 'active':''?>"><a href="offers.php"><i class="sl sl-icon-plus"></i>Offers</a></li>
                         <!-- <li><a href="dashboard-addtour.html"><i class="sl sl-icon-plus"></i> Add Tour</a></li>
                         <li>
                             <a><i class="sl sl-icon-layers"></i> Tour Listing</a>

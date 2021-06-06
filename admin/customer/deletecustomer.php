@@ -6,6 +6,8 @@ require "../connect.php";
 
 
 $id= $_POST["id"];
+$user_type="2";
+
 $status= '0';
 
 
@@ -25,6 +27,29 @@ $status= '0';
 	else{
 		echo 0;
 	}
+
+if(isset($_POST["cust_id"])){
+	$cust_id= $_POST["cust_id"];
+
+	$sql2 = "UPDATE login SET status=:status WHERE user_id=:cust_id and user_type_id=:user_type";
+	$stmt2 = $conn->prepare($sql2);
+	$result2=  $stmt2->execute(array(
+		':status' => $status,
+		':user_type' => $user_type,
+		':cust_id' => $cust_id		
+	));
+
+	if ($result2) {
+		echo 1;
+
+	}
+	else{
+		echo 0;
+	}
+}
+
+
+	
 
 
 ?>

@@ -1,10 +1,14 @@
 <?php
 require '../connect.php';
 
+$countrycode = $_POST["countrycode"];
+$phoneTenDegit = $_POST["phone"];
+$phone=$countrycode."".$phoneTenDegit;
+
 if(!empty($_POST["phone"])){ 
     // Fetch city data based on the specific state
 
-    $stmt2 = $conn->prepare("SELECT * FROM customer WHERE contact_no = '".$_POST['phone']."'");
+    $stmt2 = $conn->prepare("SELECT * FROM customer WHERE contact_no = '".$phone."'");
     $stmt2->execute();                                                                                   
     $stmt2->setFetchMode(PDO::FETCH_ASSOC);
      

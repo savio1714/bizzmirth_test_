@@ -15,7 +15,32 @@
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="profile-sec">
                                 <div class="dash-image">
-                                    <img src="../images/comment.jpg" alt="">
+                                    <?php
+                                        require '../connect.php';
+
+                                       
+                                            // Fetch city data based on the specific state
+
+                                            $stmt2 = $conn->prepare("SELECT * FROM customer WHERE cust_id = '".$_SESSION['user_id']."'");
+                                            $stmt2->execute();                                                                                   
+                                            $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+                                             
+                                            // Generate HTML of city options list
+
+                                             if($stmt2->rowCount()>0){
+                                                foreach (($stmt2->fetchAll()) as $key => $row){
+                                                    $profile = $row['profile_pic'];
+                                                    echo '<img src="../'.$profile.'" alt="">';
+                                                } 
+                                                    
+                                           
+                                            }else{
+                                                echo 0;
+                                            }
+                                        
+
+                                        ?>
+                                    
                                 </div>
                                 <div class="dash-content">
                                     <h4><?php echo $_SESSION['username2']; ?></h4>

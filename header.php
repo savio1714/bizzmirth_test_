@@ -12,10 +12,10 @@
                         <?php if(isset($_SESSION['username2'])){echo ' <a href="dashboard/" target="_blank"><i class="fa fa-user-plus"></i> Dashboard</a>
                         <a href="login.php"><i class="fa fa-user-plus mylogout"></i> Logout</a>';
 
-                    }else { echo ' <a href="login.php"><i class="fa fa-user-plus"></i> Register</a>
-                        <a href="login.php"><i class="fa fa-unlock-alt"></i> Login</a>';}?>
+                    }else { echo '
+                        <a class="active" href="login.php" ><i class="fa fa-unlock-alt "></i> Login / Register</a>';}?>
                        
-                       
+                        <!-- <a href="login.php"><i class="fa fa-user-plus"></i> Register</a> -->
                     </div>
                 </div>
             </div>
@@ -34,10 +34,10 @@
                         </div>
                         <div id="navbar" class="navbar-nav-wrapper">
                             <ul class="nav navbar-nav" id="responsive-menu">
-                                <li class="active"> <a href="index.php"> Home </a>
+                                <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'active':''?>"> <a href="index.php"> Home </a>
                                 </li>
-                                <li> <a href="about.php"> About us </a></li>
-                                  <li> <a href="contact.html"> Contact us </a></li>
+                                <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='about.php')? 'active':''?>"> <a href="about.php"> About us </a></li>
+                                  <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='contact_us.php.php')? 'active':''?>"> <a href="#"> Contact us </a></li>
                                <!--  <li class="active">
                                     <a href="index.html">Home <i class="fa fa-angle-down"></i></a>
                                     <ul>

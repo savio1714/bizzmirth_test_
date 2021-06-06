@@ -8,6 +8,9 @@ if(!isset($_SESSION['username'])){
 $id = $_GET['vkvbvjfgfikix'];
 $user_id = $_GET['jdjdfdjs'];
 $user_type = $_GET['ghghhj'];
+$country = $_GET['ncy'];
+$state = $_GET['mst'];
+$city = $_GET['hct'];
 
 
     require '../connect.php';
@@ -31,7 +34,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
 
 
 
-    $stmt = $conn->prepare("SELECT * FROM customer where id = '".$id."'");
+    $stmt = $conn->prepare("SELECT *, (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `customer` where cust_id='".$id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -50,6 +53,11 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         $address=$row['address'];
         $id_proof=$row['id_proof'];
         $profile_pic=$row['profile_pic'];
+
+        $city_name=$row['city_name'];
+        $statename=$row['statename'];
+        $countryname=$row['countryname'];
+        $pincode=$row['pincode'];
  
     }
     }                                                      
@@ -127,15 +135,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                             </div>
                                         
                                         </div>
-                                       <!-- <div class="row">
-                                            
-                                            <div class="input-field col s12">
-                                                <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" >
-                                                <label for="first_name">Name</label>
-                                            </div>
-                                           
-                                        
-                                        </div> -->
+                                       
                                        
                                         <div class="row">
                                             
@@ -182,6 +182,89 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                             </div>
 
                                         </div>
+
+
+
+                                        <div class="row">
+                                            
+                                             <div class="form-group col-xs-6">
+                                                <label>Country</label>
+                                                
+                                            <?php
+                                            require '../connect.php';
+                                            $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                            $stmt->execute();
+
+                                                                                               
+                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                            ?>
+                                            <select id="country" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
+                                            <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
+                                            <?php 
+                                            if($stmt->rowCount()>0){
+                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                    echo '<option value="'.$row['id'].'">'.$row['country_name'].'</option>'; 
+                                                } 
+                                            }else{ 
+                                                echo '<option value="">Country not available</option>'; 
+                                            } 
+                                            ?>
+                                            </select>
+
+
+                                            
+                                            
+                                        </div>
+                                        
+
+
+                                            <div class="form-group col-xs-6">
+                                                <label>State</label>
+                                                <select id="mystate" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
+                                                    <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
+                                                </select>
+                                                </div>
+                                    
+
+                                    
+                                    
+
+                                        
+                                        </div>
+
+                                       
+
+                                    <div class="row">
+                                    <div class="form-group col-xs-6">
+                                        <label>City:</label><br>
+                                        <select id="city" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
+                                            <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
+                                        </select>
+                                        <!-- <div id="cityError" class=" errorMessage2"></div>                  -->
+                                    </div>
+
+                                     <div class="form-group col-xs-6">
+                                        <label>Pincode:</label>
+                                        <input type="text" class="form-control" id="pin" placeholder="Pincode" value="<?php echo $pincode; ?>" readonly>
+                                        
+                                    </div>
+
+                                </div>
+                                
+
+
+
+                                        
+
+                                    
+
+
+
+
+
+                            
+
+
                                          <div class="row">
                                             
                                             <div class="input-field col s12">
@@ -235,42 +318,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                    
                                         </div>
 
-                                        <div class="row">
                                         
-                                           
-                                           <!--  <div class="input-field col s6" >
-
-                                            </div> -->
-                                   
-                                        </div>
-                                        <!-- <div class="row">
-                                            
-                                            <label style="margin-left: 10px;margin-top: 3%;">Id Proof</label>
-                                            
-                                            <div class="input-field col s12">
-                                              
-                                                    <div class="file-field input-field">
-                                                        <div class="btn">
-                                                            <span>File</span>
-                                                            <input type="file">
-                                                        </div>
-                                                        <div class="file-path-wrapper">
-                                                            <input class="file-path validate" type="text">
-                                                        </div>
-                                                    </div>
-                                                
-                                            </div>
-                                            <div class="input-field col s12">
-                                                
-                                                
-
-
-                                            </div>
-                                                
-                                            
-                                        
-                                        </div> -->
-
                                         <div class="row">
                                             <div class="input-field col s12" style="margin-top: 20px;">
                                                 <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a>
@@ -372,15 +420,12 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         });
  
     }
-
-
-
-
-     
   
       
       
       };
+
+
 
     </script>
     <!-- <script src="../../assets/js/upload_file.js"></script> -->
@@ -439,4 +484,85 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                 },
               });
     });
+</script>
+
+<script type="text/javascript">
+    $('#country').on('click', function(){
+
+  // alert("ok");
+        var countryID = $(this).val();
+        // alert(countryID);
+        // var state=$('#state').val();
+        // alert(state);
+
+        // alert(countryID);
+        if(countryID){
+            $.ajax({
+                type:'POST',
+                url:'countrydata.php',
+                data:'country_id='+countryID,
+                success:function(htmll){
+                    // console.log(htmll);
+
+                    // if(html != ''){
+                    //     $('#mystate').html(html);
+                    // $('#city').html('<option value="">Select state first</option>'); 
+
+                    // }
+                    // alert(getf.a[0]);
+
+
+                    $('#mystate').html(htmll); 
+                    // alert(html);
+                    // console.log(html);
+                      $('#city').html('<option value="">Select state first</option>'); 
+
+                    
+                }
+            }); 
+        }else{
+            $('#mystate').html('<option value="">Select country first</option>');
+            $('#city').html('<option value="">Select state first</option>'); 
+        }
+        });
+        
+        $('#mystate').on('click', function(){
+            // alert();
+            var stateID = $(this).val();
+            if(stateID){
+                $.ajax({
+                    type:'POST',
+                    url:'countrydata.php',
+                    data:'state_id='+stateID,
+                    success:function(html){
+                        $('#city').html(html);
+                       
+                    }
+                }); 
+            }else{
+                // $('#city').html('<option value="">Select state first</option>'); 
+            }
+        });
+
+        $('#city').on('click', function(){
+            var cityID = $(this).val();
+            if(cityID){
+                 $.ajax({
+                          type:'POST',
+                          url:'pincode.php',
+                          data:'city_id='+cityID,
+                          success:function(response){
+                             // $('#pin').html(response);
+                             $('#pin').val(response); 
+                          }
+                      }); 
+            }else{
+                // $('#city').html('<option value="">Select state first</option>'); 
+            }
+        });
+
+</script>
+<script type="text/javascript">
+    
+
 </script>

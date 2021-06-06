@@ -59,8 +59,8 @@
                             <div class="footer-recent-post footer-margin">
                                 <h3>Quick Links</h3>
                                 <ul>
-                                    <li><a href="#">Home <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="#">About us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="index.php">Home <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="about.php">About us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <li><a href="#">Contact us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <li><a href="#">FAQ <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <li><a href="#">Privacy Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>

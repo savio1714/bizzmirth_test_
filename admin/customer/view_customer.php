@@ -6,6 +6,9 @@ if(!isset($_SESSION['username'])){
 }
 
 $id = $_GET['vkvbvjfgfikix'];
+$country = $_GET['ncy'];
+$state = $_GET['mst'];
+$city = $_GET['hct'];
 // $user_id = $_GET['jdjdfdjs'];
 // $user_id = $_GET['rgist'];
 
@@ -31,7 +34,7 @@ $id = $_GET['vkvbvjfgfikix'];
 
 
 
-    $stmt = $conn->prepare("SELECT * FROM customer where id = '".$id."'");
+    $stmt = $conn->prepare("SELECT *, (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname  FROM customer where id = '".$id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -48,6 +51,14 @@ $id = $_GET['vkvbvjfgfikix'];
         $gender=$row['gender'];
         $address=$row['address'];
         $id_proof=$row['id_proof'];
+        $profile_pic=$row['profile_pic'];
+        $age=$row['age'];
+
+        $city_name=$row['city_name'];
+        $statename=$row['statename'];
+        $countryname=$row['countryname'];
+        $pincode=$row['pincode'];
+        
  
     }
     }                                                      
@@ -117,59 +128,117 @@ $id = $_GET['vkvbvjfgfikix'];
                                     <form>
                                         <div class="row">
                                             
-                                            <div class="input-field col s12">
+                                            <div class="input-field col s6">
                                                 <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" readonly>
-                                                <label for="first_name">Name</label>
+                                                <label for="first_name">Full Name</label>
                                             </div>
-                                        
-                                        </div>
-                                        <div class="row">
-                                            
                                             <div class="input-field col s6">
                                                 <input id="first_name" type="text" value="<?php echo $firstname;?>" readonly>
                                                 <label for="first_name">First Name</label>
                                             </div>
+                                        
+                                        </div>
+                                        <div class="row">
                                             <div class="input-field col s6">
                                                 <input id="last_name" type="text" value="<?php echo $lastname;?>" readonly>
                                                 <label for="last_name">Last Name</label>
                                             </div>
-                                        </div>
-                                        <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="phone" type="text" value="<?php echo $contact_no;?>" readonly>
+                                                <input id="phone" type="text" value="<?php echo '+'.$contact_no;?>" readonly>
                                                 <label for="phone">Mobile</label>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            
                                             <div class="input-field col s6">
                                                 <input id="email" type="email" value="<?php echo $email;?>" readonly>
                                                 <label for="email">Email</label>
                                             </div>
 
-                                        </div>
-                                        <div class="row">
                                             <div class="input-field col s6">
                                                 <input id="gender" type="text" value="<?php if($gender == 'male'){ echo "Male";} else if ($gender == 'female'){echo "Female";}else{echo "Others";} ;  ?>" readonly>
                                                 <label for="phone">Gender</label>
                                             </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="age" type="text" value="<?php echo $age;?>" readonly>
+                                                <label for="age">Age</label>
+                                            </div>
+                                            
                                             <div class="input-field col s6">
                                                 <input id="bdate" type="email" value="<?php echo $date_of_birth;?>" readonly>
                                                 <label for="email">Date of Birth</label>
                                             </div>
 
                                         </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="country" type="text" value="<?php echo $countryname;?>" readonly>
+                                                <label for="country">Country</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="state" type="text" value="<?php echo $statename;?>" readonly>
+                                                <label for="state">State</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="city" type="text" value="<?php echo $city_name;?>" readonly>
+                                                <label for="city">City</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="pincode" type="text" value="<?php echo $pincode;?>" readonly>
+                                                <label for="pin">Pincode</label>
+                                            </div>
+
+                                        </div>
+
+
                                          <div class="row">
                                             
                                             <div class="input-field col s12">
                                                 <input id="name" type="text" value="<?php echo $address;?>" readonly>
                                                 <!-- <textarea id="address" style="margin-top: 1.5%;" readonly><?php echo $address;?></textarea> -->
                                             
-                                                <label for="first_name">Address</label>
+                                                <label for="first_name">Full Address</label>
                                             </div>
                                         
                                         </div>
 
-                                       
 
                                         <div class="row">
+                                        
+                                            <div class="input-field col s6 col-sm-12">
+                                              <label style="margin-top: -25px;font-size: 0.8rem;">Profile</label>
+                                                    <div >
+                                                        <?php echo '<a href="../../'.$profile_pic.'" target="_blank" title="Profile"><img src="../../'.$profile_pic.'" alt="Profile" style="width: 150px;height: 150px;    margin-top: 4%;"></a>';?>
+                                                    
+                                                    </div>
+                                                   
+                                                    
+                                                
+                                            </div>
+                                             <div class="input-field col s6 col-sm-12">
+                                              <label style="margin-top: -25px;font-size: 0.8rem;">PAN / Aadhar Card</label>
+                                                   
+                                                    <div >
+                                                    <?php echo '<a href="../../upload/'.$id_proof.'" target="_blank" title="id proof" ><img src="../../upload/'.$id_proof.'" alt="id proof" style="width: 150px;height: 150px;    margin-top: 4%;" ></a>';?>
+                                                    </div>
+                                                
+                                            </div>
+                                          <!--   <div class="input-field col s6" >
+
+                                            </div> -->
+                                   
+                                        </div>
+
+                                       
+
+                                        <!-- <div class="row">
                                             <label style="padding: 10px;">ID Proof</label>
                                             <div class="col s12">
                                                 
@@ -179,7 +248,7 @@ $id = $_GET['vkvbvjfgfikix'];
                                             </div>
                                             
 
-                                        </div>
+                                        </div> -->
 
 
                                         
@@ -287,6 +356,7 @@ $id = $_GET['vkvbvjfgfikix'];
           success:function(data){
             if(data == 1){
                    alert("Username and Password send via sms and email");
+                   
              location.href = "pending_customer.php";
           }
           else{

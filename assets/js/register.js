@@ -73,35 +73,34 @@ $(document).ready(function(){
         
         if(!validateEmail(emailValue)){
           setError(email,"*Please enter correct email id");
+        }else if(emailValue ==='')
+        {
+          setError(email,"*Email cannot be blank");
         }else{
-          validateInput(emailValue,email,"*Email cannot be blank");
+          emailtest(emailValue);
+          // validateInput(emailValue,email,"*Email cannot be blank");
         }
         
  });
 
   $(phone_no).keyup(function () { 
    phone_noValue = phone_no.val().trim();
+  let code = $('#countrycode').val();
         
-        if(!validatePhone(phone_noValue)){
+        if(code ==='')
+        {
+          setError(phone_no,"*Select Country code ");
+        }else{
+          if(!validatePhone(phone_noValue)){
           setError(phone_no,"*Please enter correct phone number");
+        }else if(validateOnlyZero(phone_noValue)){
+          setError(address,"*Enter proper phone number.");
         }else if(phone_noValue ==='')
         {
           setError(phone_no,"*phone number cannot be blank");
-        }else{
-          $.ajax({
-        type:'POST',
-         url:'registration/phonetest.php',
-        data:'phone='+phone_noValue,
-          success:function(response){
-            if(response == 1){
-              setError(phone_no,"*phone number already taken");
-            }else{
-              setSuccess(phone_no);
-            }
-          
-          }
-        }); 
-          
+        }else{        
+          phonetest(phone_noValue,code);
+        }
         }
         
  });
@@ -128,10 +127,16 @@ $(document).ready(function(){
 
   // });
    $(address).keyup(function () { 
-    addressValue =address.val();
+    addressValue =address.val().trim();
 
     if(addressValue ===''){
       setError(address,"*Address cannot be blank");
+    }else if(validateOnlyNumber(addressValue)){
+      setError(address,"*Enter proper address.");
+    }else if(addressValue.length <= 7){
+          setError(address,"*Enter proper address");
+        }else if(validateAddress(addressValue)){
+      setError(address,"*Address cannot have special characters");
     }
     else{
       // validateInput(addressValue,address,"*address cannot be blank"); 
@@ -191,8 +196,32 @@ const validatePhone= (phone) => {
   return phoneReg.test(phone);
 }
 
+const validateAddress= (address) => {
+   var specialChar = /[!@#$%^&*]/g;
+  return specialChar.test(address);
+}
 
+const validateOnlyNumber = (input) =>{
 
+  let characterLetters = /^[0-9\s]+$/;
+  if(input.match(characterLetters )){
+    return true;
+   }else{
+    return false;
+   }
+
+}
+
+const validateOnlyZero = (input) =>{
+
+  let characterLetters = /^[0\s]+$/;
+  if(input.match(characterLetters )){
+    return true;
+   }else{
+    return false;
+   }
+
+}
 
 
 
@@ -222,79 +251,51 @@ const validatePhone= (phone) => {
     var phone= countrycode+""+phone_noValue;
 
 
-    // alert(phone);
 
+      if(profile_pic == ''){
+      errorMessage($('#profileError'),"*Select your profile.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
 
-
-
-    // var age =getdob(bdate);
-    // alert(agevalue);
-
-
-
-   
-
-
-
-
-    // alert(bdate);
-
-     if(agree == false){
-        $('#agreeError').text("*Please Agree Terms and Conditions");
-        $('#errorMessageText').text("*All fields are required");
-    }else if(profile_pic == ''){
-      $('#agreeError').addClass('hideDiv');
-        $('#profileError').text("*Select your profile.");
-        $('#errorMessageText').text("*All fields are required");
     }else if(countrycode == ''){
-        $('#profileError').addClass('hideDiv');
-        $('#countryCodeError').text("*Select Country Code");
-        $('#errorMessageText').text("*All fields are required");
+      errorMessage($('#countryCodeError'),"*Select Country Code.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
+
     }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
-        $('#countryCodeError').addClass('hideDiv');
-        $('#errorMessage').text("*Select Gender.");
-        $('#errorMessageText').text("*All fields are required");
+      errorMessage($('#errorMessage'),"*Select Gender.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
+      validateInput(bdate,$('#bdate'),"");
     }
     else if(bdate ===''){
-      $('#errorMessage').addClass('hideDiv');
+
       validateInput(bdate,$('#bdate'),"*Please Select date");
       $('#errorMessageText').text("*All fields are required");
     }else if(agevalue<18 ||  agevalue>90 ){
-      validateInput(bdate,$('#bdate'),"");
-      $('#ageError').text("*You are not eligible");
-        $('#errorMessageText').text("*All fields are required");
-    }else if(country == ''){
-      $('#errorMessage').addClass('hideDiv');
-      $('#ageError').addClass('hideDiv');
-            $('#countryError').text("*Select Country.");
-            $('#errorMessageText').text("*All fields are required");
-    }else if(state == ''){
-      $('#countryError').addClass('hideDiv');
-            $('#stateError').text("*Select State.");
-            $('#errorMessageText').text("*All fields are required");
-    }else if(city == ''){
-      $('#stateError').addClass('hideDiv');
-      $('#countryError').addClass('hideDiv');
-            $('#cityError').text("*Select City.");
-            $('#errorMessageText').text("*All fields are required");
-    }else if(id_proof == ''){
-      $('#errorMessage').addClass('hideDiv');
-      $('#stateError').addClass('hideDiv');
-      $('#countryError').addClass('hideDiv');
-      $('#cityError').addClass('hideDiv');
-            $('#idProofError').text("*Select Id Proof.");
-            $('#errorMessageText').text("*All fields are required");
-    }else if(fnameHas === true && lnameHas === true && emailHas === true && phone_noHas === true && addressHas === true){
-      
-      $('#agreeError').addClass('hideDiv');$('#profileError').addClass('hideDiv');$('#countryCodeError').addClass('hideDiv');
-      $('#errorMessage').addClass('hideDiv');$('#ageError').addClass('hideDiv');$('#countryError').addClass('hideDiv');
-      $('#stateError').addClass('hideDiv');$('#cityError').addClass('hideDiv');$('#idProofError').addClass('hideDiv');
- $('#errorMessageText').text("*All fields are required");
+      errorMessage($('#ageError'),"*You are not eligible.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
 
+      validateInput(bdate,$('#bdate'),"");
+    }else if(country == ''){
+      errorMessage($('#countryError'),"*Select Country.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#stateError'),$('#cityError'),$('#idProofError'));
+      validateInput(bdate,$('#bdate'),"");
+    }else if(state == ''){
+      errorMessage($('#stateError'),"*Select State.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#cityError'),$('#idProofError'));
+      validateInput(bdate,$('#bdate'),"");
+    }else if(city == ''){
+      errorMessage($('#cityError'),"*Select City.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#idProofError'));
+      validateInput(bdate,$('#bdate'),"");
+    }else if(id_proof == ''){
+      errorMessage($('#idProofError'),"*Select Id Proof.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'));
+      validateInput(bdate,$('#bdate'),"");
+      phonetest(phone_noValue,countrycode);
+    }else if(fnameHas === true && lnameHas === true && emailHas === true && phone_noHas === true && addressHas === true){
+      phonetest(phone_noValue,countrycode);
+      validateInput(bdate,$('#bdate'),"");
+      $('#errorMessageText').text("*All fields are required");
 
     let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&phone_no='+phone+'&age='+agevalue+'&bdate='+bdate+'&id_proof='+id_proof+'&address='+addressValue+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
+    
+    if(agree == false){
+      errorMessage($('#agreeError'),"*Please Agree Terms and Conditions",$('#errorMessageText'),"*All fields are required",$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
 
-       $.ajax({
+    }else{
+
+      $.ajax({
         type: "POST",
         url: "registration/submit_data.php",
         data: datastring,
@@ -308,38 +309,16 @@ const validatePhone= (phone) => {
         }
             },
         });
-             $('#errorMessageText').addClass('hideDiv');
+          $('#agreeError').addClass('hideDiv');
+          $('#errorMessageText').addClass('hideDiv');
+
+
+    }
+       
     } else{
        $('#errorMessageText').text("*All fields are required");
     }
 
-    // validateGender(genderValue,gender,"*Please Select gender");
-
-
-
-
-
-  // if(fnameHas === true && lnameHas === true && unameHas === true && emailHas === true && passwordHas === true && confirmPasswordHas === true){
-    
-  //    $.ajax({
-  //                   type: "POST",
-  //                   url: "sign_up1.php",
-  //                   data: "fname=" + firstnameValue+ "&lname=" + lastnameValue + "&uname="+ usernameValue +"&email="+ emailValue +"&password="+ passwordValue,
-  //                   success: function(res) {
-  //                      if(res == 1){
-  //                       alert("success");
-  //                      }else{
-  //                       alert("failed");
-  //                      }
-  //                   }
-  //               });
-
-  //   // alert(firstnameValue +" "+ lastnameValue +" "+ usernameValue +" "+ emailValue);
-  // }else{
-  //   alert("Please Fill all the field");
-  // }
-
-  // alert(firstnameValue+"  "+lastnameValue);
 
   }
 
@@ -450,6 +429,58 @@ $('#country').on('change', function(){
 
         
     });
+
+
+    var phonetest = (phone_noValue,code) =>{
+      $.ajax({
+
+        type:'POST',
+         url:'registration/phonetest.php',
+        data:'phone='+phone_noValue+'&countrycode='+code,
+          success:function(response){
+            if(response == 1){
+              setError(phone_no,"*phone number already taken");
+            }else{
+              setSuccess(phone_no);
+            }
+          
+          }
+        }); 
+    }
+
+    var emailtest = (emailtest) =>{
+      $.ajax({
+
+        type:'POST',
+         url:'registration/emailtest.php',
+        data:'email='+emailtest,
+          success:function(response){
+            if(response == 1){
+              setError(email,"*Email already Exists ");
+            }else{
+              setSuccess(email);
+            }
+          
+          }
+        }); 
+    }
+
+
+    var errorMessage = (idname,message,idname2,message2,idname3,idname4,idname5,idname6,idname7,idname8,idname9,idname10) =>{
+      idname.removeClass('hideDiv');
+      idname.text(message);
+      idname2.text(message2);
+      idname3.addClass('hideDiv');
+      idname4.addClass('hideDiv');
+      idname5.addClass('hideDiv');
+      idname6.addClass('hideDiv');
+      idname7.addClass('hideDiv');
+      idname8.addClass('hideDiv');
+      idname9.addClass('hideDiv');
+      idname10.addClass('hideDiv');
+      // idname11.addClass('hideDiv');
+
+    }
 
 
 
