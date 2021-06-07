@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 04:56 AM
+-- Generation Time: Jun 07, 2021 at 04:02 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -163,6 +163,7 @@ CREATE TABLE `customer` (
   `firstname` varchar(99) NOT NULL,
   `lastname` varchar(99) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
   `date_of_birth` varchar(30) NOT NULL,
   `age` varchar(5) NOT NULL,

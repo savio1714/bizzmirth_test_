@@ -46,6 +46,7 @@ $city = $_GET['hct'];
         // $username=$row['username'];
         $lastname=$row['lastname'];
         $email=$row['email'];
+        $country_code=$row['country_code'];
         $contact_no=$row['contact_no'];
         $date_of_birth=$row['date_of_birth'];
         $gender=$row['gender'];
@@ -144,7 +145,7 @@ $city = $_GET['hct'];
                                                 <label for="last_name">Last Name</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="phone" type="text" value="<?php echo '+'.$contact_no;?>" readonly>
+                                                <input id="phone" type="text" value="<?php echo '+' .$country_code.' '.$contact_no;?>" readonly>
                                                 <label for="phone">Mobile</label>
                                             </div>
                                         </div>

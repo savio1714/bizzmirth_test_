@@ -112,7 +112,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>'.$row['firstname'].' '.$row['lastname'].'
                                                     </td>
-                                                    <td>'.$row['contact_no'].'</td>
+                                                    <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
                                                     <td>'.$row['email'].'</td>
                                                     <td>
                                                         <a href="view_customer.php?vkvbvjfgfikix='.$row["id"]. '&ncy='.$row["country"]. '&mst='.$row["state"]. '&hct='.$row["city"]. '"><i class="fa fa-eye" aria-hidden="true"></i></a>

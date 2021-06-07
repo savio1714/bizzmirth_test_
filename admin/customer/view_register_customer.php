@@ -51,6 +51,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         // $username=$row['username'];
         $lastname=$row['lastname'];
         $email=$row['email'];
+        $country_code=$row['country_code'];
         $contact_no=$row['contact_no'];
         $date_of_birth=$row['date_of_birth'];
         $gender=$row['gender'];
@@ -165,7 +166,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="phone" type="text" value="<?php echo '+'.$contact_no;?>" readonly>
+                                                <input id="phone" type="text" value="<?php echo '+'.$country_code.' '.$contact_no;?>" readonly>
                                                 <label for="phone">Mobile</label>
                                             </div>
                                             <div class="input-field col s6">

@@ -8,7 +8,7 @@ $phone=$countrycode."".$phoneTenDegit;
 if(!empty($_POST["phone"])){ 
     // Fetch city data based on the specific state
 
-    $stmt2 = $conn->prepare("SELECT * FROM customer WHERE contact_no = '".$phone."'");
+    $stmt2 = $conn->prepare("SELECT * FROM customer WHERE contact_no = '".$phoneTenDegit."' AND country_code = '".$countrycode."'");
     $stmt2->execute();                                                                                   
     $stmt2->setFetchMode(PDO::FETCH_ASSOC);
      

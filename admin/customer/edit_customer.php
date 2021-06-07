@@ -98,6 +98,10 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
 <?php include '../header2.php';?>
 
     <!--== BODY CONTNAINER ==-->
+    <div id="testdiv"></div>
+    <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" >
+    <input id="emailV" type="hidden" value="<?php echo $email;?>" >
+
     
         <?php include '../sidebar2.php';?>
             <div class="sb2-2">
@@ -149,16 +153,19 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id="phone" type="text" value="<?php echo $contact_no;?>" >
-                                                <label for="phone">Mobile</label>
-                                            </div>
+
                                             <div class="input-field col s6">
                                                 <input id="email" type="email" value="<?php echo $email;?>" >
                                                 <label for="email">Email</label>
                                             </div>
 
+                                            <div class="input-field col s6">
+                                                <label for="date-picker" style="margin-top: -25px;    font-size: 0.8rem;">Date of Birth</label>
+                                            <input type="date" id="dob" class="datepicker" value="<?php echo $date_of_birth;?>">
+                                            </div>
+
                                         </div>
+
                                         <div class="row">
 
                                             <div class="input-field col s6">
@@ -173,9 +180,41 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                 
                                                 <!-- <label for="phone">Gender</label>  -->
                                             </div>
+
                                             <div class="input-field col s6">
-                                                <label for="date-picker" style="margin-top: -25px;    font-size: 0.8rem;">Date of Birth</label>
-                                            <input type="date" id="dob" class="datepicker" value="<?php echo $date_of_birth;?>">
+
+                                                <div class="form-group col s4">
+                                                <!-- <label style="margin-top: -17%;font-size: 0.8rem;">Country Code</label> -->
+                                                 <?php
+                                                require '../connect.php';
+                                                $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                                $stmt->execute();
+
+                                                                                                   
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                ?>
+                                                <select id="country_cd" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 10%;padding-top: 10%;padding-left: 1%;">
+                                                    <?php 
+                                                    if($stmt->rowCount()>0){
+                                                         foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                            echo '<option value="'.$row['country_code'].'">'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
+                                                        } 
+                                                    }else{ 
+                                                        echo '<option value="">Country not available</option>'; 
+                                                    } 
+                                                    ?>
+                                                </select>
+                                           
+
+
+                                            
+                                            
+                                                </div>
+                                                <div class="form-group col s8">
+                                                    <input id="phone" type="text" value="<?php echo $contact_no;?>" >
+                                                    <label for="phone">Mobile</label>
+                                                </div>
+                                                
 
                                                 <!-- <input id="bdate" type="email" value="<?php echo $date_of_birth;?>" >
                                                 <label for="email">Date of Birth</label> -->
@@ -409,24 +448,38 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
       {
 
 
-      var username = $('#username').val();
-      var firstname = $('#firstname').val();
-      var lastname = $('#lastname').val();
-      var phone = $('#phone').val();
-      var email = $('#email').val();
+      var username = $('#username').val().trim();
+      var firstname = $('#firstname').val().trim();
+      var lastname = $('#lastname').val().trim();
+      var country_code = $('#country_cd').val();
+      var phone = $('#phone').val().trim();
+      var email = $('#email').val().trim();
       var gender = $('.gender:checked').val();
       var dob = $('#dob').val();
-      var address = $('#address').val();
+      var address = $('#address').val().trim();
       var id_proof = $('#id_proof').val();
       var profile_pic = $('#profile_pic').val();
+
+      var country = $('#country').val();
+      var state = $('#mystate').val();
+      var city = $('#city').val();
+      var pin = $('#pin').val();
 
       var characterLetters = /^[A-Za-z\s]+$/;
       var phoneReg =/^[0-9]{10}$/;
       var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var specialChar = /[!@#$%^&*]/g;
 
  // alert();
-      var dataString = 'id='+ id+'&user_id='+uid+'&user_type_id='+utype+'&username='+username+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&id_proof='+id_proof+'&profile_pic='+profile_pic;
 
+ var testp= $('#testphone').val();
+  var testE= $('#testemail').val();
+ 
+ var phoneN =$('#phoneN').val();
+  var emailV =$('#emailV').val();
+ // alert($('#test2').val());
+      var dataString = 'id='+ id+'&user_id='+uid+'&user_type_id='+utype+'&username='+username+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&id_proof='+id_proof+'&profile_pic='+profile_pic+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
+// phonetest(phone_noValue,countrycode);
     if(username ==='' || username.length <= 2){
       alert("Username should be max 3 character");
     }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
@@ -435,10 +488,20 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         alert("Enter Proper Last Name");
     }else if (!phoneReg.test(phone)){
         alert("Enter Proper Phone Number");
+    }else if (testp == '1' && phoneN !=phone){
+        alert("Phone number already exists");
     }else if (!emailReg.test(email)){
         alert("Enter Proper Email");
-    }else if (address ===''){
-        alert("Enter Address");
+    }else if (testE == '1' && emailV !=email){
+        alert("Email already exists");
+    }else if (country ===''){
+        alert("Select Country");
+    }else if (state ===''){
+        alert("Select State");
+    }else if (city ===''){
+        alert("Select City");
+    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+        alert("Enter Proper Address");
     }else if (id_proof ===''){
         alert("Upload Id Proof");
     }else if (profile_pic ===''){
@@ -462,11 +525,66 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         });
  
     }
+
+
+
   
       
       
       };
 
+
+
+$('#email').keyup(function () { 
+    var email = $('#email').val().trim();
+     emailtest(email);
+        
+    });
+
+$('#phone').keyup(function () { 
+    var country_code = $('#country_cd').val();
+    var phone = $('#phone').val().trim();
+     phonetest(phone,country_code);
+        
+    });
+
+
+ var phonetest = (phone_noValue,code) =>{
+      $.ajax({
+
+        type:'POST',
+         url:'../../registration/phonetest.php',
+        data:'phone='+phone_noValue+'&countrycode='+code,
+          success:function(response){
+            if(response == 1){
+              $('#testpho').html('<input type="hidden"  id="testphone" value="1" >');
+            }else{
+               $('#testpho').html('<input  type="hidden" id="testphone" value="0" >');
+             // return false;
+            }
+          
+          }
+        }); 
+    }
+
+
+    var emailtest = (emailtest) =>{
+      $.ajax({
+
+        type:'POST',
+         url:'../../registration/emailtest.php',
+        data:'email='+emailtest,
+          success:function(response){
+            if(response == 1){
+              $('#testdiv').html('<input type="hidden"  id="testemail" value="1" >');
+            }else{
+               $('#testdiv').html('<input  type="hidden" id="testemail" value="0" >');
+             // return false;
+            }
+          
+          }
+        }); 
+    }
 
 
     </script>

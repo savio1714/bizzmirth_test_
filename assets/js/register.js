@@ -94,7 +94,7 @@ $(document).ready(function(){
           if(!validatePhone(phone_noValue)){
           setError(phone_no,"*Please enter correct phone number");
         }else if(validateOnlyZero(phone_noValue)){
-          setError(address,"*Enter proper phone number.");
+          setError(phone_no,"*Enter proper phone number.");
         }else if(phone_noValue ==='')
         {
           setError(phone_no,"*phone number cannot be blank");
@@ -288,7 +288,7 @@ const validateOnlyZero = (input) =>{
       validateInput(bdate,$('#bdate'),"");
       $('#errorMessageText').text("*All fields are required");
 
-    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&phone_no='+phone+'&age='+agevalue+'&bdate='+bdate+'&id_proof='+id_proof+'&address='+addressValue+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
+    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&country_code='+countrycode+'&phone_no='+phone_noValue+'&age='+agevalue+'&bdate='+bdate+'&id_proof='+id_proof+'&address='+addressValue+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
     
     if(agree == false){
       errorMessage($('#agreeError'),"*Please Agree Terms and Conditions",$('#errorMessageText'),"*All fields are required",$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
