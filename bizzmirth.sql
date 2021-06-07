@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 02:37 PM
+-- Generation Time: Jun 07, 2021 at 04:56 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -232,7 +232,7 @@ INSERT INTO `states` (`id`, `state_name`, `country_id`, `status`) VALUES
 (4, 'Bihar', 1, 2),
 (5, 'Chhattisgarh', 1, 2),
 (6, 'Goa', 1, 1),
-(7, 'Gujarat', 1, 1),
+(7, 'Gujarat', 1, 2),
 (8, 'Haryana', 1, 2),
 (9, 'Himachal Pradesh', 1, 2),
 (10, 'Jharkhand', 1, 2),

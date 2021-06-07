@@ -221,7 +221,28 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                             <div class="form-group col-xs-6">
                                                 <label>State</label>
                                                 <select id="mystate" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
-                                                    <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
+
+                                                    <?php
+                                                        require '../connect.php';
+                                                        $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
+                                                        $stmt->execute();
+
+                                                                                                           
+                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                        ?>
+                                                        
+                                                        <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
+                                                        <?php 
+                                                        if($stmt->rowCount()>0){
+                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                                echo '<option value="'.$row['id'].'">'.$row['state_name'].'</option>'; 
+                                                            } 
+                                                        }else{ 
+                                                            echo '<option value="">State not available</option>'; 
+                                                        } 
+                                                        ?>
+
+                                                   
                                                 </select>
                                                 </div>
                                     
@@ -238,7 +259,28 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                     <div class="form-group col-xs-6">
                                         <label>City:</label><br>
                                         <select id="city" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
-                                            <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
+
+                                            <?php
+                                                        require '../connect.php';
+                                                        $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
+                                                        $stmt->execute();
+
+                                                                                                           
+                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                        ?>
+                                                        
+                                                        <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
+                                                        <?php 
+                                                        if($stmt->rowCount()>0){
+                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                                echo '<option value="'.$row['id'].'">'.$row['city_name'].'</option>'; 
+                                                            } 
+                                                        }else{ 
+                                                            echo '<option value="">City not available</option>'; 
+                                                        } 
+                                                        ?>
+
+                                            
                                         </select>
                                         <!-- <div id="cityError" class=" errorMessage2"></div>                  -->
                                     </div>
@@ -487,7 +529,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
 </script>
 
 <script type="text/javascript">
-    $('#country').on('click', function(){
+    $('#country').on('change', function(){
 
   // alert("ok");
         var countryID = $(this).val();
@@ -526,7 +568,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         }
         });
         
-        $('#mystate').on('click', function(){
+        $('#mystate').on('change', function(){
             // alert();
             var stateID = $(this).val();
             if(stateID){
@@ -544,7 +586,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
             }
         });
 
-        $('#city').on('click', function(){
+        $('#city').on('change', function(){
             var cityID = $(this).val();
             if(cityID){
                  $.ajax({
