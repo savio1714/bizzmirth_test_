@@ -4,7 +4,7 @@ require "../connect.php";
 $id= $_POST["id"];
 $user_id= $_POST["user_id"];
 // $cust_id= $_POST["cust_id"];
-$username= $_POST["username"];
+// $username= $_POST["username"];
 $firstname= $_POST["firstname"];
 $lastname= $_POST["lastname"];
 $phone= $_POST["phone"];
@@ -24,7 +24,7 @@ $city= $_POST["city"];
 $pincode= $_POST["pincode"];
 
 
-if($username !='' ||$firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$id_proof !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''){
+if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$id_proof !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''){
 	
 
 
@@ -51,10 +51,10 @@ $sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_cod
 
 	if ($result) {
 		
-		$sql = "UPDATE login SET username=:username WHERE user_id=:user_id and user_type_id=:user_type_id";
+		$sql = "UPDATE login SET username=:email WHERE user_id=:user_id and user_type_id=:user_type_id";
 		$stmt2 = $conn->prepare($sql);
 		$result2=  $stmt2->execute(array(
-			':username' => $username,
+			':email' => $email,
 			':user_type_id' => $user_type_id,
 			':user_id' => $user_id		
 		));

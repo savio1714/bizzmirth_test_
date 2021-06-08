@@ -122,7 +122,7 @@ if(!isset($_SESSION['username'])){
                                                         <a href="#" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["firstname"]. '")\'><i class="material-icons dp48">verified_user</i></a>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '")\'><i class="material-icons dp48">verified_user</i></a>
                                                     </td>
                                                 </tr>';
 

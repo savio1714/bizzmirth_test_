@@ -14,7 +14,8 @@ if(!isset($_SESSION['username2'])){
 
     <title>Dashboard Profile | Bizzmirth Holidays</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../images/logo1.png">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->
@@ -75,23 +76,34 @@ if(!isset($_SESSION['username2'])){
                                 <!-- Details -->
                                 <div class="my-profile">
 
-                                    <label>Your Name *</label>
+                                    <label>First Name</label>
                                     <input value="Tom Perrin" type="text">
 
-                                    <label>Phone Number *</label>
+                                    <label>Last Name</label>
+                                    <input value="Tom Perrin" type="text">
+
+                                    <label>Phone Number</label>
                                     <input value="(123) 123-456" type="text">
 
-                                    <label>Email Address *</label>
+                                    <label>Email Address</label>
                                     <input value="tom@example.com" type="text">
 
-                                    <label>Your Bio *</label>
-                                    <textarea name="notes" id="notes" cols="30" rows="10">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</textarea>
+                                     <label class="margin-top-30 margin-bottom-10">Amenities <span>(optional)</span></label>
+                                <div class="radio in-row margin-bottom-20">
 
-                                    <label class="twitter-input"><i class="fa fa-twitter"></i> Twitter</label>
-                                    <input placeholder="https://www.twitter.com/" type="text">
+                                    <input id="check-a" type="radio" name="check">
+                                    <label for="check-a">Elevator in building</label>
 
-                                    <label class="fb-input"><i class="fa fa-facebook-square"></i> Facebook</label>
-                                    <input placeholder="https://www.facebook.com/" type="text">
+                                    <input id="check-b" type="radio" name="check">
+                                    <label for="check-b">Friendly workspace</label>
+
+                                    <input id="check-c" type="radio" name="check">
+                                    <label for="check-c">Instant Book</label>
+
+                                    
+                                </div>
+
+                                    
 
                                 </div>
             
@@ -109,23 +121,47 @@ if(!isset($_SESSION['username2'])){
 
                                 <!-- Change Password -->
                                 <div class="my-profile">
-                                    <label class="margin-top-0">Company Name</label>
-                                    <input type="text">
+                                    <label class="margin-top-0">Country</label>
+                                    
+                                        <select class="chosen-select-no-single" >
+                                            <option label="blank">Select Category</option>  
+                                            <option>Eat & Drink</option>
+                                            <option>Shops</option>
+                                            <option>Hotels</option>
+                                            <option>Restaurants</option>
+                                            <option>Fitness</option>
+                                            <option>Events</option>
+                                        </select>
 
-                                    <label>Address *</label>
-                                    <input type="text">
+                                    <label>State</label>
+                                        <select class="chosen-select-no-single" >
+                                            <option label="blank">Select Category</option>  
+                                            <option>Eat & Drink</option>
+                                            <option>Shops</option>
+                                            <option>Hotels</option>
+                                            <option>Restaurants</option>
+                                            <option>Fitness</option>
+                                            <option>Events</option>
+                                        </select>
+
+                                    <label>City</label>
+                                     <select class="chosen-select-no-single" >
+                                            <option label="blank">Select Category</option>  
+                                            <option>Eat & Drink</option>
+                                            <option>Shops</option>
+                                            <option>Hotels</option>
+                                            <option>Restaurants</option>
+                                            <option>Fitness</option>
+                                            <option>Events</option>
+                                        </select>
 
                                     <label>Zip Code *</label>
-                                    <input type="text">
+                                    <input type="text" readonly>
 
-                                    <label>Country *</label>
-                                    <input type="text">
+                                    <label>Full Address</label>
+                                    <textarea></textarea>
 
-                                    <label>City *</label>
-                                    <input type="text">
-
-                                    <label>Region/State *</label>
-                                    <input type="text">
+                                    
                                 </div>
 
                             </div>

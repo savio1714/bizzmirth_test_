@@ -137,13 +137,17 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                 <input id="name" type="text" value="<?php echo 'cust'.$user_id;?>" readonly>
                                                 <label for="first_name">Customer Id</label>
                                             </div>
-                                            <div class="input-field col s6">
+                                            <!-- <div class="input-field col s6">
                                                 <input id="username" type="text" value="<?php echo $username ;?>" readonly>
                                                 <label for="first_name">Username</label>
+                                            </div> -->
+                                            <div class="input-field col s12">
+                                                <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" readonly>
+                                                <label for="first_name">Full Name</label>
                                             </div>
                                         
                                         </div>
-                                       <div class="row">
+                                       <!-- <div class="row">
                                             
                                             <div class="input-field col s12">
                                                 <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" readonly>
@@ -151,7 +155,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                             </div>
                                            
                                         
-                                        </div>
+                                        </div> -->
                                        
                                         <div class="row">
                                             

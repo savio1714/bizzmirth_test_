@@ -14,7 +14,7 @@ if(!isset($_SESSION['username2'])){
 
     <title>Offers | Bizzmirth Holidays</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../images/logo1.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->

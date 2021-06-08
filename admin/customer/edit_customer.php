@@ -125,18 +125,18 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                     <form>
                                         <div class="row">
                                             
-                                            <div class="input-field col s6">
+                                            <div class="input-field col s12">
                                                 <input id="name" type="text" value="<?php echo 'cust'.$user_id;?>" readonly>
                                                 <label for="first_name">Customer Id</label>
 
                                             </div>
-                                            <div class="input-field col s6">
+                                            <!-- <div class="input-field col s6">
 
                                                 <input id="username" type="text" value="<?php echo $username ;?>" >
                                                 <label for="username">Username</label>
-                                                <!-- <span>message</span> -->
+                                                
 
-                                            </div>
+                                            </div> -->
                                         
                                         </div>
                                        
@@ -448,7 +448,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
       {
 
 
-      var username = $('#username').val().trim();
+      // var username = $('#username').val().trim();
       var firstname = $('#firstname').val().trim();
       var lastname = $('#lastname').val().trim();
       var country_code = $('#country_cd').val();
@@ -478,11 +478,9 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
  var phoneN =$('#phoneN').val();
   var emailV =$('#emailV').val();
  // alert($('#test2').val());
-      var dataString = 'id='+ id+'&user_id='+uid+'&user_type_id='+utype+'&username='+username+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&id_proof='+id_proof+'&profile_pic='+profile_pic+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
+      var dataString = 'id='+ id+'&user_id='+uid+'&user_type_id='+utype+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&id_proof='+id_proof+'&profile_pic='+profile_pic+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
 // phonetest(phone_noValue,countrycode);
-    if(username ==='' || username.length <= 2){
-      alert("Username should be max 3 character");
-    }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+    if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
         alert("Enter Proper First Name");
     }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
         alert("Enter Proper Last Name");
