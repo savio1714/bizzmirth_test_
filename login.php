@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Username</label>
-                                    <input type="email" class="form-control" id="username" placeholder="Enter username or email id" value="<?php if(isset($_COOKIE['user2'])){echo $_COOKIE['user2'];}?>" >
+                                    <input type="email" class="form-control" id="username" placeholder="Enter username" value="<?php if(isset($_COOKIE['user2'])){echo $_COOKIE['user2'];}?>" >
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Password</label>
