@@ -38,7 +38,8 @@ if(!isset($_SESSION['username2'])){
 
     <title>Change Password | Bizzmirth Holidays</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../images/logo1.png">
+    <link rel="shortcut icon" href="../images/fav.ico">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../images/logo1.png"> -->
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->
@@ -64,6 +65,7 @@ if(!isset($_SESSION['username2'])){
         <div id="dashboard">
             <input  type="hidden" id="uid" value="<?php echo $uid;?>">
             <input  type="hidden" id="utid" value="<?php echo $user_type_id;?>">
+            <input  type="hidden" id="pass" value="<?php echo  $password;?>">
 
             <!-- Responsive Navigation Trigger -->
             <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>  
@@ -101,7 +103,7 @@ if(!isset($_SESSION['username2'])){
                     </div>
                 </div> -->
 
-
+ 
                  <!-- Change Password -->
                  <div class="row">
                     <div class="col-lg-12 col-md-12 col-xs-12 ">
@@ -111,7 +113,7 @@ if(!isset($_SESSION['username2'])){
 
                                 <!-- Change Password -->
                                 <div class="my-profile">
-                                    <input  type="hidden" id="pass" value="<?php echo $password;?>">
+                                    <!-- <input  type="text" id="pass" value="<?php echo  $password;?>"> -->
 
                                     <label class="cp">Enter Old Password</label>
                                     <input  type="password" id="oldPassword">

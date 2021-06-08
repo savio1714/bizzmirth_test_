@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
   $("#save").click(function(e){
-      var oldPassword = $('#oldPassword').val();
-      var newPassword = $('#newPassword').val();
-      var confirmPassword = $('#confirmPassword').val();
-      var pass = $('#pass').val();
+      var oldPassword = $('#oldPassword').val().trim();
+      var newPassword = $('#newPassword').val().trim();
+      var confirmPassword = $('#confirmPassword').val().trim();
+      var pass = $('#pass').val().trim();
       var uid = $('#uid').val();
       var utid = $('#utid').val();
 
@@ -15,7 +15,7 @@ $(document).ready(function(){
 
       if(oldPassword ===''){
         alert("Enter Old Password");
-      }if(oldPassword !== pass ){
+      }if(oldPassword != pass ){
         alert("Enter Correct Old Password");
       }else if(newPassword ==''){
            alert("Enter New Password ");
