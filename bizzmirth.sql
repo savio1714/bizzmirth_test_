@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 04:02 PM
+-- Generation Time: Jun 09, 2021 at 02:34 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -207,7 +207,7 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
 (1, 'admin', 'admin@32', '1', '1', '2021-06-02 13:43:20', 1),
-(2, 'apurva', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
+(2, 'apurva@gmail.com', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
 
 -- --------------------------------------------------------
 
@@ -268,13 +268,20 @@ CREATE TABLE `travel_agent` (
   `firstname` varchar(99) NOT NULL,
   `lastname` varchar(99) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
   `date_of_birth` varchar(30) NOT NULL,
+  `age` varchar(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `pincode` varchar(8) NOT NULL,
   `address` text NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
   `id_proof` varchar(255) NOT NULL,
   `registrant` varchar(100) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
   `register_by` varchar(100) NOT NULL COMMENT '1. admin 2.Travel Agent',
   `user_type` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -286,8 +293,8 @@ CREATE TABLE `travel_agent` (
 -- Dumping data for table `travel_agent`
 --
 
-INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `contact_no`, `date_of_birth`, `gender`, `address`, `profile_pic`, `id_proof`, `registrant`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'apurva', 'naik', 'apurva@gmail.com', '2345678906', '2020-09-07', 'female', 'xyz', '', '', '1', '1', 3, '2021-05-27 06:47:04', '', 1);
+INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
+(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678906', '2000-06-15', '20', 'female', '1', '6', '58', '403 601', 'xyz', 'upload/profile_pic/0706202109232690b25291c710a066b84dfe5a2900f849.jpg', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
 
 -- --------------------------------------------------------
 

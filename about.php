@@ -11,7 +11,7 @@ session_start();
 
     <title>Bizzmirth Holidays</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
+     <link rel="shortcut icon" type="image/x-icon" href="images/fav.ico">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->
@@ -44,7 +44,7 @@ session_start();
                 <h2>About Us</h2>
                 <nav aria-label="breadcrumb">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">About Us</li>
                     </ul>
                 </nav>

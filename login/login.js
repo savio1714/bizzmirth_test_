@@ -5,6 +5,7 @@ $(document).ready(function(){
   	let username = $('#username').val();
   	let password = $('#password').val();
     let remember_me = $('#remember_me').prop( "checked" );
+    
 
 
     

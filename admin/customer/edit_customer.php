@@ -698,7 +698,7 @@ $('#phone').keyup(function () {
                     }
                 }); 
             }else{
-                // $('#city').html('<option value="">Select state first</option>'); 
+                $('#city').html('<option value="">Select state first</option>'); 
             }
         });
 
@@ -715,12 +715,8 @@ $('#phone').keyup(function () {
                           }
                       }); 
             }else{
-                // $('#city').html('<option value="">Select state first</option>'); 
+                $('#city').html('<option value="">Select state first</option>'); 
             }
         });
-
-</script>
-<script type="text/javascript">
-    
 
 </script>

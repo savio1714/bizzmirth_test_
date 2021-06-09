@@ -20,6 +20,8 @@ if($stmt->rowCount()>0){
 		$_SESSION["user_type_id"] = $row['user_type_id'];
 		$_SESSION["user_id"] = $row['user_id'];
 
+		if ($_SESSION["user_type_id"] =='2'){
+
 		$stmt = $conn->prepare("SELECT * FROM customer where email='".$username."'  AND status='1' ");
 				$stmt->execute();
 
@@ -31,7 +33,24 @@ if($stmt->rowCount()>0){
 						$_SESSION["username2"] = $row['firstname'] ;
 						
 					}
-				}	
+				}
+		}else if($_SESSION["user_type_id"] =='3'){
+			$stmt = $conn->prepare("SELECT * FROM travel_agent where email='".$username."'  AND status='1' ");
+				$stmt->execute();
+
+				    // set the resulting array to associative
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+				if($stmt->rowCount()>0){
+					foreach (($stmt->fetchAll()) as $key => $row){
+						$_SESSION["username2"] = $row['firstname'] ;
+						
+					}
+				}
+
+		}else{
+			$_SESSION["username2"] = '' ;
+		}	
 
 	if ($_SESSION["user_type_id"] =='2' || $_SESSION["user_type_id"]== '3'){
 		if ($remember_me == 'true') {

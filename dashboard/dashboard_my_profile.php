@@ -3,6 +3,137 @@ session_start();
 if(!isset($_SESSION['username2'])){
     echo '<script>location.href = "../login.php";</script>';
 }
+
+
+
+require '../connect.php';
+
+$user_type =$_SESSION["user_type_id"];
+$user_id =$_SESSION["user_id"];
+
+
+if ($user_type =='2'){
+
+     $stmt = $conn->prepare("SELECT * FROM customer where cust_id='".$user_id."'");
+    $stmt->execute();
+     // set the resulting array to associative
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($stmt->rowCount()>0){
+    foreach (($stmt->fetchAll()) as $key => $row) {
+
+        $firstname=$row['firstname'];
+        // $username=$row['username'];
+        $lastname=$row['lastname'];
+        $email=$row['email'];
+        $country_code=$row['country_code'];
+        $contact_no=$row['contact_no'];
+        $date_of_birth=$row['date_of_birth'];
+        $gender=$row['gender'];
+        $address=$row['address'];
+        $profile_pic=$row['profile_pic'];
+        $age=$row['age'];
+        $pincode=$row['pincode'];
+
+
+        $country = $row['country'];
+        $state = $row['state'];
+        $city = $row['city'];
+
+
+        $stmt2 = $conn->prepare("SELECT country_name,(select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name FROM countries where id = '".$country."'");
+        $stmt2->execute();
+
+        $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+
+        if($stmt2->rowCount()>0){
+        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+            $city_name=$row2['city_name'];
+            $statename=$row2['statename'];
+            $countryname=$row2['countryname'];
+        }
+        }                                                      
+        else{
+                                                                
+        }
+
+
+
+
+
+
+ 
+    }
+    }                                                      
+    else{
+                                                            
+    }
+
+}
+
+
+if ($user_type =='3'){
+
+     $stmt = $conn->prepare("SELECT * FROM travel_agent where travel_agent_id='".$user_id."'");
+    $stmt->execute();
+     // set the resulting array to associative
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($stmt->rowCount()>0){
+    foreach (($stmt->fetchAll()) as $key => $row) {
+
+        $firstname=$row['firstname'];
+        // $username=$row['username'];
+        $lastname=$row['lastname'];
+        $email=$row['email'];
+        // $country_code=$row['country_code'];
+        $contact_no=$row['contact_no'];
+        $date_of_birth=$row['date_of_birth'];
+        $gender=$row['gender'];
+        $address=$row['address'];
+        $profile_pic=$row['profile_pic'];
+        $pincode=$row['pincode'];
+        // $age=$row['age'];
+
+
+        $country = $row['country'];
+        $state = $row['state'];
+        $city = $row['city'];
+
+
+        $stmt2 = $conn->prepare("SELECT country_name,(select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name FROM countries where id = '".$country."'");
+        $stmt2->execute();
+
+        $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+
+        if($stmt2->rowCount()>0){
+        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+            $city_name=$row2['city_name'];
+            $statename=$row2['statename'];
+            $countryname=$row2['country_name'];
+        }
+        }                                                      
+        else{
+                                                                
+        }
+
+
+        
+ 
+    }
+    }                                                      
+    else{
+                                                            
+    }
+
+}
+
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
@@ -53,6 +184,7 @@ if(!isset($_SESSION['username2'])){
             <div class="dashboard-form">
                 <div class="row">
 
+
                     <!-- Profile -->
                     <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                         <div class="dashboard-list-box">
@@ -61,11 +193,23 @@ if(!isset($_SESSION['username2'])){
                                 
                                 <!-- Avatar -->
                                 <div class="edit-profile-photo">
-                                    <img src="../images/user-avatar.jpg" alt="">
+                                    
+                                    <?php if($user_type =='2'){
+                                        echo'<img id="img2" src="../'.$profile_pic.'" alt="">';
+                                    }else if($user_type =='3'){
+                                        echo'<img id="img2" src="../'.$profile_pic.'" alt="">';
+                                    }else{
+                                        echo'<img src="" alt="noProfile">';
+                                    }
+                                    ?>
+                                    <input type="hidden" name="profile_pic" id="profile_pic" disabled>
+
+                                   <!--  <input type="file" id="file2" name="file2" /> -->
+
                                     <div class="change-photo-btn">
                                         <div class="photoUpload">
                                             <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                            <input type="file" class="upload" />
+                                            <input type="file" id="file2" name="file2" class="upload" />
                                         </div>
 
                                     </div>
@@ -77,31 +221,34 @@ if(!isset($_SESSION['username2'])){
                                 <div class="my-profile">
 
                                     <label>First Name</label>
-                                    <input value="Tom Perrin" type="text">
+                                    <input  type="text" value="<?php echo $firstname;?>">
 
                                     <label>Last Name</label>
-                                    <input value="Tom Perrin" type="text">
+                                    <input  type="text" value="<?php echo $lastname;?>">
 
                                     <label>Phone Number</label>
-                                    <input value="(123) 123-456" type="text">
+                                    <input  type="text" value="<?php echo $contact_no;?>">
 
                                     <label>Email Address</label>
-                                    <input value="tom@example.com" type="text">
+                                    <input type="text" value="<?php echo $email;?>">
 
-                                     <label class="margin-top-30 margin-bottom-10">Amenities <span>(optional)</span></label>
-                                <div class="radio in-row margin-bottom-20">
+                                     <label>Gender</label>
+                                <div class="" >
 
-                                    <input id="check-a" type="radio" name="check">
-                                    <label for="check-a">Elevator in building</label>
+                                    <input id="check-a" type="radio" name="check" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?>>
+                                    <label style="display: inline-block;" for="check-a" >Male</label>
 
-                                    <input id="check-b" type="radio" name="check">
-                                    <label for="check-b">Friendly workspace</label>
+                                    <input id="check-b" type="radio" name="check" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?>>
+                                    <label  style="display: inline-block;" for="check-b">Female</label>
 
-                                    <input id="check-c" type="radio" name="check">
-                                    <label for="check-c">Instant Book</label>
+                                    <input id="check-c" type="radio" name="check" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?>>
+                                    <label style="display: inline-block;" for="check-c">Others</label>
 
                                     
                                 </div>
+
+                                <label>Date</label>
+                                    <input type="date" value="<?php echo $date_of_birth;?>">
 
                                     
 
@@ -122,44 +269,81 @@ if(!isset($_SESSION['username2'])){
                                 <!-- Change Password -->
                                 <div class="my-profile">
                                     <label class="margin-top-0">Country</label>
+
+                                        <?php
+                                            require '../connect.php';
+                                            $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                            $stmt->execute();
+
+                                                                                               
+                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                            ?>
                                     
-                                        <select class="chosen-select-no-single" >
-                                            <option label="blank">Select Category</option>  
-                                            <option>Eat & Drink</option>
-                                            <option>Shops</option>
-                                            <option>Hotels</option>
-                                            <option>Restaurants</option>
-                                            <option>Fitness</option>
-                                            <option>Events</option>
+                                        <select id="country" class="chosen-select-no-single" >
+                                            <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
+                                            <?php 
+                                            if($stmt->rowCount()>0){
+                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                    echo '<option value="'.$row['id'].'">'.$row['country_name'].'</option>'; 
+                                                } 
+                                            }else{ 
+                                                echo '<option value="">Country not available</option>'; 
+                                            } 
+                                            ?>
                                         </select>
 
                                     <label>State</label>
-                                        <select class="chosen-select-no-single" >
-                                            <option label="blank">Select Category</option>  
-                                            <option>Eat & Drink</option>
-                                            <option>Shops</option>
-                                            <option>Hotels</option>
-                                            <option>Restaurants</option>
-                                            <option>Fitness</option>
-                                            <option>Events</option>
+                                        <select id="mystate" class="chosen-select-no-single" >
+                                             <?php
+                                                        require '../connect.php';
+                                                        $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
+                                                        $stmt->execute();
+
+                                                                                                           
+                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                        ?>
+                                                        
+                                                        <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
+                                                        <?php 
+                                                        if($stmt->rowCount()>0){
+                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                                echo '<option value="'.$row['id'].'">'.$row['state_name'].'</option>'; 
+                                                            } 
+                                                        }else{ 
+                                                            echo '<option value="">State not available</option>'; 
+                                                        } 
+                                                        ?>
                                         </select>
 
                                     <label>City</label>
-                                     <select class="chosen-select-no-single" >
-                                            <option label="blank">Select Category</option>  
-                                            <option>Eat & Drink</option>
-                                            <option>Shops</option>
-                                            <option>Hotels</option>
-                                            <option>Restaurants</option>
-                                            <option>Fitness</option>
-                                            <option>Events</option>
+                                     <select id="city" class="chosen-select-no-single" >
+                                             <?php
+                                                        require '../connect.php';
+                                                        $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
+                                                        $stmt->execute();
+
+                                                                                                           
+                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                        ?>
+                                                        
+                                                        <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
+                                                        <?php 
+                                                        if($stmt->rowCount()>0){
+                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                                echo '<option value="'.$row['id'].'">'.$row['city_name'].'</option>'; 
+                                                            } 
+                                                        }else{ 
+                                                            echo '<option value="">City not available</option>'; 
+                                                        } 
+                                                        ?>
+                                            
                                         </select>
 
                                     <label>Zip Code *</label>
-                                    <input type="text" readonly>
+                                    <input type="text" id="pin"  value="<?php echo $pincode;?>" readonly>
 
                                     <label>Full Address</label>
-                                    <textarea></textarea>
+                                    <textarea><?php echo $address;?></textarea>
 
                                     
                                 </div>
@@ -199,6 +383,116 @@ if(!isset($_SESSION['username2'])){
     <script src="../js/dashboard-custom.js"></script>
     <script src="../js/jpanelmenu.min.js"></script>
     <script src="../js/counterup.min.js"></script>
+    <!-- <script src="../assets/js/upload_file.js"></script> -->
     <script type="text/javascript" src="../logout/logout.js"></script>
+
+
+    <script type="text/javascript">
+    $('#file2').change(function(){
+
+      var fd = new FormData();
+      var files = $('#file2')[0].files[0];
+      fd.append('file',files);
+
+      $.ajax({
+        url: '../upload/upload_profile.php',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response){
+          if(response != 0){
+            $("#img2").attr("src","../"+response); 
+            $('#profile_pic').val(response);
+                    // $("#preview img").show();
+                  }else{
+                    $('#profile_pic').val('');
+                    alert('File not uploaded! '); //"jpg","jpeg","png"
+                  }
+                },
+              });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $('#country').on('change', function(){
+
+  // alert("ok");
+        var countryID = $(this).val();
+        // alert(countryID);
+        // var state=$('#state').val();
+        // alert(state);
+
+        // alert(countryID);
+        if(countryID){
+            $.ajax({
+                type:'POST',
+                url:'../registration/countrydata.php',
+                data:'country_id='+countryID,
+                success:function(htmll){
+                    // console.log(htmll);
+
+                    // if(html != ''){
+                    //     $('#mystate').html(html);
+                    // $('#city').html('<option value="">Select state first</option>'); 
+
+                    // }
+                    // alert(getf.a[0]);
+
+
+                    $('#mystate').html(htmll); 
+                    // alert(html);
+                    // console.log(html);
+                      $('#city').html('<option value="">Select state first</option>'); 
+
+                    
+                }
+            }); 
+        }else{
+            $('#mystate').html('<option value="">Select country first</option>');
+            $('#city').html('<option value="">Select state first</option>'); 
+        }
+        });
+        
+        $('#mystate').on('change', function(){
+            // alert();
+            var stateID = $(this).val();
+            if(stateID){
+                $.ajax({
+                    type:'POST',
+                    url:'../registration/countrydata.php',
+                    data:'state_id='+stateID,
+                    success:function(html){
+                        $('#city').html(html);
+                       
+                    }
+                }); 
+            }else{
+                $('#city').html('<option value="">Select state first</option>'); 
+            }
+        });
+
+        $('#city').on('change', function(){
+            var cityID = $(this).val();
+            if(cityID){
+                 $.ajax({
+                          type:'POST',
+                          url:'../registration/pincode.php',
+                          data:'city_id='+cityID,
+                          success:function(response){
+                             // $('#pin').html(response);
+                             $('#pin').val(response); 
+                          }
+                      }); 
+            }else{
+                $('#city').html('<option value="">Select state first</option>'); 
+            }
+        });
+
+</script>
+
+
 </body>
 </html>
+

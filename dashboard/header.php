@@ -16,12 +16,12 @@
                             <div class="profile-sec">
                                 <div class="dash-image">
                                     <?php
-                                        require '../connect.php';
-
                                        
-                                            // Fetch city data based on the specific state
 
-                                            $stmt2 = $conn->prepare("SELECT * FROM customer WHERE cust_id = '".$_SESSION['user_id']."'");
+                                        function getProfileImage($tablename,$columnName,$user_id){
+
+                                             require '../connect.php';
+                                            $stmt2 = $conn->prepare("SELECT * FROM $tablename WHERE $columnName = '".$user_id."'");
                                             $stmt2->execute();                                                                                   
                                             $stmt2->setFetchMode(PDO::FETCH_ASSOC);
                                              
@@ -30,13 +30,28 @@
                                              if($stmt2->rowCount()>0){
                                                 foreach (($stmt2->fetchAll()) as $key => $row){
                                                     $profile = $row['profile_pic'];
-                                                    echo '<img src="../'.$profile.'" alt="">';
+                                                    echo '<img src="../'.$profile.'" alt="profile image">';
                                                 } 
                                                     
                                            
                                             }else{
-                                                echo 0;
+                                                echo '<img src="" alt="profile image">';
                                             }
+
+                                        }
+                                       
+
+                                        if($_SESSION["user_type_id"] =='2' ){
+
+                                            getProfileImage('customer','cust_id',$_SESSION['user_id']);
+
+                                        }
+
+                                        if($_SESSION["user_type_id"] =='3' ){
+                                            getProfileImage('travel_agent','travel_agent_id',$_SESSION['user_id']);
+
+                                        }
+
                                         
 
                                         ?>
