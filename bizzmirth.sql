@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2021 at 02:34 PM
+-- Generation Time: Jun 10, 2021 at 02:28 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -188,30 +188,6 @@ CREATE TABLE `customer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
---
-
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `user_type_id` varchar(30) NOT NULL,
-  `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1-present 0-deleted'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `login`
---
-
-INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', '1', '1', '2021-06-02 13:43:20', 1),
-(2, 'apurva@gmail.com', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `states`
 --
 
@@ -294,7 +270,7 @@ CREATE TABLE `travel_agent` (
 --
 
 INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678906', '2000-06-15', '20', 'female', '1', '6', '58', '403 601', 'xyz', 'upload/profile_pic/0706202109232690b25291c710a066b84dfe5a2900f849.jpg', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
+(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678907', '2000-06-15', '20', 'female', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'upload/profile_pic/100620211300448b5c4d43d9ee4416f4c4a9e75fbd4324.jpg', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
 
 -- --------------------------------------------------------
 
@@ -373,12 +349,6 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `states`
 --
 ALTER TABLE `states`
@@ -423,12 +393,6 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `states`

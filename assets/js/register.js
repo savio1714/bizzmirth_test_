@@ -33,6 +33,15 @@ $(document).ready(function(){
     
   });
 
+  $("#saveChange").click(function(e){
+    // alert(firstnameValue)
+     // alert(gender);
+    e.preventDefault();
+
+    checkInputValues();
+    
+  });
+
 
   $(fname).keyup(function () { 
     fnameValue =fname.val().trim();
@@ -266,7 +275,7 @@ const validateOnlyZero = (input) =>{
 
       validateInput(bdate,$('#bdate'),"*Please Select date");
       $('#errorMessageText').text("*All fields are required");
-    }else if(agevalue<18 ||  agevalue>90 ){
+    }else if(agevalue<18 ||  agevalue>=90 ){
       errorMessage($('#ageError'),"*You are not eligible.",$('#errorMessageText'),"*All fields are required",$('#agreeError'),$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
 
       validateInput(bdate,$('#bdate'),"");
@@ -331,33 +340,6 @@ const classHas = (input) =>{
   }
 }
 
-
-var getdob =(bdate)=>{
-   var birthday =Date.parse(bdate);
-
-     var todaysDate = Date.now();
-
-     var age= todaysDate - birthday ;
-
-
-
-     // var millsecond= toage;
-    var second = 1000;
-    var minute = second*60;
-    var hour = minute *60;
-    var day = hour*24;
-    var year = day*365;
-
-    // alert(bdate.getMonth());
-
-    var dob= Math.floor(age/year);
-
-
-// $('#age').val(dob);
-
-
-return dob;
-}
 
 
 $('#country').on('change', function(){
@@ -492,4 +474,173 @@ $('#country').on('change', function(){
 
 
 
+  var checkInputValues =  () =>{
 
+    var firstname = $('#firstname').val().trim();
+    var lastname = $('#lastname').val().trim();
+    var contact_no = $('#contact_no').val().trim();
+    var email = $('#emailvalue').val().trim();
+    var gender = $('.gender:checked').val();
+    var bdate = $('#bdate').val();
+    var profile_pic = $('#profile_pic').val();
+    var country = $('#country').val();
+    var state = $('#mystate').val();
+    var city = $('#city').val();
+    var pin = $('#pin').val();
+    var address = $('#address').val();
+    var utss = $('#utss').val().trim();
+    var uiss = $('#uiss').val().trim();
+    // var country_code = $('#country_code').val();
+    // alert(gender);
+
+
+     var testp= $('#testphone').val();
+  var testE= $('#testemail').val();
+ 
+ var phoneN =$('#phoneN').val();
+  var emailV =$('#emailV').val();
+
+    var characterLetters = /^[A-Za-z\s]+$/;
+      var phoneReg =/^[0-9]{10}$/;
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var specialChar = /[!@#$%^&*]/g;
+
+      var age =getdob(bdate);
+   
+
+
+
+    var datastring='firstname='+firstname+'&user_type='+utss+'&user_id='+uiss+'&profile_pic='+profile_pic+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
+
+    if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+        alert("Enter Proper First Name");
+    }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+        alert("Enter Proper Last Name");
+    }else if (!phoneReg.test(contact_no)){
+        alert("Enter Proper Phone Number");
+    }else if (testp == '1' && phoneN !=phone){
+        alert("Phone number already exists");
+    }else if (!emailReg.test(email)){
+        alert("Enter Proper Email");
+    }else if (testE == '1' && emailV !=email){
+        alert("Email already exists");
+    }else if (age<18 ||  age>=90){
+        alert("Select Proper Date of Birth");
+    }else if (country ===''){
+        alert("Select Country");
+    }else if (state ===''){
+        alert("Select State");
+    }else if (city ===''){
+        alert("Select City");
+    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+        alert("Enter Proper Address");
+    }else if (profile_pic ===''){
+        alert("Upload Profile Picture");
+    }else{
+
+
+    $.ajax({
+        type: "POST",
+        url: "updatedata/edit_profile_data.php",
+        data: datastring,
+        success: function (res) {
+        if (res==1) {
+          alert("Update Successfully");
+          window.location.reload();
+        }
+        else{
+          alert("failed");
+        }
+            },
+        });
+
+  }
+
+
+
+  
+
+
+
+
+
+};
+
+
+$('#emailvalue').keyup(function () { 
+    var email = $('#emailvalue').val().trim();
+     emailtest(email);
+        
+    });
+
+$('#contact_no').keyup(function () { 
+    var country_code = $('#country_cd').val();
+    var phone = $('#contact_no').val().trim();
+     phonetest(phone,country_code);
+        
+    });
+
+
+ var phonetest = (phone_noValue,code) =>{
+      $.ajax({
+
+        type:'POST',
+         url:'../registration/phonetest.php',
+        data:'phone='+phone_noValue+'&countrycode='+code,
+          success:function(response){
+            if(response == 1){
+              $('#testpho').html('<input type="hidden"  id="testphone" value="1" >');
+            }else{
+               $('#testpho').html('<input  type="hidden" id="testphone" value="0" >');
+             // return false;
+            }
+          
+          }
+        }); 
+    }
+
+
+    var emailtest = (emailtest) =>{
+      $.ajax({
+
+        type:'POST',
+         url:'../registration/emailtest.php',
+        data:'email='+emailtest,
+          success:function(response){
+            if(response == 1){
+              $('#testdiv').html('<input type="hidden"  id="testemail" value="1" >');
+            }else{
+               $('#testdiv').html('<input  type="hidden" id="testemail" value="0" >');
+             // return false;
+            }
+          
+          }
+        }); 
+    }
+
+    var getdob =(bdate)=>{
+   var birthday =Date.parse(bdate);
+
+     var todaysDate = Date.now();
+
+     var age= todaysDate - birthday ;
+
+
+
+     // var millsecond= toage;
+    var second = 1000;
+    var minute = second*60;
+    var hour = minute *60;
+    var day = hour*24;
+    var year = day*365;
+
+    // alert(bdate.getMonth());
+
+    var dob= Math.floor(age/year);
+
+
+// $('#age').val(dob);
+
+
+return dob;
+}

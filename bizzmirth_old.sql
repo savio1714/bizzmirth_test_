@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 04:56 AM
+-- Generation Time: Jun 10, 2021 at 02:26 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -163,6 +163,7 @@ CREATE TABLE `customer` (
   `firstname` varchar(99) NOT NULL,
   `lastname` varchar(99) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
   `date_of_birth` varchar(30) NOT NULL,
   `age` varchar(5) NOT NULL,
@@ -183,6 +184,15 @@ CREATE TABLE `customer` (
   `deleted_date` varchar(99) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `cust_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `level`, `user_type`, `registrant`, `reference_no`, `register_by`, `register_date`, `deleted_date`, `status`) VALUES
+(1, '1', 'savio', 'miranda', 'savio@gmail.com', ' 91', '6542349838', '2001-06-15', '20', 'female', '1', '6', '58', '403 601', 'fatorad margao goa', 'upload/profile_pic/1006202114224390b25291c710a066b84dfe5a2900f849.jpg', 'id_proof/07062021092313fc-goa_647_110515110227.jpg', '', 2, '', '', '1', '2021-06-07 07:23:15', '', 1),
+(2, '2', 'upasana', 'pandit', 'upasana@gmail.com', ' 91', '6542349834', '2000-06-02', '21', 'female', '1', '6', '9', '403 503', 'fatorad margao goa', 'upload/profile_pic/0706202109232690b25291c710a066b84dfe5a2900f849.jpg', 'id_proof/0706202109245190b25291c710a066b84dfe5a2900f849.jpg', '', 2, '', '', '1', '2021-06-07 07:24:52', '', 1),
+(3, '3', 'tony', 'miranda', 'tony@gmail.com', ' 91', '5643765780', '1998-06-12', '23', 'male', '1', '6', '12', '403 201', 'adsdsdadada', 'upload/profile_pic/0806202115073190b25291c710a066b84dfe5a2900f849.jpg', 'id_proof/08062021150803CR7azbJVEAAFGEX_1445524156.jpg', '', 2, '', '', '1', '2021-06-08 13:08:04', '', 1);
 
 -- --------------------------------------------------------
 
@@ -206,7 +216,10 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
 (1, 'admin', 'admin@32', '1', '1', '2021-06-02 13:43:20', 1),
-(2, 'apurva', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
+(2, 'apurva@gmail.com', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1),
+(3, 'savio@gmail.com', 'Savio@234', '1', '2', '2021-06-07 07:28:04', 1),
+(4, 'upasana@gmail.com', 'a7nVMp1H', '2', '2', '2021-06-07 12:39:36', 1),
+(5, 'tony@gmail.com', '0G1fs9Ia', '3', '2', '2021-06-08 13:08:25', 1);
 
 -- --------------------------------------------------------
 
@@ -267,13 +280,20 @@ CREATE TABLE `travel_agent` (
   `firstname` varchar(99) NOT NULL,
   `lastname` varchar(99) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
   `date_of_birth` varchar(30) NOT NULL,
+  `age` varchar(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `pincode` varchar(8) NOT NULL,
   `address` text NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
   `id_proof` varchar(255) NOT NULL,
   `registrant` varchar(100) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
   `register_by` varchar(100) NOT NULL COMMENT '1. admin 2.Travel Agent',
   `user_type` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -285,8 +305,8 @@ CREATE TABLE `travel_agent` (
 -- Dumping data for table `travel_agent`
 --
 
-INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `contact_no`, `date_of_birth`, `gender`, `address`, `profile_pic`, `id_proof`, `registrant`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'apurva', 'naik', 'apurva@gmail.com', '2345678906', '2020-09-07', 'female', 'xyz', '', '', '1', '1', 3, '2021-05-27 06:47:04', '', 1);
+INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
+(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678907', '2000-06-15', '20', 'female', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'upload/profile_pic/100620211300448b5c4d43d9ee4416f4c4a9e75fbd4324.jpg', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
 
 -- --------------------------------------------------------
 
@@ -414,13 +434,13 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `states`

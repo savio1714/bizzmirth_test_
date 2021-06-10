@@ -5,133 +5,80 @@ if(!isset($_SESSION['username2'])){
 }
 
 
-
-require '../connect.php';
-
 $user_type =$_SESSION["user_type_id"];
 $user_id =$_SESSION["user_id"];
 
 
+
 if ($user_type =='2'){
-
-     $stmt = $conn->prepare("SELECT * FROM customer where cust_id='".$user_id."'");
-    $stmt->execute();
-     // set the resulting array to associative
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-    if($stmt->rowCount()>0){
-    foreach (($stmt->fetchAll()) as $key => $row) {
-
-        $firstname=$row['firstname'];
-        // $username=$row['username'];
-        $lastname=$row['lastname'];
-        $email=$row['email'];
-        $country_code=$row['country_code'];
-        $contact_no=$row['contact_no'];
-        $date_of_birth=$row['date_of_birth'];
-        $gender=$row['gender'];
-        $address=$row['address'];
-        $profile_pic=$row['profile_pic'];
-        $age=$row['age'];
-        $pincode=$row['pincode'];
-
-
-        $country = $row['country'];
-        $state = $row['state'];
-        $city = $row['city'];
-
-
-        $stmt2 = $conn->prepare("SELECT country_name,(select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name FROM countries where id = '".$country."'");
-        $stmt2->execute();
-
-        $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-
-        if($stmt2->rowCount()>0){
-        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-            $city_name=$row2['city_name'];
-            $statename=$row2['statename'];
-            $countryname=$row2['countryname'];
-        }
-        }                                                      
-        else{
-                                                                
-        }
-
-
-
-
-
-
- 
-    }
-    }                                                      
-    else{
-                                                            
-    }
-
+    getAllValue($user_type,$user_id,'customer','cust_id');
 }
 
 
 if ($user_type =='3'){
 
-     $stmt = $conn->prepare("SELECT * FROM travel_agent where travel_agent_id='".$user_id."'");
+    getAllValue($user_type,$user_id,'travel_agent','travel_agent_id');
+
+}
+
+
+function  getAllValue($usertype,$user_id,$tablename,$clounmName){
+
+    require '../connect.php';
+     $stmt = $conn->prepare("SELECT * FROM $tablename where $clounmName='".$user_id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
     if($stmt->rowCount()>0){
-    foreach (($stmt->fetchAll()) as $key => $row) {
+        foreach (($stmt->fetchAll()) as $key => $row) {
 
-        $firstname=$row['firstname'];
-        // $username=$row['username'];
-        $lastname=$row['lastname'];
-        $email=$row['email'];
-        // $country_code=$row['country_code'];
-        $contact_no=$row['contact_no'];
-        $date_of_birth=$row['date_of_birth'];
-        $gender=$row['gender'];
-        $address=$row['address'];
-        $profile_pic=$row['profile_pic'];
-        $pincode=$row['pincode'];
-        // $age=$row['age'];
-
-
-        $country = $row['country'];
-        $state = $row['state'];
-        $city = $row['city'];
+            $GLOBALS['firstname']=$row['firstname'];
+            // $username=$row['username'];
+            $GLOBALS['lastname']=$row['lastname'];
+            $GLOBALS['email']=$row['email'];
+            $GLOBALS['country_code']=$row['country_code'];
+            $GLOBALS['contact_no']=$row['contact_no'];
+            $GLOBALS['date_of_birth']=$row['date_of_birth'];
+            $GLOBALS['gender']=$row['gender'];
+            $GLOBALS['address']=$row['address'];
+            $GLOBALS['profile_pic']=$row['profile_pic'];
+            $GLOBALS['age']=$row['age'];
+            $GLOBALS['pincode']=$row['pincode'];
 
 
-        $stmt2 = $conn->prepare("SELECT country_name,(select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name FROM countries where id = '".$country."'");
+            $GLOBALS['country'] = $row['country'];
+            $GLOBALS['state'] = $row['state'];
+            $GLOBALS['city'] = $row['city'];
+
+
+
+            getAddressParts('countries',$GLOBALS['country'],'states',$GLOBALS['state'],'cities',$GLOBALS['city']);
+        }
+
+    }
+}
+
+
+function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityValue){
+        require '../connect.php';
+
+    $stmt2 = $conn->prepare("SELECT country_name,(select state_name from $state where id = '".$stateValue."') as statename, (select city_name from $city where id = '".$cityValue."') as city_name FROM $country where id = '".$countryValue."'");
         $stmt2->execute();
 
         $stmt2->setFetchMode(PDO::FETCH_ASSOC);
 
         if($stmt2->rowCount()>0){
         foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-            $city_name=$row2['city_name'];
-            $statename=$row2['statename'];
-            $countryname=$row2['country_name'];
+            $GLOBALS['city_name']=$row2['city_name'];
+            $GLOBALS['statename']=$row2['statename'];
+            $GLOBALS['countryname']=$row2['country_name'];
         }
         }                                                      
         else{
                                                                 
         }
-
-
-        
- 
-    }
-    }                                                      
-    else{
-                                                            
-    }
-
 }
-
-
-
-
-
 
 
 ?>
@@ -180,6 +127,12 @@ if ($user_type =='3'){
 
             <?php include 'sidebar.php';?>
 
+            <div id="testdiv"></div>
+            <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" disabled >
+            <input id="emailV" type="hidden" value="<?php echo $email;?>"disabled>
+            <input id="country_code" type="hidden" value="<?php echo $country_code;?>" disabled >
+            
+
             <div class="dashboard-content">
             <div class="dashboard-form">
                 <div class="row">
@@ -202,7 +155,7 @@ if ($user_type =='3'){
                                         echo'<img src="" alt="noProfile">';
                                     }
                                     ?>
-                                    <input type="hidden" name="profile_pic" id="profile_pic" disabled>
+                                    <input type="hidden" name="profile_pic" id="profile_pic" value="<?php echo $profile_pic?>" disabled>
 
                                    <!--  <input type="file" id="file2" name="file2" /> -->
 
@@ -221,40 +174,37 @@ if ($user_type =='3'){
                                 <div class="my-profile">
 
                                     <label>First Name</label>
-                                    <input  type="text" value="<?php echo $firstname;?>">
+                                    <input id="firstname" type="text" value="<?php echo $firstname;?>">
 
                                     <label>Last Name</label>
-                                    <input  type="text" value="<?php echo $lastname;?>">
+                                    <input id="lastname"  type="text" value="<?php echo $lastname;?>">
 
                                     <label>Phone Number</label>
-                                    <input  type="text" value="<?php echo $contact_no;?>">
+                                    <input id="contact_no" type="text" value="<?php echo $contact_no;?>">
 
                                     <label>Email Address</label>
-                                    <input type="text" value="<?php echo $email;?>">
+                                    <input id="emailvalue" type="text" value="<?php echo $email;?>">
 
                                      <label>Gender</label>
                                 <div class="" >
 
-                                    <input id="check-a" type="radio" name="check" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?>>
+                                    <input id="check-a" type="radio" class="gender" name="gender" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?>>
                                     <label style="display: inline-block;" for="check-a" >Male</label>
 
-                                    <input id="check-b" type="radio" name="check" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?>>
+                                    <input id="check-b" type="radio" class="gender" name="gender" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?>>
                                     <label  style="display: inline-block;" for="check-b">Female</label>
 
-                                    <input id="check-c" type="radio" name="check" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?>>
+                                    <input id="check-c" type="radio" class="gender" name="gender" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?>>
                                     <label style="display: inline-block;" for="check-c">Others</label>
 
                                     
                                 </div>
 
-                                <label>Date</label>
-                                    <input type="date" value="<?php echo $date_of_birth;?>">
-
-                                    
-
+                                <label>Date of Birth</label>
+                                    <input type="date" id="bdate" value="<?php echo $date_of_birth;?>">
                                 </div>
             
-                                <button class="button">Save Changes</button>
+                                <button id="saveChange" class="button">Save Changes</button>
 
                             </div>
                         </div>
@@ -343,7 +293,7 @@ if ($user_type =='3'){
                                     <input type="text" id="pin"  value="<?php echo $pincode;?>" readonly>
 
                                     <label>Full Address</label>
-                                    <textarea><?php echo $address;?></textarea>
+                                    <textarea id="address"><?php echo $address;?></textarea>
 
                                     
                                 </div>
@@ -354,6 +304,9 @@ if ($user_type =='3'){
 
                 </div>
             </div>
+
+            <input id="utss" type="hidden" value="<?php echo $user_type;?>"  disabled>
+            <input id="uiss" type="hidden" value="<?php echo $user_id?>" disabled >
 
             </div>
 
@@ -383,6 +336,7 @@ if ($user_type =='3'){
     <script src="../js/dashboard-custom.js"></script>
     <script src="../js/jpanelmenu.min.js"></script>
     <script src="../js/counterup.min.js"></script>
+    <script src="../assets/js/register.js"></script>
     <!-- <script src="../assets/js/upload_file.js"></script> -->
     <script type="text/javascript" src="../logout/logout.js"></script>
 
