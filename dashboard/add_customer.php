@@ -10,77 +10,6 @@ $user_id =$_SESSION["user_id"];
 
 
 
-if ($user_type =='2'){
-    getAllValue($user_type,$user_id,'customer','cust_id');
-}
-
-
-if ($user_type =='3'){
-
-    getAllValue($user_type,$user_id,'travel_agent','travel_agent_id');
-
-}
-
-
-function  getAllValue($usertype,$user_id,$tablename,$clounmName){
-
-    require '../connect.php';
-     $stmt = $conn->prepare("SELECT * FROM $tablename where $clounmName='".$user_id."'");
-    $stmt->execute();
-     // set the resulting array to associative
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-    if($stmt->rowCount()>0){
-        foreach (($stmt->fetchAll()) as $key => $row) {
-
-            $GLOBALS['firstname']=$row['firstname'];
-            // $username=$row['username'];
-            $GLOBALS['lastname']=$row['lastname'];
-            $GLOBALS['email']=$row['email'];
-            $GLOBALS['country_code']=$row['country_code'];
-            $GLOBALS['contact_no']=$row['contact_no'];
-            $GLOBALS['date_of_birth']=$row['date_of_birth'];
-            $GLOBALS['gender']=$row['gender'];
-            $GLOBALS['address']=$row['address'];
-            $GLOBALS['profile_pic']=$row['profile_pic'];
-            $GLOBALS['age']=$row['age'];
-            $GLOBALS['pincode']=$row['pincode'];
-
-
-            $GLOBALS['country'] = $row['country'];
-            $GLOBALS['state'] = $row['state'];
-            $GLOBALS['city'] = $row['city'];
-
-
-
-            getAddressParts('countries',$GLOBALS['country'],'states',$GLOBALS['state'],'cities',$GLOBALS['city']);
-        }
-
-    }
-}
-
-
-function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityValue){
-        require '../connect.php';
-
-    $stmt2 = $conn->prepare("SELECT country_name,(select state_name from $state where id = '".$stateValue."') as statename, (select city_name from $city where id = '".$cityValue."') as city_name FROM $country where id = '".$countryValue."'");
-        $stmt2->execute();
-
-        $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-
-        if($stmt2->rowCount()>0){
-        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-            $GLOBALS['city_name']=$row2['city_name'];
-            $GLOBALS['statename']=$row2['statename'];
-            $GLOBALS['countryname']=$row2['country_name'];
-        }
-        }                                                      
-        else{
-                                                                
-        }
-}
-
-
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
@@ -90,17 +19,14 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard Profile | Bizzmirth Holidays</title>
+    <title>Add Customer | Bizzmirth Holidays</title>
     <!-- Favicon -->
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
     <!-- Bootstrap core CSS -->
-    <link href="../assets/css/style2.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--Custom CSS-->
-
     <link href="../css/style.css" rel="stylesheet" type="text/css">
-
     <!--Flaticons CSS-->
     <link href="../font/flaticon.css" rel="stylesheet" type="text/css">
     <!--Plugin CSS-->
@@ -129,11 +55,6 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
             <?php include 'header.php';?>
 
             <?php include 'sidebar.php';?>
-
-            <div id="testdiv"></div>
-            <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" disabled >
-            <input id="emailV" type="hidden" value="<?php echo $email;?>"disabled>
-            <input id="country_code" type="hidden" value="<?php echo $country_code;?>" disabled >
             
 
             <div class="dashboard-content">
@@ -144,21 +65,14 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                     <!-- Profile -->
                     <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                         <div class="dashboard-list-box">
-                            <h4 class="gray">Profile Details</h4>
+                            <h4 class="gray">Customer Details</h4>
                             <div class="dashboard-list-box-static">
                                 
                                 <!-- Avatar -->
                                 <div class="edit-profile-photo">
                                     
-                                    <?php if($user_type =='2'){
-                                        echo'<img id="img2" src="../'.$profile_pic.'" alt="">';
-                                    }else if($user_type =='3'){
-                                        echo'<img id="img2" src="../'.$profile_pic.'" alt="">';
-                                    }else{
-                                        echo'<img src="" alt="noProfile">';
-                                    }
-                                    ?>
-                                    <input type="hidden" name="profile_pic" id="profile_pic" value="<?php echo $profile_pic?>" disabled>
+                                    <img id="img2" src="../images/user_icon.png" alt="">
+                                    <input type="hidden" name="profile_pic" id="profile_pic" disabled>
 
                                    <!--  <input type="file" id="file2" name="file2" /> -->
 
@@ -173,50 +87,80 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
 
 
                                 </div>
-                                <div id="profileMessage" class="mymessagecolor"></div>
+                                <div id="profileMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                 
             
                                 <!-- Details -->
                                 <div class="my-profile">
 
                                     <label>First Name</label>
-                                    <input id="firstname" type="text" value="<?php echo $firstname;?>">
-                                    <div id="fnameMessage" class="mymessagecolor" ></div>
+                                    <input id="fname" type="text" placeholder="Enter First Name">
+                                    <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                     <label>Last Name</label>
-                                    <input id="lastname"  type="text" value="<?php echo $lastname;?>">
-                                    <div id="lnameMessage" class="mymessagecolor" ></div>
+                                    <input id="lname"  type="text" placeholder="Enter Last Name">
+                                    <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                     <label>Phone Number</label>
-                                    <input id="contact_no" type="text" value="<?php echo $contact_no;?>">
-                                    <div id="phoneMessage" class="mymessagecolor" ></div>
+                                    
+                                        <div class="col-lg-4 col-md-4">
+                                        <?php
+                                            require '../connect.php';
+                                            $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                            $stmt->execute();
+
+                                                                                               
+                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                            ?>
+                                            <select  id="countrycode">
+                                            <option value="">Select</option>
+                                            <?php 
+                                            if($stmt->rowCount()>0){
+                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                    echo '<option value="'.$row['country_code'].'">'.$row['country_code'].'('.$row['sortname'].')</option>'; 
+                                                } 
+                                            }else{ 
+                                                echo '<option value="">No Country Code available</option>'; 
+                                            } 
+                                            ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                             <input id="phone_no" type="text" placeholder="Phone Number">
+                                        </div>
+
+                                           
+                                    
+                                    <div id="phoneMessage" style="display:none;color: #e74c3c;font-size: 85%;">  
+                                    </div>
+
 
                                     <label>Email Address</label>
-                                    <input id="emailvalue" type="text" value="<?php echo $email;?>">
-                                    <div id="emailMessage" class="mymessagecolor" ></div>
+                                    <input id="emailvalue" type="text" placeholder="abc@xyz.com">
+                                    <div id="emailMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                      <label>Gender</label>
                                 <div class="" >
 
-                                    <input id="check-a" type="radio" class="gender" name="gender" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?>>
+                                    <input id="check-a" type="radio" class="gender" name="gender" value="male">
                                     <label style="display: inline-block;" for="check-a" >Male</label>
 
-                                    <input id="check-b" type="radio" class="gender" name="gender" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?>>
+                                    <input id="check-b" type="radio" class="gender" name="gender" value="female">
                                     <label  style="display: inline-block;" for="check-b">Female</label>
 
-                                    <input id="check-c" type="radio" class="gender" name="gender" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?>>
+                                    <input id="check-c" type="radio" class="gender" name="gender" value="others">
                                     <label style="display: inline-block;" for="check-c">Others</label>
 
                                     
                                 </div>
-                                <div id="genderMessage" class="mymessagecolor"></div>
+                                <div id="genderMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                 <label>Date of Birth</label>
-                                    <input type="date" id="bdate" value="<?php echo $date_of_birth;?>">
+                                    <input type="date" id="bdate" >
                                 </div>
-                                <div id="dobMessage" class="mymessagecolor"></div>
+                                <div id="dobMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
             
-                                <!-- <button id="saveChange" class="button">Save Changes</button> -->
+                                <!-- <button id="#" class="button">Save Changes</button> -->
 
                             </div>
                         </div>
@@ -225,11 +169,32 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                     <!-- Change Password -->
                     <div class="col-lg-6 col-md-6 col-xs-12 padding-left-30">
                         <div class="dashboard-list-box margin-top-0">
-                            <h4 class="gray">Your Address</h4>
+                            <h4 class="gray">Customer Address</h4>
                             <div class="dashboard-list-box-static">
 
                                 <!-- Change Password -->
                                 <div class="my-profile">
+
+                                    <div class="edit-profile-photo">
+                                         <img id="img" src="../images/id-proof-line.png" alt="">
+                                    
+                                    <input type="hidden" name="id_proof" id="id_proof" disabled>
+
+                                   <!--  <input type="file" id="file2" name="file2" /> -->
+
+                                    <div class="change-photo-btn">
+                                        <div class="photoUpload">
+                                            <span><i class="fa fa-upload"></i> Upload Id Proof</span>
+                                            <input type="file" id="file" name="file" class="upload" />
+                                        
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
                                     <label class="margin-top-0">Country</label>
 
                                         <?php
@@ -242,7 +207,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                                             ?>
                                     
                                         <select id="country" class="chosen-select-no-single" >
-                                            <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
+                                             <option value="">Select Country</option>
                                             <?php 
                                             if($stmt->rowCount()>0){
                                                  foreach (($stmt->fetchAll()) as $key => $row) {  
@@ -253,63 +218,26 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                                             } 
                                             ?>
                                         </select>
-                                        <div id="countryMessage" class="mymessagecolor" ></div>
+                                        <div id="countryMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                     <label>State</label>
-                                        <select id="mystate" class="chosen-select-no-single" >
-                                             <?php
-                                                        require '../connect.php';
-                                                        $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
-                                                        $stmt->execute();
-
-                                                                                                           
-                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                        ?>
-                                                        
-                                                        <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
-                                                        <?php 
-                                                        if($stmt->rowCount()>0){
-                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                                echo '<option value="'.$row['id'].'">'.$row['state_name'].'</option>'; 
-                                                            } 
-                                                        }else{ 
-                                                            echo '<option value="">State not available</option>'; 
-                                                        } 
-                                                        ?>
+                                        <select id="state" class="chosen-select-no-single" >
+                                             <option value="">Select country first</option>
                                         </select>
-                                        <div id="stateMessage" class="mymessagecolor"></div>
+                                        <div id="stateMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                     <label>City</label>
                                      <select id="city" class="chosen-select-no-single" >
-                                             <?php
-                                                        require '../connect.php';
-                                                        $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
-                                                        $stmt->execute();
-
-                                                                                                           
-                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                        ?>
-                                                        
-                                                        <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
-                                                        <?php 
-                                                        if($stmt->rowCount()>0){
-                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                                echo '<option value="'.$row['id'].'">'.$row['city_name'].'</option>'; 
-                                                            } 
-                                                        }else{ 
-                                                            echo '<option value="">City not available</option>'; 
-                                                        } 
-                                                        ?>
-                                            
-                                        </select>
-                                        <div id="cityMessage" class="mymessagecolor" ></div>
+                                        <option value="">Select state first</option>  
+                                    </select>
+                                        <div id="cityMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                     <label>Zip Code *</label>
-                                    <input type="text" id="pin"  value="<?php echo $pincode;?>" readonly>
+                                    <input type="text" id="pin"  placeholder="Pincode" readonly>
 
                                     <label>Full Address</label>
-                                    <textarea id="address"><?php echo $address;?></textarea>
-                                    <div id="addressMessage" class="mymessagecolor"></div>
+                                    <textarea id="address" placeholder="Enter Address"></textarea>
+                                    <div id="addressMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
                                     
                                 </div>
@@ -320,7 +248,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
 
                     <div class="col-lg-6 col-md-6 col-xs-12 padding-left-30">
                         <div class="dashboard-list-box-static">
-                            <button id="saveChange" class="button">Save Changes</button>
+                            <button id="#" class="button">Register</button>
                         </div>
                     </div>
 
@@ -384,6 +312,32 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                   }else{
                     $('#profile_pic').val('');
                     alert('File not uploaded! '); //"jpg","jpeg","png"
+                  }
+                },
+              });
+    });
+
+
+    $('#file').change(function(){
+
+      var fd = new FormData();
+      var files = $('#file')[0].files[0];
+      fd.append('file',files);
+
+      $.ajax({
+        url: '../upload/upload.php',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response){
+          if(response != 0){
+            $("#img").attr("src","../upload/"+response); 
+            $('#id_proof').val(response);
+                    // $(".preview img").show(); // Display image element
+                  }else{
+                    $('#id_proof').val('');
+                    alert('file not uploaded');
                   }
                 },
               });
@@ -462,6 +416,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                           }
                       }); 
             }else{
+                $('#pin').html(''); 
                 $('#city').html('<option value="">Select state first</option>'); 
             }
         });

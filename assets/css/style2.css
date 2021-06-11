@@ -70,3 +70,9 @@ input[type=number]::-webkit-outer-spin-button {
 .colorlogo{
     width: 55%;padding-bottom: 2%;
 }
+
+.mymessagecolor{
+    display:none;
+    color: #e74c3c;
+    font-size: 85%;
+}

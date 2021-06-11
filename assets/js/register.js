@@ -513,29 +513,29 @@ $('#country').on('change', function(){
     var datastring='firstname='+firstname+'&user_type='+utss+'&user_id='+uiss+'&profile_pic='+profile_pic+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
 
     if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
-        alert("Enter Proper First Name");
+        getAllMessage('#fnameMessage',"* Enter Proper First Name");
     }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
-        alert("Enter Proper Last Name");
+      getAllMessage('#lnameMessage',"* Enter Proper Last Name");
     }else if (!phoneReg.test(contact_no)){
-        alert("Enter Proper Phone Number");
+      getAllMessage('#phoneMessage',"* Enter Proper Phone Number");
     }else if (testp == '1' && phoneN !=phone){
-        alert("Phone number already exists");
+      getAllMessage('#phoneMessage',"* Phone number already exists");
     }else if (!emailReg.test(email)){
-        alert("Enter Proper Email");
+      getAllMessage('#emailMessage',"* Enter Proper Email");
     }else if (testE == '1' && emailV !=email){
-        alert("Email already exists");
+      getAllMessage('#emailMessage',"* Email already exists");
     }else if (age<18 ||  age>=90){
-        alert("Select Proper Date of Birth");
+      getAllMessage('#dobMessage',"* Select Proper Date of Birth");
     }else if (country ===''){
-        alert("Select Country");
+      getAllMessage('#countryMessage',"* Select Country");
     }else if (state ===''){
-        alert("Select State");
+      getAllMessage('#stateMessage',"* Select State");
     }else if (city ===''){
-        alert("Select City");
+      getAllMessage('#cityMessage',"* Select City");
     }else if (address ==='' || specialChar.test(address) || address.length <= 7){
-        alert("Enter Proper Address");
+      getAllMessage('#addressMessage',"* Enter Proper Address");
     }else if (profile_pic ===''){
-        alert("Upload Profile Picture");
+      getAllMessage('#profileMessage',"* Upload Profile Picture");
     }else{
 
 
@@ -643,4 +643,12 @@ $('#contact_no').keyup(function () {
 
 
 return dob;
+}
+
+
+var getAllMessage =(id,message)=>{
+   $(id).html(message);
+        $(id).fadeIn('slow', function(){
+        $(id).delay(5000).fadeOut(); 
+    });
 }
