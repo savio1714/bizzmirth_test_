@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2021 at 04:32 PM
+-- Generation Time: Jun 14, 2021 at 02:17 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -207,7 +207,7 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
 (1, 'admin', 'admin@32', '1', '1', '2021-06-02 13:43:20', 1),
-(2, 'apurva', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
+(2, 'apurva@gmail.com', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
 
 -- --------------------------------------------------------
 
