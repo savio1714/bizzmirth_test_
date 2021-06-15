@@ -304,7 +304,7 @@ $city = $_GET['hct'];
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <a href="pending_customer.php" class="waves-effect waves-light btn-large">Back</a>
-                                                 <a href="#" class="waves-effect waves-light btn-large" <?php echo 'onclick=\'confirmfunc("' .$id. '","' .$firstname. '")\'';?>>Confirm</a>
+                                                 <a href="#" class="waves-effect waves-light btn-large" <?php echo 'onclick=\'confirmfunc("' .$id. '","' .$email. '")\'';?>>Confirm</a>
                                                 <!-- <input type="submit" class="waves-effect waves-light btn-large" value="Back"> -->
                                             </div>
                                            

@@ -52,7 +52,7 @@ $(document).ready(function(){
     else if(!validateOnlyCharacter(fnameValue)){
       setError(fname,"*Only Alphabets allowed.");
     }else if(fnameValue.length <= 2){
-      setError(fname,"*Max 3 Character");
+      setError(fname,"*Min 3 Characters");
     }else{
       // validateInput(fnameValue,fname,"*fname cannot be blank"); 
       setSuccess(fname);
@@ -69,7 +69,7 @@ $(document).ready(function(){
     else if(!validateOnlyCharacter(lnameValue)){
       setError(lname,"*Only Alphabets allowed.");
     }else if(lnameValue.length <= 2){
-      setError(lname,"*Max 3 Character");
+      setError(lname,"*Min 3 Characters");
     }else{
       setSuccess(lname);
     }

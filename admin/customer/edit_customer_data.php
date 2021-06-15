@@ -28,7 +28,7 @@ if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' |
 	
 
 
-$sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_code=:country_code,contact_no=:contact_no,email=:email,gender=:gender,date_of_birth=:date_of_birth,country=:country,state=:state,city=:city,pincode=:pincode,address=:address,id_proof=:id_proof,profile_pic=:profile_pic WHERE id=:id";
+$sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_code=:country_code,contact_no=:contact_no,email=:email,gender=:gender,date_of_birth=:date_of_birth,country=:country,state=:state,city=:city,pincode=:pincode,address=:address,id_proof=:id_proof,profile_pic=:profile_pic WHERE cust_id=:user_id";
 	$stmt = $conn->prepare($sql1);
 	$result=  $stmt->execute(array(
 		':firstname' => $firstname,
@@ -46,7 +46,7 @@ $sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_cod
 		':id_proof' => $id_proof,
 		':profile_pic' => $profile_pic,
 		// ':deleted_date' => $today,
-		':id' => $id		
+		':user_id' => $user_id		
 	));
 
 	if ($result) {

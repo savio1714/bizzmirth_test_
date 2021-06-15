@@ -21,25 +21,25 @@ $city = $_GET['hct'];
     // $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id."' and (id='".$id."' or user_type_id='".$user_type."') ");
 
 
-$stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id."' and (id='".$id."' or user_type_id='".$user_type."') ");
-    $stmt2->execute();
+// $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id."' and (id='".$id."' or user_type_id='".$user_type."') ");
+//     $stmt2->execute();
 
-    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+//     $stmt2->setFetchMode(PDO::FETCH_ASSOC);
 
-    if($stmt2->rowCount()>0){
-    foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-        $username=$row2['username'];
-    }
-    }                                                      
-    else{
+//     if($stmt2->rowCount()>0){
+//     foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+//         $username=$row2['username'];
+//     }
+//     }                                                      
+//     else{
                                                             
-    }
+//     }
 
 
 // $stmt = $conn->prepare("SELECT * FROM customer where id = '".$id."'");
 
 
-    $stmt = $conn->prepare("SELECT *, (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `customer` where cust_id='".$id."'");
+    $stmt = $conn->prepare("SELECT *, (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `customer` where cust_id='".$user_id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -141,7 +141,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                 <input id="username" type="text" value="<?php echo $username ;?>" readonly>
                                                 <label for="first_name">Username</label>
                                             </div> -->
-                                            <div class="input-field col s12">
+                                            <div class="input-field col s6">
                                                 <input id="name" type="text" value="<?php echo $firstname.' '. $lastname;?>" readonly>
                                                 <label for="first_name">Full Name</label>
                                             </div>
@@ -305,7 +305,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a>
-                                                 <a href="<?php echo 'edit_customer.php?vkvbvjfgfikix='.$id. '&jdjdfdjs='.$user_id. '&ghghhj='.$user_type. '&ncy='.$country. '&mst='.$state. '&hct='.$city. '' ;?>" class="waves-effect waves-light btn-large" >Edit</a>
+                                                 <a href="<?php echo 'edit_customer.php?vkvbvjfgfikix='.$user_id. '&jdjdfdjs='.$user_id. '&ghghhj='.$user_type. '&ncy='.$country. '&mst='.$state. '&hct='.$city. '' ;?>" class="waves-effect waves-light btn-large" >Edit</a>
                                                 <!-- <input type="submit" class="waves-effect waves-light btn-large" value="Back"> -->
                                             </div>
                                            

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2021 at 02:17 PM
+-- Generation Time: Jun 15, 2021 at 07:09 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -294,7 +294,7 @@ CREATE TABLE `travel_agent` (
 --
 
 INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678907', '2000-06-15', '20', 'female', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'upload/profile_pic/100620211300448b5c4d43d9ee4416f4c4a9e75fbd4324.jpg', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
+(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678907', '2000-06-15', '20', 'female', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'upload/profile_pic/04062021114618leo.png', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
 
 -- --------------------------------------------------------
 

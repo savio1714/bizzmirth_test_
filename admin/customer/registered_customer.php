@@ -124,7 +124,7 @@ if(!isset($_SESSION['username'])){
                                                         <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["cust_id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>';
-
+ 
                                                     }
                                                       
                                                 }
