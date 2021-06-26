@@ -113,11 +113,10 @@ if(!isset($_SESSION['username'])){
                                                     <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
                                                     <td>'.$bdate.'</td>
                                                     <td>
-                                                        <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
-                                                        "pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '","pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '")\'><i class="material-icons dp48">verified_user</i></a>
@@ -215,11 +214,11 @@ if(!isset($_SESSION['username'])){
                                                         '.$datev.'
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
+                                                        <a href="#" onclick=\'editfunc("' .$row["travel_agent_id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
                                                         "registered")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["travel_agent_id"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["travel_agent_id"]. '","'.$row["travel_agent_id"]. '","registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     
                                                 </tr>';
@@ -289,9 +288,9 @@ if(!isset($_SESSION['username'])){
     };
 
 
-    function deletefunc(id,tid)
+    function deletefunc(id,tid,action)
     { 
-    var dataString = 'id='+ id+'&tid='+tid;
+    var dataString = 'id='+ id+'&tid='+tid+'&action='+action;
 
 
       $.ajax({

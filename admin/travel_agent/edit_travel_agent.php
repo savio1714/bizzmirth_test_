@@ -16,10 +16,21 @@ $city = $_GET['hct'];
 $editfor = $_GET['editfor'];
 
 
+// $editfor= $_POST["editfor"];
+// $franchisee_id=$_POST['franchisee_id'];
+if($editfor == 'pending'){
+    // $identifier_id= $_POST["vkvbvjfgfikix"];
+    $identifier_name = 'id=';
+}else if($editfor == 'registered') {
+    // $identifier_id= $_POST["vkvbvjfgfikix"];
+    $identifier_name = 'travel_agent_id=';
+}
+
+
     require '../connect.php';
 
 
-    $stmt = $conn->prepare("SELECT *,(select CONCAT(firstname,' ',lastname) from franchisee where franchisee_id = '".$reference_no."') as fname, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `travel_agent` where id ='".$id."'");
+    $stmt = $conn->prepare("SELECT *,(select CONCAT(firstname,' ',lastname) from franchisee where franchisee_id = '".$reference_no."') as fname, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `travel_agent` where $identifier_name'".$id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);

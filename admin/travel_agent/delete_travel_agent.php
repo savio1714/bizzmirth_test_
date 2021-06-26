@@ -9,10 +9,17 @@ $id= $_POST["id"];
 $user_type="3";
 
 $status= '0';
+$editfor= $_POST["action"];
+
+if($editfor == 'pending'){
+    $identifier_name = 'id=';
+}else if($editfor == 'registered') {
+    $identifier_name = 'travel_agent_id=';
+}
 
 
 
-	$sql1 = "UPDATE travel_agent SET status=:status, deleted_date=:deleted_date WHERE id=:id";
+	$sql1 = "UPDATE travel_agent SET status=:status, deleted_date=:deleted_date WHERE $identifier_name:id";
 	$stmt = $conn->prepare($sql1);
 	$result=  $stmt->execute(array(
 		':status' => $status,
