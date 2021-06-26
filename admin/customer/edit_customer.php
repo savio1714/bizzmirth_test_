@@ -371,7 +371,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                         </div>
                                                     </div>
                                                     <div >
-                                                    <?php echo '<img src="../../'.$profile_pic.'" alt="id proof" style="width: 120px;height: 120px" id="img2">';?>
+                                                    <?php echo '<img src="../../'.$profile_pic.'" alt="profile pic" style="width: 120px;height: 120px" id="img2">';?>
                                                     </div>
                                                 
                                             </div>

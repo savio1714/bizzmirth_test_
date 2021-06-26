@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2021 at 02:47 PM
+-- Generation Time: Jun 26, 2021 at 11:15 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -185,6 +185,57 @@ CREATE TABLE `customer` (
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `cust_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `level`, `user_type`, `registrant`, `reference_no`, `register_by`, `register_date`, `deleted_date`, `status`) VALUES
+(1, '1', 'savio', 'miranda', 'savio@gmail.com', ' 91', '5643765785', '1996-06-15', '25', 'male', '1', '6', '12', '403 201', 'dfffsdfsdf', 'upload/profile_pic/21062021131511kitten_ball_thread_white_background_95135_1366x768.jpg', 'id_proof/21062021131542kitten_fence_walk_fluffy_89369_1366x768.jpg', '', 2, '', '', '1', '2021-06-21 11:15:43', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `franchisee`
+--
+
+CREATE TABLE `franchisee` (
+  `id` int(11) NOT NULL,
+  `franchisee_id` varchar(255) NOT NULL,
+  `firstname` varchar(99) NOT NULL,
+  `lastname` varchar(99) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
+  `contact_no` varchar(15) NOT NULL,
+  `date_of_birth` varchar(30) NOT NULL,
+  `age` varchar(5) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `pincode` varchar(8) NOT NULL,
+  `address` text NOT NULL,
+  `profile_pic` varchar(255) NOT NULL,
+  `kyc` varchar(255) NOT NULL,
+  `pan_card` varchar(255) NOT NULL,
+  `aadhar_card` varchar(255) NOT NULL,
+  `voting_card` varchar(255) NOT NULL,
+  `bank_passbook` varchar(255) NOT NULL,
+  `registrant` varchar(100) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `register_by` varchar(100) NOT NULL COMMENT '1. admin 5.Sales Manager',
+  `user_type` int(11) NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_date` varchar(99) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `franchisee`
+--
+
+INSERT INTO `franchisee` (`id`, `franchisee_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
+(1, 'BH_F_2021_001', 'Savio', 'Miranda', 'savio@gmail.com', ' 91', '6535754243', '', '', 'male', '', '', '', '', 'gfdgdfgdfggdfgd', '', '', '', '', '', '', '', '1', '5', 4, '2021-06-26 09:02:53', '', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -206,8 +257,52 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', '1', '1', '2021-06-02 13:43:20', 1),
-(2, 'apurva@gmail.com', 'apurva@2345', '1', '3', '2021-06-02 13:44:33', 1);
+(1, 'admin', 'admin@32', '1', '1', '2021-06-25 10:47:44', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_manager`
+--
+
+CREATE TABLE `sales_manager` (
+  `id` int(11) NOT NULL,
+  `sales_manager_id` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
+  `contact_no` varchar(15) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `age` varchar(5) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `pincode` varchar(8) NOT NULL,
+  `address` text NOT NULL,
+  `profile_pic` varchar(255) NOT NULL,
+  `kyc` varchar(255) NOT NULL,
+  `pan_card` varchar(255) NOT NULL,
+  `aadhar_card` varchar(255) NOT NULL,
+  `voting_card` varchar(255) NOT NULL,
+  `bank_passbook` varchar(255) NOT NULL,
+  `registrant` varchar(100) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `register_by` varchar(100) NOT NULL,
+  `user_type` int(11) NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_date` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sales_manager`
+--
+
+INSERT INTO `sales_manager` (`id`, `sales_manager_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
+(1, '1', 'stenly', 'miranda', 'stenly@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/25062021071042kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-06-25 07:56:06', '0000-00-00', 1),
+(2, '2', 'tony', 'miranda', 'tony@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/25062021071042kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-06-25 07:56:10', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -270,7 +365,7 @@ CREATE TABLE `travel_agent` (
   `email` varchar(100) NOT NULL,
   `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
-  `date_of_birth` varchar(30) NOT NULL,
+  `date_of_birth` date NOT NULL,
   `age` varchar(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `country` varchar(255) NOT NULL,
@@ -279,22 +374,19 @@ CREATE TABLE `travel_agent` (
   `pincode` varchar(8) NOT NULL,
   `address` text NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
-  `id_proof` varchar(255) NOT NULL,
+  `kyc` varchar(255) NOT NULL,
+  `pan_card` varchar(255) NOT NULL,
+  `aadhar_card` varchar(255) NOT NULL,
+  `voting_card` varchar(255) NOT NULL,
+  `bank_passbook` varchar(255) NOT NULL,
   `registrant` varchar(100) NOT NULL,
   `reference_no` varchar(255) NOT NULL,
-  `register_by` varchar(100) NOT NULL COMMENT '1. admin 2.Travel Agent',
+  `register_by` varchar(100) NOT NULL COMMENT '1. admin 4.Franchisee',
   `user_type` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted_date` varchar(99) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '	0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `travel_agent`
---
-
-INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'apurva', 'naik', 'apurva@gmail.com', ' 91', '2345678907', '2000-06-15', '20', 'female', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'upload/profile_pic/04062021114618leo.png', '', '1', '', '1', 3, '2021-05-27 06:47:04', '', 1);
 
 -- --------------------------------------------------------
 
@@ -348,7 +440,9 @@ CREATE TABLE `user_type` (
 INSERT INTO `user_type` (`id`, `name`, `status`) VALUES
 (1, 'admin', 1),
 (2, 'customer', 1),
-(3, 'Travel Agent', 1);
+(3, 'Travel Agent', 1),
+(4, 'Franchisee', 1),
+(5, 'Sales Manager', 1);
 
 --
 -- Indexes for dumped tables
@@ -373,9 +467,21 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `franchisee`
+--
+ALTER TABLE `franchisee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sales_manager`
+--
+ALTER TABLE `sales_manager`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -422,12 +528,24 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `franchisee`
+--
+ALTER TABLE `franchisee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `sales_manager`
+--
+ALTER TABLE `sales_manager`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -440,7 +558,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `travel_agent`
 --
 ALTER TABLE `travel_agent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users_details`
@@ -452,7 +570,7 @@ ALTER TABLE `users_details`
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
