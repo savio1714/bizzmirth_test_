@@ -69,6 +69,7 @@ if(!isset($_SESSION['username'])){
                                         <li><a href="add_travel_agent.php">Add Travel Agent</a>
                                         </li>
                                         <li><a href="#">Download List</a>
+                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Pending">Download List</a> -->
                                         </li>
                                         <li><a href="#"><i class="material-icons">subject</i>View All</a>
                                         </li>
@@ -130,7 +131,7 @@ if(!isset($_SESSION['username'])){
                                                 } 
                                                     else{
                                                         echo '<tr>
-                                                    <td colspan="7">No Pending Travel Agent
+                                                    <td colspan="8">No Pending Travel Agent
                                                     </td>
                                                     <tr>';
                                                     }
@@ -156,6 +157,7 @@ if(!isset($_SESSION['username'])){
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-register-list"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-register-list" class="dropdown-content">
                                         <li><a href="#">Download List</a>
+                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Registered">Download List</a> -->
                                         </li>
                                         <!-- <li><a href="user-edit.html">Edit</a>
                                         </li>
@@ -230,7 +232,7 @@ if(!isset($_SESSION['username'])){
                                                 } 
                                                     else{
                                                         echo '<tr>
-                                                    <td colspan="7">No Registered Travel Agent
+                                                    <td colspan="8">No Registered Travel Agent
                                                     </td>
                                                     <tr>';
                                                     }

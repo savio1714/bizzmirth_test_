@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2021 at 11:15 AM
+-- Generation Time: Jun 29, 2021 at 02:01 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -185,13 +185,6 @@ CREATE TABLE `customer` (
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id`, `cust_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `level`, `user_type`, `registrant`, `reference_no`, `register_by`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'savio', 'miranda', 'savio@gmail.com', ' 91', '5643765785', '1996-06-15', '25', 'male', '1', '6', '12', '403 201', 'dfffsdfsdf', 'upload/profile_pic/21062021131511kitten_ball_thread_white_background_95135_1366x768.jpg', 'id_proof/21062021131542kitten_fence_walk_fluffy_89369_1366x768.jpg', '', 2, '', '', '1', '2021-06-21 11:15:43', '', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -228,13 +221,6 @@ CREATE TABLE `franchisee` (
   `deleted_date` varchar(99) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `franchisee`
---
-
-INSERT INTO `franchisee` (`id`, `franchisee_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, 'BH_F_2021_001', 'Savio', 'Miranda', 'savio@gmail.com', ' 91', '6535754243', '', '', 'male', '', '', '', '', 'gfdgdfgdfggdfgd', '', '', '', '', '', '', '', '1', '5', 4, '2021-06-26 09:02:53', '', 1);
 
 -- --------------------------------------------------------
 
@@ -301,8 +287,8 @@ CREATE TABLE `sales_manager` (
 --
 
 INSERT INTO `sales_manager` (`id`, `sales_manager_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'stenly', 'miranda', 'stenly@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/25062021071042kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-06-25 07:56:06', '0000-00-00', 1),
-(2, '2', 'tony', 'miranda', 'tony@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/25062021071042kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-06-25 07:56:10', '0000-00-00', 1);
+(1, '1', 'stenly', 'miranda', 'stenly@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', '', '', '', '', '', '', '', '', '', 5, '2021-06-29 11:54:21', '0000-00-00', 1),
+(2, '2', 'tony', 'miranda', 'tony@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', '', '', '', '', '', '', '', '', '', 5, '2021-06-29 11:54:35', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -528,13 +514,13 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `franchisee`
 --
 ALTER TABLE `franchisee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `login`

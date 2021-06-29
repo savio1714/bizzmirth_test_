@@ -5,75 +5,11 @@ if(!isset($_SESSION['username'])){
     echo '<script>location.href = "../index.php";</script>';
 }
 
-
-$id = $_GET['vkvbvjfgfikix'];
-// $user_id = $_GET['jdjdfdjs'];
-$reference_no = $_GET['nohbref'];
-$country = $_GET['ncy'];
-$state = $_GET['mst'];
-$city = $_GET['hct'];
-
-$editfor = $_GET['editfor'];
-
-
-// $editfor= $_POST["editfor"];
-// $franchisee_id=$_POST['franchisee_id'];
-if($editfor == 'pending'){
-    // $identifier_id= $_POST["vkvbvjfgfikix"];
-    $identifier_name = 'id=';
-}else if($editfor == 'registered') {
-    // $identifier_id= $_POST["vkvbvjfgfikix"];
-    $identifier_name = 'travel_agent_id=';
-}
-
-
-    require '../connect.php';
-
-
-    $stmt = $conn->prepare("SELECT *,(select CONCAT(firstname,' ',lastname) from franchisee where franchisee_id = '".$reference_no."') as fname, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `travel_agent` where $identifier_name'".$id."'");
-    $stmt->execute();
-     // set the resulting array to associative
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-    if($stmt->rowCount()>0){
-    foreach (($stmt->fetchAll()) as $key => $row) {
-        $fid=$row['id'];
-
-        $franchisee_name=$row['fname'];
-        $firstname=$row['firstname'];
-        // $username=$row['username'];
-        $lastname=$row['lastname'];
-        $email=$row['email'];
-        $contact_no=$row['contact_no'];
-        $date_of_birth=$row['date_of_birth'];
-        $gender=$row['gender'];
-        $address=$row['address'];
-        // $id_proof=$row['id_proof'];
-        $profile_pic=$row['profile_pic'];
-        $kyc=$row['kyc'];
-        $pan_card=$row['pan_card'];
-        $aadhar_card=$row['aadhar_card'];
-        $voting_card=$row['voting_card'];
-        $bank_passbook=$row['bank_passbook'];
-
-        $city_name=$row['city_name'];
-        $statename=$row['statename'];
-        $countryname=$row['countryname'];
-        $pincode=$row['pincode'];
- 
-    }
-    }                                                      
-    else{
-                                                            
-    }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> 
     <title>Bizzmirth Holidays</title>
     <!--== META TAGS ==-->
     <meta charset="utf-8">
@@ -100,8 +36,6 @@ if($editfor == 'pending'){
 <body>
     <div id="testpho"></div>
     <div id="testemails"></div>
-    <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" >
-    <input id="emailV" type="hidden" value="<?php echo $email;?>" >
 
 
     <!--== MAIN CONTRAINER ==-->
@@ -114,7 +48,7 @@ if($editfor == 'pending'){
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Edit Travel Agent </a>
+                        <li class="active-bre"><a href="#"> Add Franchisee </a>
                         </li>
                     </ul>
                 </div>
@@ -123,24 +57,51 @@ if($editfor == 'pending'){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Edit Travel Agent</h4>
+                                    <h4>Add New Franchisee</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
                                     <form>
                                         <div class="row">
                                             
-                                            <div class="input-field col-md-6 col-sm-12">
-                                                <input id="franchisee_id" type="text" value="<?php echo $reference_no ;?>" readonly>
-                                                <label>Franchisee Id</label>
+                                            <div class="form-group col-md-6 col-sm-12">
+                                                <!-- <input id="sales_manager_id" type="text"> -->
+                                                <label for="sales_manager_id" style="margin-top: -6%;font-size: 0.8rem;">Sales Manager Id</label>
+
+                                                <?php
+                                                require '../connect.php';
+                                                $stmt = $conn->prepare("SELECT * FROM sales_manager WHERE status = 1 ORDER BY sales_manager_id ASC");
+                                                $stmt->execute();
+
+                                                                                                   
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                ?>
+                                                <select id="sales_manager_id"  class="selectdesign">
+                                                    <option value="">-- Select Sales Manager Id --</option>
+                                                    <?php 
+                                                    if($stmt->rowCount()>0){
+                                                         foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                            echo '<option value="'.$row['sales_manager_id'].'">sales_manager_'.$row['sales_manager_id'].' ('.$row['firstname'].' '.$row['lastname'].') </option>'; 
+                                                        } 
+                                                    }else{ 
+                                                        echo '<option value="">Sales Manager not available</option>'; 
+                                                    } 
+                                                    ?>
+                                                </select>
+                                                
 
                                             </div>
 
-                                            <div class="input-field col-md-6 col-sm-12">
-                                                <label>Franchisee Name</label>
-                                                <input type="text" id="franchisee_name" value="<?php echo $franchisee_name ;?>" readonly>
+                                            <div class="form-group col-md-6 col-sm-12">
+                                                <label>Sales Manager Name</label>
+                                                <input type="text"  id="sales_manager_name" placeholder="No Sales Manager Name" readonly>
                                                 
-                                            </div>                                          
+                                            </div>
+                                            <!-- <div class="input-field col-md-6 col-sm-12">
+                                                <input id="sales_manager_name" type="text" readonly>
+                                                <label for="sales_manager_name">sales_manager Name</label>
+                                            </div> -->
+                                           
                                         
                                         </div>
                                        
@@ -148,24 +109,24 @@ if($editfor == 'pending'){
                                         <div class="row">
                                             
                                             <div class="input-field col-md-6 col-sm-12">
-                                                <input id="firstname" type="text" value="<?php echo $firstname ;?>" >
-                                                <label for="firstname">Travel Agent First Name</label>
+                                                <input id="firstname" type="text" >
+                                                <label for="firstname">Franchisee First Name</label>
                                             </div>
                                             <div class="input-field col-md-6 col-sm-12">
-                                                <input id="lastname" type="text" value="<?php echo $lastname ;?>" >
-                                                <label for="lastname">Travel Agent Last Name</label>
+                                                <input id="lastname" type="text" >
+                                                <label for="lastname">Franchisee Last Name</label>
                                             </div>
                                         </div>
                                         <div class="row">
 
                                             <div class="input-field col-md-6 col-sm-12">
-                                                <input id="email" type="email" value="<?php echo $email;?>">
+                                                <input id="email" type="email">
                                                 <label for="email">Email</label>
                                             </div>
 
                                             <div class="input-field col-md-6 col-sm-12">
                                                 <label for="date-picker" style="margin-top: -25px;font-size: 0.8rem;">Date of Birth</label>
-                                            <input type="date" id="dob" class="datepicker" value="<?php echo $date_of_birth ;?>">
+                                            <input type="date" id="dob" class="datepicker" >
                                             </div>
 
                                         </div>
@@ -174,19 +135,19 @@ if($editfor == 'pending'){
 
                                             <div class="input-field col-md-6 col-sm-12">
                                                 <label style="margin-top: -25px;font-size: 0.8rem;">Gender</label>
-                                            <input class="with-gap gender " name="gender" type="radio" id="test3" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?>/>
+                                            <input class="with-gap gender " name="gender" type="radio" id="test3" value="male"/>
                                             <label for="test3">Male</label>
-                                            <input class="with-gap gender" name="gender" type="radio" id="test4" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?>/>
+                                            <input class="with-gap gender" name="gender" type="radio" id="test4" value="female"/>
                                             <label for="test4">Female</label>
-                                            <input class="with-gap gender" name="gender" type="radio" id="test5" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?>/>
+                                            <input class="with-gap gender" name="gender" type="radio" id="test5" value="others"/>
                                             <label for="test5">Others</label>
                                                 
                                                 
                                                 <!-- <label for="phone">Gender</label>  -->
                                             </div>
 
-                                            <div class="input-field col-md-6 col-sm-12 con" >
-                                                <label for="phone" style="margin-top: -5%;font-size: 0.8rem;">Mobile</label>
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <label for="phone" style="margin-top: -6%;font-size: 0.8rem;">Mobile</label>
 
                                                 <div class="form-group col s4">
                                                 <!-- <label style="margin-top: -17%;font-size: 0.8rem;">Country Code</label> -->
@@ -216,7 +177,7 @@ if($editfor == 'pending'){
                                             
                                                 </div>
                                                 <div class="form-group col s8">
-                                                    <input id="phone" type="text" value="<?php echo $contact_no ;?>" >
+                                                    <input id="phone" type="text" >
                                                     
                                                 </div>
                                                 
@@ -233,29 +194,26 @@ if($editfor == 'pending'){
                                             
                                              <div class="form-group col-md-6 col-sm-12">
                                                 <label>Country</label>
-
-                                                <?php
-                                            require '../connect.php';
-                                            $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
-                                            $stmt->execute();
-
-                                                                                               
-                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                            ?>
-                                            <select id="country" class="selectdesign">
-                                            <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
-                                            <?php 
-                                            if($stmt->rowCount()>0){
-                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                    echo '<option value="'.$row['id'].'">'.$row['country_name'].'</option>'; 
-                                                } 
-                                            }else{ 
-                                                echo '<option value="">Country not available</option>'; 
-                                            } 
-                                            ?>
-
                                                 
-                                            
+                                            <?php
+                                                require '../connect.php';
+                                                $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
+                                                $stmt->execute();
+
+                                                                                                   
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                ?>
+                                                <select id="country" class="selectdesign">
+                                                <option value="">--Select Country--</option>
+                                                <?php 
+                                                if($stmt->rowCount()>0){
+                                                     foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                        echo '<option value="'.$row['id'].'">'.$row['country_name'].'</option>'; 
+                                                    } 
+                                                }else{ 
+                                                    echo '<option value="">Country not available</option>'; 
+                                                } 
+                                                ?>
                                             </select>
 
 
@@ -268,25 +226,7 @@ if($editfor == 'pending'){
                                             <div class="form-group col-md-6 col-sm-12">
                                                 <label>State</label>
                                                 <select id="mystate" class="selectdesign">
-                                                    <?php
-                                                        require '../connect.php';
-                                                        $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
-                                                        $stmt->execute();
-
-                                                                                                           
-                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                        ?>
-                                                        
-                                                        <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
-                                                        <?php 
-                                                        if($stmt->rowCount()>0){
-                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                                echo '<option value="'.$row['id'].'">'.$row['state_name'].'</option>'; 
-                                                            } 
-                                                        }else{ 
-                                                            echo '<option value="">State not available</option>'; 
-                                                        } 
-                                                        ?>
+                                                    <option value="">--Select country first--</option>
 
                                                    
                                                 </select>
@@ -305,26 +245,8 @@ if($editfor == 'pending'){
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>City</label><br>
                                         <select id="city" class="selectdesign">
-                                            <?php
-                                                        require '../connect.php';
-                                                        $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
-                                                        $stmt->execute();
 
-                                                                                                           
-                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                        ?>
-                                                        
-                                                        <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
-                                                        <?php 
-                                                        if($stmt->rowCount()>0){
-                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                                echo '<option value="'.$row['id'].'">'.$row['city_name'].'</option>'; 
-                                                            } 
-                                                        }else{ 
-                                                            echo '<option value="">City not available</option>'; 
-                                                        } 
-                                                        ?>
-                                        <!-- <option value="">--Select state first--</option> -->
+                                        <option value="">--Select state first--</option>
                                             
                                         </select>
                                         <!-- <div id="cityError" class=" errorMessage2"></div>                  -->
@@ -332,7 +254,7 @@ if($editfor == 'pending'){
 
                                      <div class="form-group col-md-6 col-sm-12">
                                         <label>Pincode</label>
-                                        <input type="text" class="form-control" id="pin" placeholder="Pincode" value="<?php echo $pincode ;?>" readonly>
+                                        <input type="text" class="form-control" id="pin" placeholder="Pincode" readonly>
                                         
                                     </div>
 
@@ -357,7 +279,7 @@ if($editfor == 'pending'){
                                             <div class="input-field col-md-12 col-sm-12">
                                                 
                                                 <!-- <textarea id="address" style="margin-top: 1.5%;" ></textarea> -->
-                                                <input id="address" type="text" value="<?php echo $address ;?>" >
+                                                <input id="address" type="text" >
                                             
                                                 <label for="address">Address</label>
                                             </div>
@@ -374,19 +296,11 @@ if($editfor == 'pending'){
                                                         </div>
                                                         <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="profile_pic" id="profile_pic" value="<?php echo $profile_pic;?>" disabled>
+                                                             <input type="hidden" name="profile_pic" id="profile_pic" disabled>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                    <!-- <img alt="Profile_pic" class="imgsize" id="img"> -->
-
-                                                    <?php
-                                                        if($profile_pic ==''){
-                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Profile pic" class="imgsize" id="img">';
-                                                        }else{
-                                                            echo '<img src="../../uploading/'.$profile_pic.'" alt="Profile pic" class="imgsize" id="img">';
-                                                        }
-                                                     ?>
+                                                    <div class="preview1" id="preview1">
+                                                    <img alt="Profile_pic" class="imgsize" id="img">
                                                     </div>
                                                 
                                             </div>
@@ -399,19 +313,12 @@ if($editfor == 'pending'){
                                                         </div>
                                                          <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="kyc" id="kyc" value="<?php echo $kyc;?>" disabled>
+                                                             <input type="hidden" name="kyc" id="kyc" disabled>
                                                         </div>
                                                     
                                                     </div>
-                                                    <div >
-                                                   <!-- <img alt="KYC" class="imgsize" id="img2"> -->
-                                                   <?php
-                                                        if($kyc ==''){
-                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Kyc" class="imgsize" id="img2">';
-                                                        }else{
-                                                            echo '<img src="../../uploading/'.$kyc.'" alt="KYC" class="imgsize" id="img2">';
-                                                        }
-                                                     ?>
+                                                    <div class="preview2" id="preview2">
+                                                   <img alt="KYC" class="imgsize" id="img2">
                                                     </div>
                                                 
                                             </div>
@@ -432,18 +339,11 @@ if($editfor == 'pending'){
                                                         </div>
                                                         <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="pan_card" id="pan_card" value="<?php echo $pan_card;?>" disabled>
+                                                             <input type="hidden" name="pan_card" id="pan_card" disabled>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                    <!-- <img alt="Pan Card" class="imgsize" id="img3"> -->
-                                                    <?php
-                                                        if($pan_card ==''){
-                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Pan Card" class="imgsize" id="img3">';
-                                                        }else{
-                                                            echo '<img src="../../uploading/'.$pan_card.'" alt="Pan Card" class="imgsize" id="img3">';
-                                                        }
-                                                     ?>
+                                                    <div class="preview3" id="preview3">
+                                                    <img alt="Pan Card" class="imgsize" id="img3">
                                                     </div>
                                                 
                                             </div>
@@ -452,23 +352,16 @@ if($editfor == 'pending'){
                                                     <div class="file-field input-field">
                                                         <div class="btn">
                                                             <span>Upload</span>
-                                                            <input type="file"id="file4" name="file4"  >
+                                                            <input type="file"id="file4" name="file4">
                                                         </div>
                                                          <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="aadhar_card" id="aadhar_card" value="<?php echo $aadhar_card;?>"  disabled>
+                                                             <input type="hidden" name="aadhar_card" id="aadhar_card" disabled>
                                                         </div>
                                                     
                                                     </div>
-                                                    <div >
-                                                   <!-- <img alt="Aadhar Card" class="imgsize" id="img4"> -->
-                                                   <?php
-                                                        if($aadhar_card ==''){
-                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Aadhar Card" class="imgsize" id="img4">';
-                                                        }else{
-                                                            echo '<img src="../../uploading/'.$aadhar_card.'" alt="Aadhar Card" class="imgsize" id="img4">';
-                                                        }
-                                                     ?>
+                                                    <div class="preview4" id="preview4">
+                                                   <img alt="Aadhar Card" class="imgsize" id="img4">
                                                     </div>
                                                 
                                             </div>
@@ -488,18 +381,11 @@ if($editfor == 'pending'){
                                                         </div>
                                                         <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="voting_card" id="voting_card" value="<?php echo $voting_card;?>" disabled>
+                                                             <input type="hidden" name="voting_card" id="voting_card" disabled>
                                                         </div>
                                                     </div>
-                                                    <div >
-                                                    <!-- <img alt="Voting Card" class="imgsize" id="img5"> -->
-                                                    <?php
-                                                        if($voting_card ==''){
-                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Voting Card" class="imgsize" id="img5">';
-                                                        }else{
-                                                            echo '<img src="../../uploading/'.$voting_card.'" alt="Voting Card" class="imgsize" id="img5">';
-                                                        }
-                                                     ?>
+                                                    <div class="preview5" id="preview5">
+                                                    <img alt="Voting Card" class="imgsize" id="img5">
                                                     </div>
                                                 
                                             </div>
@@ -512,26 +398,17 @@ if($editfor == 'pending'){
                                                         </div>
                                                          <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="passbook" id="passbook" value="<?php echo $bank_passbook;?>" disabled>
+                                                             <input type="hidden" name="passbook" id="passbook" disabled>
                                                         </div>
                                                     
                                                     </div>
-                                                    <div>
-                                                   <!-- <img alt="Bank Passbook" class="imgsize" id="img6"> -->
-                                                   <?php
-                                                        if($bank_passbook ==''){
-                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Bank Passbook" class="imgsize" id="img6">';
-                                                        }else{
-                                                            echo '<img src="../../uploading/'.$bank_passbook.'" alt="Bank Passbook" class="imgsize" id="img6">';
-                                                        }
-                                                     ?>
+                                                    <div class="preview6" id="preview6">
+                                                   <img alt="Bank Passbook" class="imgsize" id="img6">
                                                     </div>
                                                 
                                             </div>
 
-                                            <input type="hidden" id="testValue" name="testValue" value="3">
-                                            <input type="hidden" id="editfor" name="editfor" value="<?php echo $editfor;?>">
-                                            <input type="hidden" id="testiod" name="testiod" value="<?php echo $id;?>">
+                                            <input type="hidden" id="testValue" name="testValue" value="4">
                                           <!--   <div class="input-field col s6" >
 
                                             </div> -->
@@ -543,7 +420,7 @@ if($editfor == 'pending'){
                                             <div class="input-field col s12" style="margin-top: 20px;">
                                                <!--  <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a> -->
 
-                                                 <a href="#" class="waves-effect waves-light btn-large" id="editTravelAgent">Edit</a>
+                                                 <a href="#" class="waves-effect waves-light btn-large" id="addFranchisee">Submit</a>
                                                 
                                             </div>
                                            
@@ -715,27 +592,27 @@ if($editfor == 'pending'){
             }
         });
 
-        // $('#franchisee_id').on('change', function(){
-        //     var franchisee_id = $(this).val();
-        //     var franch_id='';
-        //     if(franchisee_id == ''){
-        //         franch_id='-1'
-        //     }else{
-        //         franch_id=franchisee_id;
-        //     }
+        $('#sales_manager_id').on('change', function(){
+            var sales_manager_id = $(this).val();
+            var slmg_id='';
+            if(sales_manager_id == ''){
+                slmg_id='-1'
+            }else{
+                slmg_id=sales_manager_id;
+            }
 
-        //     if(franch_id){
-        //          $.ajax({
-        //                   type:'POST',
-        //                   url:'../agents/Franchisee_name.php',
-        //                   data:'franchisee_id='+franch_id,
-        //                   success:function(response){
-        //                      // $('#pin').html(response);
-        //                      $('#franchisee_name').val(response); 
-        //                   }
-        //               }); 
-        //     }else{
+            if(slmg_id){
+                 $.ajax({
+                          type:'POST',
+                          url:'../agents/sales_manager_name.php',
+                          data:'sales_manager_id='+slmg_id,
+                          success:function(response){
+                             // $('#pin').html(response);
+                             $('#sales_manager_name').val(response); 
+                          }
+                      }); 
+            }else{
                 
-        //     }
-        // });
+            }
+        });
 </script>

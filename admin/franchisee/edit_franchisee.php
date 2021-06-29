@@ -15,22 +15,19 @@ $city = $_GET['hct'];
 
 $editfor = $_GET['editfor'];
 
-
-// $editfor= $_POST["editfor"];
-// $franchisee_id=$_POST['franchisee_id'];
 if($editfor == 'pending'){
     // $identifier_id= $_POST["vkvbvjfgfikix"];
     $identifier_name = 'id=';
 }else if($editfor == 'registered') {
     // $identifier_id= $_POST["vkvbvjfgfikix"];
-    $identifier_name = 'travel_agent_id=';
-}
+    $identifier_name = 'franchisee_id=';
+} 
 
 
     require '../connect.php';
 
 
-    $stmt = $conn->prepare("SELECT *,(select CONCAT(firstname,' ',lastname) from franchisee where franchisee_id = '".$reference_no."') as fname, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `travel_agent` where $identifier_name'".$id."'");
+    $stmt = $conn->prepare("SELECT *,(select CONCAT(firstname,' ',lastname) from sales_manager where sales_manager_id = '".$reference_no."') as fname, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `franchisee` where $identifier_name'".$id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -39,7 +36,7 @@ if($editfor == 'pending'){
     foreach (($stmt->fetchAll()) as $key => $row) {
         $fid=$row['id'];
 
-        $franchisee_name=$row['fname'];
+        $sales_manager_name=$row['fname'];
         $firstname=$row['firstname'];
         // $username=$row['username'];
         $lastname=$row['lastname'];
@@ -114,7 +111,7 @@ if($editfor == 'pending'){
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Edit Travel Agent </a>
+                        <li class="active-bre"><a href="#"> Edit Franchisee </a>
                         </li>
                     </ul>
                 </div>
@@ -123,7 +120,7 @@ if($editfor == 'pending'){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Edit Travel Agent</h4>
+                                    <h4>Edit Franchisee</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
@@ -131,14 +128,14 @@ if($editfor == 'pending'){
                                         <div class="row">
                                             
                                             <div class="input-field col-md-6 col-sm-12">
-                                                <input id="franchisee_id" type="text" value="<?php echo $reference_no ;?>" readonly>
-                                                <label>Franchisee Id</label>
+                                                <input id="sales_manager_id" type="text" value="<?php echo 'sales_manager_'.$reference_no ;?>" readonly>
+                                                <label>Sales Manager Id</label>
 
                                             </div>
 
                                             <div class="input-field col-md-6 col-sm-12">
-                                                <label>Franchisee Name</label>
-                                                <input type="text" id="franchisee_name" value="<?php echo $franchisee_name ;?>" readonly>
+                                                <label>Sales Manager Name</label>
+                                                <input type="text" id="sales_manager_name" value="<?php echo $sales_manager_name ;?>" readonly>
                                                 
                                             </div>                                          
                                         
@@ -149,11 +146,11 @@ if($editfor == 'pending'){
                                             
                                             <div class="input-field col-md-6 col-sm-12">
                                                 <input id="firstname" type="text" value="<?php echo $firstname ;?>" >
-                                                <label for="firstname">Travel Agent First Name</label>
+                                                <label for="firstname">Franchisee First Name</label>
                                             </div>
                                             <div class="input-field col-md-6 col-sm-12">
                                                 <input id="lastname" type="text" value="<?php echo $lastname ;?>" >
-                                                <label for="lastname">Travel Agent Last Name</label>
+                                                <label for="lastname">Franchisee Last Name</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -185,7 +182,7 @@ if($editfor == 'pending'){
                                                 <!-- <label for="phone">Gender</label>  -->
                                             </div>
 
-                                            <div class="input-field col-md-6 col-sm-12 con" >
+                                            <div class="input-field col-md-6 col-sm-12 con">
                                                 <label for="phone" style="margin-top: -5%;font-size: 0.8rem;">Mobile</label>
 
                                                 <div class="form-group col s4">
@@ -543,7 +540,7 @@ if($editfor == 'pending'){
                                             <div class="input-field col s12" style="margin-top: 20px;">
                                                <!--  <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a> -->
 
-                                                 <a href="#" class="waves-effect waves-light btn-large" id="editTravelAgent">Edit</a>
+                                                 <a href="#" class="waves-effect waves-light btn-large" id="editFranchisee">Edit</a>
                                                 
                                             </div>
                                            
@@ -715,23 +712,23 @@ if($editfor == 'pending'){
             }
         });
 
-        // $('#franchisee_id').on('change', function(){
-        //     var franchisee_id = $(this).val();
+        // $('#sales_manager_id').on('change', function(){
+        //     var sales_manager_id = $(this).val();
         //     var franch_id='';
-        //     if(franchisee_id == ''){
+        //     if(sales_manager_id == ''){
         //         franch_id='-1'
         //     }else{
-        //         franch_id=franchisee_id;
+        //         franch_id=sales_manager_id;
         //     }
 
         //     if(franch_id){
         //          $.ajax({
         //                   type:'POST',
-        //                   url:'../agents/Franchisee_name.php',
-        //                   data:'franchisee_id='+franch_id,
+        //                   url:'../agents/sales_manager_name.php',
+        //                   data:'sales_manager_id='+franch_id,
         //                   success:function(response){
         //                      // $('#pin').html(response);
-        //                      $('#franchisee_name').val(response); 
+        //                      $('#sales_manager_name').val(response); 
         //                   }
         //               }); 
         //     }else{

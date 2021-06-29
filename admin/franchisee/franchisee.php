@@ -8,7 +8,7 @@ if(!isset($_SESSION['username'])){
 <!DOCTYPE html>
 <html lang="en">
 
-
+ 
 <!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-all.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:19 GMT -->
 <head>
     <title>Bizzmirth Holidays</title>
@@ -66,7 +66,7 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-users" class="dropdown-content">
-                                        <li><a href="#">Add Franchisee</a>
+                                        <li><a href="add_franchisee.php">Add Franchisee</a>
                                         </li>
                                         <li><a href="#">Download List</a>
                                         </li>
@@ -115,13 +115,14 @@ if(!isset($_SESSION['username'])){
                                                     <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
                                                     <td>'.$bdate.'</td>
                                                     <td>
-                                                        <a href="#" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
+                                                        "pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" ><i class="material-icons dp48">verified_user</i></a>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '")\'><i class="material-icons dp48">verified_user</i></a>
                                                     </td>
                                                 </tr>';
 
@@ -132,7 +133,7 @@ if(!isset($_SESSION['username'])){
                                                 } 
                                                     else{
                                                         echo '<tr>
-                                                    <td colspan="7">No Pending Franchisee
+                                                    <td colspan="8">No Pending Franchisee
                                                     </td>
                                                     <tr>';
                                                     }
@@ -216,10 +217,12 @@ if(!isset($_SESSION['username'])){
                                                         '.$datev.'
                                                     </td>
                                                     <td>
-                                                        <a href="#" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'editfunc("' .$row["franchisee_id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
+                                                        "registered")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["franchisee_id"]. '",
+                                                        "registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     
                                                 </tr>';
@@ -231,7 +234,7 @@ if(!isset($_SESSION['username'])){
                                                 } 
                                                     else{
                                                         echo '<tr>
-                                                    <td colspan="7">No Registered Franchisee
+                                                    <td colspan="8">No Registered Franchisee
                                                     </td>
                                                     <tr>';
                                                     }
@@ -289,9 +292,9 @@ if(!isset($_SESSION['username'])){
     };
 
 
-    function deletefunc(id,tid)
+    function deletefunc(id,tid,action)
     { 
-    var dataString = 'id='+ id+'&tid='+tid;
+    var dataString = 'id='+ id+'&tid='+tid+'&action='+action;
 
 
       $.ajax({

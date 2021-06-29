@@ -68,7 +68,25 @@ if(!isset($_SESSION['username'])){
 									<span class="ad-hom-col-com ad-hom-col-1"><i class="fa fa-bar-chart"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;"> Total Franchisee</span></p>
-									<h3>22,520</h3>
+                                        <?php
+                                                require 'connect.php';
+                                                $stmt = $conn->prepare("SELECT count(franchisee_id) as totalFranchisee FROM franchisee where user_type='4' and status='1' ");
+                                                $stmt->execute();
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        $totalFranchisee=$row['totalFranchisee'];
+                                                        echo '<h3>'.$totalFranchisee.'</h3>';
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<h3>0</h3>';
+                                                    }
+                                        ?> 
+									<!-- <h3>22,520</h3> -->
 									</div>
 		 						</div>
 							</li>
@@ -77,7 +95,25 @@ if(!isset($_SESSION['username'])){
 									<span class="ad-hom-col-com ad-hom-col-2"><i class="fa fa-usd"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;">Total Travel Agent</span></p>
-									<h3>22,520</h3>
+                                     <?php
+                                                require 'connect.php';
+                                                $stmt = $conn->prepare("SELECT count(travel_agent_id) as totaltravel_agent FROM travel_agent where user_type='4' and status='1' ");
+                                                $stmt->execute();
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        $totaltravel_agent=$row['totaltravel_agent'];
+                                                        echo '<h3>'.$totaltravel_agent.'</h3>';
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<h3>0</h3>';
+                                                    }
+                                        ?>
+									<!-- <h3>22,520</h3> -->
 									</div>
 								</div>
 							</li>
@@ -86,7 +122,25 @@ if(!isset($_SESSION['username'])){
 									<span class="ad-hom-col-com ad-hom-col-3"><i class="fa fa-address-card-o"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;"> Total Customer</span></p>
-									<h3>22,520</h3>
+                                    <?php
+                                                require 'connect.php';
+                                                $stmt = $conn->prepare("SELECT count(cust_id) as totalcustomer FROM customer where user_type='4' and status='1' ");
+                                                $stmt->execute();
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        $totalcustomer=$row['totalcustomer'];
+                                                        echo '<h3>'.$totalcustomer.'</h3>';
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<h3>0</h3>';
+                                                    }
+                                        ?>
+									<!-- <h3>22,520</h3> -->
 									</div>
 								</div>
 							</li>
