@@ -21,7 +21,7 @@ if($editfor == 'pending'){
 }else if($editfor == 'registered') {
     // $identifier_id= $_POST["vkvbvjfgfikix"];
     $identifier_name = 'franchisee_id=';
-} 
+}
 
 
     require '../connect.php';
@@ -529,6 +529,7 @@ if($editfor == 'pending'){
                                             <input type="hidden" id="testValue" name="testValue" value="3">
                                             <input type="hidden" id="editfor" name="editfor" value="<?php echo $editfor;?>">
                                             <input type="hidden" id="testiod" name="testiod" value="<?php echo $id;?>">
+                                            <input type="hidden" id="invalidimage" name="invalidimage" >
                                           <!--   <div class="input-field col s6" >
 
                                             </div> -->
@@ -594,7 +595,7 @@ if($editfor == 'pending'){
 <script type="text/javascript">
     $('#file').change(function(){
 
-        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Proper Id Proof','.preview1','profile_pic');
+        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic');
     });
 
     $('#file2').change(function(){
@@ -644,8 +645,10 @@ if($editfor == 'pending'){
             $(imgid).attr("src","../../uploading/"+response); 
             $(valid).val(response);
                     $(previewclass+' img').show(); // Display image element
+                    $('#invalidimage').val('');
                   }else{
                     $(valid).val('');
+                    $('#invalidimage').val('2');
                     alert(messages);
                   }
                 },

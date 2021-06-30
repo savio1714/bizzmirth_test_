@@ -27,7 +27,7 @@ $city=$_POST['city'];
 $user_type="4";
 $register_by="5";
 
- 
+
 
 $sql= "INSERT INTO franchisee (firstname,lastname, email, country_code, contact_no , date_of_birth,age,gender,country,state,city,pincode,address,profile_pic, kyc,pan_card,aadhar_card,voting_card,bank_passbook,user_type,registrant,reference_no,register_by) VALUES (:firstname ,:lastname, :email, :country_code, :phone_no, :bdate, :age, :gender , :country, :state, :city, :pincode,:address,:profile_pic ,:kyc,:pan_card,:aadhar_card,:voting_card,:passbook,  :user_type,:registrant,  :sales_manager_id, :register_by)";
 $stmt3 =$conn->prepare($sql);

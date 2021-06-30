@@ -409,6 +409,7 @@ if(!isset($_SESSION['username'])){
                                             </div>
 
                                             <input type="hidden" id="testValue" name="testValue" value="3">
+                                            <input type="hidden" id="invalidimage" name="invalidimage" >
                                           <!--   <div class="input-field col s6" >
 
                                             </div> -->
@@ -474,7 +475,7 @@ if(!isset($_SESSION['username'])){
 <script type="text/javascript">
     $('#file').change(function(){
 
-        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Proper Id Proof','.preview1','profile_pic');
+        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic');
     });
 
     $('#file2').change(function(){
@@ -524,8 +525,10 @@ if(!isset($_SESSION['username'])){
             $(imgid).attr("src","../../uploading/"+response); 
             $(valid).val(response);
                     $(previewclass+' img').show(); // Display image element
+                    $('#invalidimage').val('');
                   }else{
                     $(valid).val('');
+                    $('#invalidimage').val('2');
                     alert(messages);
                   }
                 },

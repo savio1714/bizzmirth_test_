@@ -10,7 +10,7 @@ $user_type="4";
 
 $status= '0';
 
- 
+
 
 	$sql1 = "UPDATE franchisee SET status=:status, deleted_date=:deleted_date WHERE id=:id";
 	$stmt = $conn->prepare($sql1);

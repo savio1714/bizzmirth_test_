@@ -17,6 +17,8 @@ $('#addTravelAgent').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
+            var invalidimage = $('#invalidimage').val();
+            // alert(invalidimage);
 
 
             var country = $('#country').val();
@@ -61,6 +63,8 @@ $('#addTravelAgent').click(function(e){
               alert("Enter Phone number");
           }else if (!phoneReg.test(phone)){
               alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
           }else if (testp == '1'){
               alert("Phone number already exists");
           }else if (country ===''){
@@ -73,6 +77,8 @@ $('#addTravelAgent').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
+          }else if (invalidimage =='2'){
+              alert("Please Upload Proper Proof");
           }else{
               $.ajax({
                 type: "POST",
@@ -123,6 +129,8 @@ $('#addTravelAgent').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
+            var invalidimage = $('#invalidimage').val();
+            // alert(invalidimage);
 
 
             var country = $('#country').val();
@@ -165,6 +173,8 @@ $('#addTravelAgent').click(function(e){
               alert("Enter Phone number");
           }else if (!phoneReg.test(phone)){
               alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
           }else if (testp == '1' && phoneN !=phone){
               alert("Phone number already exists ok");
           }else if (country ===''){
@@ -177,6 +187,8 @@ $('#addTravelAgent').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
+          }else if (invalidimage =='2'){
+              alert("Please Upload Proper Proof");
           }else{
               $.ajax({
                 type: "POST",
@@ -225,6 +237,8 @@ $('#addFranchisee').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
+            var invalidimage = $('#invalidimage').val();
+            // alert(invalidimage);
 
 
             var country = $('#country').val();
@@ -269,6 +283,8 @@ $('#addFranchisee').click(function(e){
               alert("Enter Phone number");
           }else if (!phoneReg.test(phone)){
               alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
           }else if (testp == '1'){
               alert("Phone number already exists");
           }else if (country ===''){
@@ -281,6 +297,8 @@ $('#addFranchisee').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
+          }else if (invalidimage =='2'){
+              alert("Please Upload Proper Proof");
           }else{
               $.ajax({
                 type: "POST",
@@ -330,6 +348,8 @@ $('#addFranchisee').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
+            var invalidimage = $('#invalidimage').val();
+            // alert(invalidimage);
 
 
             var country = $('#country').val();
@@ -372,6 +392,8 @@ $('#addFranchisee').click(function(e){
               alert("Enter Phone number");
           }else if (!phoneReg.test(phone)){
               alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter proper phone number");
           }else if (testp == '1' && phoneN !=phone){
               alert("Phone number already exists ok");
           }else if (country ===''){
@@ -384,6 +406,8 @@ $('#addFranchisee').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
+          }else if (invalidimage =='2'){
+              alert("Please Upload Proper Proof");
           }else{
               $.ajax({
                 type: "POST",
@@ -498,5 +522,17 @@ var phonetest = (phone_noValue,code,testValue) =>{
 
 
 return dob;
+}
+
+
+const validateOnlyZero = (input) =>{
+
+  let characterLetters = /^[0\s]+$/;
+  if(input.match(characterLetters )){
+    return true;
+   }else{
+    return false;
+   }
+
 }
 

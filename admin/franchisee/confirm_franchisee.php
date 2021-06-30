@@ -17,7 +17,7 @@ $todayYear = date('Y' );
 
 // $uid='';
 // $sql2= $conn->prepare("SELECT franchisee_id,CAST(franchisee_id as SIGNED) AS casted_column  from franchisee where user_type='4'  ORDER BY casted_column desc limit 1");
- 
+
 $sql2= $conn->prepare("SELECT distinct franchisee_id  from franchisee order by franchisee_id desc limit 1");
 
 $sql2->execute();
