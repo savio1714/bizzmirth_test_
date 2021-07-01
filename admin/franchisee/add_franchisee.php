@@ -409,7 +409,12 @@ if(!isset($_SESSION['username'])){
                                             </div>
 
                                             <input type="hidden" id="testValue" name="testValue" value="4">
-                                            <input type="hidden" id="invalidimage" name="invalidimage" >
+                                            <input type="hidden" id="invalidimage1" name="invalidimage1" >
+                                            <input type="hidden" id="invalidimage2" name="invalidimage2" >
+                                            <input type="hidden" id="invalidimage3" name="invalidimage3" >
+                                            <input type="hidden" id="invalidimage4" name="invalidimage4" >
+                                            <input type="hidden" id="invalidimage5" name="invalidimage5" >
+                                            <input type="hidden" id="invalidimage6" name="invalidimage6" >
                                           <!--   <div class="input-field col s6" >
 
                                             </div> -->
@@ -475,44 +480,48 @@ if(!isset($_SESSION['username'])){
 <script type="text/javascript">
     $('#file').change(function(){
 
-        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic');
+        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic','#invalidimage1');
     });
 
     $('#file2').change(function(){
 
-        uploadfun('#file2','../../uploading/upload.php','#img2','#kyc','Please Upload Proper KYC','.preview2','kyc');
+        uploadfun('#file2','../../uploading/upload.php','#img2','#kyc','Please Upload Proper KYC','.preview2','kyc','#invalidimage2');
     });
 
     $('#file3').change(function(){
 
-        uploadfun('#file3','../../uploading/upload.php','#img3','#pan_card','Please Upload PAN Card','.preview3','pancard');
+        uploadfun('#file3','../../uploading/upload.php','#img3','#pan_card','Please Upload PAN Card','.preview3','pancard','#invalidimage3');
     });
     $('#file4').change(function(){
 
-        uploadfun('#file4','../../uploading/upload.php','#img4','#aadhar_card','Please Upload Aadhar Card','.preview4','aadhar');
+        uploadfun('#file4','../../uploading/upload.php','#img4','#aadhar_card','Please Upload Aadhar Card','.preview4','aadhar','#invalidimage4');
     });
 
     $('#file5').change(function(){
 
-        uploadfun('#file5','../../uploading/upload.php','#img5','#voting_card','Please Upload Voting Card','.preview5','voting');
+        uploadfun('#file5','../../uploading/upload.php','#img5','#voting_card','Please Upload Voting Card','.preview5','voting','#invalidimage5');
     });
 
     $('#file6').change(function(){
 
-        uploadfun('#file6','../../uploading/upload.php','#img6','#passbook','Please Upload Bank Passbook','.preview6','passbook');
+        uploadfun('#file6','../../uploading/upload.php','#img6','#passbook','Please Upload Bank Passbook','.preview6','passbook','#invalidimage6');
     });
 
 
-
-   function uploadfun(typeid,urlpart,imgid,valid,messages,previewclass,foldername){
+//upload function
+   function uploadfun(typeid,urlpart,imgid,valid,messages,previewclass,foldername,invalidvalue){
 
     var fd = new FormData();
       var files = $(typeid)[0].files[0];
       fd.append('file',files);
       fd.append('getname',foldername);
 
-// alert(fd);
 
+//getting filesize of that image 
+    var file_size = $(typeid)[0].files[0].size;
+    
+//checking if the filesize is greater then 2MB
+    if(file_size<2097152) {
 
       $.ajax({
         url: urlpart,
@@ -525,14 +534,19 @@ if(!isset($_SESSION['username'])){
             $(imgid).attr("src","../../uploading/"+response); 
             $(valid).val(response);
                     $(previewclass+' img').show(); // Display image element
-                    $('#invalidimage').val('');
+                    $(invalidvalue).val('');
                   }else{
                     $(valid).val('');
-                    $('#invalidimage').val('2');
+                    $(invalidvalue).val('2');
                     alert(messages);
                   }
                 },
               });
+      }
+      else{
+        alert('File size is greater than 2MB');
+        $(invalidvalue).val('2');
+      }
    }
 
 </script>

@@ -17,7 +17,12 @@ $('#addTravelAgent').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
-            var invalidimage = $('#invalidimage').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
             // alert(invalidimage);
 
 
@@ -77,7 +82,7 @@ $('#addTravelAgent').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
-          }else if (invalidimage =='2'){
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'||  invalidimage5 =='2'  || invalidimage6 =='2'){
               alert("Please Upload Proper Proof");
           }else{
               $.ajax({
@@ -129,7 +134,12 @@ $('#addTravelAgent').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
-            var invalidimage = $('#invalidimage').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
             // alert(invalidimage);
 
 
@@ -187,7 +197,7 @@ $('#addTravelAgent').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
-          }else if (invalidimage =='2'){
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
               alert("Please Upload Proper Proof");
           }else{
               $.ajax({
@@ -237,7 +247,12 @@ $('#addFranchisee').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
-            var invalidimage = $('#invalidimage').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
             // alert(invalidimage);
 
 
@@ -297,7 +312,7 @@ $('#addFranchisee').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
-          }else if (invalidimage =='2'){
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
               alert("Please Upload Proper Proof");
           }else{
               $.ajax({
@@ -348,7 +363,12 @@ $('#addFranchisee').click(function(e){
             var aadhar_card = $('#aadhar_card').val();
             var voting_card = $('#voting_card').val();
             var passbook = $('#passbook').val();
-            var invalidimage = $('#invalidimage').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
             // alert(invalidimage);
 
 
@@ -406,7 +426,7 @@ $('#addFranchisee').click(function(e){
               alert("Enter Proper Address");
           }else if (profile_pic ===''){
               alert("Upload Profile Picture");
-          }else if (invalidimage =='2'){
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
               alert("Please Upload Proper Proof");
           }else{
               $.ajax({

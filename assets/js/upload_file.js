@@ -4,6 +4,11 @@ $('#file2').change(function(){
       var files = $('#file2')[0].files[0];
       fd.append('file',files);
 
+       var file_size = $('#file2')[0].files[0].size;
+    
+//checking if the filesize is greater then 2MB
+    if(file_size<2097152) {
+
       $.ajax({
         url: 'upload/upload_profile.php',
         type: 'post',
@@ -17,10 +22,16 @@ $('#file2').change(function(){
                     $("#preview img").show(); // Display image element
                   }else{
                     $('#profile_pic').val('');
-                    alert('file not uploaded');
+                    alert('Please upload proper Profile');
                   }
                 },
               });
+      }else{
+        $('#profile_pic').val('');
+        alert('File size is greater than 2MB');
+
+      }
+
     });
 
 $('#file').change(function(){
@@ -28,6 +39,11 @@ $('#file').change(function(){
       var fd = new FormData();
       var files = $('#file')[0].files[0];
       fd.append('file',files);
+
+      var file_size = $('#file2')[0].files[0].size;
+    
+//checking if the filesize is greater then 2MB
+    if(file_size<2097152) {
 
       $.ajax({
         url: 'upload/upload.php',
@@ -42,8 +58,13 @@ $('#file').change(function(){
                     // $(".preview img").show(); // Display image element
                   }else{
                     $('#id_proof').val('');
-                    alert('file not uploaded');
+                    alert('Please upload proper Id Proof');
                   }
                 },
               });
+      }else{
+        $('#id_proof').val('');
+        alert('File size is greater than 2MB');
+      }
+
     });

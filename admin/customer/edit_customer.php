@@ -599,6 +599,12 @@ $('#phone').keyup(function () {
       var files = $('#file')[0].files[0];
       fd.append('file',files);
 
+      //getting filesize of that image 
+    var file_size = $('#file')[0].files[0].size;
+    
+//checking if the filesize is greater then 2MB
+    if(file_size<2097152) {
+
       $.ajax({
         url: '../../upload/upload.php',
         type: 'post',
@@ -616,6 +622,13 @@ $('#phone').keyup(function () {
                   }
                 },
               });
+      }else{
+        $('#id_proof').val('');
+        alert('File size is greater than 2MB');
+        
+        // $(invalidvalue).val('2');
+      }
+
     });
 
    $('#file2').change(function(){
@@ -623,6 +636,12 @@ $('#phone').keyup(function () {
       var fd = new FormData();
       var files = $('#file2')[0].files[0];
       fd.append('file',files);
+
+      //getting filesize of that image 
+    var file_size = $('#file2')[0].files[0].size;
+    
+//checking if the filesize is greater then 2MB
+    if(file_size<2097152) {
 
       $.ajax({
         url: '../../upload/upload_profile.php',
@@ -641,6 +660,13 @@ $('#phone').keyup(function () {
                   }
                 },
               });
+  }else{
+        alert('File size is greater than 2MB');
+        $('#profile_pic').val('');
+        // $(invalidvalue).val('2');
+      }
+
+
     });
 </script>
 

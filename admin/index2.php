@@ -97,7 +97,7 @@ if(!isset($_SESSION['username'])){
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;">Total Travel Agent</span></p>
                                      <?php
                                                 require 'connect.php';
-                                                $stmt = $conn->prepare("SELECT count(travel_agent_id) as totaltravel_agent FROM travel_agent where user_type='4' and status='1' ");
+                                                $stmt = $conn->prepare("SELECT count(travel_agent_id) as totaltravel_agent FROM travel_agent where user_type='3' and status='1' ");
                                                 $stmt->execute();
                                                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -124,7 +124,7 @@ if(!isset($_SESSION['username'])){
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;"> Total Customer</span></p>
                                     <?php
                                                 require 'connect.php';
-                                                $stmt = $conn->prepare("SELECT count(cust_id) as totalcustomer FROM customer where user_type='4' and status='1' ");
+                                                $stmt = $conn->prepare("SELECT count(cust_id) as totalcustomer FROM customer where user_type='2' and status='1' ");
                                                 $stmt->execute();
                                                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
