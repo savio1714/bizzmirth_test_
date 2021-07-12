@@ -50,10 +50,11 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="active-bre"><a href="#">Travel Agent</a>
                         </li>
+                        <li class="page-back"><a href="../index2.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
                     </ul>
                 </div>
 
@@ -117,7 +118,7 @@ if(!isset($_SESSION['username'])){
                                                         <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '","pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '")\'><i class="material-icons dp48">verified_user</i></a>

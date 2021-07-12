@@ -455,6 +455,257 @@ $('#addFranchisee').click(function(e){
 
 
 
+//Add Customer
+
+$('#addCustomer').click(function(e){
+            e.preventDefault();
+            // alert("ok ok");
+            var travel_agent_id = $('#travel_agent_id').val();
+            var travel_agent_name = $('#travel_agent_name').val();
+            var customer_level = $('#customer_level').val();
+            var level = $('#level_cust').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'travel_agent_id='+ travel_agent_id+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&travel_agent_name='+travel_agent_name+'&customer_level='+customer_level+'&level='+level;
+
+          if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email==''){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1'){
+              alert("Email already exists");
+          }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+            alert('Please Select Gender');
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone==''){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1'){
+              alert("Phone number already exists");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'||  invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "add_customer_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+
+                      if(travel_agent_id==''){
+                        alert("Register Successfuly");
+                        location.href = "b2c.php";
+                        }
+                      else{
+                        alert("Register Successfuly");
+                        location.href = "travel_agent_customer.php";
+
+
+                         }
+                      }
+                        
+                  else{
+
+                  alert("Registeration Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+
+  //Edit Customer
+
+  $('#editCustomer').click(function(e){
+            e.preventDefault();
+            
+            var editfor = $('#editfor').val();
+            var travel_agent_id = $('#travel_agent_id').val();
+            var reference_no = $('#reference_no').val();
+            var testiod = $('#testiod').val();
+            var travel_agent_name = $('#travel_agent_name').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var phoneN =$('#phoneN').val();
+            var emailV =$('#emailV').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age;
+
+          if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email=='' ){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1' && emailV !=email){
+              alert("Email already exists ok");
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone=='' ){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter proper phone number");
+          }else if (testp == '1' && phoneN !=phone){
+              alert("Phone number already exists ok");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "edit_customer_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+
+                      if(travel_agent_id ==''){
+                        alert("Edited Successfuly");
+                        location.href = "b2c.php";
+                        }
+                      else{
+                        alert("Edited Successfuly");
+                        location.href = "travel_agent_customer.php";
+
+
+                         }
+                      
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+
 
 
 
@@ -555,4 +806,60 @@ const validateOnlyZero = (input) =>{
    }
 
 }
+
+
+$('#customer_level').on('change', function(){
+
+        var custID = $(this).val();
+        if(custID){
+            $.ajax({
+                type:'POST',
+                url:'../../registration/find_level.php',
+                data:'custID='+custID,
+                success:function(res){
+                    if (res != 0 ){
+                      $('#level').val('Level '+res);
+                      $('#level_cust').val(res);
+
+                    }else{
+                        $('#level').val('Already Cross His/Her Limit');
+                        $('#level_cust').val('');
+                        $('#registerCustomer').attr("disabled",true);
+                        getAllMessage('#regist',"* Cross His/Her Limit ");
+                    }
+                    
+                }
+            }); 
+        }else{
+            // $('#customer_level').html('<option value="">Select Customer</option>');
+            $('#level').val('');
+            $('#level_cust').val('');
+            $('#registerCustomer').attr("disabled",false);  
+        }
+        });
+
+
+  $('#travel_agent_id').on('change', function(){
+            var travel_agent_id = $(this).val();
+            var tagent_id='';
+            if(travel_agent_id == ''){
+                tagent_id='-1'
+            }else{
+                tagent_id=travel_agent_id;
+            }
+
+            if(tagent_id){
+                 $.ajax({
+                          type:'POST',
+                          url:'../agents/travel_agent_name.php',
+                          data:'travel_agent_id='+tagent_id,
+                          success:function(response){
+                             // $('#pin').html(response);
+                             $('#travel_agent_name').val(response); 
+                          }
+                      }); 
+            }else{
+                
+            }
+        });
 

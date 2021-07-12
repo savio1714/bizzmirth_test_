@@ -109,9 +109,12 @@ if($editfor == 'pending'){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li><li class="active-bre"><a href="franchisee.php">Franchisee </a>
                         </li>
                         <li class="active-bre"><a href="#"> Edit Franchisee </a>
+                        </li>
+                        <li class="page-back"><a href="franchisee.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
                     </ul>
                 </div>
@@ -128,7 +131,7 @@ if($editfor == 'pending'){
                                         <div class="row">
                                             
                                             <div class="input-field col-md-6 col-sm-12">
-                                                <input id="sales_manager_id" type="text" value="<?php echo 'sales_manager_'.$reference_no ;?>" readonly>
+                                                <input id="sales_manager_id" type="text" value="<?php echo $reference_no ;?>" readonly>
                                                 <label>Sales Manager Id</label>
 
                                             </div>
@@ -199,7 +202,7 @@ if($editfor == 'pending'){
                                                     <?php 
                                                     if($stmt->rowCount()>0){
                                                          foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                            echo '<option value="'.$row['country_code'].'">'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
+                                                            echo '<option value="'.$row['country_code'].'">+'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
                                                         } 
                                                     }else{ 
                                                         echo '<option value="">Country not available</option>'; 

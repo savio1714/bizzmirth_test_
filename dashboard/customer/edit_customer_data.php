@@ -1,17 +1,8 @@
 <?php
-require "../connect.php";
+require "../../connect.php";
 
-// $id= $_POST["testiod"];
-$editfor= $_POST["editfor"];
-// $franchisee_id=$_POST['franchisee_id'];
-if($editfor == 'pending'){
-	$identifier_id= $_POST["testiod"];
-	$identifier_name = 'id=';
-}else if($editfor == 'registered') {
-	$identifier_id= $_POST["testiod"];
-	$identifier_name = 'cust_id=';
-}
 
+$cust_id=$_POST['cust_id'];
 $firstname=$_POST['firstname'];
 $lastname=$_POST['lastname'];
 $email=$_POST['email'];
@@ -19,7 +10,7 @@ $gender=$_POST['gender'];
 $country_code=$_POST['country_code'];
 $phone=$_POST['phone'];
 // $age=$_POST['age'];
-$dob=$_POST['dob'];
+$dob=$_POST['bdate'];
 $profile_pic=$_POST['profile_pic'];
 $kyc=$_POST['kyc'];
 $pan_card=$_POST['pan_card'];
@@ -39,7 +30,7 @@ if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' |
 	
 
 
-$sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_code=:country_code,contact_no=:contact_no,email=:email,gender=:gender,date_of_birth=:date_of_birth,country=:country,state=:state,city=:city,pincode=:pincode,address=:address,profile_pic=:profile_pic,kyc=:kyc,pan_card=:pan_card,aadhar_card=:aadhar_card,voting_card=:voting_card ,bank_passbook=:bank_passbook WHERE $identifier_name:identifier_id";
+$sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,email=:email,country_code=:country_code,contact_no=:contact_no,date_of_birth=:date_of_birth,gender=:gender,country=:country,state=:state,city=:city,pincode=:pincode,address=:address,profile_pic=:profile_pic,kyc=:kyc,pan_card=:pan_card,aadhar_card=:aadhar_card,voting_card=:voting_card ,bank_passbook=:bank_passbook WHERE cust_id=:cust_id";
 	$stmt = $conn->prepare($sql1);
 	$result=  $stmt->execute(array(
 		':firstname' => $firstname,
@@ -60,7 +51,7 @@ $sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_cod
 		':aadhar_card' => $aadhar_card,
 		':voting_card' => $voting_card,
 		':bank_passbook' => $bank_passbook,
-		':identifier_id' => $identifier_id	
+		':cust_id' => $cust_id	
 	));
 
 	if ($result) {
@@ -70,7 +61,7 @@ $sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_cod
 		$result2=  $stmt2->execute(array(
 			':email' => $email,
 			':user_type_id' => $user_type_id,
-			':user_id' => $identifier_id		
+			':user_id' => $cust_id		
 		));
 
 		if($result2){

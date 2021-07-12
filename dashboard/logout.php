@@ -6,10 +6,12 @@ session_start();
 
 if(isset($_SESSION['username2'])){
     unset($_SESSION['username2']);
+    unset($_SESSION['user_type_id_value']);
+    unset($_SESSION['user_id']);
  //   setcookie('user2','');
 	// setcookie('pass','');
 
-    session_destroy();
+    // session_destroy();
   
 }
 if(isset($_COOKIE['user2'])){

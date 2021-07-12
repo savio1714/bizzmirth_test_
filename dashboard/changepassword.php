@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['username2'])){
+if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
     echo '<script>location.href = "../login.php";</script>';
 }
 
@@ -8,7 +8,7 @@ if(!isset($_SESSION['username2'])){
  require '../connect.php';
 
  $uid=$_SESSION["user_id"];
- $user_type_id= $_SESSION["user_type_id"];
+ $user_type_id= $_SESSION["user_type_id_value"];
 
 
     $stmt2 = $conn->prepare("SELECT password FROM login where user_id = '".$uid."' and  user_type_id='".$user_type_id."' ");

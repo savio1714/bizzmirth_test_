@@ -18,9 +18,9 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li><a href="../index2.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index2.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
                         </li>
-                        <li><a href="../travel_agent/travel_agent.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i> Travel Agent</a>
-                        </li>
                         <li><a href="../franchisee/franchisee.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='franchisee.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i> Franchisee</a>
+                        </li>
+                        <li><a href="../travel_agent/travel_agent.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i> Travel Agent</a>
                         </li>
                         
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Customer</a>
@@ -39,9 +39,9 @@
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Package</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='add_new_packages.php')? 'menu-active':''?>" href="../packages/add_new_packages.php">Add New Packages</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='add_new_packages.php')? 'menu-active':''?>" href="#">Add New Packages</a>
                                     </li>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='all_packages.php')? 'menu-active':''?>" href="../packages/all_packages.php">All Packages</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='all_packages.php')? 'menu-active':''?>" href="#">All Packages</a>
                                     </li>
                                     <!-- <li><a href="../customer/b2c_test.php">B2C test</a>
                                     </li> -->

@@ -54,4 +54,24 @@ color: #e74c3c;
 }
 .showDiv{
 	visibility: visible;
-} 
+}
+
+
+.pagination3 {   
+        display: inline-block;   
+    }   
+    .pagination3 a {   
+        font-weight:bold;   
+        font-size:14px;   
+        color: black;   
+        float: left;   
+        padding: 6px 12px;   
+        text-decoration: none;   
+        border:1px solid #b7b2b2;   
+    }   
+    .pagination3 a.active {   
+            background-color: #0594da;   
+    }   
+    .pagination3 a:hover:not(.active) {   
+        /*background-color: #ffcb08;   */
+    } 

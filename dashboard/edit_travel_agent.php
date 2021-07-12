@@ -7,8 +7,73 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
 
 $user_type =$_SESSION["user_type_id_value"];
 $user_id =$_SESSION["user_id"];
-$firstname =$_SESSION["username2"];
-$lastname =$_SESSION["lname"];
+$f_firstname =$_SESSION["username2"];
+$f_lastname =$_SESSION["lname"];
+
+$id = $_GET['vkvbvjfgfikix'];
+$country = $_GET['ncy'];
+$state = $_GET['mst'];
+$city = $_GET['hct'];
+
+
+require '../connect.php';
+
+
+    $stmt = $conn->prepare("SELECT *, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `travel_agent` where travel_agent_id ='".$id."'");
+    $stmt->execute();
+     // set the resulting array to associative
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($stmt->rowCount()>0){
+    foreach (($stmt->fetchAll()) as $key => $row) {
+        // $fid=$row['id'];
+        $firstname=$row['firstname'];
+        // $username=$row['username'];
+        $lastname=$row['lastname'];
+        $email=$row['email'];
+        $country_code=$row['country_code'];
+        $contact_no=$row['contact_no'];
+        $date_of_birth=$row['date_of_birth'];
+        $gender=$row['gender'];
+        $address=$row['address'];
+
+
+        // $id_proof=$row['id_proof'];
+        $profile_pic=$row['profile_pic'];
+        $kyc=$row['kyc'];
+        $pan_card=$row['pan_card'];
+        $aadhar_card=$row['aadhar_card'];
+        $voting_card=$row['voting_card'];
+        $bank_passbook=$row['bank_passbook'];
+
+        $city_name=$row['city_name'];
+        $statename=$row['statename'];
+        $countryname=$row['countryname'];
+        $pincode=$row['pincode'];
+
+
+
+ 
+    }
+
+    $stmt2 = $conn->prepare("select sortname from countries where country_code = '".$country_code."'");
+    $stmt2->execute();
+     // set the resulting array to associative
+    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+
+    if($stmt2->rowCount()>0){
+        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+            $sortname = $row2['sortname'];
+
+        }
+
+
+    }
+
+    }                                                      
+    else{
+                                                            
+    }
 
 
 
@@ -21,7 +86,7 @@ $lastname =$_SESSION["lname"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Add Customer | Bizzmirth Holidays</title>
+    <title>Edit Travel Agent | Bizzmirth Holidays</title>
     <!-- Favicon -->
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
@@ -48,6 +113,12 @@ $lastname =$_SESSION["lname"];
   left: 50%;
   top: 8%;
 }
+
+.imgsize{
+    width: 150px;
+    height: 150px;
+  /*  margin-bottom: 5%;*/
+}
     </style>
 </head>
 <body>
@@ -71,6 +142,8 @@ $lastname =$_SESSION["lname"];
 
              <div id="testpho"></div>
             <div id="testemails"></div>
+            <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" >
+            <input id="emailV" type="hidden" value="<?php echo $email;?>" >
             
 
             <div class="dashboard-content">
@@ -81,14 +154,14 @@ $lastname =$_SESSION["lname"];
                     <!-- Profile -->
                     <div class="col-lg-12 col-md-12 col-xs-12 padding-right-30">
                         <div class="dashboard-list-box">
-                            <h4 class="gray">Customer Details</h4>
+                            <h4 class="gray">Edit Travel Agent Details</h4>
                             <div class="dashboard-list-box-static">
                                 
                                 <!-- Avatar -->
                                 <div class="edit-profile-photo">
                                     
-                                    <img id="img" src="../images/user_icon.png" alt="">
-                                    <input type="hidden" name="profile_pic" id="profile_pic" disabled>
+                                    <img id="img" src="<?php echo '../uploading/'.$profile_pic;?>" alt="Profile Pic">
+                                    <input type="hidden" name="profile_pic" id="profile_pic" value="<?php echo $profile_pic;?>" disabled>
 
                                    <!--  <input type="file" id="file2" name="file2" /> -->
 
@@ -111,66 +184,30 @@ $lastname =$_SESSION["lname"];
 
                                 <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                        <label>Travel Agent ID</label>
-                                        <input id="ta_id" type="text" placeholder="Travel Agent ID" value="<?php echo $user_id?>" readonly>
+                                        <label>Franchisee ID</label>
+                                        <input id="f_id" type="text" placeholder="Franchisee ID" value="<?php echo $user_id?>" readonly>
                                         <!-- <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                     </div>
                                     
 
                                    <div class="col-lg-6 col-md-6">
-                                        <label>Travel Agent Name</label>
-                                        <input id="ta_name"  type="text" placeholder="Travel Agent Name" value="<?php echo $firstname . ' '. $lastname;?>" readonly>
-                                        <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
-                                   </div>
-                                </div>
-
-                                <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                        <label class="margin-top-0">Customer Ref</label>
-
-                                        <?php
-                                            require '../connect.php';
-                                            $stmt = $conn->prepare("SELECT cust_id FROM customer WHERE reference_no='".$user_id."'  AND status = 1 ORDER BY cust_id ASC");
-                                            $stmt->execute();
-
-                                                                                               
-                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                            ?>
-                                    
-                                        <select id="customer_level" class="chosen-select-no-single" >
-                                             <option value="">Select Customer</option>
-                                            <?php 
-                                            if($stmt->rowCount()>0){
-                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                    echo '<option value="'.$row['cust_id'].'">'.$row['cust_id'].'</option>'; 
-                                                } 
-                                            }else{ 
-                                                echo '<option value="">Customer not available</option>'; 
-                                            } 
-                                            ?>
-                                        </select>
-                                        <!-- <div id="countryMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
-                                    </div>
-                                    
-
-                                   <div class="col-lg-6 col-md-6">
-                                        <label>Level</label>
-                                        <input id="level"  type="text" placeholder="Level"  readonly>
+                                        <label>Franchisee Name</label>
+                                        <input id="f_name"  type="text" placeholder="Franchisee Name" value="<?php echo $f_firstname . ' '. $f_lastname;?>" readonly>
                                         <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                    </div>
                                 </div>
 
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Customer First Name</label>
-                                            <input id="firstname" type="text" placeholder="Enter First Name">
+                                            <label>Travel Agent First Name</label>
+                                            <input id="firstname" type="text" placeholder="Enter First Name" value="<?php echo $firstname?>">
                                             <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
                                     
 
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Customer Last Name</label>
-                                            <input id="lastname"  type="text" placeholder="Enter Last Name">
+                                            <label>Travel Agent Last Name</label>
+                                            <input id="lastname"  type="text" placeholder="Enter Last Name" value="<?php echo $lastname?>">
                                             <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                        </div>
                                     </div>
@@ -191,7 +228,7 @@ $lastname =$_SESSION["lname"];
                                             $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                             ?>
                                             <select  id="countrycode">
-                                            <option value="">Select Country Code</option>
+                                            <option value="<?php echo $country_code;?>"><?php echo '+'.$country_code.' ('.$sortname.') (Already Selected)' ; ?></option>
                                             <?php 
                                             if($stmt->rowCount()>0){
                                                  foreach (($stmt->fetchAll()) as $key => $row) {  
@@ -204,7 +241,7 @@ $lastname =$_SESSION["lname"];
                                             </select>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                             <input id="phone" type="text" placeholder="Phone Number">
+                                             <input id="phone" type="text" placeholder="Phone Number" value="<?php echo $contact_no?>">
                                         </div>
                                     </div>
 
@@ -219,13 +256,13 @@ $lastname =$_SESSION["lname"];
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                         <label>Email Address</label>
-                                        <input id="emailvalue" type="text" placeholder="abc@xyz.com">
+                                        <input id="emailvalue" type="text" placeholder="abc@xyz.com" value="<?php echo $email;?>">
                                         <div id="emailMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                     </div>
 
                                     <div class="col-lg-6 col-md-6">
                                         <label>Date of Birth</label>
-                                        <input type="date" id="bdate" >
+                                        <input type="date" id="bdate" value="<?php echo $date_of_birth;?>">
                                         <div id="dobMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
                                     </div>
@@ -235,13 +272,13 @@ $lastname =$_SESSION["lname"];
                                         <div class="col-lg-6 col-md-6">
                                         <label>Gender</label>
 
-                                        <input id="check-a" type="radio" class="gender" name="gender" value="male">
+                                        <input id="check-a" type="radio" class="gender" name="gender" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?> />
                                         <label style="display: inline-block;" for="check-a" >Male</label>
 
-                                        <input id="check-b" type="radio" class="gender" name="gender" value="female">
+                                        <input id="check-b" type="radio" class="gender" name="gender" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?> />
                                         <label  style="display: inline-block;" for="check-b">Female</label>
 
-                                        <input id="check-c" type="radio" class="gender" name="gender" value="others">
+                                        <input id="check-c" type="radio" class="gender" name="gender" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?> />
                                         <label style="display: inline-block;" for="check-c">Others</label>
                                          <div id="genderMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                     
@@ -274,7 +311,7 @@ $lastname =$_SESSION["lname"];
                                             ?>
                                     
                                         <select id="country" class="chosen-select-no-single" >
-                                             <option value="">Select Country</option>
+                                             <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
                                             <?php 
                                             if($stmt->rowCount()>0){
                                                  foreach (($stmt->fetchAll()) as $key => $row) {  
@@ -292,7 +329,25 @@ $lastname =$_SESSION["lname"];
                                     <div class="col-lg-6 col-md-6">
                                         <label>State</label>
                                         <select id="mystate" class="chosen-select-no-single" >
-                                             <option value="">Select country first</option>
+                                             <?php
+                                                        require '../connect.php';
+                                                        $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
+                                                        $stmt->execute();
+
+                                                                                                           
+                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                        ?>
+                                                        
+                                                        <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
+                                                        <?php 
+                                                        if($stmt->rowCount()>0){
+                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                                echo '<option value="'.$row['id'].'">'.$row['state_name'].'</option>'; 
+                                                            } 
+                                                        }else{ 
+                                                            echo '<option value="">State not available</option>'; 
+                                                        } 
+                                                        ?>
                                         </select>
                                         <div id="stateMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                     </div>
@@ -305,14 +360,32 @@ $lastname =$_SESSION["lname"];
                                         <div class="col-lg-6 col-md-6">
                                             <label>City</label>
                                             <select id="city" class="chosen-select-no-single" >
-                                                <option value="">Select state first</option>  
+                                                <?php
+                                                        require '../connect.php';
+                                                        $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
+                                                        $stmt->execute();
+
+                                                                                                           
+                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                        ?>
+                                                        
+                                                        <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
+                                                        <?php 
+                                                        if($stmt->rowCount()>0){
+                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                                echo '<option value="'.$row['id'].'">'.$row['city_name'].'</option>'; 
+                                                            } 
+                                                        }else{ 
+                                                            echo '<option value="">City not available</option>'; 
+                                                        } 
+                                                        ?>
                                             </select>
                                             <div id="cityMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6">
                                             <label>Zip Code</label>
-                                            <input type="text" id="pin"  placeholder="Pincode" readonly>
+                                            <input type="text" id="pin"  placeholder="Pincode" value="<?php echo $pincode;?>" readonly>
                                         </div>
                                         
                                     </div>
@@ -321,7 +394,7 @@ $lastname =$_SESSION["lname"];
                                     
 
                                     <label>Full Address</label>
-                                    <textarea id="address" placeholder="Enter Address"></textarea>
+                                    <textarea id="address" placeholder="Enter Address" ><?php echo $address; ?></textarea>
                                     <div id="addressMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
 
 
@@ -331,9 +404,17 @@ $lastname =$_SESSION["lname"];
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                         
                                             <div class="edit-profile-photo">
-                                             <img id="img2" src="../images/id-proof-line.png" alt="">
+                                             <!-- <img id="img2" src="../images/id-proof-line.png" alt=""> -->
+
+                                             <?php
+                                                        if($kyc ==''){
+                                                            echo '<img src="../uploading/not_uploaded.png" alt="Kyc" class="imgsize" id="img2">';
+                                                        }else{
+                                                            echo '<img src="../uploading/'.$kyc.'" alt="KYC" class="imgsize" id="img2">';
+                                                        }
+                                                     ?>
                                         
-                                            <input type="hidden" name="kyc" id="kyc" disabled>
+                                            <input type="hidden" name="kyc" id="kyc" value="<?php echo $kyc;?>" disabled>
 
 
                                             <div class="change-photo-btn">
@@ -353,9 +434,16 @@ $lastname =$_SESSION["lname"];
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                             
                                             <div class="edit-profile-photo">
-                                             <img id="img3" src="../images/id-proof-line.png" alt="">
+                                             <!-- <img id="img3" src="../images/id-proof-line.png" alt=""> -->
+                                              <?php
+                                                        if($pan_card ==''){
+                                                            echo '<img src="../uploading/not_uploaded.png" alt="Pan Card" class="imgsize" id="img3">';
+                                                        }else{
+                                                            echo '<img src="../uploading/'.$pan_card.'" alt="Pan Card" class="imgsize"  id="img3">';
+                                                        }
+                                                     ?>
                                         
-                                            <input type="hidden" name="pan_card" id="pan_card" disabled>
+                                            <input type="hidden" name="pan_card" id="pan_card" value="<?php echo $pan_card;?>" disabled>
 
 
                                             <div class="change-photo-btn">
@@ -375,9 +463,16 @@ $lastname =$_SESSION["lname"];
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                             
                                             <div class="edit-profile-photo">
-                                             <img id="img4" src="../images/id-proof-line.png" alt="">
+                                             <!-- <img id="img4" src="../images/id-proof-line.png" alt=""> -->
+                                             <?php
+                                                        if($aadhar_card ==''){
+                                                            echo '<img src="../uploading/not_uploaded.png" alt="Aadhar Card" class="imgsize" id="img4">';
+                                                        }else{
+                                                            echo '<img src="../uploading/'.$aadhar_card.'" alt="Aadhar Card" class="imgsize" id="img4">';
+                                                        }
+                                                     ?>
                                         
-                                            <input type="hidden" name="aadhar_card" id="aadhar_card" disabled>
+                                            <input type="hidden" name="aadhar_card" id="aadhar_card" value="<?php echo $aadhar_card;?>" disabled>
 
 
                                             <div class="change-photo-btn">
@@ -403,9 +498,16 @@ $lastname =$_SESSION["lname"];
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                         
                                         <div class="edit-profile-photo">
-                                         <img id="img5" src="../images/id-proof-line.png" alt="">
+                                         <!-- <img id="img5" src="../images/id-proof-line.png" alt=""> -->
+                                         <?php
+                                                        if($voting_card ==''){
+                                                            echo '<img src="../uploading/not_uploaded.png" alt="Voting Card" class="imgsize" id="img5">';
+                                                        }else{
+                                                            echo '<img src="../uploading/'.$voting_card.'" alt="Voting Card" class="imgsize" id="img5">';
+                                                        }
+                                                     ?>
                                     
-                                        <input type="hidden" name="voting_card" id="voting_card" disabled>
+                                        <input type="hidden" name="voting_card" id="voting_card" value="<?php echo $voting_card;?>" disabled>
 
 
                                         <div class="change-photo-btn">
@@ -426,9 +528,16 @@ $lastname =$_SESSION["lname"];
                                         
                                         <div class="edit-profile-photo">
 
-                                         <img id="img6" src="../images/id-proof-line.png" alt="">
+                                         <!-- <img id="img6" src="../images/id-proof-line.png" alt=""> -->
+                                         <?php
+                                                        if($bank_passbook ==''){
+                                                            echo '<img src="../uploading/not_uploaded.png" alt="Bank Passbook" class="imgsize" id="img6">';
+                                                        }else{
+                                                            echo '<img src="../uploading/'.$bank_passbook.'" alt="Bank Passbook" class="imgsize" id="img6">';
+                                                        }
+                                                     ?>
                                     
-                                        <input type="hidden" name="passbook" id="passbook" disabled>
+                                        <input type="hidden" name="passbook" id="passbook" value="<?php echo $bank_passbook;?>" disabled>
 
 
                                         <div class="change-photo-btn">
@@ -446,14 +555,13 @@ $lastname =$_SESSION["lname"];
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-xs-6">
-                                        <input type="hidden" id="testValue" name="testValue" value="2">
+                                        <input type="hidden" id="testValue" name="testValue" value="3">
                                         <input type="hidden" id="invalidimage1" name="invalidimage1" >
                                             <input type="hidden" id="invalidimage2" name="invalidimage2" >
                                             <input type="hidden" id="invalidimage3" name="invalidimage3" >
                                             <input type="hidden" id="invalidimage4" name="invalidimage4" >
                                             <input type="hidden" id="invalidimage5" name="invalidimage5" >
                                             <input type="hidden" id="invalidimage6" name="invalidimage6" >
-                                            <input type="hidden" id="level_cust" name="level_cust" >
                                         
                                     </div>
 
@@ -467,7 +575,7 @@ $lastname =$_SESSION["lname"];
 
 
                                     <div class="dashboard-list-box-static" style="float: clear;">
-                            <button id="registerCustomer" class="button" >Register</button>
+                            <button id="edit_travel_agent" class="button" >Save Changes</button>
                             <div id="regist" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                         </div>
 
@@ -479,8 +587,8 @@ $lastname =$_SESSION["lname"];
                 </div>
             </div>
 
-            <input id="utss" type="hidden" value="<?php echo $user_type;?>"  disabled>
-            <input id="uiss" type="hidden" value="<?php echo $user_id?>" disabled >
+            <input id="ta_id" type="hidden" value="<?php echo $id ;?>"  disabled>
+
 
             </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2021 at 01:53 PM
+-- Generation Time: Jul 12, 2021 at 02:16 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -149,7 +149,7 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `sortname`, `country_name`, `country_code`, `status`) VALUES
-(1, 'IN', 'India', '+91', 1);
+(1, 'IN', 'India', '91', 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,7 @@ CREATE TABLE `customer` (
   `email` varchar(100) NOT NULL,
   `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
-  `date_of_birth` varchar(30) NOT NULL,
+  `date_of_birth` date NOT NULL,
   `age` varchar(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `country` varchar(255) NOT NULL,
@@ -174,23 +174,21 @@ CREATE TABLE `customer` (
   `pincode` varchar(8) NOT NULL,
   `address` text NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
-  `id_proof` varchar(255) NOT NULL,
+  `kyc` varchar(255) NOT NULL,
+  `pan_card` varchar(255) NOT NULL,
+  `aadhar_card` varchar(255) NOT NULL,
+  `voting_card` varchar(255) NOT NULL,
+  `bank_passbook` varchar(255) NOT NULL,
   `level` varchar(70) NOT NULL,
   `user_type` int(11) NOT NULL,
   `registrant` varchar(100) NOT NULL,
   `reference_no` varchar(255) NOT NULL,
-  `register_by` varchar(99) NOT NULL COMMENT '1. admin 2.Travel Agent',
+  `customer_reference_no` varchar(255) NOT NULL,
+  `register_by` varchar(99) NOT NULL COMMENT '1. admin 3.Travel Agent',
   `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted_date` varchar(99) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id`, `cust_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `id_proof`, `level`, `user_type`, `registrant`, `reference_no`, `register_by`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'savio', 'miranda', 'savio@gmail.com', ' 91', '5643765785', '1996-06-15', '25', 'male', '1', '6', '12', '403 201', 'dfffsdfsdf', 'upload/profile_pic/21062021131511kitten_ball_thread_white_background_95135_1366x768.jpg', 'id_proof/21062021131542kitten_fence_walk_fluffy_89369_1366x768.jpg', '', 2, '', '', '1', '2021-06-21 11:15:43', '', 1);
 
 -- --------------------------------------------------------
 
@@ -206,7 +204,7 @@ CREATE TABLE `franchisee` (
   `email` varchar(100) NOT NULL,
   `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
-  `date_of_birth` varchar(30) NOT NULL,
+  `date_of_birth` date NOT NULL,
   `age` varchar(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `country` varchar(255) NOT NULL,
@@ -229,15 +227,6 @@ CREATE TABLE `franchisee` (
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `franchisee`
---
-
-INSERT INTO `franchisee` (`id`, `franchisee_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, 'BH_F_2021_001', 'savio', 'miranda', 'savio@gmail.com', ' 91', '6542349834', '2000-06-01', '21', 'male', '1', '6', '14', '403 401', 'fatorad margao goa', 'profile_pic/26062021113741cat_black_drawing_night_apofiss_94590_1920x1080.jpg', '', '', '', '', '', 'stenly miranda', '1', '5', 4, '2021-06-26 10:57:51', '2021-06-26 16:27:51', 0),
-(2, 'BH_F_2021_002', 'upasana', 'pandit', 'upasana@gmail.com', ' 91', '6542349838', '1999-06-07', '22', 'male', '1', '6', '17', '403 409', 'fatorad margao goa', 'profile_pic/26062021125838kitten_ball_thread_white_background_95135_1366x768.jpg', 'kyc/28062021120333kitten_fence_walk_fluffy_89369_1366x768.jpg', '', '', '', '', 'tony miranda', '2', '5', 4, '2021-06-28 10:03:34', '', 1),
-(3, 'BH_F_2021_003', 'savio', 'sdsda', 'xyz@gmail.com', ' 91', '2345678909', '1999-06-22', '22', 'male', '1', '6', '13', '403 202', 'fatorad margao goa', 'profile_pic/26062021130020cat_black_drawing_night_apofiss_94590_1920x1080.jpg', '', '', '', '', '', 'stenly miranda', '1', '5', 4, '2021-06-26 11:00:29', '2021-06-26 16:30:29', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -259,12 +248,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', '1', '1', '2021-06-25 10:47:44', 1),
-(2, 'savio@gmail.com', '%t(Og*7Q', 'BH_F_2021_001', '4', '2021-06-26 09:37:46', 0),
-(3, 'savio@gmail.com', 'Gw%La0UQ', 'BH_TA_2021_001', '3', '2021-06-26 09:41:40', 0),
-(4, 'upasana@gmail.com', 'XKCT6%ZQ', 'BH_F_2021_002', '4', '2021-06-26 10:59:47', 1),
-(5, 'xyz@gmail.com', 'XGB(YOTq', 'BH_F_2021_003', '4', '2021-06-26 11:00:25', 0),
-(6, 'xyz@gmail.com', 'L!ZVHSti', 'BH_TA_2021_002', '3', '2021-06-28 09:59:28', 1);
+(1, 'admin', 'admin@32', '1', '1', '2021-07-09 09:58:27', 1),
+(2, 'stenly@gmail.com', 'stenly@234', 'BH_SM_2021_001', '5', '2021-07-09 10:01:11', 1),
+(3, 'tony@gmail.com', 'tony@233', 'BH_SM_2021_002', '5', '2021-07-09 10:01:11', 1);
 
 -- --------------------------------------------------------
 
@@ -299,7 +285,7 @@ CREATE TABLE `sales_manager` (
   `register_by` varchar(100) NOT NULL,
   `user_type` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `deleted_date` date NOT NULL,
+  `deleted_date` varchar(99) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -308,8 +294,8 @@ CREATE TABLE `sales_manager` (
 --
 
 INSERT INTO `sales_manager` (`id`, `sales_manager_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, '1', 'stenly', 'miranda', 'stenly@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/25062021071042kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-06-25 07:56:06', '0000-00-00', 1),
-(2, '2', 'tony', 'miranda', 'tony@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/25062021071042kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-06-25 07:56:10', '0000-00-00', 1);
+(1, 'BH_SM_2021_001', 'Stenly', 'miranda', 'stenly@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '15', '403 716', 'xyz 566jgvdsads', 'profile_pic/09072021123843kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-07-09 12:33:52', '', 1),
+(2, 'BH_SM_2021_002', 'tony', 'miranda', 'tony@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/10072021064242cat_black_drawing_night_apofiss_94590_1920x1080.jpg', '', '', '', '', '', '', '', '', 5, '2021-07-10 04:42:45', '', 1);
 
 -- --------------------------------------------------------
 
@@ -394,15 +380,6 @@ CREATE TABLE `travel_agent` (
   `deleted_date` varchar(99) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '	0-deleted 1-registered 2-pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `travel_agent`
---
-
-INSERT INTO `travel_agent` (`id`, `travel_agent_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, 'BH_TA_2021_001', 'saviook', 'dfdf', 'savio@gmail.com', ' 91', '6542349838', '1996-06-01', '25', 'male', '1', '6', '14', '403 401', 'fatorad margao goa', 'profile_pic/26062021114135kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', 'savio miranda', 'BH_F_2021_001', '4', 3, '2021-06-26 09:41:36', '2021-06-26 16:27:40', 0),
-(2, '', 'saviom', 'dfdf', 'savidfdfo@gmail.com', ' 91', '4543576437', '2000-06-03', '21', 'female', '1', '6', '3', '403 001', 'dfdfdfdfdsdf', 'profile_pic/26062021115232kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', 'savio miranda', 'BH_F_2021_001', '4', 3, '2021-06-26 09:52:47', '', 2),
-(3, 'BH_TA_2021_002', 'savio m', 'miranda', 'xyz@gmail.com', ' 91', '2345678909', '1998-06-02', '23', 'male', '1', '6', '11', '403 808', 'fatorad margao goa', 'profile_pic/29062021084615kitten_fence_walk_fluffy_89369_1366x768.jpg', 'kyc/28062021110122kitten_fence_walk_fluffy_89369_1366x768.jpg', 'pancard/28062021110127cat_black_drawing_night_apofiss_94590_1920x1080.jpg', '', '', '', 'fdfsfdf sdfdsfsdf', 'BH_F_2021_002', '4', 3, '2021-06-28 09:00:30', '', 1);
 
 -- --------------------------------------------------------
 
@@ -544,19 +521,19 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `franchisee`
 --
 ALTER TABLE `franchisee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sales_manager`
@@ -574,7 +551,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `travel_agent`
 --
 ALTER TABLE `travel_agent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users_details`

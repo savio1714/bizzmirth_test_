@@ -5,44 +5,41 @@ if(!isset($_SESSION['username'])){
     echo '<script>location.href = "../index.php";</script>';
 }
 
+
 $id = $_GET['vkvbvjfgfikix'];
-$user_id = $_GET['jdjdfdjs'];
-$user_type = $_GET['ghghhj'];
+// $user_id = $_GET['jdjdfdjs'];
+$reference_no = $_GET['nohbref'];
 $country = $_GET['ncy'];
 $state = $_GET['mst'];
 $city = $_GET['hct'];
+
+$editfor = $_GET['editfor'];
+
+if($editfor == 'pending'){
+    // $identifier_id= $_POST["vkvbvjfgfikix"];
+    $identifier_name = 'id=';
+}else if($editfor == 'registered') {
+    // $identifier_id= $_POST["vkvbvjfgfikix"];
+    $identifier_name = 'cust_id=';
+}
 
 
     require '../connect.php';
 
 
-$stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id."' and (id='".$id."' or user_type_id='".$user_type."') ");
-    $stmt2->execute();
-
-    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-
-    if($stmt2->rowCount()>0){
-    foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-        $username=$row2['username'];
-    }
-    }                                                      
-    else{
-                                                            
-    }
-
-
-
-
-
-    $stmt = $conn->prepare("SELECT *, (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `customer` where cust_id='".$id."'");
+    $stmt = $conn->prepare("SELECT *,(select CONCAT(firstname,' ',lastname) from travel_agent where travel_agent_id = '".$reference_no."') as fname, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `customer` where $identifier_name'".$id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
     if($stmt->rowCount()>0){
     foreach (($stmt->fetchAll()) as $key => $row) {
-        $cust_id=$row['cust_id'];
+        $fid=$row['id'];
 
+        $travel_agent_name=$row['fname'];
+        $reference_no=$row['reference_no'];
+        $customer_reference_no=$row['customer_reference_no'];
+        $level=$row['level'];
         $firstname=$row['firstname'];
         // $username=$row['username'];
         $lastname=$row['lastname'];
@@ -51,8 +48,13 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         $date_of_birth=$row['date_of_birth'];
         $gender=$row['gender'];
         $address=$row['address'];
-        $id_proof=$row['id_proof'];
+        // $id_proof=$row['id_proof'];
         $profile_pic=$row['profile_pic'];
+        $kyc=$row['kyc'];
+        $pan_card=$row['pan_card'];
+        $aadhar_card=$row['aadhar_card'];
+        $voting_card=$row['voting_card'];
+        $bank_passbook=$row['bank_passbook'];
 
         $city_name=$row['city_name'];
         $statename=$row['statename'];
@@ -89,18 +91,21 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mob.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/materialize.css" />
+    <link rel="stylesheet" href="../css/materialize2.css" />
+    <link rel="stylesheet" href="../css/styles2.css">
+        <link rel="stylesheet" type="text/css" href="../js/chosen.min.css">
 
 </head>
 
 <body>
-    <!--== MAIN CONTRAINER ==-->
-<?php include '../header2.php';?>
-
-    <!--== BODY CONTNAINER ==-->
-    <div id="testdiv"></div>
+    <div id="testpho"></div>
+    <div id="testemails"></div>
     <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" >
     <input id="emailV" type="hidden" value="<?php echo $email;?>" >
+
+
+    <!--== MAIN CONTRAINER ==-->
+<?php include '../header2.php';?>
 
     
         <?php include '../sidebar2.php';?>
@@ -109,7 +114,23 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                     <ul>
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> View Customer Details </a>
+                        <?php 
+
+                        if($reference_no ==''){
+                            echo '<li class="active-bre"><a href="b2c.php">B2C</a>
+                                </li>
+                                <li class="page-back"><a href="b2c.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
+                                ';
+                        }else{
+                            echo '
+                                <li class="active-bre"><a href="travel_agent_customer.php">Travel Agent Customer</a>
+                                </li>
+                                <li class="page-back"><a href="travel_agent_customer.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        </li>';
+                        }
+
+                        ?>
+                        <li class="active-bre"><a href="#"> Edit Customer </a>
                         </li>
                     </ul>
                 </div>
@@ -118,70 +139,135 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Edit Customer Details</h4>
+                                    <h4>Edit Customer</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
                                     <form>
-                                        <div class="row">
+
+                                        <?php 
+
+                                        if($reference_no ==''){
+                                            echo'<div class="row">
                                             
-                                            <div class="input-field col s12">
-                                                <input id="name" type="text" value="<?php echo 'cust'.$user_id;?>" readonly>
-                                                <label for="first_name">Customer Id</label>
-
-                                            </div>
-                                            <!-- <div class="input-field col s6">
-
-                                                <input id="username" type="text" value="<?php echo $username ;?>" >
-                                                <label for="username">Username</label>
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="travel_agent_id" type="hidden" placeholder="None"  readonly>
                                                 
 
-                                            </div> -->
+                                            </div>
+
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                
+                                                <input type="hidden" id="travel_agent_name" placeholder="None"  readonly>
+                                                
+                                            </div>                                          
                                         
-                                        </div>
+                                        </div>';
+
+                                        }else{
+
+                                            echo'<div class="row">
+                                            
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="travel_agent_id" type="text" value="'.$reference_no.'" readonly>
+                                                <label>Travel Agent Id</label>
+
+                                            </div>
+
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <label>Travel Agent Name</label>
+                                                <input type="text" id="travel_agent_name" value="'.$travel_agent_name.'" readonly>
+                                                
+                                            </div>                                          
+                                        
+                                        </div>';
+
+
+                                        if($customer_reference_no ==''){
+
+                                            echo '<div class="row">
+                                            
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="customer_reference_no" type="hidden" value="" placeholder="No Customer Ref" readonly>
+                                                
+
+                                            </div>
+
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                
+                                                <input type="hidden" id="level" value="" placeholder="None" readonly>
+                                                
+                                            </div>                                          
+                                        
+                                        </div>';
+
+                                        }else{
+                                            echo '<div class="row">
+                                            
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="customer_reference_no" type="text" value="'. $customer_reference_no.'" readonly>
+                                                <label>Customer Ref</label>
+
+                                            </div>
+
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <label>Level</label>
+                                                <input type="text" id="level" value="Level '.$level.'" readonly>
+                                                
+                                            </div>                                          
+                                        
+                                        </div>';
+
+                                        }
+                                        
+
+                                        }
+
+                                        ?>
                                        
                                        
                                         <div class="row">
                                             
-                                            <div class="input-field col s6">
-                                                <input id="firstname" type="text" value="<?php echo $firstname;?>" >
-                                                <label for="firstname">First Name</label>
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="firstname" type="text" value="<?php echo $firstname ;?>" >
+                                                <label for="firstname">Customer First Name</label>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input id="lastname" type="text" value="<?php echo $lastname;?>" >
-                                                <label for="lastname">Last Name</label>
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="lastname" type="text" value="<?php echo $lastname ;?>" >
+                                                <label for="lastname">customer Last Name</label>
                                             </div>
                                         </div>
                                         <div class="row">
 
-                                            <div class="input-field col s6">
-                                                <input id="email" type="email" value="<?php echo $email;?>" >
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <input id="email" type="email" value="<?php echo $email;?>">
                                                 <label for="email">Email</label>
                                             </div>
 
-                                            <div class="input-field col s6">
-                                                <label for="date-picker" style="margin-top: -25px;    font-size: 0.8rem;">Date of Birth</label>
-                                            <input type="date" id="dob" class="datepicker" value="<?php echo $date_of_birth;?>">
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <label for="date-picker" style="margin-top: -25px;font-size: 0.8rem;">Date of Birth</label>
+                                            <input type="date" id="dob" class="datepicker" value="<?php echo $date_of_birth ;?>">
                                             </div>
 
                                         </div>
 
                                         <div class="row">
 
-                                            <div class="input-field col s6">
-                                                <label style="margin-top: -25px;    font-size: 0.8rem;">Gender</label>
-                                            <input class="with-gap gender " name="gender" type="radio" id="test3" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?> />
+                                            <div class="input-field col-md-6 col-sm-12">
+                                                <label style="margin-top: -25px;font-size: 0.8rem;">Gender</label>
+                                            <input class="with-gap gender " name="gender" type="radio" id="test3" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?>/>
                                             <label for="test3">Male</label>
-                                            <input class="with-gap gender" name="gender" type="radio" id="test4" value="female" <?php if ($gender == 'female'){echo 'checked ';}?>/>
+                                            <input class="with-gap gender" name="gender" type="radio" id="test4" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?>/>
                                             <label for="test4">Female</label>
-                                            <input class="with-gap gender" name="gender" type="radio" id="test5" value="others" <?php if ($gender == 'others'){echo 'checked ';}?>/>
+                                            <input class="with-gap gender" name="gender" type="radio" id="test5" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?>/>
                                             <label for="test5">Others</label>
                                                 
                                                 
                                                 <!-- <label for="phone">Gender</label>  -->
                                             </div>
 
-                                            <div class="input-field col s6">
+                                            <div class="input-field col-md-6 col-sm-12 con">
+                                                <label for="phone" style="margin-top: -5%;font-size: 0.8rem;">Mobile</label>
 
                                                 <div class="form-group col s4">
                                                 <!-- <label style="margin-top: -17%;font-size: 0.8rem;">Country Code</label> -->
@@ -193,11 +279,11 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                                                                    
                                                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                                 ?>
-                                                <select id="country_cd" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 10%;padding-top: 10%;padding-left: 1%;">
+                                                <select id="country_cd" class="selectdesign2">
                                                     <?php 
                                                     if($stmt->rowCount()>0){
                                                          foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                            echo '<option value="'.$row['country_code'].'">'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
+                                                            echo '<option value="'.$row['country_code'].'">+'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
                                                         } 
                                                     }else{ 
                                                         echo '<option value="">Country not available</option>'; 
@@ -211,8 +297,8 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                             
                                                 </div>
                                                 <div class="form-group col s8">
-                                                    <input id="phone" type="text" value="<?php echo $contact_no;?>" >
-                                                    <label for="phone">Mobile</label>
+                                                    <input id="phone" type="text" value="<?php echo $contact_no ;?>" >
+                                                    
                                                 </div>
                                                 
 
@@ -226,10 +312,10 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
 
                                         <div class="row">
                                             
-                                             <div class="form-group col-xs-6">
+                                             <div class="form-group col-md-6 col-sm-12">
                                                 <label>Country</label>
-                                                
-                                            <?php
+
+                                                <?php
                                             require '../connect.php';
                                             $stmt = $conn->prepare("SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC");
                                             $stmt->execute();
@@ -237,7 +323,7 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                                                                
                                             $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                             ?>
-                                            <select id="country" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
+                                            <select id="country" class="selectdesign">
                                             <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
                                             <?php 
                                             if($stmt->rowCount()>0){
@@ -248,6 +334,9 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                 echo '<option value="">Country not available</option>'; 
                                             } 
                                             ?>
+
+                                                
+                                            
                                             </select>
 
 
@@ -257,10 +346,9 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                         
 
 
-                                            <div class="form-group col-xs-6">
+                                            <div class="form-group col-md-6 col-sm-12">
                                                 <label>State</label>
-                                                <select id="mystate" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;height: 5%;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
-
+                                                <select id="mystate" class="selectdesign">
                                                     <?php
                                                         require '../connect.php';
                                                         $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
@@ -295,10 +383,9 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                        
 
                                     <div class="row">
-                                    <div class="form-group col-xs-6">
-                                        <label>City:</label><br>
-                                        <select id="city" style=" width: 100%;border-left: 0px;border-top: 0px;border-right: 0px;padding-bottom: 3%;padding-top: 2%;padding-left: 1%;">
-
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label>City</label><br>
+                                        <select id="city" class="selectdesign">
                                             <?php
                                                         require '../connect.php';
                                                         $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
@@ -318,15 +405,15 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                                             echo '<option value="">City not available</option>'; 
                                                         } 
                                                         ?>
-
+                                        <!-- <option value="">--Select state first--</option> -->
                                             
                                         </select>
                                         <!-- <div id="cityError" class=" errorMessage2"></div>                  -->
                                     </div>
 
-                                     <div class="form-group col-xs-6">
-                                        <label>Pincode:</label>
-                                        <input type="text" class="form-control" id="pin" placeholder="Pincode" value="<?php echo $pincode; ?>" readonly>
+                                     <div class="form-group col-md-6 col-sm-12">
+                                        <label>Pincode</label>
+                                        <input type="text" class="form-control" id="pin" placeholder="Pincode" value="<?php echo $pincode ;?>" readonly>
                                         
                                     </div>
 
@@ -348,9 +435,10 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
 
                                          <div class="row">
                                             
-                                            <div class="input-field col s12">
-                                                <input id="address" type="text" value="<?php echo $address;?>" >
-                                                <!-- <textarea id="address" style="margin-top: 1.5%;" ><?php echo $address;?></textarea> -->
+                                            <div class="input-field col-md-12 col-sm-12">
+                                                
+                                                <!-- <textarea id="address" style="margin-top: 1.5%;" ></textarea> -->
+                                                <input id="address" type="text" value="<?php echo $address ;?>" >
                                             
                                                 <label for="address">Address</label>
                                             </div>
@@ -358,38 +446,53 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                         
                                         <div class="row">
                                         
-                                            <div class="input-field col s6 col-sm-12">
-                                              <label style="margin-top: -25px;font-size: 0.8rem;">Profile</label>
+                                            <div class="input-field col-md-6 col-sm-12">
+                                              <label style="margin-top: -34px;font-size: 0.8rem;">Profile</label>
                                                     <div class="file-field input-field">
                                                         <div class="btn">
                                                             <span>Upload</span>
-                                                            <input type="file" id="file2" name="file2">
+                                                            <input type="file" id="file" name="file">
                                                         </div>
                                                         <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
                                                              <input type="hidden" name="profile_pic" id="profile_pic" value="<?php echo $profile_pic;?>" disabled>
                                                         </div>
                                                     </div>
-                                                    <div >
-                                                    <?php echo '<img src="../../'.$profile_pic.'" alt="profile pic" style="width: 120px;height: 120px" id="img2">';?>
+                                                    <div>
+                                                    <!-- <img alt="Profile_pic" class="imgsize" id="img"> -->
+
+                                                    <?php
+                                                        if($profile_pic ==''){
+                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Profile pic" class="imgsize" id="img">';
+                                                        }else{
+                                                            echo '<img src="../../uploading/'.$profile_pic.'" alt="Profile pic" class="imgsize" id="img">';
+                                                        }
+                                                     ?>
                                                     </div>
                                                 
                                             </div>
-                                             <div class="input-field col s6 col-sm-12">
-                                              <label style="margin-top: -25px;font-size: 0.8rem;">PAN / Aadhar Card</label>
+                                             <div class="input-field col-md-6 col-sm-12">
+                                              <label style="margin-top: -34px;font-size: 0.8rem;">KYC</label>
                                                     <div class="file-field input-field">
                                                         <div class="btn">
                                                             <span>Upload</span>
-                                                            <input type="file"id="file" name="file">
+                                                            <input type="file"id="file2" name="file2">
                                                         </div>
                                                          <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
-                                                             <input type="hidden" name="id_proof" id="id_proof" value="<?php echo $id_proof; ?>" disabled>
+                                                             <input type="hidden" name="kyc" id="kyc" value="<?php echo $kyc;?>" disabled>
                                                         </div>
                                                     
                                                     </div>
                                                     <div >
-                                                    <?php echo '<img src="../../upload/'.$id_proof.'" alt="id proof" style="width: 120px;height: 120px" id="img">';?>
+                                                   <!-- <img alt="KYC" class="imgsize" id="img2"> -->
+                                                   <?php
+                                                        if($kyc ==''){
+                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Kyc" class="imgsize" id="img2">';
+                                                        }else{
+                                                            echo '<img src="../../uploading/'.$kyc.'" alt="KYC" class="imgsize" id="img2">';
+                                                        }
+                                                     ?>
                                                     </div>
                                                 
                                             </div>
@@ -399,13 +502,136 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
                                    
                                         </div>
 
+                                        <div class="row">
+                                        
+                                            <div class="input-field col-md-6 col-sm-12">
+                                              <label style="margin-top: -34px;font-size: 0.8rem;">PAN Card</label>
+                                                    <div class="file-field input-field">
+                                                        <div class="btn">
+                                                            <span>Upload</span>
+                                                            <input type="file" id="file3" name="file3">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text"  >
+                                                             <input type="hidden" name="pan_card" id="pan_card" value="<?php echo $pan_card;?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                    <!-- <img alt="Pan Card" class="imgsize" id="img3"> -->
+                                                    <?php
+                                                        if($pan_card ==''){
+                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Pan Card" class="imgsize" id="img3">';
+                                                        }else{
+                                                            echo '<img src="../../uploading/'.$pan_card.'" alt="Pan Card" class="imgsize" id="img3">';
+                                                        }
+                                                     ?>
+                                                    </div>
+                                                
+                                            </div>
+                                             <div class="input-field col-md-6 col-sm-12">
+                                              <label style="margin-top: -34px;font-size: 0.8rem;">Aadhar Card</label>
+                                                    <div class="file-field input-field">
+                                                        <div class="btn">
+                                                            <span>Upload</span>
+                                                            <input type="file"id="file4" name="file4"  >
+                                                        </div>
+                                                         <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text"  >
+                                                             <input type="hidden" name="aadhar_card" id="aadhar_card" value="<?php echo $aadhar_card;?>"  disabled>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    <div >
+                                                   <!-- <img alt="Aadhar Card" class="imgsize" id="img4"> -->
+                                                   <?php
+                                                        if($aadhar_card ==''){
+                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Aadhar Card" class="imgsize" id="img4">';
+                                                        }else{
+                                                            echo '<img src="../../uploading/'.$aadhar_card.'" alt="Aadhar Card" class="imgsize" id="img4">';
+                                                        }
+                                                     ?>
+                                                    </div>
+                                                
+                                            </div>
+                                          <!--   <div class="input-field col s6" >
+
+                                            </div> -->
+                                   
+                                        </div>
+                                        <div class="row">
+                                        
+                                            <div class="input-field col-md-6 col-sm-12">
+                                              <label style="margin-top: -34px;font-size: 0.8rem;">Voting Card</label>
+                                                    <div class="file-field input-field">
+                                                        <div class="btn">
+                                                            <span>Upload</span>
+                                                            <input type="file" id="file5" name="file5">
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text"  >
+                                                             <input type="hidden" name="voting_card" id="voting_card" value="<?php echo $voting_card;?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div >
+                                                    <!-- <img alt="Voting Card" class="imgsize" id="img5"> -->
+                                                    <?php
+                                                        if($voting_card ==''){
+                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Voting Card" class="imgsize" id="img5">';
+                                                        }else{
+                                                            echo '<img src="../../uploading/'.$voting_card.'" alt="Voting Card" class="imgsize" id="img5">';
+                                                        }
+                                                     ?>
+                                                    </div>
+                                                
+                                            </div>
+                                             <div class="input-field col-md-6 col-sm-12">
+                                              <label style="margin-top: -34px;font-size: 0.8rem;">Bank Passbook</label>
+                                                    <div class="file-field input-field">
+                                                        <div class="btn">
+                                                            <span>Upload</span>
+                                                            <input type="file"id="file6" name="file6">
+                                                        </div>
+                                                         <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text"  >
+                                                             <input type="hidden" name="passbook" id="passbook" value="<?php echo $bank_passbook;?>" disabled>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    <div>
+                                                   <!-- <img alt="Bank Passbook" class="imgsize" id="img6"> -->
+                                                   <?php
+                                                        if($bank_passbook ==''){
+                                                            echo '<img src="../../uploading/not_uploaded.png" alt="Bank Passbook" class="imgsize" id="img6">';
+                                                        }else{
+                                                            echo '<img src="../../uploading/'.$bank_passbook.'" alt="Bank Passbook" class="imgsize" id="img6">';
+                                                        }
+                                                     ?>
+                                                    </div>
+                                                
+                                            </div>
+
+                                            <input type="hidden" id="testValue" name="testValue" value="2">
+                                            <input type="hidden" id="editfor" name="editfor" value="<?php echo $editfor;?>">
+                                            <input type="hidden" id="testiod" name="testiod" value="<?php echo $id;?>">
+                                            <input type="hidden" id="invalidimage1" name="invalidimage1" >
+                                            <input type="hidden" id="invalidimage2" name="invalidimage2" >
+                                            <input type="hidden" id="invalidimage3" name="invalidimage3" >
+                                            <input type="hidden" id="invalidimage4" name="invalidimage4" >
+                                            <input type="hidden" id="invalidimage5" name="invalidimage5" >
+                                            <input type="hidden" id="invalidimage6" name="invalidimage6" >
+                                          <!--   <div class="input-field col s6" >
+
+                                            </div> -->
+                                   
+                                        </div>
+
                                         
                                         <div class="row">
                                             <div class="input-field col s12" style="margin-top: 20px;">
-                                                <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a>
+                                               <!--  <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a> -->
 
-                                                 <a href="#" class="waves-effect waves-light btn-large" <?php echo 'onclick=\'editfunc("' .$id. '","' .$user_id. '","' .$user_type. '")\'';?>>Edit</a>
-                                                <!-- <input type="submit" class="waves-effect waves-light btn-large" value="Back"> -->
+                                                 <a href="#" class="waves-effect waves-light btn-large" id="editCustomer">Edit</a>
+                                                
                                             </div>
                                            
                                         </div>
@@ -419,173 +645,17 @@ $stmt2 = $conn->prepare("SELECT username FROM login where user_id = '".$user_id.
         </div>
     </div>
 
-    <!--== BOTTOM FLOAT ICON ==-->
-  <!--   <section>
-        <div class="fixed-action-btn vertical">
-            <a class="btn-floating btn-large red pulse">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a>
-                </li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
-                </li>
-                <li><a class="btn-floating green"><i class="material-icons">publish</i></a>
-                </li>
-                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
-                </li>
-            </ul>
-        </div>
-    </section> -->
-
     <!--======== SCRIPT FILES =========-->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/materialize.min.js"></script>
     <script src="../js/custom.js"></script>
-    <script type="text/javascript" >
-    function editfunc(id,uid,utype)
-      {
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="../js/chosen.jquery.js"></script>
+<!--     <script src="../js/chosen.min.js"></script> -->
+<script type="text/javascript" src="../assets/js/submitdata.js"></script>
 
 
-      // var username = $('#username').val().trim();
-      var firstname = $('#firstname').val().trim();
-      var lastname = $('#lastname').val().trim();
-      var country_code = $('#country_cd').val();
-      var phone = $('#phone').val().trim();
-      var email = $('#email').val().trim();
-      var gender = $('.gender:checked').val();
-      var dob = $('#dob').val();
-      var address = $('#address').val().trim();
-      var id_proof = $('#id_proof').val();
-      var profile_pic = $('#profile_pic').val();
-
-      var country = $('#country').val();
-      var state = $('#mystate').val();
-      var city = $('#city').val();
-      var pin = $('#pin').val();
-
-      var characterLetters = /^[A-Za-z\s]+$/;
-      var phoneReg =/^[0-9]{10}$/;
-      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-      var specialChar = /[!@#$%^&*]/g;
-
- // alert();
-
- var testp= $('#testphone').val();
-  var testE= $('#testemail').val();
- 
- var phoneN =$('#phoneN').val();
-  var emailV =$('#emailV').val();
- // alert($('#test2').val());
-      var dataString = 'id='+ id+'&user_id='+uid+'&user_type_id='+utype+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&id_proof='+id_proof+'&profile_pic='+profile_pic+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin;
-// phonetest(phone_noValue,countrycode);
-    if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
-        alert("Enter Proper First Name");
-    }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
-        alert("Enter Proper Last Name");
-    }else if (!phoneReg.test(phone)){
-        alert("Enter Proper Phone Number");
-    }else if (testp == '1' && phoneN !=phone){
-        alert("Phone number already exists");
-    }else if (!emailReg.test(email)){
-        alert("Enter Proper Email");
-    }else if (testE == '1' && emailV !=email){
-        alert("Email already exists");
-    }else if (country ===''){
-        alert("Select Country");
-    }else if (state ===''){
-        alert("Select State");
-    }else if (city ===''){
-        alert("Select City");
-    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
-        alert("Enter Proper Address");
-    }else if (id_proof ===''){
-        alert("Upload Id Proof");
-    }else if (profile_pic ===''){
-        alert("Upload Profile Picture");
-    }else{
-        $.ajax({
-          type: "POST",
-          url: "edit_customer_data.php",
-          data: dataString,
-          cache: false,
-            success:function(data){
-              if(data == 1){
-                  alert("Update Successfuly");
-               window.location.reload();
-            }
-            else{
-
-            alert("Failed to confirm");
-          }
-        }
-        });
- 
-    }
-
-
-
-  
-      
-      
-      };
-
-
-
-$('#email').keyup(function () { 
-    var email = $('#email').val().trim();
-     emailtest(email);
-        
-    });
-
-$('#phone').keyup(function () { 
-    var country_code = $('#country_cd').val();
-    var phone = $('#phone').val().trim();
-     phonetest(phone,country_code);
-        
-    });
-
-
- var phonetest = (phone_noValue,code) =>{
-      $.ajax({
-
-        type:'POST',
-         url:'../../registration/phonetest.php',
-        data:'phone='+phone_noValue+'&countrycode='+code,
-          success:function(response){
-            if(response == 1){
-              $('#testpho').html('<input type="hidden"  id="testphone" value="1" >');
-            }else{
-               $('#testpho').html('<input  type="hidden" id="testphone" value="0" >');
-             // return false;
-            }
-          
-          }
-        }); 
-    }
-
-
-    var emailtest = (emailtest) =>{
-      $.ajax({
-
-        type:'POST',
-         url:'../../registration/emailtest.php',
-        data:'email='+emailtest,
-          success:function(response){
-            if(response == 1){
-              $('#testdiv').html('<input type="hidden"  id="testemail" value="1" >');
-            }else{
-               $('#testdiv').html('<input  type="hidden" id="testemail" value="0" >');
-             // return false;
-            }
-          
-          }
-        }); 
-    }
-
-
-    </script>
     <!-- <script src="../../assets/js/upload_file.js"></script> -->
 
 </body>
@@ -595,110 +665,89 @@ $('#phone').keyup(function () {
 <script type="text/javascript">
     $('#file').change(function(){
 
-      var fd = new FormData();
-      var files = $('#file')[0].files[0];
-      fd.append('file',files);
+        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic','#invalidimage1');
+    });
 
-      //getting filesize of that image 
-    var file_size = $('#file')[0].files[0].size;
-    
+    $('#file2').change(function(){
+
+        uploadfun('#file2','../../uploading/upload.php','#img2','#kyc','Please Upload Proper KYC','.preview2','kyc','#invalidimage2');
+    });
+
+    $('#file3').change(function(){
+
+        uploadfun('#file3','../../uploading/upload.php','#img3','#pan_card','Please Upload PAN Card','.preview3','pancard','#invalidimage3');
+    });
+    $('#file4').change(function(){
+
+        uploadfun('#file4','../../uploading/upload.php','#img4','#aadhar_card','Please Upload Aadhar Card','.preview4','aadhar','#invalidimage4');
+    });
+
+    $('#file5').change(function(){
+
+        uploadfun('#file5','../../uploading/upload.php','#img5','#voting_card','Please Upload Voting Card','.preview5','voting','#invalidimage5');
+    });
+
+    $('#file6').change(function(){
+
+        uploadfun('#file6','../../uploading/upload.php','#img6','#passbook','Please Upload Bank Passbook','.preview6','passbook','#invalidimage6');
+    });
+
+//upload function
+
+   function uploadfun(typeid,urlpart,imgid,valid,messages,previewclass,foldername,invalidvalue){
+
+    var fd = new FormData();
+      var files = $(typeid)[0].files[0];
+      fd.append('file',files);
+      fd.append('getname',foldername);
+
+//getting filesize of that image 
+    var file_size = $(typeid)[0].files[0].size;
+
 //checking if the filesize is greater then 2MB
     if(file_size<2097152) {
 
       $.ajax({
-        url: '../../upload/upload.php',
+        url: urlpart,
         type: 'post',
         data: fd,
         contentType: false,
         processData: false,
         success: function(response){
           if(response != 0){
-            $("#img").attr("src","../../upload/"+response); 
-            $('#id_proof').val(response);
-                    // $(".preview img").show(); // Display image element
+            $(imgid).attr("src","../../uploading/"+response); 
+            $(valid).val(response);
+                    $(previewclass+' img').show(); // Display image element
+                    $(invalidvalue).val('');
                   }else{
-                    $('#id_proof').val('');
-                    alert('Please Upload Proper Id Proof');
+                    $(valid).val('');
+                    $(invalidvalue).val('2');
+                    alert(messages);
                   }
                 },
               });
+
       }else{
-        $('#id_proof').val('');
         alert('File size is greater than 2MB');
-        
-        // $(invalidvalue).val('2');
+        $(invalidvalue).val('2');
       }
 
-    });
+   }
 
-   $('#file2').change(function(){
-
-      var fd = new FormData();
-      var files = $('#file2')[0].files[0];
-      fd.append('file',files);
-
-      //getting filesize of that image 
-    var file_size = $('#file2')[0].files[0].size;
-    
-//checking if the filesize is greater then 2MB
-    if(file_size<2097152) {
-
-      $.ajax({
-        url: '../../upload/upload_profile.php',
-        type: 'post',
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function(response){
-          if(response != 0){
-            $("#img2").attr("src","../../"+response); 
-            $('#profile_pic').val(response);
-                    // $("#preview img").show(); // Display image element
-                  }else{
-                    $('#profile_pic').val('');
-                    alert('Please Upload Proper Profile Image');
-                  }
-                },
-              });
-  }else{
-        alert('File size is greater than 2MB');
-        $('#profile_pic').val('');
-        // $(invalidvalue).val('2');
-      }
-
-
-    });
 </script>
 
 <script type="text/javascript">
     $('#country').on('change', function(){
-
-  // alert("ok");
         var countryID = $(this).val();
-        // alert(countryID);
-        // var state=$('#state').val();
-        // alert(state);
-
-        // alert(countryID);
         if(countryID){
             $.ajax({
                 type:'POST',
-                url:'countrydata.php',
+                url:'../address/countrydata.php',
                 data:'country_id='+countryID,
                 success:function(htmll){
-                    // console.log(htmll);
-
-                    // if(html != ''){
-                    //     $('#mystate').html(html);
-                    // $('#city').html('<option value="">Select state first</option>'); 
-
-                    // }
-                    // alert(getf.a[0]);
-
+                    
 
                     $('#mystate').html(htmll); 
-                    // alert(html);
-                    // console.log(html);
                       $('#city').html('<option value="">Select state first</option>'); 
 
                     
@@ -716,7 +765,7 @@ $('#phone').keyup(function () {
             if(stateID){
                 $.ajax({
                     type:'POST',
-                    url:'countrydata.php',
+                    url:'../address/countrydata.php',
                     data:'state_id='+stateID,
                     success:function(html){
                         $('#city').html(html);
@@ -733,7 +782,7 @@ $('#phone').keyup(function () {
             if(cityID){
                  $.ajax({
                           type:'POST',
-                          url:'pincode.php',
+                          url:'../address/pincode.php',
                           data:'city_id='+cityID,
                           success:function(response){
                              // $('#pin').html(response);

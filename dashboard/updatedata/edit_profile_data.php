@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "../../connect.php";
 
 $user_type= $_POST["user_type"];
@@ -28,6 +29,10 @@ if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' |
 		updateData('customer',$user_type,$user_id,'cust_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
 	}else if($user_type =='3'){
 		updateData('travel_agent',$user_type,$user_id,'travel_agent_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+	}else if($user_type =='4'){
+		updateData('franchisee',$user_type,$user_id,'franchisee_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+	}else if($user_type =='5'){
+		updateData('sales_manager',$user_type,$user_id,'sales_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
 	}else{
 		echo 0;
 	}
@@ -64,6 +69,10 @@ function updateData($tablename,$user_type,$user_id,$user_id_colunmName,$firstnam
 	));
 
 	if ($result) {
+
+	//updating username
+		$_SESSION["username2"] = $firstname ;
+		// echo $_SESSION["username2"];
 		
 		$sql = "UPDATE login SET username=:email WHERE user_id=:user_id and user_type_id=:user_type_id";
 		$stmt2 = $conn->prepare($sql);

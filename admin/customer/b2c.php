@@ -4,29 +4,12 @@ session_start();
 if(!isset($_SESSION['username'])){
     echo '<script>location.href = "../index.php";</script>';
 }
-
-
-require '../connect.php';
-$stmt = $conn->prepare("SELECT count(id) as pending_record FROM customer where status='2' ");
-$stmt->execute();
-
-                                                   
-$stmt->setFetchMode(PDO::FETCH_ASSOC);
-    if($stmt->rowCount()>0){
-    foreach (($stmt->fetchAll()) as $key => $row) {
-        $pending_record= $row['pending_record'];
-    }
-                                                          
-     }
-    else{
-        $pending_record=0;
-    }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
+
+<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-all.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:19 GMT -->
 <head>
     <title>Bizzmirth Holidays</title>
     <!--== META TAGS ==-->
@@ -57,84 +40,219 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
 <body>
     <!--== MAIN CONTRAINER ==-->
-<?php include '../header2.php';?>
-
-    <!--== BODY CONTNAINER ==-->
+<?php include '../sidebar2.php';?>
     
-        <?php include '../sidebar2.php';?>
-           
+    <!--== BODY CONTNAINER ==-->
+<!--       <div class="container-fluid sb2">
+        <div class="row"> -->
+      <?php include '../header2.php';?>
+
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> B2C</a>
+                        <li class="active-bre"><a href="#">B2C</a>
                         </li>
+
+                        <li class="page-back"><a href="../index2.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
                     </ul>
                 </div>
+
                 <div class="sb2-2-3">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 30% 0;">
-                            <div class="box-inn-sp" >
-                                
-                                <div class="tab-inn" >
-                                    <ul class="collapsible" data-collapsible="accordion">
-                                        <li>
-                                            <div class="collapsible-header coll-head"><i class="material-icons dp48">view_list</i>Pending Customer <span class="badge badge-danger" style="color:white;background: #F44336; "><?php echo $pending_record ;?></span></div>
-                                            <div class="collapsible-body coll-body"><span>
-                                                <a href="../customer/pending_customer.php" class="waves-effect waves-light btn-large">Preview</a>
-                                            </span>
-                                            </div>
+                        <div class="col-md-12">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Pending List</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
+                                    <ul id="dr-users" class="dropdown-content">
+                                        <li><a href="add_customer.php?vkvbvjfgfikix=">Add Customer</a>
                                         </li>
-                                        <li>
-                                            <div class="collapsible-header coll-head"><i class="material-icons dp48">view_list</i>Registered Customer</div>
-                                            <div class="collapsible-body coll-body"><span>
-                                                 <a href="../customer/registered_customer.php" class="waves-effect waves-light btn-large">Preview</a>
-                                            </span>
-                                            </div>
+                                        <li><a href="#">Download List</a>
+                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Pending">Download List</a> -->
                                         </li>
-                                        
+                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
+                                        </li>
                                     </ul>
-                          <!-- <div class="row">
-                                        <div class="col-md-6 col-sm-6 "style="padding: 15% 10%;" > 
-                                            <a href="../customer/pending_customer.php" class="waves-effect waves-light btn-large">Pending Customer
-                                                <span class="badge badge-danger" style="margin-top: -38px;
-                                                color: white;margin-left: 230px;background: #F44336; "><?php echo $pending_record ;?></span></a>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 "style="padding: 15% 8%;margin: 0 auto; "> 
 
-                                   <a href="../customer/registered_customer.php" class="waves-effect waves-light btn-large">Register Customer</a>
-                                        </div>
-                                            
-                                        </div>  --> 
+                                    <!-- Dropdown Structure -->
 
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr no.</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Address</th>
+                                                    <th>Phone No.</th>
+                                                    <th>DOB</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                    <th>Confirm</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM customer where user_type='2' and reference_no ='' and status='2' ");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        $bd= new DateTime($row['date_of_birth']);
+                                                        $bdate= $bd->format('d-m-Y'); 
+                                                        echo ' <tr>
+                                                    <td> '.$srno.'</td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td>'.$row['address'].'</td>
+                                                    <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
+                                                    <td>'.$bdate.'</td>
+                                                    <td>
+                                                        <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '","pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["reference_no"]. '")\'><i class="material-icons dp48">verified_user</i></a>
+                                                    </td>
+                                                </tr>';
+
+                                                $srno++;
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<tr>
+                                                    <td colspan="8">No Pending Customer
+                                                    </td>
+                                                    <tr>';
+                                                    }
+              ?>  
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="sb2-2-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Registered List</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-register-list"><i class="material-icons">more_vert</i></a>
+                                    <ul id="dr-register-list" class="dropdown-content">
+                                        <li><a href="#">Download List</a>
+                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Registered">Download List</a> -->
+                                        </li>
+                                        <!-- <li><a href="user-edit.html">Edit</a>
+                                        </li>
+                                        <li><a href="#!">Update</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
+                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Dropdown Structure -->
+
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Customer ID</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Address</th>
+                                                    <th>Phone No.</th>
+                                                    <th>DOB</th>
+                                                    <th>Date Of Joining</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM customer where user_type='2' and reference_no ='' and status='1' ");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        $dt= new DateTime($row['register_date']);
+                                                        $datev= $dt->format('d-m-Y');
+                                                        $bd= new DateTime($row['date_of_birth']);
+                                                        $bdate= $bd->format('d-m-Y'); 
+                                                        echo ' <tr>
+                                                    <td> '.$row['cust_id'].'
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'
+                                                    </td>
+                                                    <td>'.$row['address'].'</td>
+                                                    <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
+                                                    <td>'.$bdate.'</td>
+                                                    <td>
+                                                        '.$datev.'
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'editfunc("' .$row["cust_id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
+                                                        "registered")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["cust_id"]. '","'.$row["cust_id"]. '","registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    
+                                                </tr>';
+
+                                                $srno++;
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<tr>
+                                                    <td colspan="8">No Registered Customer
+                                                    </td>
+                                                    <tr>';
+                                                    }
+                                                ?> 
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
-
-    <!--== BOTTOM FLOAT ICON ==-->
-    <!-- <section>
-        <div class="fixed-action-btn vertical">
-            <a class="btn-floating btn-large red pulse">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a>
-                </li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
-                </li>
-                <li><a class="btn-floating green"><i class="material-icons">publish</i></a>
-                </li>
-                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
-                </li>
-            </ul>
-        </div>
-    </section> -->
 
     <!--======== SCRIPT FILES =========-->
     <script src="../js/jquery.min.js"></script>
@@ -144,5 +262,64 @@ $stmt->setFetchMode(PDO::FETCH_ASSOC);
 </body>
 
 
-<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-add.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:19 GMT -->
+<!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-all.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:20 GMT -->
 </html>
+
+<script type="text/javascript">
+
+    function editfunc(id,refno,cut,st,ct,editfor)
+    { 
+        window.location.href='edit_customer.php?vkvbvjfgfikix='+id+'&nohbref='+refno+'&ncy='+cut+'&mst='+st+'&hct='+ct+'&editfor='+editfor;  
+    };
+
+
+    function deletefunc(id,cid,action)
+    { 
+    var dataString = 'id='+ id+'&cid='+cid+'&action='+action;
+
+
+      $.ajax({
+        type: "POST",
+        url: "delete_customer.php",
+        data: dataString,
+        cache: false,
+          success:function(data){
+            if(data == 11 || data == 1){
+
+            alert("Delete Succesfully");
+             window.location.reload();
+          }
+          else{
+
+          alert("deletion failed");
+        }
+      }
+      });
+          
+    };
+
+
+    function confirmfunc(id,email,ref_no)
+    { 
+    var dataString = 'id='+ id+'&uname='+email+'&ref_no='+ref_no;
+
+
+      $.ajax({
+        type: "POST",
+        url: "confirm_customer.php",
+        data: dataString,
+        cache: false,
+          success:function(data){
+            if(data == 1){
+                   alert("Email and Password send via sms and email");
+             window.location.reload();
+          }
+          else{
+
+          alert("Failed to confirm");
+        }
+      }
+      });
+          
+    };
+</script>

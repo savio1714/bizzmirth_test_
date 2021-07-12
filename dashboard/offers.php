@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['username2'])){
+if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
     echo '<script>location.href = "../login.php";</script>';
 }
 ?>
@@ -89,7 +89,7 @@ if(!isset($_SESSION['username2'])){
                                                 Apply
                                                 </button></td>
                                     </tr>
-                                    <tr style="background: #f50000d9;color: white;">
+                                    <tr >
                                         <td>01/01/2017</td>
                                         <td>xyz</td>
                                         <td>CD005</td>

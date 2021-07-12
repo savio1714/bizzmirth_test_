@@ -8,12 +8,21 @@ $string="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#%^*()"
 $password = substr(str_shuffle($string), 0,8);
 $status= '1';
 $user_type_id= '2';
-$register_by = '1';
-// $uid=0;
-// $cust_id=0;
 
-// $uid='';
-$sql2= $conn->prepare("SELECT cust_id,CAST(cust_id as SIGNED) AS casted_column  from customer where user_type='2'  ORDER BY casted_column desc limit 1");
+if( $_POST["ref_no"] ==''){
+	$register_by = '1';
+}else{
+	$register_by = '3';
+}
+
+
+
+date_default_timezone_set('Asia/Calcutta');
+$todayYear = date('Y' );
+
+// getting last customer id
+
+$sql2= $conn->prepare("SELECT distinct cust_id  from customer order by cust_id desc limit 1");
 $sql2->execute();
 $sql2->setFetchMode(PDO::FETCH_ASSOC);
 if($sql2->rowCount()>0){
@@ -22,19 +31,35 @@ if($sql2->rowCount()>0){
 		 $cust_id=$row3["cust_id"];
 
 	}
-	// $uid=substr($user_id, 4);
-	// $uid = intval($uid);
+
 	if($cust_id ==''){
-		$uid= 1;
+		$uid = 'CUST_'.$todayYear.'_00001';
+		// $uid='CUST_2021_001';
 	}else{
-		$uid = $cust_id + 1;
+
+		$subV=substr($cust_id,5,9);
+		if($subV==$todayYear){
+			// ''.$ssd
+			$cust_id++;
+			  $cust_id=str_pad($cust_id, 5, '0', STR_PAD_LEFT);
+			  $uid =$cust_id;
+		}else{
+
+			$cust_id++;
+			$cid=substr($cust_id,10);
+			$newValue = 'CUST_'.$todayYear.'_'.$cid;
+
+			  $Ncust_id=str_pad($newValue, 5, '0', STR_PAD_LEFT);
+			  $uid =$Ncust_id;
+		}
 	}
 
 
 
 }else
 {
-	 $uid= 1;
+		$uid = 'CUST_'.$todayYear.'_00001';
+	 // $uid= 'BH_TA_2021_001';;
 }
 
 

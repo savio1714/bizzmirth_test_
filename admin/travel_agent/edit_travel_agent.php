@@ -112,10 +112,14 @@ if($editfor == 'pending'){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li class="active-bre"><a href="travel_agent.php">Travel Agent </a>
                         </li>
                         <li class="active-bre"><a href="#"> Edit Travel Agent </a>
                         </li>
+
+                        <li class="page-back"><a href="travel_agent.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
                     </ul>
                 </div>
                 <div class="sb2-2-3">
@@ -202,7 +206,7 @@ if($editfor == 'pending'){
                                                     <?php 
                                                     if($stmt->rowCount()>0){
                                                          foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                            echo '<option value="'.$row['country_code'].'">'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
+                                                            echo '<option value="'.$row['country_code'].'">+'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
                                                         } 
                                                     }else{ 
                                                         echo '<option value="">Country not available</option>'; 

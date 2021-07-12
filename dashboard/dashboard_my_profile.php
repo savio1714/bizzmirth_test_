@@ -1,11 +1,11 @@
 <?php
 session_start();
-if(!isset($_SESSION['username2'])){
+if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
     echo '<script>location.href = "../login.php";</script>';
 }
 
 
-$user_type =$_SESSION["user_type_id"];
+$user_type =$_SESSION["user_type_id_value"];
 $user_id =$_SESSION["user_id"];
 
 
@@ -20,6 +20,19 @@ if ($user_type =='3'){
     getAllValue($user_type,$user_id,'travel_agent','travel_agent_id');
 
 }
+
+if ($user_type =='4'){
+
+    getAllValue($user_type,$user_id,'franchisee','franchisee_id');
+
+}
+
+if ($user_type =='5'){
+
+    getAllValue($user_type,$user_id,'sales_manager','sales_manager_id');
+
+}
+
 
 
 function  getAllValue($usertype,$user_id,$tablename,$clounmName){
@@ -90,7 +103,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard Profile | Bizzmirth Holidays</title>
+    <title>Profile | Bizzmirth Holidays</title>
     <!-- Favicon -->
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
@@ -151,9 +164,13 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                                 <div class="edit-profile-photo">
                                     
                                     <?php if($user_type =='2'){
-                                        echo'<img id="img2" src="../'.$profile_pic.'" alt="">';
+                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
                                     }else if($user_type =='3'){
-                                        echo'<img id="img2" src="../'.$profile_pic.'" alt="">';
+                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
+                                    }else if($user_type =='4'){
+                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
+                                    }else if($user_type =='5'){
+                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
                                     }else{
                                         echo'<img src="" alt="noProfile">';
                                     }
@@ -165,7 +182,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                                     <div class="change-photo-btn">
                                         <div class="photoUpload">
                                             <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                            <input type="file" id="file2" name="file2" class="upload" />
+                                            <input type="file" id="file" name="file" class="upload" />
                                         </div>
 
                                     </div>
@@ -321,6 +338,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                     <div class="col-lg-6 col-md-6 col-xs-12 padding-left-30">
                         <div class="dashboard-list-box-static">
                             <button id="saveChange" class="button">Save Changes</button>
+                            <div id="savemessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                         </div>
                     </div>
 
@@ -329,6 +347,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
 
             <input id="utss" type="hidden" value="<?php echo $user_type;?>"  disabled>
             <input id="uiss" type="hidden" value="<?php echo $user_id?>" disabled >
+            <input type="hidden" id="invalidimage1" name="invalidimage1" disabled >
 
             </div>
 
@@ -364,30 +383,53 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
 
 
     <script type="text/javascript">
-    $('#file2').change(function(){
 
-      var fd = new FormData();
-      var files = $('#file2')[0].files[0];
+        $('#file').change(function(){
+
+        uploadfun('#file','../uploading/upload.php','#img','#profile_pic','Please Upload Profile','profile_pic','#invalidimage1');
+    });
+
+    //upload function
+   function uploadfun(typeid,urlpart,imgid,valid,messages,foldername,invalidvalue){
+
+    var fd = new FormData();
+      var files = $(typeid)[0].files[0];
       fd.append('file',files);
+      fd.append('getname',foldername);
+
+
+//getting filesize of that image 
+    var file_size = $(typeid)[0].files[0].size;
+    
+//checking if the filesize is greater then 2MB
+    if(file_size<2097152) {
 
       $.ajax({
-        url: '../upload/upload_profile.php',
+        url: urlpart,
         type: 'post',
         data: fd,
         contentType: false,
         processData: false,
         success: function(response){
           if(response != 0){
-            $("#img2").attr("src","../"+response); 
-            $('#profile_pic').val(response);
-                    // $("#preview img").show();
+            $(imgid).attr("src","../uploading/"+response); 
+            $(valid).val(response);
+                    // $(previewclass+' img').show(); // Display image element
+                    $(invalidvalue).val('');
                   }else{
-                    $('#profile_pic').val('');
-                    alert('File not uploaded! '); //"jpg","jpeg","png"
+                    $(valid).val('');
+                    $(invalidvalue).val('2');
+                    alert(messages);
                   }
                 },
               });
-    });
+      }
+      else{
+        alert('File size is greater than 2MB');
+        $(invalidvalue).val('2');
+      }
+   }
+
 </script>
 
 

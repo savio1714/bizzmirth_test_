@@ -21,7 +21,7 @@ $lastname =$_SESSION["lname"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Add Customer | Bizzmirth Holidays</title>
+    <title>Add Travel Agent | Bizzmirth Holidays</title>
     <!-- Favicon -->
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
@@ -81,7 +81,7 @@ $lastname =$_SESSION["lname"];
                     <!-- Profile -->
                     <div class="col-lg-12 col-md-12 col-xs-12 padding-right-30">
                         <div class="dashboard-list-box">
-                            <h4 class="gray">Customer Details</h4>
+                            <h4 class="gray">Travel Agent Details</h4>
                             <div class="dashboard-list-box-static">
                                 
                                 <!-- Avatar -->
@@ -111,65 +111,31 @@ $lastname =$_SESSION["lname"];
 
                                 <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                        <label>Travel Agent ID</label>
-                                        <input id="ta_id" type="text" placeholder="Travel Agent ID" value="<?php echo $user_id?>" readonly>
+                                        <label>Franchisee ID</label>
+                                        <input id="f_id" type="text" placeholder="Franchisee ID" value="<?php echo $user_id?>" readonly>
                                         <!-- <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                     </div>
                                     
 
                                    <div class="col-lg-6 col-md-6">
-                                        <label>Travel Agent Name</label>
-                                        <input id="ta_name"  type="text" placeholder="Travel Agent Name" value="<?php echo $firstname . ' '. $lastname;?>" readonly>
+                                        <label>Franchisee Name</label>
+                                        <input id="f_name"  type="text" placeholder="Franchisee Name" value="<?php echo $firstname . ' '. $lastname;?>" readonly>
                                         <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                    </div>
                                 </div>
 
-                                <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                        <label class="margin-top-0">Customer Ref</label>
-
-                                        <?php
-                                            require '../connect.php';
-                                            $stmt = $conn->prepare("SELECT cust_id FROM customer WHERE reference_no='".$user_id."'  AND status = 1 ORDER BY cust_id ASC");
-                                            $stmt->execute();
-
-                                                                                               
-                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                            ?>
-                                    
-                                        <select id="customer_level" class="chosen-select-no-single" >
-                                             <option value="">Select Customer</option>
-                                            <?php 
-                                            if($stmt->rowCount()>0){
-                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                    echo '<option value="'.$row['cust_id'].'">'.$row['cust_id'].'</option>'; 
-                                                } 
-                                            }else{ 
-                                                echo '<option value="">Customer not available</option>'; 
-                                            } 
-                                            ?>
-                                        </select>
-                                        <!-- <div id="countryMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
-                                    </div>
-                                    
-
-                                   <div class="col-lg-6 col-md-6">
-                                        <label>Level</label>
-                                        <input id="level"  type="text" placeholder="Level"  readonly>
-                                        <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
-                                   </div>
-                                </div>
+                                
 
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Customer First Name</label>
+                                            <label>Travel Agent First Name</label>
                                             <input id="firstname" type="text" placeholder="Enter First Name">
                                             <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
                                     
 
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Customer Last Name</label>
+                                            <label>Travel Agent Last Name</label>
                                             <input id="lastname"  type="text" placeholder="Enter Last Name">
                                             <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                        </div>
@@ -446,14 +412,14 @@ $lastname =$_SESSION["lname"];
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-xs-6">
-                                        <input type="hidden" id="testValue" name="testValue" value="2">
+                                        <input type="hidden" id="testValue" name="testValue" value="3">
                                         <input type="hidden" id="invalidimage1" name="invalidimage1" >
                                             <input type="hidden" id="invalidimage2" name="invalidimage2" >
                                             <input type="hidden" id="invalidimage3" name="invalidimage3" >
                                             <input type="hidden" id="invalidimage4" name="invalidimage4" >
                                             <input type="hidden" id="invalidimage5" name="invalidimage5" >
                                             <input type="hidden" id="invalidimage6" name="invalidimage6" >
-                                            <input type="hidden" id="level_cust" name="level_cust" >
+                                            <!-- <input type="hidden" id="level_cust" name="level_cust" > -->
                                         
                                     </div>
 
@@ -467,7 +433,7 @@ $lastname =$_SESSION["lname"];
 
 
                                     <div class="dashboard-list-box-static" style="float: clear;">
-                            <button id="registerCustomer" class="button" >Register</button>
+                            <button id="registerTravelAgent" class="button" >Register</button>
                             <div id="regist" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                         </div>
 

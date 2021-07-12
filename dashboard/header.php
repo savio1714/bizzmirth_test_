@@ -30,7 +30,7 @@
                                              if($stmt2->rowCount()>0){
                                                 foreach (($stmt2->fetchAll()) as $key => $row){
                                                     $profile = $row['profile_pic'];
-                                                    echo '<img src="../'.$profile.'" alt="profile image">';
+                                                    echo '<img src="../uploading/'.$profile.'" alt="profile image">';
                                                 } 
                                                     
                                            
@@ -41,14 +41,23 @@
                                         }
                                        
 
-                                        if($_SESSION["user_type_id"] =='2' ){
+                                        if($_SESSION["user_type_id_value"] =='2' ){
 
                                             getProfileImage('customer','cust_id',$_SESSION['user_id']);
 
                                         }
 
-                                        if($_SESSION["user_type_id"] =='3' ){
+                                        if($_SESSION["user_type_id_value"] =='3' ){
                                             getProfileImage('travel_agent','travel_agent_id',$_SESSION['user_id']);
+
+                                        }
+                                        if($_SESSION["user_type_id_value"] =='4' ){
+                                            getProfileImage('franchisee','franchisee_id',$_SESSION['user_id']);
+
+                                        }
+
+                                        if($_SESSION["user_type_id_value"] =='5' ){
+                                            getProfileImage('sales_manager','sales_manager_id',$_SESSION['user_id']);
 
                                         }
 
@@ -65,6 +74,7 @@
                         </a>
                         <ul class="dropdown-menu">
                              <!-- <li><a href="#"><i class="sl sl-icon-settings"></i>Settings</a></li> -->
+                            <li><a href="../index.php"><i class="sl sl-icon-home"></i>Home</a></li>
                             <li><a href="dashboard_my_profile.php"><i class="sl sl-icon-user"></i>Profile</a></li>
                             <li><a href="changepassword.php"><i class="sl sl-icon-lock"></i>Change Password</a></li>
                             <li><a href="../login.php" class="mylogout"><i class="sl sl-icon-power"></i>Logout</a></li>

@@ -47,12 +47,27 @@ if(!isset($_SESSION['username'])){
                 <div class="sb2-2-2">
                     <ul>
                         <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li><li class="active-bre"><a href="franchisee.php">Franchisee </a>
                         </li>
-                        <li class="active-bre"><a href="#"> Add Franchisee </a>
+                        
+                        <?php 
+
+                            if($_GET['vkvbvjfgfikix'] =='ta'){
+                                echo '
+                                <li class="active-bre"><a href="travel_agent_customer.php">Travel Agent Customer</a>
+                                </li>
+                                <li class="page-back"><a href="travel_agent_customer.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        </li>';
+                            }else{
+                                echo '
+                                <li class="active-bre"><a href="b2c.php">B2C</a>
+                                </li>
+                                <li class="page-back"><a href="b2c.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        </li>';
+                            }?>
+                        <li class="active-bre"><a href="#"> Add Customer </a>
                         </li>
-                        <li class="page-back"><a href="franchisee.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
-                        </li>
+
+                         
                     </ul>
                 </div>
                 <div class="sb2-2-3">
@@ -60,64 +75,116 @@ if(!isset($_SESSION['username'])){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Add New Franchisee</h4>
+                                    <h4>Add New Customer</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
                                     <form>
-                                        <div class="row">
+                                        <?php 
+
+                                        if($_GET['vkvbvjfgfikix'] =='ta'){
+                                            echo '<div class="row">
                                             
                                             <div class="form-group col-md-6 col-sm-12">
-                                                <!-- <input id="sales_manager_id" type="text"> -->
-                                                <label for="sales_manager_id" style="margin-top: -6%;font-size: 0.8rem;">Sales Manager Id</label>
+                                                
+                                                <label for="travel_agent_id" style="margin-top: -6%;font-size: 0.8rem;">Travel Agent Id</label>';
 
-                                                <?php
+                                                
                                                 require '../connect.php';
-                                                $stmt = $conn->prepare("SELECT * FROM sales_manager WHERE status = 1 ORDER BY sales_manager_id ASC");
+                                                $stmt = $conn->prepare("SELECT * FROM travel_agent WHERE status = 1 ORDER BY travel_agent_id ASC");
                                                 $stmt->execute();
 
                                                                                                    
                                                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                ?>
-                                                <select id="sales_manager_id"  class="selectdesign">
-                                                    <option value="">-- Select Sales Manager Id --</option>
-                                                    <?php 
+                                                
+                                               echo' <select id="travel_agent_id"  class="selectdesign">
+                                                    <option value="">-- Select Travel Agent Id --</option>';
+                                                    
                                                     if($stmt->rowCount()>0){
                                                          foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                            echo '<option value="'.$row['sales_manager_id'].'">'.$row['sales_manager_id'].' ('.$row['firstname'].' '.$row['lastname'].') </option>'; 
+                                                            echo '<option value="'.$row['travel_agent_id'].'">'.$row['travel_agent_id'].' ('.$row['firstname'].' '.$row['lastname'].') </option>'; 
                                                         } 
                                                     }else{ 
-                                                        echo '<option value="">Sales Manager not available</option>'; 
+                                                        echo '<option value="">Travel Agent not available</option>'; 
                                                     } 
-                                                    ?>
-                                                </select>
+                                                   
+                                                echo '</select>
                                                 
 
                                             </div>
 
                                             <div class="form-group col-md-6 col-sm-12">
-                                                <label>Sales Manager Name</label>
-                                                <input type="text"  id="sales_manager_name" placeholder="No Sales Manager Name" readonly>
+                                                <label>Travel Agent Name</label>
+                                                <input type="text"  id="travel_agent_name" placeholder="No Travel Agent Name" readonly>
                                                 
                                             </div>
-                                            <!-- <div class="input-field col-md-6 col-sm-12">
-                                                <input id="sales_manager_name" type="text" readonly>
-                                                <label for="sales_manager_name">sales_manager Name</label>
-                                            </div> -->
                                            
                                         
                                         </div>
+
+
+
+                                        <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                        <label class="margin-top-0">Customer Ref</label>';
+
+                                            $stmt = $conn->prepare("SELECT cust_id FROM customer WHERE  status = 1 ORDER BY cust_id ASC");
+                                            $stmt->execute();
+
+                                                                                               
+                                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                            
+                                    
+                                       echo ' <select id="customer_level" class="selectdesign">
+                                             <option value="">Select Customer</option>';
+                                            
+                                            if($stmt->rowCount()>0){
+                                                 foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                    echo '<option value="'.$row['cust_id'].'">'.$row['cust_id'].'</option>'; 
+                                                } 
+                                            }else{ 
+                                                echo '<option value="">Customer not available</option>'; 
+                                            } 
+                                            
+                                       echo ' </select>
+                                        
+                                    </div>
+                                    
+
+                                   <div class="col-lg-6 col-md-6">
+                                        <label>Level</label>
+                                        <input id="level"  type="text" placeholder="Level"  readonly>
+                                        
+                                   </div>
+                                </div>';
+
+
+
+                                        }else{
+
+                                            echo '
+                                            <input type="hidden"  id="travel_agent_id" placeholder="" disabled>
+                                            <input type="hidden"  id="travel_agent_name" placeholder="" disabled>
+                                            <input id="customer_level"  type="hidden" placeholder="Level"  disabled>
+                                            <input id="level"  type="hidden" placeholder="Level"  disabled>
+
+                                            ';
+
+
+                                        }
+
+                                        ?>
                                        
                                        
                                         <div class="row">
                                             
                                             <div class="input-field col-md-6 col-sm-12">
                                                 <input id="firstname" type="text" >
-                                                <label for="firstname">Franchisee First Name</label>
+                                                <label for="firstname">Customer First Name</label>
                                             </div>
                                             <div class="input-field col-md-6 col-sm-12">
                                                 <input id="lastname" type="text" >
-                                                <label for="lastname">Franchisee Last Name</label>
+                                                <label for="lastname">Customer Last Name</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -411,13 +478,14 @@ if(!isset($_SESSION['username'])){
                                                 
                                             </div>
 
-                                            <input type="hidden" id="testValue" name="testValue" value="4">
+                                            <input type="hidden" id="testValue" name="testValue" value="2"><!-- customer -->
                                             <input type="hidden" id="invalidimage1" name="invalidimage1" >
                                             <input type="hidden" id="invalidimage2" name="invalidimage2" >
                                             <input type="hidden" id="invalidimage3" name="invalidimage3" >
                                             <input type="hidden" id="invalidimage4" name="invalidimage4" >
                                             <input type="hidden" id="invalidimage5" name="invalidimage5" >
                                             <input type="hidden" id="invalidimage6" name="invalidimage6" >
+                                            <input type="hidden" id="level_cust" name="level_cust" >
                                           <!--   <div class="input-field col s6" >
 
                                             </div> -->
@@ -429,7 +497,7 @@ if(!isset($_SESSION['username'])){
                                             <div class="input-field col s12" style="margin-top: 20px;">
                                                <!--  <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a> -->
 
-                                                 <a href="#" class="waves-effect waves-light btn-large" id="addFranchisee">Submit</a>
+                                                 <a href="#" class="waves-effect waves-light btn-large" id="addCustomer">Submit</a>
                                                 
                                             </div>
                                            
@@ -612,27 +680,7 @@ if(!isset($_SESSION['username'])){
             }
         });
 
-        $('#sales_manager_id').on('change', function(){
-            var sales_manager_id = $(this).val();
-            var slmg_id='';
-            if(sales_manager_id == ''){
-                slmg_id='-1'
-            }else{
-                slmg_id=sales_manager_id;
-            }
+        
 
-            if(slmg_id){
-                 $.ajax({
-                          type:'POST',
-                          url:'../agents/sales_manager_name.php',
-                          data:'sales_manager_id='+slmg_id,
-                          success:function(response){
-                             // $('#pin').html(response);
-                             $('#sales_manager_name').val(response); 
-                          }
-                      }); 
-            }else{
-                
-            }
-        });
+        
 </script>

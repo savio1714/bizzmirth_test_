@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['username2'])){
+if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
     echo '<script>location.href = "../login.php";</script>';
 }
 ?>
@@ -43,162 +43,81 @@ if(!isset($_SESSION['username2'])){
 
             <!-- Responsive Navigation Trigger -->
             <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>  
-
-             <?php include 'header.php';?>
+            
+            <?php include 'header.php';?>
 
             <?php include 'sidebar.php';?>
-            
 
             <div class="dashboard-content">
+
+                                                
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-xs-12">
+                    
+                    <!-- Listings -->
+                    <div class="col-lg-12 col-md-12">
                         <div class="dashboard-list-box">
-                            <h4 class="gray">All Bookings</h4>
+                            <h4 class="gray">My trips</h4>
                             <div class="table-box">
                             <table class="basic-table booking-table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>Booking ID</th>
-                                        <th>Destination</th>
-                                        <th>No of Tickets</th>
-                                        <th>Payment</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                         <th scope="col">Date</th>
+                                            <th scope="col">Booking ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Destination</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">View</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Ricky Ponting</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C253</td>
-                                        <td>Greece - Zakynthos</td>
-                                        <td>7</td>
-                                        <td><span class="paid t-box">Paid</span></td>
-                                        <td><span class="cancel t-box">Cancelled</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
+                                        <td>01/01/2017</td>
+                                        <td>xyz</td>
+                                        <td>Name</td>
+                                        <td>Destination</td>
+                                        <td>Amount</td>
+                                        <td><button class="button gray " type="button" id="" >
+                                                View
+                                                </button></td>
                                     </tr>
                                     <tr>
-                                        <td>Micheal</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C023</td>
-                                        <td>Bulgary - Sunny Beach</td>
-                                        <td>2</td>
-                                        <td><span class="unpaid t-box">Unpaid</span></td>
-                                        <td><span class="approved t-box">Approved</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
+                                        <td>01/01/2017</td>
+                                        <td>xyz</td>
+                                        <td>Name</td>
+                                        <td>Destination</td>
+                                        <td>Amount</td>
+                                        <td><button class="button gray " type="button" id="" >
+                                                View
+                                                </button></td>
                                     </tr>
                                     <tr>
-                                        <td>Jim Morrison</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">E453</td>
-                                        <td>Washington</td>
-                                        <td>11</td>
-                                        <td><span class="paid t-box">Paid</span></td>
-                                        <td><span class="pending t-box">Pending</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
+                                        <td>01/01/2017</td>
+                                        <td>xyz</td>
+                                        <td>Name</td>
+                                        <td>Destination</td>
+                                        <td>Amount</td>
+                                        <td><button class="button gray " type="button" id="" >
+                                                View
+                                                </button></td>
                                     </tr>
-                                    <tr>
-                                        <td>Michelle</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C253</td>
-                                        <td>Tokyo, Japan</td>
-                                        <td>3</td>
-                                        <td><span class="paid t-box">Paid</span></td>
-                                        <td><span class="pending t-box">Pending</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
+                                   <!--  <tr>
+                                        <td>01/01/2017</td>
+                                        <td>U.A.E. - Dubai</td>
+                                        <td>$300.00</td>
+                                        <td class="textright">
+                                            <div class="dropdown">
+                                                <button class="button gray dropdown-toggle" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="">
+                                                    <a class="dropdown-item" href="#">Send Email</a>
+                                                    <a class="dropdown-item" href="#">Print PDF</a>
+                                                    <a class="dropdown-item del" href="#">Delete</a>
+                                                </div>
+                                            </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ricky Ponting</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C253</td>
-                                        <td>Brussels</td>
-                                        <td>7</td>
-                                        <td><span class="unpaid t-box">Unpaid</span></td>
-                                        <td><span class="pending t-box">Pending</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ricky Ponting</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C253</td>
-                                        <td>Greece - Zakynthos</td>
-                                        <td>7</td>
-                                        <td><span class="paid t-box">Paid</span></td>
-                                        <td><span class="cancel t-box">Cancelled</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Micheal</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C023</td>
-                                        <td>Bulgary - Sunny Beach</td>
-                                        <td>2</td>
-                                        <td><span class="unpaid t-box">Unpaid</span></td>
-                                        <td><span class="approved t-box">Approved</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jim Morrison</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">E453</td>
-                                        <td>Washington</td>
-                                        <td>11</td>
-                                        <td><span class="paid t-box">Paid</span></td>
-                                        <td><span class="pending t-box">Pending</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Michelle</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C253</td>
-                                        <td>Tokyo, Japan</td>
-                                        <td>3</td>
-                                        <td><span class="paid t-box">Paid</span></td>
-                                        <td><span class="pending t-box">Pending</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ricky Ponting</td>
-                                        <td>2019/01/18</td>
-                                        <td class="t-id">C253</td>
-                                        <td>Brussels</td>
-                                        <td>7</td>
-                                        <td><span class="unpaid t-box">Unpaid</span></td>
-                                        <td><span class="pending t-box">Pending</span></td>
-                                        <td>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-pencil"></i></a>
-                                            <a href="#" class="button gray"><i class="sl sl-icon-close"></i></a>
-                                        </td>
-                                    </tr>
+                                    </tr> -->
+                                   
                                 </tbody>
                             </table>
                             </div>
@@ -211,7 +130,7 @@ if(!isset($_SESSION['username2'])){
                                     <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
                                 </ul>
                             </nav>
-                        </div>
+                        </div>                          
                     </div>
                 </div>
             </div>

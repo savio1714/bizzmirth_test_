@@ -46,10 +46,13 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li class="active-bre"><a href="travel_agent.php">Travel Agent </a>
                         </li>
                         <li class="active-bre"><a href="#"> Add Travel Agent </a>
                         </li>
+                        <li class="page-back"><a href="travel_agent.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
                     </ul>
                 </div>
                 <div class="sb2-2-3">
@@ -163,7 +166,7 @@ if(!isset($_SESSION['username'])){
                                                     <?php 
                                                     if($stmt->rowCount()>0){
                                                          foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                            echo '<option value="'.$row['country_code'].'">'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
+                                                            echo '<option value="'.$row['country_code'].'">+'.$row['country_code'].' ('.$row['sortname'].')</option>'; 
                                                         } 
                                                     }else{ 
                                                         echo '<option value="">Country not available</option>'; 
@@ -408,7 +411,7 @@ if(!isset($_SESSION['username'])){
                                                 
                                             </div>
 
-                                            <input type="hidden" id="testValue" name="testValue" value="3">
+                                            <input type="hidden" id="testValue" name="testValue" value="3"> <!-- Travel Agent -->
                                             <input type="hidden" id="invalidimage1" name="invalidimage1" >
                                             <input type="hidden" id="invalidimage2" name="invalidimage2" >
                                             <input type="hidden" id="invalidimage3" name="invalidimage3" >

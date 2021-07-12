@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['username2'])){
+if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
     echo '<script>location.href = "../login.php";</script>';
 }
 ?>
