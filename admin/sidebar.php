@@ -18,6 +18,19 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li><a href="index2.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index2.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
                         </li>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Employee</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='sales_manager.php')? 'menu-active':''?>" href="employee/sales_manager.php">Sales Manager</a>
+                                    </li>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='branch_manager.php')? 'menu-active':''?>" href="employee/branch_manager.php">Branch Manager</a>
+                                    </li>
+                                     <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='regional_manager.php')? 'menu-active':''?>" href="/employee/regional_manager.php">Regional Manager</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
                         <li><a href="franchisee/franchisee.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='franchisee.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i> Franchisee</a>
                         </li>
                         <li><a href="travel_agent/travel_agent.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i> Travel Agent</a>

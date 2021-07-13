@@ -29,6 +29,8 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="../css/mob.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/materialize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css">  
+    <link rel="stylesheet" href="../assets/css/tableFilter.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,7 +83,7 @@ if(!isset($_SESSION['username'])){
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="pendingTable">
                                             <thead>
                                                 <tr>
                                                     <th>Sr no.</th>
@@ -176,7 +178,7 @@ if(!isset($_SESSION['username'])){
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="registerTable">
                                             <thead>
                                                 <tr>
                                                     <th>Travel Agent ID</th>
@@ -277,6 +279,15 @@ if(!isset($_SESSION['username'])){
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/materialize.min.js"></script>
     <script src="../js/custom.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+    $('#pendingTable').DataTable();
+} );
+$(document).ready( function () {
+    $('#registerTable').DataTable();
+} );     
+</script>
 </body>
 
 

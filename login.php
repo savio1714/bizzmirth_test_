@@ -448,7 +448,7 @@
                                 </div> -->
                                 <div class="col-xs-12">
                                     <div class="checkbox-outer">
-                                        <input type="checkbox" name="agree" id="agree" > I agree to the <a href="#">terms and conditions.</a>
+                                        <input type="checkbox" name="agree" id="agree" > I agree to the <a href="terms_condition.php">terms and conditions.</a>
                                         <div id="agreeError" class=" errorMessage2"></div>
                                     </div>
                                 </div>

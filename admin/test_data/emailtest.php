@@ -4,7 +4,9 @@ require '../connect.php';
 $email = $_POST["email"];
 $tablename = $_POST["tablename"];
 
-if($tablename == 3 ){
+ if($tablename == 2){
+    $tname='customer';
+}else if($tablename == 3 ){
     $tname='travel_agent';
 
 }else if($tablename == 4){

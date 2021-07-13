@@ -26,8 +26,11 @@
                                 <p></p>
                                 <div class="about-location">
                                     <ul>
-                                        <li><i class="flaticon-maps-and-flags" aria-hidden="true"></i> Bizzmirth, Dempo-towers, Panjim-Goa</li>
-                                        <li><i class="flaticon-phone-call"></i> 0832 2438500 </li>                                        
+                                        <li><i class="flaticon-maps-and-flags" aria-hidden="true"></i> 306 Ambrosia Corporate Park EDC Patto Plaza 
+                                            Panjim 
+                                            Goa 403001
+                                            </li>
+                                        <li><i class="flaticon-phone-call"></i> 0832 2438500 / 8080785714 (9.30AM to 6:00PM)</li>                                        
                                         <li><i class="flaticon-mail"></i> support@bizzmirth.com</li>
                                     </ul>
                                 </div>
@@ -61,9 +64,11 @@
                                 <ul>
                                     <li><a href="index.php">Home <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <li><a href="about.php">About us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="#">Contact us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="#">FAQ <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="#">Privacy Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="contactus.php">Contact us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <!-- <li><a href="#">FAQ <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
+                                    <li><a href="privacypolicy.php">Privacy Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="cancellation_policy.php">Cancellation & Refund Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="terms_condition.php">Terms & Conditions <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                   <!--   <li><a href="#">View all Cruises <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
                                 </ul>
                             </div>

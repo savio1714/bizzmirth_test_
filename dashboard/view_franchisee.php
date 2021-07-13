@@ -36,6 +36,8 @@ $lastname =$_SESSION["lname"];
     <link href="../css/icons.css" rel="stylesheet" type="text/css">
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css">  
 </head>
 <body>
     <!-- Preloader -->
@@ -66,7 +68,7 @@ $lastname =$_SESSION["lname"];
                         <div class="dashboard-list-box">
                             <h4 class="gray">View Franchisee</h4>
                             <div class="table-box">
-                            <table class="basic-table booking-table">
+                            <table class="basic-table booking-table" id="viewtable">
                                <thead>
                                   <tr >
                                     <th scope="col">Franchisee ID</th>
@@ -82,8 +84,20 @@ $lastname =$_SESSION["lname"];
 
                                      <?php
                                                 require '../connect.php';
+
+                                                $per_page_record = 5;  // Number of entries to show in a page.   
+                                                // Look for a GET variable page if not found default is 1.        
+                                                if (isset($_GET["page"])) {    
+                                                    $page  = $_GET["page"];    
+                                                }    
+                                                else {    
+                                                  $page=1;    
+                                                }    
+                                            
+                                                $start_from = ($page-1) * $per_page_record;  
+
                                                 $srno =1;
-                                                $stmt = $conn->prepare("SELECT * FROM franchisee where user_type='4' and reference_no='".$user_id."' and status='1' order by franchisee_id");
+                                                $stmt = $conn->prepare("SELECT * FROM franchisee where user_type='4' and reference_no='".$user_id."' and status='1' order by franchisee_id LIMIT $start_from, $per_page_record");
                                                 $stmt->execute();
 
                                                     // set the resulting array to associative
@@ -134,10 +148,48 @@ $lastname =$_SESSION["lname"];
                         <div class="pagination-container">
                             <nav class="pagination">
                                 <ul>
-                                    <li><a href="#"><i class="sl sl-icon-arrow-left"></i></a></li>
+                                    <?php 
+
+                                      $sql2= $conn->prepare("SELECT COUNT(*) as c FROM franchisee where user_type='4' and reference_no='".$user_id."' and status='1'");
+                                        $sql2->execute();
+                                        $sql2->setFetchMode(PDO::FETCH_ASSOC);
+                                        foreach (($sql2->fetchAll()) as $key => $row) {
+                                        $total_records = $row['c'];     
+                                        } 
+                                         
+                                         
+                                          
+                                    echo "</br>";     
+                                        // Number of pages required.   
+                                        $total_pages = ceil($total_records / $per_page_record);     
+                                        $pagLink = "";       
+                                      
+                                        if($page>=2){   
+                                            echo "<li><a href='view_franchisee.php?page=".($page-1)."'> <i class='sl sl-icon-arrow-left'></i> </a></li>";   
+                                        }       
+                                                   
+                                        for ($i=1; $i<=$total_pages; $i++) {   
+                                          if ($i == $page) {   
+                                              $pagLink .= "<li><a class='current-page' href='view_franchisee.php?page="  
+                                                                                .$i."'>".$i." </a></li>";   
+                                          }               
+                                          else  {   
+                                              $pagLink .= "<li><a href='view_franchisee.php?page=".$i."'>   
+                                                                                ".$i." </a></li>";     
+                                          }   
+                                        };     
+                                        echo $pagLink;   
+                                  
+                                        if($page<$total_pages){   
+                                            echo "<li><a href='view_franchisee.php?page=".($page+1)."'> <i class='sl sl-icon-arrow-right'></i> </a></li>";   
+                                        }   
+                                  
+                                      ?>    
+
+                                   <!--  <li><a href="#"><i class="sl sl-icon-arrow-left"></i></a></li>
                                     <li><a href="#" class="current-page">1</a></li>
                                     <li><a href="#">2</a></li>
-                                    <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+                                    <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li> -->
                                 </ul>
                             </nav>
                         </div>                          
@@ -173,6 +225,12 @@ $lastname =$_SESSION["lname"];
     <script src="../js/jpanelmenu.min.js"></script>
     <script src="../js/counterup.min.js"></script>
     <script type="text/javascript" src="../logout/logout.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+    // $('#viewtable').DataTable();
+} );    
+</script>
     <script type="text/javascript">
 
 
