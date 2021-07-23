@@ -12,6 +12,8 @@ $user_type_id= '4';
 date_default_timezone_set('Asia/Calcutta');
 $todayYear = date('Y' );
 
+$subY=substr($todayYear,2,4);
+
 // $uid=0;
 // $franchisee_id=0;
 
@@ -30,12 +32,13 @@ if($sql2->rowCount()>0){
 	}
 
 	if($franchisee_id ==''){
-		$uid = 'BH_F_'.$todayYear.'_001';
+		$uid = 'F'.$subY.'001';
+		// $uid = 'BH_F_'.$todayYear.'_001';
 		// $uid='BH_F_2021_001';;
 	}else{
 
-		$subV=substr($franchisee_id,5,9);
-		if($subV==$todayYear){
+		$subV=substr($franchisee_id,1,3);
+		if($subV==$subY){
 			// ''.$ssd
 			$franchisee_id++;
 			  $franchisee_id=str_pad($franchisee_id, 3, '0', STR_PAD_LEFT);
@@ -43,8 +46,8 @@ if($sql2->rowCount()>0){
 		}else{
 
 			$franchisee_id++;
-			$fid=substr($franchisee_id,10);
-			$newValue = 'BH_F_'.$todayYear.'_'.$fid;
+			$fid=substr($franchisee_id,3);
+			$newValue = 'F'.$subY.$fid;
 
 			  $Nfranchisee_id=str_pad($newValue, 3, '0', STR_PAD_LEFT);
 			  $uid =$Nfranchisee_id;
@@ -56,7 +59,7 @@ if($sql2->rowCount()>0){
 }else
 {
 	 // $uid= 'BH_F_2021_001';
-	$uid = 'BH_F_'.$todayYear.'_001';
+	$uid = 'F'.$subY.'001';
 }
 
 

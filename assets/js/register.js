@@ -1,27 +1,27 @@
 $(document).ready(function(){
 
-//define constants at particular location
+//define varants at particular location
 
-  const fname = $('#fname');
-  const lname = $('#lname');
-  const email = $('#email');
-  const phone_no = $('#phone_no');
-  // const age = $('#age');
-  const address = $('#address');
-
-
+  var fname = $('#fname');
+  var lname = $('#lname');
+  var email = $('#email');
+  var phone_no = $('#phone_no');
+  // var age = $('#age');
+  var address = $('#address');
 
 
-  // let profile_pic = $('#profile_pic');
-  let fnameValue = '';
-  let lnameValue = '';
-  let emailValue = '';
-  // let genderValue = '';
-  let phone_noValue = '';
-  // let ageValue = '';
-  let addressValue = '';
-  // let bdateValue = '';
-  // let id_proof = $('#id_proof');
+
+
+  // var profile_pic = $('#profile_pic');
+  var fnameValue = '';
+  var lnameValue = '';
+  var emailValue = '';
+  // var genderValue = '';
+  var phone_noValue = '';
+  // var ageValue = '';
+  var addressValue = '';
+  // var bdateValue = '';
+  // var id_proof = $('#id_proof');
 
   
   $("#register").click(function(e){
@@ -152,7 +152,7 @@ $(document).ready(function(){
 
   $(phone_no).keyup(function () { 
    phone_noValue = phone_no.val().trim();
-  let code = $('#countrycode').val();
+  var code = $('#countrycode').val();
         
         if(code ==='')
         {
@@ -193,7 +193,7 @@ $(document).ready(function(){
   });
 
 
-  const validateInput = (inputValue,idOfInput,message) =>{
+  var validateInput = (inputValue,idOfInput,message) =>{
   if(inputValue ==='')
     {
       setError(idOfInput,message);
@@ -202,7 +202,7 @@ $(document).ready(function(){
     }
    }
 
-   const validateGender = (inputValue,idOfInput,message) =>{
+   var validateGender = (inputValue,idOfInput,message) =>{
   if(idOfInput.checked == true){
       setError(idOfInput,message);
     }else{
@@ -211,9 +211,9 @@ $(document).ready(function(){
 }
  
 
-const validateOnlyCharacter = (input) =>{
+var validateOnlyCharacter = (input) =>{
 
-  let characterLetters = /^[A-Za-z\s]+$/;
+  var characterLetters = /^[A-Za-z\s]+$/;
   if(!input.match(characterLetters )){
     return false
    }else{
@@ -222,35 +222,35 @@ const validateOnlyCharacter = (input) =>{
 
 }
 
-const setError = (input,message) =>{
+var setError = (input,message) =>{
   $(input).parent().addClass('error');
   $(input).parent().removeClass('success');
    $(input).siblings('small').html(message);
 }
 
-const setSuccess = (input) =>{  
+var setSuccess = (input) =>{  
 $(input).parent().addClass('success');
 $(input).parent().removeClass('error');
 
 }
- const validateEmail= (email) => {
-  let emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+ var validateEmail= (email) => {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   return emailReg.test(email);
 }
 
-const validatePhone= (phone) => {
-  let phoneReg =/^[0-9]{10}$/;
+var validatePhone= (phone) => {
+  var phoneReg =/^[0-9]{10}$/;
   return phoneReg.test(phone);
 }
 
-const validateAddress= (address) => {
+var validateAddress= (address) => {
    var specialChar = /[!@#$%^&*]/g;
   return specialChar.test(address);
 }
 
-const validateOnlyNumber = (input) =>{
+var validateOnlyNumber = (input) =>{
 
-  let characterLetters = /^[0-9\s]+$/;
+  var characterLetters = /^[0-9\s]+$/;
   if(input.match(characterLetters )){
     return true;
    }else{
@@ -259,9 +259,9 @@ const validateOnlyNumber = (input) =>{
 
 }
 
-const validateOnlyZero = (input) =>{
+var validateOnlyZero = (input) =>{
 
-  let characterLetters = /^[0\s]+$/;
+  var characterLetters = /^[0\s]+$/;
   if(input.match(characterLetters )){
     return true;
    }else{
@@ -272,21 +272,21 @@ const validateOnlyZero = (input) =>{
 
 
 
-  const checkInput =  () =>{
+  var checkInput =  () =>{
 
-    let gender = $('.gender:checked').val();
-    let bdate = $('#bdate').val();
-    let profile_pic = $('#profile_pic').val();
-    let kyc = $('#kyc').val();
-    let pan_card = $('#pan_card').val();
-    let aadhar_card = $('#aadhar_card').val();
-    let voting_card = $('#voting_card').val();
-    let passbook = $('#passbook').val();
-    let agevalue = $('#age').val();
-    let country = $('#mycountry').val();
-    let state = $('#state').val();
-    let city = $('#mycity').val();
-    let pin = $('#pin').val();
+    var gender = $('.gender:checked').val();
+    var bdate = $('#bdate').val();
+    var profile_pic = $('#profile_pic').val();
+    var kyc = $('#kyc').val();
+    var pan_card = $('#pan_card').val();
+    var aadhar_card = $('#aadhar_card').val();
+    var voting_card = $('#voting_card').val();
+    var passbook = $('#passbook').val();
+    var agevalue = $('#age').val();
+    var country = $('#mycountry').val();
+    var state = $('#state').val();
+    var city = $('#mycity').val();
+    var pin = $('#pin').val();
     var invalidimage1 = $('#invalidimage1').val();
     var invalidimage2 = $('#invalidimage2').val();
     var invalidimage3 = $('#invalidimage3').val();
@@ -294,16 +294,16 @@ const validateOnlyZero = (input) =>{
     var invalidimage5 = $('#invalidimage5').val();
     var invalidimage6 = $('#invalidimage6').val();
 
-    let fnameHas = classHas(fname);
-    let lnameHas = classHas(lname);
-    let emailHas = classHas(email);
-    let phone_noHas = classHas(phone_no);
-    // let ageHas = classHas(age);
-    let addressHas = classHas(address);
+    var fnameHas = classHas(fname);
+    var lnameHas = classHas(lname);
+    var emailHas = classHas(email);
+    var phone_noHas = classHas(phone_no);
+    // var ageHas = classHas(age);
+    var addressHas = classHas(address);
 
-    let countrycode = $('#countrycode').val();
+    var countrycode = $('#countrycode').val();
 
-    let agree = $('#agree').prop( "checked" );
+    var agree = $('#agree').prop( "checked" );
 
     var phone= countrycode+""+phone_noValue;
 
@@ -346,7 +346,7 @@ const validateOnlyZero = (input) =>{
       validateInput(bdate,$('#bdate'),"");
       $('#errorMessageText').text("*All fields are required");
 
-    let datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&country_code='+countrycode+'&phone_no='+phone_noValue+'&age='+agevalue+'&bdate='+bdate+'&kyc='+kyc+'&address='+addressValue+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook;
+    var datastring='fname='+fnameValue+'&profile_pic='+profile_pic+'&lname='+lnameValue+'&email='+emailValue+'&gender='+gender+'&country_code='+countrycode+'&phone_no='+phone_noValue+'&age='+agevalue+'&bdate='+bdate+'&kyc='+kyc+'&address='+addressValue+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook;
     
     if(agree == false){
       errorMessage($('#agreeError'),"*Please Agree Terms and Conditions",$('#errorMessageText'),"*All fields are required",$('#profileError'),$('#countryCodeError'),$('#errorMessage'),$('#ageError'),$('#countryError'),$('#stateError'),$('#cityError'),$('#idProofError'));
@@ -381,7 +381,7 @@ const validateOnlyZero = (input) =>{
   }
 
 
-const classHas = (input) =>{
+var classHas = (input) =>{
   if ($(input).parent().hasClass("success")){
     return true;
   }else{
@@ -539,7 +539,7 @@ const classHas = (input) =>{
 
     $('#bdate').on('change', function(){
       // alert("ok");
-    let bdate = $('#bdate').val();
+    var bdate = $('#bdate').val();
 
     var age =getdob(bdate);
     if(age <=0){

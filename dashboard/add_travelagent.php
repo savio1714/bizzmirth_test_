@@ -4,6 +4,10 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
     echo '<script>location.href = "../login.php";</script>';
 }
 
+if($_SESSION["user_type_id_value"] !='4'){
+    echo '<script>location.href = "../login.php";</script>';
+}
+
 
 $user_type =$_SESSION["user_type_id_value"];
 $user_id =$_SESSION["user_id"];

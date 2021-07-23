@@ -5,6 +5,10 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
 
 }
 
+if($_SESSION["user_type_id_value"] !='5'){
+    echo '<script>location.href = "../login.php";</script>';
+}
+
 $user_type =$_SESSION["user_type_id_value"];
 $user_id =$_SESSION["user_id"];
 $firstname =$_SESSION["username2"];

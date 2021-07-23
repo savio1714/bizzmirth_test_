@@ -698,7 +698,9 @@ if($editfor == 'pending'){
             }); 
         }else{
             $('#mystate').html('<option value="">Select country first</option>');
-            $('#city').html('<option value="">Select state first</option>'); 
+            $('#city').html('<option value="">Select state first</option>');
+            $('#pin').val('');   
+             
         }
         });
         
@@ -716,7 +718,9 @@ if($editfor == 'pending'){
                     }
                 }); 
             }else{
-                $('#city').html('<option value="">Select state first</option>'); 
+                $('#city').html('<option value="">Select state first</option>');
+            $('#pin').val('');   
+
             }
         });
 
@@ -733,7 +737,9 @@ if($editfor == 'pending'){
                           }
                       }); 
             }else{
-                $('#city').html('<option value="">Select state first</option>'); 
+                $('#city').html('<option value="">Select state first</option>');
+            $('#pin').val('');   
+
             }
         });
 

@@ -33,6 +33,18 @@ if ($user_type =='5'){
 
 }
 
+if ($user_type =='6'){
+
+    getAllValue($user_type,$user_id,'branch_manager','branch_manager_id');
+
+}
+
+if ($user_type =='7'){
+
+    getAllValue($user_type,$user_id,'regional_manager','regional_manager_id');
+
+}
+
 
 
 function  getAllValue($usertype,$user_id,$tablename,$clounmName){
@@ -163,13 +175,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
                                 <!-- Avatar -->
                                 <div class="edit-profile-photo">
                                     
-                                    <?php if($user_type =='2'){
-                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
-                                    }else if($user_type =='3'){
-                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
-                                    }else if($user_type =='4'){
-                                        echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
-                                    }else if($user_type =='5'){
+                                    <?php if($user_type =='2' || $user_type =='3' || $user_type =='4' || $user_type =='5' || $user_type =='6' || $user_type =='7' ){
                                         echo'<img id="img" src="../uploading/'.$profile_pic.'" alt="Profile">';
                                     }else{
                                         echo'<img src="" alt="noProfile">';

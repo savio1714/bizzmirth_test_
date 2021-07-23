@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2021 at 02:16 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Jul 22, 2021 at 07:45 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `bizzmirth`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `branch_manager`
+--
+
+CREATE TABLE `branch_manager` (
+  `id` int(11) NOT NULL,
+  `branch_manager_id` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
+  `contact_no` varchar(15) NOT NULL,
+  `head_office` varchar(99) NOT NULL,
+  `zone` varchar(99) NOT NULL,
+  `region` varchar(99) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `age` varchar(5) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `pincode` varchar(8) NOT NULL,
+  `address` text NOT NULL,
+  `profile_pic` varchar(255) NOT NULL,
+  `kyc` varchar(255) NOT NULL,
+  `pan_card` varchar(255) NOT NULL,
+  `aadhar_card` varchar(255) NOT NULL,
+  `voting_card` varchar(255) NOT NULL,
+  `bank_passbook` varchar(255) NOT NULL,
+  `registrant` varchar(100) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `register_by` varchar(100) NOT NULL,
+  `user_type` int(11) NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_date` varchar(99) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending 3-removed'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -128,7 +168,8 @@ INSERT INTO `cities` (`id`, `city_name`, `district`, `pincode`, `state_id`, `sta
 (85, 'Vasco da Gama', 'South Goa', '403 802', 6, 1),
 (86, 'Velim', 'South Goa', '403 722', 6, 1),
 (87, 'Verna', 'South Goa', '403 722', 6, 1),
-(88, 'Zuarinagar', 'South Goa', '403 726', 6, 1);
+(88, 'Zuarinagar', 'South Goa', '403 726', 6, 1),
+(89, 'Sanquelim', 'North Goa', '403505', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -240,7 +281,7 @@ CREATE TABLE `login` (
   `user_id` varchar(255) NOT NULL,
   `user_type_id` varchar(30) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1-present 0-deleted'
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '3-removed 1-present 0-deleted'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -248,24 +289,25 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', '1', '1', '2021-07-09 09:58:27', 1),
-(2, 'stenly@gmail.com', 'stenly@234', 'BH_SM_2021_001', '5', '2021-07-09 10:01:11', 1),
-(3, 'tony@gmail.com', 'tony@233', 'BH_SM_2021_002', '5', '2021-07-09 10:01:11', 1);
+(1, 'admin', 'admin@32', '1', '1', '2021-07-22 05:33:03', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sales_manager`
+-- Table structure for table `regional_manager`
 --
 
-CREATE TABLE `sales_manager` (
+CREATE TABLE `regional_manager` (
   `id` int(11) NOT NULL,
-  `sales_manager_id` varchar(255) NOT NULL,
+  `regional_manager_id` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `country_code` varchar(3) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
+  `head_office` varchar(99) NOT NULL,
+  `zone` varchar(99) NOT NULL,
+  `region` varchar(99) NOT NULL,
   `date_of_birth` date NOT NULL,
   `age` varchar(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
@@ -286,16 +328,48 @@ CREATE TABLE `sales_manager` (
   `user_type` int(11) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_date` varchar(99) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending'
+  `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending 3-removed'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `sales_manager`
+-- Table structure for table `sales_manager`
 --
 
-INSERT INTO `sales_manager` (`id`, `sales_manager_id`, `firstname`, `lastname`, `email`, `country_code`, `contact_no`, `date_of_birth`, `age`, `gender`, `country`, `state`, `city`, `pincode`, `address`, `profile_pic`, `kyc`, `pan_card`, `aadhar_card`, `voting_card`, `bank_passbook`, `registrant`, `reference_no`, `register_by`, `user_type`, `register_date`, `deleted_date`, `status`) VALUES
-(1, 'BH_SM_2021_001', 'Stenly', 'miranda', 'stenly@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '15', '403 716', 'xyz 566jgvdsads', 'profile_pic/09072021123843kitten_ball_thread_white_background_95135_1366x768.jpg', '', '', '', '', '', '', '', '', 5, '2021-07-09 12:33:52', '', 1),
-(2, 'BH_SM_2021_002', 'tony', 'miranda', 'tony@gmail.com', ' 91', '2377676909', '2002-06-02', '', 'male', '1', '6', '13', '403 202', 'xyz 566jgvdsads', 'profile_pic/10072021064242cat_black_drawing_night_apofiss_94590_1920x1080.jpg', '', '', '', '', '', '', '', '', 5, '2021-07-10 04:42:45', '', 1);
+CREATE TABLE `sales_manager` (
+  `id` int(11) NOT NULL,
+  `sales_manager_id` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `country_code` varchar(3) NOT NULL,
+  `contact_no` varchar(15) NOT NULL,
+  `head_office` varchar(99) NOT NULL,
+  `zone` varchar(99) NOT NULL,
+  `region` varchar(99) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `age` varchar(5) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `pincode` varchar(8) NOT NULL,
+  `address` text NOT NULL,
+  `profile_pic` varchar(255) NOT NULL,
+  `kyc` varchar(255) NOT NULL,
+  `pan_card` varchar(255) NOT NULL,
+  `aadhar_card` varchar(255) NOT NULL,
+  `voting_card` varchar(255) NOT NULL,
+  `bank_passbook` varchar(255) NOT NULL,
+  `registrant` varchar(100) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `register_by` varchar(100) NOT NULL,
+  `user_type` int(11) NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_date` varchar(99) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-registered 2-pending 3-removed'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -305,6 +379,7 @@ INSERT INTO `sales_manager` (`id`, `sales_manager_id`, `firstname`, `lastname`, 
 
 CREATE TABLE `states` (
   `id` int(11) NOT NULL,
+  `short_name` varchar(5) NOT NULL,
   `state_name` varchar(255) NOT NULL,
   `country_id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '0-deleted 1-allow 2-not allow'
@@ -314,35 +389,35 @@ CREATE TABLE `states` (
 -- Dumping data for table `states`
 --
 
-INSERT INTO `states` (`id`, `state_name`, `country_id`, `status`) VALUES
-(1, 'Andhra Pradesh', 1, 2),
-(2, 'Arunachal Pradesh', 1, 2),
-(3, 'Assam', 1, 2),
-(4, 'Bihar', 1, 2),
-(5, 'Chhattisgarh', 1, 2),
-(6, 'Goa', 1, 1),
-(7, 'Gujarat', 1, 2),
-(8, 'Haryana', 1, 2),
-(9, 'Himachal Pradesh', 1, 2),
-(10, 'Jharkhand', 1, 2),
-(11, 'Karnataka', 1, 2),
-(12, 'Kerala', 1, 2),
-(13, 'Madhya Pradesh', 1, 2),
-(14, 'Maharashtra', 1, 2),
-(15, 'Manipur', 1, 2),
-(16, 'Meghalaya', 1, 2),
-(17, 'Mizoram', 1, 2),
-(18, 'Nagaland', 1, 2),
-(19, 'Odisha', 1, 2),
-(20, 'Punjab', 1, 2),
-(21, 'Rajasthan', 1, 2),
-(22, 'Sikkim', 1, 2),
-(23, 'Tamil Nadu', 1, 2),
-(24, 'Telangana', 1, 2),
-(25, 'Tripura', 1, 2),
-(26, 'Uttar Pradesh', 1, 2),
-(27, 'Uttarakhand', 1, 2),
-(28, 'West Bengal', 1, 2);
+INSERT INTO `states` (`id`, `short_name`, `state_name`, `country_id`, `status`) VALUES
+(1, 'AP', 'Andhra Pradesh', 1, 2),
+(2, 'AR', 'Arunachal Pradesh', 1, 2),
+(3, 'AS', 'Assam', 1, 2),
+(4, 'BR', 'Bihar', 1, 2),
+(5, 'CG', 'Chhattisgarh', 1, 2),
+(6, 'GA', 'Goa', 1, 1),
+(7, 'GJ', 'Gujarat', 1, 2),
+(8, 'HR', 'Haryana', 1, 2),
+(9, 'HP', 'Himachal Pradesh', 1, 2),
+(10, 'JH', 'Jharkhand', 1, 2),
+(11, 'KA', 'Karnataka', 1, 2),
+(12, 'KL', 'Kerala', 1, 2),
+(13, 'MP', 'Madhya Pradesh', 1, 2),
+(14, 'MH', 'Maharashtra', 1, 2),
+(15, 'MN', 'Manipur', 1, 2),
+(16, 'ML', 'Meghalaya', 1, 2),
+(17, 'MZ', 'Mizoram', 1, 2),
+(18, 'NL', 'Nagaland', 1, 2),
+(19, 'OR', 'Odisha', 1, 2),
+(20, 'PB', 'Punjab', 1, 2),
+(21, 'RJ', 'Rajasthan', 1, 2),
+(22, 'SK', 'Sikkim', 1, 2),
+(23, 'TN', 'Tamil Nadu', 1, 2),
+(24, 'TS', 'Telangana', 1, 2),
+(25, 'TR', 'Tripura', 1, 2),
+(26, 'UP', 'Uttar Pradesh', 1, 2),
+(27, 'UK', 'Uttarakhand', 1, 2),
+(28, 'WB', 'West Bengal', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -432,14 +507,22 @@ CREATE TABLE `user_type` (
 
 INSERT INTO `user_type` (`id`, `name`, `status`) VALUES
 (1, 'admin', 1),
-(2, 'customer', 1),
+(2, 'Customer', 1),
 (3, 'Travel Agent', 1),
 (4, 'Franchisee', 1),
-(5, 'Sales Manager', 1);
+(5, 'Sales Manager', 1),
+(6, 'Branch Manager', 1),
+(7, 'Regional Manager', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `branch_manager`
+--
+ALTER TABLE `branch_manager`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cities`
@@ -469,6 +552,12 @@ ALTER TABLE `franchisee`
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `regional_manager`
+--
+ALTER TABLE `regional_manager`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -506,10 +595,16 @@ ALTER TABLE `user_type`
 --
 
 --
+-- AUTO_INCREMENT for table `branch_manager`
+--
+ALTER TABLE `branch_manager`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -533,13 +628,19 @@ ALTER TABLE `franchisee`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `regional_manager`
+--
+ALTER TABLE `regional_manager`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sales_manager`
 --
 ALTER TABLE `sales_manager`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `states`
@@ -563,7 +664,7 @@ ALTER TABLE `users_details`
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

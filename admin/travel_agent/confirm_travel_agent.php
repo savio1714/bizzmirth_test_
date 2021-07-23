@@ -12,6 +12,8 @@ $user_type_id= '3';
 date_default_timezone_set('Asia/Calcutta');
 $todayYear = date('Y' );
 
+$subY=substr($todayYear,2,4);
+
 // $uid=0;
 // $travel_agent_id=0;
 
@@ -24,22 +26,15 @@ if($sql2->rowCount()>0){
 
 		 $travel_agent_id=$row3["travel_agent_id"];
 
-	}
-	// $uid=substr($user_id, 4);
-	// $uid = intval($uid);
-	// if($travel_agent_id ==''){
-	// 	$uid= 'BH_TA_2021_001';
-	// }else{
-	// 	$uid = $travel_agent_id + 1;
-	// }
+	} 
 
 	if($travel_agent_id ==''){
-		$uid = 'BH_TA_'.$todayYear.'_001';
+		$uid = 'TA'.$subY.'001';
 		// $uid='BH_TA_2021_001';
 	}else{
 
-		$subV=substr($travel_agent_id,6,10);
-		if($subV==$todayYear){
+		$subV=substr($travel_agent_id,2,4);
+		if($subV==$subY){
 			// ''.$ssd
 			$travel_agent_id++;
 			  $travel_agent_id=str_pad($travel_agent_id, 3, '0', STR_PAD_LEFT);
@@ -47,8 +42,8 @@ if($sql2->rowCount()>0){
 		}else{
 
 			$travel_agent_id++;
-			$taid=substr($travel_agent_id,11);
-			$newValue = 'BH_TA_'.$todayYear.'_'.$taid;
+			$taid=substr($travel_agent_id,4);
+			$newValue = 'TA'.$subY.$taid;
 
 			  $Ntravel_agent_id=str_pad($newValue, 3, '0', STR_PAD_LEFT);
 			  $uid =$Ntravel_agent_id;
@@ -59,8 +54,8 @@ if($sql2->rowCount()>0){
 
 }else
 {
-		$uid = 'BH_TA_'.$todayYear.'_001';
-	 // $uid= 'BH_TA_2021_001';;
+		$uid = 'TA'.$subY.'001';
+
 }
 
 

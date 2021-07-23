@@ -20,6 +20,8 @@ if( $_POST["ref_no"] ==''){
 date_default_timezone_set('Asia/Calcutta');
 $todayYear = date('Y' );
 
+$subY=substr($todayYear,2,4);
+
 // getting last customer id
 
 $sql2= $conn->prepare("SELECT distinct cust_id  from customer order by cust_id desc limit 1");
@@ -33,12 +35,14 @@ if($sql2->rowCount()>0){
 	}
 
 	if($cust_id ==''){
-		$uid = 'CUST_'.$todayYear.'_00001';
+		// $uid = 'CU2100001';
+		$uid = 'CU'.$subY.'00001';
+		// $uid = 'CUST_'.$todayYear.'_00001';
 		// $uid='CUST_2021_001';
 	}else{
 
-		$subV=substr($cust_id,5,9);
-		if($subV==$todayYear){
+		$subV=substr($cust_id,2,4);
+		if($subV==$subY){
 			// ''.$ssd
 			$cust_id++;
 			  $cust_id=str_pad($cust_id, 5, '0', STR_PAD_LEFT);
@@ -46,8 +50,9 @@ if($sql2->rowCount()>0){
 		}else{
 
 			$cust_id++;
-			$cid=substr($cust_id,10);
-			$newValue = 'CUST_'.$todayYear.'_'.$cid;
+			$cid=substr($cust_id,4);
+			// $newValue = 'CU21'.$cid;
+			$newValue = 'CU'.$subY.$cid;
 
 			  $Ncust_id=str_pad($newValue, 5, '0', STR_PAD_LEFT);
 			  $uid =$Ncust_id;
@@ -58,7 +63,7 @@ if($sql2->rowCount()>0){
 
 }else
 {
-		$uid = 'CUST_'.$todayYear.'_00001';
+		$uid = 'CU'.$subY.'00001';
 	 // $uid= 'BH_TA_2021_001';;
 }
 

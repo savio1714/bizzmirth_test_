@@ -8,7 +8,7 @@
                         <li><img src="../images/placeholder.jpg" alt="">
                         </li>
                         <li>
-                            <h5><?php echo  $_SESSION["username"]; ?> <span> CEO</span></h5>
+                            <h5><?php echo  $_SESSION["username"]; ?> <span> </span></h5>
                         </li>
                         <li></li>
                     </ul>
@@ -21,12 +21,14 @@
                          <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Employee</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='sales_manager.php')? 'menu-active':''?>" href="../employee/sales_manager.php">Sales Manager</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='regional_manager.php')? 'menu-active':''?>" href="../employee/regional_manager.php">Regional Manager</a>
                                     </li>
                                     <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='branch_manager.php')? 'menu-active':''?>" href="../employee/branch_manager.php">Branch Manager</a>
                                     </li>
-                                     <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='regional_manager.php')? 'menu-active':''?>" href="../employee/regional_manager.php">Regional Manager</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='sales_manager.php')? 'menu-active':''?>" href="../employee/sales_manager.php">Sales Manager</a>
                                     </li>
+                                    
+                                     
                                     
                                 </ul>
                             </div>

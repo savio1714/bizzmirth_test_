@@ -61,6 +61,16 @@
 
                                         }
 
+                                        if($_SESSION["user_type_id_value"] =='6' ){
+                                            getProfileImage('branch_manager','branch_manager_id',$_SESSION['user_id']);
+
+                                        }
+
+                                        if($_SESSION["user_type_id_value"] =='7' ){
+                                            getProfileImage('regional_manager','regional_manager_id',$_SESSION['user_id']);
+
+                                        }
+
                                         
 
                                         ?>

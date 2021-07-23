@@ -31,6 +31,7 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="../css/materialize.css" />
     <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css">  
     <link rel="stylesheet" href="../assets/css/tableFilter.css" />
+    <link rel="stylesheet" href="../css/styles2.css">
 </head>
 
 <body>
@@ -107,7 +108,7 @@ if(!isset($_SESSION['username'])){
                                                         echo ' <tr>
                                                     <td> '.$srno.'</td>
                                                     <td>'.$row['firstname'].' '.$row['lastname'].'</td>
-                                                    <td>'.$row['address'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'</td>
                                                     <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
                                                     <td>'.$bdate.'</td>
                                                     <td>
@@ -206,7 +207,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>'.$row['firstname'].' '.$row['lastname'].'
                                                     </td>
-                                                    <td>'.$row['address'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'</td>
                                                     <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
                                                     <td>'.$bdate.'</td>
                                                     <td>

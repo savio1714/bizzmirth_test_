@@ -80,11 +80,42 @@ if($stmt->rowCount()>0){
 					}
 				}
 
+		}else if($_SESSION["user_type_id_value"] =='6'){
+			$stmt = $conn->prepare("SELECT * FROM branch_manager where email='".$username."'  AND status='1' ");
+				$stmt->execute();
+
+				    // set the resulting array to associative
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+				if($stmt->rowCount()>0){
+					foreach (($stmt->fetchAll()) as $key => $row){
+						$_SESSION["username2"] = $row['firstname'] ;
+						$_SESSION["lname"] = $row['lastname'] ;
+						
+					}
+				}
+
+		}else if($_SESSION["user_type_id_value"] =='7'){
+			$stmt = $conn->prepare("SELECT * FROM regional_manager where email='".$username."'  AND status='1' ");
+				$stmt->execute();
+
+				    // set the resulting array to associative
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+				if($stmt->rowCount()>0){
+					foreach (($stmt->fetchAll()) as $key => $row){
+						$_SESSION["username2"] = $row['firstname'] ;
+						$_SESSION["lname"] = $row['lastname'] ;
+						
+					}
+				}
+
 		}else{
 			$_SESSION["username2"] = '' ;
+			$_SESSION["lname"]='';
 		}	
 
-	if ($_SESSION["user_type_id_value"] =='2' || $_SESSION["user_type_id_value"]== '3' || $_SESSION["user_type_id_value"]== '4' || $_SESSION["user_type_id_value"]== '5'){
+	if ($_SESSION["user_type_id_value"] =='2' || $_SESSION["user_type_id_value"]== '3' || $_SESSION["user_type_id_value"]== '4' || $_SESSION["user_type_id_value"]== '5' || $_SESSION["user_type_id_value"]== '6' || $_SESSION["user_type_id_value"]== '7'){
 		if ($remember_me == 'true') {
 
 

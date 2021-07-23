@@ -11,7 +11,6 @@
                     <div class="login-btn pull-right">
                         <?php if(isset($_SESSION['username2'])){echo ' <a href="dashboard/" ><i class="fa fa-user-plus"></i> Dashboard</a>
                         <a href="login.php" class="my2logout"><i class="fa fa-user-plus mylogout"></i> Logout</a>';
-
                     }else { echo '
                         <a class="active" href="login.php" ><i class="fa fa-unlock-alt "></i> Login / Register</a>';}?>
                        

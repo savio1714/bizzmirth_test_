@@ -29,6 +29,9 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="../css/mob.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/materialize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css">  
+    <link rel="stylesheet" href="../assets/css/tableFilter.css" />
+        <link rel="stylesheet" href="../css/styles2.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,31 +53,30 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Sales Manager</a>
+                        <li class="active-bre"><a href="#">Sales Manager</a>
+                        </li>
+
+                        <li class="page-back"><a href="../index2.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
                     </ul>
                 </div>
+
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Sales Manager</h4>
+                                    <h4>Pending List</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-users" class="dropdown-content">
-                                        <li><a href="add_sm.php">Add New</a>
+                                        <li><a href="add_sales_manager.php">Add Sales Manager</a>
                                         </li>
-                                        <li><a href="user-edit.html">Edit</a>
+                                        <li><a href="#">Download List</a>
                                         </li>
-                                        <li><a href="#!">Update</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
-                                        </li>
-                                        <li><a href="user-view.html"><i class="material-icons">subject</i>View All</a>
+                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
                                         </li>
                                     </ul>
 
@@ -83,7 +85,104 @@ if(!isset($_SESSION['username'])){
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="pendingTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr no.</th>
+                                                    <th>Employee Name</th>
+                                                    <th>Address</th>
+                                                    <th>Phone No.</th>
+                                                    <th>DOB</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                    <th>Confirm</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM sales_manager where user_type='5' and status='2' order by sales_manager_id");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        $bd= new DateTime($row['date_of_birth']);
+                                                        $bdate= $bd->format('d-m-Y'); 
+                                                        echo ' <tr>
+                                                    <td> '.$srno.'
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'
+                                                    </td>
+                                                    <td class="lessWords">'.$row['address'].'</td>
+                                                    <td>+'.$row['country_code'].' '.$row['contact_no'].'</td>
+                                                    <td>'.$bdate.'</td>
+                                                    <td>
+                                                        <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
+                                                        "pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["state"]. '")\'><i class="material-icons dp48">verified_user</i></a>
+                                                    </td>
+                                                </tr>';
+
+                                                $srno++;
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<tr>
+                                                    <td colspan="8">No Pending Sales Manager
+                                                    </td>
+                                                    <tr>';
+                                                    }
+              ?>  
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="sb2-2-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Registered List</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-register-list"><i class="material-icons">more_vert</i></a>
+                                    <ul id="dr-register-list" class="dropdown-content">
+                                        <li><a href="#">Download List</a>
+                                        </li>
+                                        <!-- <li><a href="user-edit.html">Edit</a>
+                                        </li>
+                                        <li><a href="#!">Update</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
+                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Dropdown Structure -->
+
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover" id="registerTable">
                                             <thead>
                                                 <tr>
                                                     <th>Employee No.</th>
@@ -93,234 +192,92 @@ if(!isset($_SESSION['username'])){
                                                     <th>Head Office Employee</th>
                                                     <th>Zone Name</th>
                                                     <th>Region Name</th>
-                                                    <th>Designation</th>
-                                                    <th>Is Approved</th>
-                                                    <th>Active</th>
+                                                    <!-- <th>Is Approved</th> -->
+                                                    <th>Status</th>
                                                     <th>Edit</th>
+                                                    <th>Delete</th>
                                                     
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM sales_manager where user_type='5' and (status='1' or status='3') order by sales_manager_id ");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+
+                                                    $stmt2 = $conn->prepare("SELECT * FROM login where user_type_id='5' and (status='1' or status='3') and user_id='".$row['sales_manager_id']."' ");
+                                                    $stmt2->execute();
+
+                                                        // set the resulting array to associative
+                                                    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                    if($stmt2->rowCount()>0){
+                                                        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
+                                                            $pass=$row2['password'];
+                                                            $status=$row2['status'];
+                                                         }
+                                                    }   
+                                                        echo ' <tr>
+                                                    <td>'.$row['sales_manager_id'].'
                                                     </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'
+                                                    </td>
+                                                    <td>'.$pass.'</td>
+                                                    <td>'.$row['email'].'</td>
+                                                    <td>'.$row['head_office'].'</td>
+                                                    <td>'.$row['zone'].'</td>
                                                     <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
+                                                        '.$row['region'].'
+                                                    </td>';
+                                                    if($row['status'] == 1){
+                                                        echo '<td><span class="label label-success">Active</span>
+                                                    </td>';
+                                                    }else{
+                                                        
+                                                        echo '<td><span class="label label-danger">Removed</span>
+                                                    </td>';
+                                                        
+                                                    }
+                                                    echo '
+                        
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
+                                                        <a href="#" onclick=\'editfunc("' .$row["sales_manager_id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '",
+                                                        "registered")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>';
+
+                                                    if($status ==3){
+                                                             echo '<td><span class="label label-danger"></span>
+                                                    </td>';
+                                                        }else{
+                                                            echo '<td>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["sales_manager_id"]. '",
+                                                        "registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>';
+                                                        }
                                                     
-                                                </tr>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
                                                     
-                                                </tr>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                               echo ' </tr>';
+
+                                                $srno++;
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo '<tr>
+                                                    <td colspan="8">Not Registered Sales Manager
                                                     </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                               <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                               <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                               <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
-                                               <tr>
-                                                    <td>1001</td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>abc123</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>India</td>
-                                                    <td>Goa</td>
-                                                    <td>Sales Manager</td>
-                                                    <td>
-                                                        <span class="label label-primary">Approved</span>
-                                                    </td>
-                                                    <td> Active
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    
-                                                </tr>
+                                                    <tr>';
+                                                    }
+                                                ?> 
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -329,6 +286,8 @@ if(!isset($_SESSION['username'])){
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -357,8 +316,76 @@ if(!isset($_SESSION['username'])){
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/materialize.min.js"></script>
     <script src="../js/custom.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+    $('#pendingTable').DataTable();
+} );
+$(document).ready( function () {
+    $('#registerTable').DataTable();
+} );     
+</script>
 </body>
 
 
 <!-- Mirrored from rn53themes.net/themes/demo/travelz/admin/user-all.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Apr 2021 08:21:20 GMT -->
 </html>
+
+<script type="text/javascript">
+
+    function editfunc(id,refno,cut,st,ct,editfor)
+    { 
+        window.location.href='edit_sales_manager.php?vkvbvjfgfikix='+id+'&nohbref='+refno+'&ncy='+cut+'&mst='+st+'&hct='+ct+'&editfor='+editfor;  
+    };
+
+
+    function deletefunc(id,smid,action)
+    { 
+    var dataString = 'id='+ id+'&smid='+smid+'&action='+action;
+
+
+      $.ajax({
+        type: "POST",
+        url: "sales_manager/delete_sales_manager.php",
+        data: dataString,
+        cache: false,
+          success:function(data){
+            if(data == 11 || data == 1){
+
+            alert("Delete Succesfully");
+             window.location.reload();
+          }
+          else{
+
+          alert("deletion failed");
+        }
+      }
+      });
+          
+    };
+
+
+    function confirmfunc(id,email,st)
+    { 
+    var dataString = 'id='+ id+'&uname='+email+'&st='+st;
+
+
+      $.ajax({
+        type: "POST",
+        url: "sales_manager/confirm_sales_manager.php",
+        data: dataString,
+        cache: false,
+          success:function(data){
+            if(data == 1){
+                   alert("Email and Password send via sms and email");
+             window.location.reload();
+          }
+          else{
+
+          alert("Failed to confirm");
+        }
+      }
+      });
+          
+    };
+</script>

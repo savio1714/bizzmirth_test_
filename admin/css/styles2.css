@@ -38,3 +38,11 @@
    	margin-top: 25px;
    }
 }
+
+.lessWords {
+          display: block;
+          white-space: nowrap;
+          width: 10em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+}

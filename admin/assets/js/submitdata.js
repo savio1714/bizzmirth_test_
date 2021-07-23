@@ -706,6 +706,877 @@ $('#addCustomer').click(function(e){
 
 
 
+//Add Reginal Manager
+
+$('#addReginalManager').click(function(e){
+            e.preventDefault();
+            // alert("ok ok");
+
+            var head_office = $('#head_office').val();
+            var zone_name = $('#zone_name').val();
+            var region_name = $('#region_name').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'head_office='+ head_office+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&zone_name='+zone_name+'&region_name='+region_name;
+
+          if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email==''){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1'){
+              alert("Email already exists");
+          }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+            alert('Please Select Gender');
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone==''){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1'){
+              alert("Phone number already exists");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (head_office ===''){
+              alert("Enter Head Office ");
+          }else if (zone_name ===''){
+              alert("Enter Zone Name");
+          }else if (region_name ===''){
+              alert("Enter Region Name");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "regional_manager/add_regional_manager_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+                        alert("Added Successfuly");
+                        location.href = "regional_manager.php";
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+//Edit Regional Manager
+
+  $('#editRegionalManager').click(function(e){
+            e.preventDefault();
+            
+            var editfor = $('#editfor').val();
+            // var rmid = $('#rmid').val();
+            var head_office = $('#head_office').val();
+            var zone_name = $('#zone_name').val();
+            var region_name = $('#region_name').val();
+            var testiod = $('#testiod').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var phoneN =$('#phoneN').val();
+            var emailV =$('#emailV').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+
+          if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email=='' ){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1' && emailV !=email){
+              alert("Email already exists ok");
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone=='' ){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1' && phoneN !=phone){
+              alert("Phone number already exists ok");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (head_office ===''){
+              alert("Enter Head Office ");
+          }else if (zone_name ===''){
+              alert("Enter Zone Name");
+          }else if (region_name ===''){
+              alert("Enter Region Name");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "regional_manager/edit_regional_manager_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+                        alert("Edited Successfuly");
+                        location.href = "regional_manager.php";
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+//Add Branch Manager
+
+$('#addBranchManager').click(function(e){
+            e.preventDefault();
+            // alert("ok ok");
+
+            var rm_id = $('#regional_manager_id').val();
+            var rm_name = $('#regional_manager_name').val();
+            var head_office = $('#head_office').val();
+            var zone_name = $('#zone_name').val();
+            var region_name = $('#region_name').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'head_office='+ head_office+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&zone_name='+zone_name+'&region_name='+region_name+'&rm_id='+rm_id+'&rm_name='+rm_name;
+
+           if (rm_id==''){
+              alert("Select Regional Manager Id");
+          }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email==''){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1'){
+              alert("Email already exists");
+          }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+            alert('Please Select Gender');
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone==''){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1'){
+              alert("Phone number already exists");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (head_office ===''){
+              alert("Enter Head Office ");
+          }else if (zone_name ===''){
+              alert("Enter Zone Name");
+          }else if (region_name ===''){
+              alert("Enter Region Name");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "branch_manager/add_branch_manager_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+                        alert("Added Successfuly");
+                        location.href = "branch_manager.php";
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+
+//Add Sales Manager
+
+$('#addSalesManager').click(function(e){
+            e.preventDefault();
+            // alert("ok ok");
+
+            var bm_id = $('#branch_manager_id').val();
+            var bm_name = $('#branch_manager_name').val();
+            var head_office = $('#head_office').val();
+            var zone_name = $('#zone_name').val();
+            var region_name = $('#region_name').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'head_office='+ head_office+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&zone_name='+zone_name+'&region_name='+region_name+'&bm_id='+bm_id+'&bm_name='+bm_name;
+
+           if (bm_id==''){
+              alert("Select Regional Manager Id");
+          }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email==''){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1'){
+              alert("Email already exists");
+          }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+            alert('Please Select Gender');
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone==''){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1'){
+              alert("Phone number already exists");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (head_office ===''){
+              alert("Enter Head Office ");
+          }else if (zone_name ===''){
+              alert("Enter Zone Name");
+          }else if (region_name ===''){
+              alert("Enter Region Name");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "sales_manager/add_sales_manager_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+                        alert("Added Successfuly");
+                        location.href = "sales_manager.php";
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+//Edit Branch Manager
+
+  $('#editBranchManager').click(function(e){
+            e.preventDefault();
+            
+            var editfor = $('#editfor').val();
+            // var rmid = $('#rmid').val();
+            var head_office = $('#head_office').val();
+            var zone_name = $('#zone_name').val();
+            var region_name = $('#region_name').val();
+            var testiod = $('#testiod').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var phoneN =$('#phoneN').val();
+            var emailV =$('#emailV').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+
+          if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email=='' ){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1' && emailV !=email){
+              alert("Email already exists ok");
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone=='' ){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1' && phoneN !=phone){
+              alert("Phone number already exists ok");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (head_office ===''){
+              alert("Enter Head Office ");
+          }else if (zone_name ===''){
+              alert("Enter Zone Name");
+          }else if (region_name ===''){
+              alert("Enter Region Name");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "branch_manager/edit_branch_manager_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+                        alert("Edited Successfuly");
+                        location.href = "branch_manager.php";
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+//Edit Sales Manager
+
+  $('#editSalesManager').click(function(e){
+            e.preventDefault();
+            
+            var editfor = $('#editfor').val();
+            // var rmid = $('#rmid').val();
+            var head_office = $('#head_office').val();
+            var zone_name = $('#zone_name').val();
+            var region_name = $('#region_name').val();
+            var testiod = $('#testiod').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var profile_pic = $('#profile_pic').val();
+            var kyc = $('#kyc').val();
+            var pan_card = $('#pan_card').val();
+            var aadhar_card = $('#aadhar_card').val();
+            var voting_card = $('#voting_card').val();
+            var passbook = $('#passbook').val();
+            var invalidimage1 = $('#invalidimage1').val();
+            var invalidimage2 = $('#invalidimage2').val();
+            var invalidimage3 = $('#invalidimage3').val();
+            var invalidimage4 = $('#invalidimage4').val();
+            var invalidimage5 = $('#invalidimage5').val();
+            var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var phoneN =$('#phoneN').val();
+            var emailV =$('#emailV').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+
+          if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email=='' ){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1' && emailV !=email){
+              alert("Email already exists ok");
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone=='' ){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1' && phoneN !=phone){
+              alert("Phone number already exists ok");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (head_office ===''){
+              alert("Enter Head Office ");
+          }else if (zone_name ===''){
+              alert("Enter Zone Name");
+          }else if (region_name ===''){
+              alert("Enter Region Name");
+          }else if (profile_pic ===''){
+              alert("Upload Profile Picture");
+          }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'|| invalidimage5 =='2'  || invalidimage6 =='2'){
+              alert("Please Upload Proper Proof");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "sales_manager/edit_sales_manager_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+                        alert("Edited Successfuly");
+                        location.href = "sales_manager.php";
+                  }
+                  else{
+
+                  alert("Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
+
+
+
+//Add Employee
+
+$('#addEmployee').click(function(e){
+            e.preventDefault();
+            // alert("ok ok");
+            var location = $('#location').val();
+            var designation = $('#designation').val();
+            var firstname = $('#firstname').val().trim();
+            var lastname = $('#lastname').val().trim();
+            var country_code = $('#country_cd').val();
+            var phone = $('#phone').val().trim();
+            var email = $('#email').val().trim();
+            var gender = $('.gender:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var pass = $('#pass').val().trim();
+            var cpass = $('#cpass').val().trim();
+            // var profile_pic = $('#profile_pic').val();
+            // var kyc = $('#kyc').val();
+            // var pan_card = $('#pan_card').val();
+            // var aadhar_card = $('#aadhar_card').val();
+            // var voting_card = $('#voting_card').val();
+            // var passbook = $('#passbook').val();
+            // var invalidimage1 = $('#invalidimage1').val();
+            // var invalidimage2 = $('#invalidimage2').val();
+            // var invalidimage3 = $('#invalidimage3').val();
+            // var invalidimage4 = $('#invalidimage4').val();
+            // var invalidimage5 = $('#invalidimage5').val();
+            // var invalidimage6 = $('#invalidimage6').val();
+            // alert(invalidimage);
+
+
+            var country = $('#country').val();
+            var state = $('#mystate').val();
+            var city = $('#city').val();
+            var pin = $('#pin').val();
+
+            var characterLetters = /^[A-Za-z\s]+$/;
+            var phoneReg =/^[0-9]{10}$/;
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var specialChar = /[!@#$%^&*]/g;
+
+            //for password
+            var lowerCaseLetters = /[a-z]/g;
+             var upperCaseLetters = /[A-Z]/g;
+             var number= /[0-9]/g;
+
+
+            var testp= $('#testphone').val();
+            var testE= $('#testemail').val();
+            var age =getdob(dob);
+
+
+
+            var dataString = 'location='+ location+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&designation='+designation+'&pass='+pass;
+
+          if (location ==='' ){
+              alert("Select Location");
+          }else if (designation ==='' ){
+              alert("Select Designation");
+          }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+              alert("Enter Proper First Name");
+          }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+              alert("Enter Proper Last Name");
+          }else if (email==''){
+              alert("Enter Email");
+          }else if (!emailReg.test(email)){
+              alert("Enter Proper Email");
+          }else if (testE == '1'){
+              alert("Email already exists");
+          }else if(gender !== 'male' && gender !== 'female' && gender !== 'others'){
+            alert('Please Select Gender');
+          }
+          else if(dob ===''){
+            alert('Please Select date');
+          }else if(age<18 ||  age>=100){
+            alert('Sorry you are not eligible');
+          }else if (phone==''){
+              alert("Enter Phone number");
+          }else if (!phoneReg.test(phone)){
+              alert("Enter Proper Phone Number");
+          }else if(validateOnlyZero(phone)){
+            alert("Enter Proper Phone number")
+          }else if (testp == '1'){
+              alert("Phone number already exists");
+          }else if (country ===''){
+              alert("Select Country");
+          }else if (state ===''){
+              alert("Select State");
+          }else if (city ===''){
+              alert("Select City");
+          }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+              alert("Enter Proper Address");
+          }else if (!pass.match(lowerCaseLetters)){
+            alert("password should contain atleast one lower character");
+          }else if (!pass.match(upperCaseLetters)){
+           alert("password should contain atleast one upper character");
+          }else if (!pass.match(number)){
+             alert("password should contain atleast one number");
+          }else if (!pass.match(specialChar)){
+             alert("password should contain atleast one special character");
+          }else if(pass.length <8 ){
+               alert("Password should be 8 character long");
+          }else if (pass !== cpass){
+              alert("Password Not Matching");
+          }else{
+              $.ajax({
+                type: "POST",
+                url: "add_employee_data.php",
+                data: dataString,
+                cache: false,
+                  success:function(data){
+                    if(data == 1){
+
+                       alert("Register Successfuly");
+                        location.href = "add_employee.php";
+                      }
+                        
+                  else{
+
+                  alert("Registeration Failed");
+                }
+              }
+              });
+       
+          }
+            
+
+
+
+        });
+
+
 
 
 
@@ -796,7 +1667,7 @@ return dob;
 }
 
 
-const validateOnlyZero = (input) =>{
+var validateOnlyZero = (input) =>{
 
   let characterLetters = /^[0\s]+$/;
   if(input.match(characterLetters )){

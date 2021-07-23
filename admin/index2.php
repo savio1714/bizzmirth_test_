@@ -30,12 +30,15 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/materialize.css" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+    <style type="text/css">
+        .lessWords {
+          display: block;
+          white-space: nowrap;
+          width: 12em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,8 +58,8 @@ if(!isset($_SESSION['username'])){
                         </li>
                         <li class="active-bre"><a href="#"> Dashboard</a>
                         </li>
-                        <li class="page-back"><a href="index2.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
-                        </li>
+                        <!-- <li class="page-back"><a href="index2.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        </li> -->
                     </ul>
                 </div>
                 <!--== DASHBOARD INFO ==-->
@@ -156,18 +159,22 @@ if(!isset($_SESSION['username'])){
 						</ul>
 					</div>
                 </div>
+
+
+                <!--== Regional Manager And Branch Manager ==-->
+
                 <div class="sb2-2-3">
                     <div class="row">
-                        <!--== Travel Agent ==-->
+                        <!--== Regional Manager ==-->
                         <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Travel Agent</h4>
+                                    <h4>Regional Manager</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
-                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a>
+                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown6'><i class="material-icons">more_vert</i></a>
                                     <!-- Dropdown Structure -->
-                                    <ul id='dropdown1' class='dropdown-content'>
-                                        <li><a href="#!">Add New</a>
+                                    <ul id='dropdown6' class='dropdown-content'>
+                                        <li><a href="employee/add_regional_manager.php">Add New</a>
                                         </li>
                                         <!-- <li><a href="#!">Edit</a>
                                         </li>
@@ -189,77 +196,64 @@ if(!isset($_SESSION['username'])){
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Name</th>
-                                                    <th>Address</th>
+                                                    <th >Address</th>
                                                     <!-- <th>Budget</th> -->
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                 <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM regional_manager where user_type='7' and (status='1'  or status='3') and regional_manager_id != '' order by regional_manager_id desc limit 5");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        echo '<tr>
+                                                    <td><span class="txt-dark weight-500">'.$row['regional_manager_id'].'</span>
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'
+                                                    </td>';
+                                                    if($row['status'] ==1){
+                                                             echo '<td>
+                                                                    <span class="label label-success">Active</span>
+                                                                </td>';
+                                                        } else if($row['status'] ==3){
+                                                            echo '<td>
+                                                                    <span class="label label-danger">Removed</span>
+                                                                </td>';
+                                                        }
+                                                        // else if($row['status'] ==2){
+                                                        //     echo '<td>
+                                                        //             <span class="label label-info">Hold</span>
+                                                        //         </td>';
+                                                        // }
+                                                        else{
+
+                                                        }
+
+                                                   echo'</tr>';
+
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- <tr>
                                                     <td><span class="txt-dark weight-500">2</span>
                                                     </td>
                                                     <td>Beavis</td>
-                                                    <td>xyyz
+                                                    <td class="lessWords">xyyz dsfdsfdsfsdf dsfsdfsdfsdf
                                                     </td>
-                                                    <!-- <td>
-                                                        <span class="txt-dark weight-500">$1478</span>
-                                                    </td> -->
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">3</span>
-                                                    </td>
-                                                    <td>Felix</td>
-                                                    <td>abc
-                                                    </td>
-                                                    <!-- <td>
-                                                        <span class="txt-dark weight-500">$951</span>
-                                                    </td> -->
-                                                    <td>
-                                                        <span class="label label-danger">Closed</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">4</span>
-                                                    </td>
-                                                    <td>Cannibus</td>
-                                                    <td>dgf
-                                                    </td>
-                                                    <!-- <td>
-                                                        <span class="txt-dark weight-500">$632</span>
-                                                    </td> -->
-                                                    <td>
-                                                        <span class="label label-default">Hold</span>
-                                                    </td>
-                                                </tr>
-                                                <!-- <tr>
-                                                    <td><span class="txt-dark weight-500">Norway</span>
-                                                    </td>
-                                                    <td>Neosoft</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>7.43%</span></span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="txt-dark weight-500">$325</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="label label-default">Hold</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">South Africa</span>
-                                                    </td>
-                                                    <td>Hencework</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>9.43%</span></span>
-                                                    </td>
-                                                    <td>
-                                                        <span>$258</span>
-                                                    </td>
+                                                   
                                                     <td>
                                                         <span class="label label-success">Active</span>
                                                     </td>
                                                 </tr> -->
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -267,16 +261,16 @@ if(!isset($_SESSION['username'])){
                             </div>
                         </div>
 
-                        <!--== Customer ==-->
+                        <!--== Branch Manager ==-->
                         <div class="col-md-6">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Customer</h4>
+                                    <h4>Branch Manager</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
-                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown2'><i class="material-icons">more_vert</i></a>
+                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown5'><i class="material-icons">more_vert</i></a>
                                     <!-- Dropdown Structure -->
-                                    <ul id='dropdown2' class='dropdown-content'>
-                                        <li><a href="#!">Add New</a>
+                                    <ul id='dropdown5' class='dropdown-content'>
+                                        <li><a href="employee/add_branch_manager.php">Add New</a>
                                         </li>
                                         <!-- <li><a href="#!">Edit</a>
                                         </li>
@@ -304,71 +298,420 @@ if(!isset($_SESSION['username'])){
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                               <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM branch_manager where user_type='6' and (status='1' or status='3') and branch_manager_id != '' order by branch_manager_id desc limit 5");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        echo '<tr>
+                                                    <td><span class="txt-dark weight-500">'.$row['branch_manager_id'].'</span>
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'
+                                                    </td>';
+                                                    if($row['status'] ==1){
+                                                             echo '<td>
+                                                                    <span class="label label-success">Active</span>
+                                                                </td>';
+                                                        } else if($row['status'] ==3){
+                                                            echo '<td>
+                                                                    <span class="label label-danger">Removed</span>
+                                                                </td>';
+                                                        }
+                                                        // else if($row['status'] ==2){
+                                                        //     echo '<td>
+                                                        //             <span class="label label-info">Hold</span>
+                                                        //         </td>';
+                                                        // }
+                                                        else{
+
+                                                        }
+
+                                                   echo'</tr>';
+
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--== Sales Manager And Franchisee==-->
+
+                <div class="sb2-2-3">
+                    <div class="row">
+                        <!--== Sales Manager ==-->
+                        <div class="col-md-6">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Sales Manager</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown4'><i class="material-icons">more_vert</i></a>
+                                    <!-- Dropdown Structure -->
+                                    <ul id='dropdown4' class='dropdown-content'>
+                                        <li><a href="employee/add_sales_manager.php">Add New</a>
+                                        </li>
+                                        <!-- <li><a href="#!">Edit</a>
+                                        </li>
+                                        <li><a href="#!">Update</a>
+                                        </li>
+ -->                                        <li class="divider"></li>
+                                       <!--  <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
+                                        <li><a href="#!"><i class="material-icons">subject</i>View All</a>
+                                        </li>
+                                        <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
                                                 <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th >Address</th>
+                                                    <!-- <th>Budget</th> -->
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                 <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM sales_manager where user_type='5' and (status='1'  or status='3') and sales_manager_id != '' order by sales_manager_id desc limit 5");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        echo '<tr>
+                                                    <td><span class="txt-dark weight-500">'.$row['sales_manager_id'].'</span>
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'
+                                                    </td>';
+                                                    if($row['status'] ==1){
+                                                             echo '<td>
+                                                                    <span class="label label-success">Active</span>
+                                                                </td>';
+                                                        } else if($row['status'] ==3){
+                                                            echo '<td>
+                                                                    <span class="label label-danger">Removed</span>
+                                                                </td>';
+                                                        }
+                                                        // else if($row['status'] ==2){
+                                                        //     echo '<td>
+                                                        //             <span class="label label-info">Hold</span>
+                                                        //         </td>';
+                                                        // }
+                                                        else{
+
+                                                        }
+
+                                                   echo'</tr>';
+
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- <tr>
                                                     <td><span class="txt-dark weight-500">2</span>
                                                     </td>
                                                     <td>Beavis</td>
-                                                    <td>xyyz
+                                                    <td class="lessWords">xyyz dsfdsfdsfsdf dsfsdfsdfsdf
                                                     </td>
-                                                    <!-- <td>
-                                                        <span class="txt-dark weight-500">$1478</span>
-                                                    </td> -->
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">3</span>
-                                                    </td>
-                                                    <td>Felix</td>
-                                                    <td>abc
-                                                    </td>
-                                                    <!-- <td>
-                                                        <span class="txt-dark weight-500">$951</span>
-                                                    </td> -->
-                                                    <td>
-                                                        <span class="label label-danger">Closed</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">4</span>
-                                                    </td>
-                                                    <td>Cannibus</td>
-                                                    <td>dgf
-                                                    </td>
-                                                    <!-- <td>
-                                                        <span class="txt-dark weight-500">$632</span>
-                                                    </td> -->
-                                                    <td>
-                                                        <span class="label label-default">Hold</span>
-                                                    </td>
-                                                </tr>
-                                                <!-- <tr>
-                                                    <td><span class="txt-dark weight-500">Norway</span>
-                                                    </td>
-                                                    <td>Neosoft</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>7.43%</span></span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="txt-dark weight-500">$325</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="label label-default">Hold</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">South Africa</span>
-                                                    </td>
-                                                    <td>Hencework</td>
-                                                    <td><span class="txt-success"><i class="fa fa-angle-up" aria-hidden="true"></i><span>9.43%</span></span>
-                                                    </td>
-                                                    <td>
-                                                        <span>$258</span>
-                                                    </td>
+                                                   
                                                     <td>
                                                         <span class="label label-success">Active</span>
                                                     </td>
                                                 </tr> -->
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--== Franchisee ==-->
+                        <div class="col-md-6">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Franchisee</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown3'><i class="material-icons">more_vert</i></a>
+                                    <!-- Dropdown Structure -->
+                                    <ul id='dropdown3' class='dropdown-content'>
+                                        <li><a href="franchisee/add_franchisee.php">Add New</a>
+                                        </li>
+                                        <!-- <li><a href="#!">Edit</a>
+                                        </li>
+                                        <li><a href="#!">Update</a>
+                                        </li> -->
+                                        <li class="divider"></li>
+                                        <!-- <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
+                                        <li><a href="#!"><i class="material-icons">subject</i>View All</a>
+                                        </li>
+                                        <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <!-- <th>Budget</th> -->
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM franchisee where user_type='4' and (status='1' or status='0') and franchisee_id != '' order by franchisee_id desc limit 5");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        echo '<tr>
+                                                    <td><span class="txt-dark weight-500">'.$row['franchisee_id'].'</span>
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'
+                                                    </td>';
+                                                    if($row['status'] ==1){
+                                                             echo '<td>
+                                                                    <span class="label label-success">Active</span>
+                                                                </td>';
+                                                        } else if($row['status'] ==0){
+                                                            echo '<td>
+                                                                    <span class="label label-danger">Deleted</span>
+                                                                </td>';
+                                                        }
+                                                        // else if($row['status'] ==2){
+                                                        //     echo '<td>
+                                                        //             <span class="label label-info">Hold</span>
+                                                        //         </td>';
+                                                        // }
+                                                        else{
+
+                                                        }
+
+                                                   echo'</tr>';
+
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="sb2-2-3">
+                    <div class="row">
+                        <!--== Travel Agent ==-->
+                        <div class="col-md-6">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Travel Agent</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a>
+                                    <!-- Dropdown Structure -->
+                                    <ul id='dropdown1' class='dropdown-content'>
+                                        <li><a href="travel_agent/add_travel_agent.php">Add New</a>
+                                        </li>
+                                        <!-- <li><a href="#!">Edit</a>
+                                        </li>
+                                        <li><a href="#!">Update</a>
+                                        </li>
+ -->                                        <li class="divider"></li>
+                                       <!--  <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
+                                        <li><a href="#!"><i class="material-icons">subject</i>View All</a>
+                                        </li>
+                                        <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th >Address</th>
+                                                    <!-- <th>Budget</th> -->
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                 <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM travel_agent where user_type='3' and (status='1'  or status='0') and travel_agent_id != '' order by travel_agent_id desc limit 5");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        echo '<tr>
+                                                    <td><span class="txt-dark weight-500">'.$row['travel_agent_id'].'</span>
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'
+                                                    </td>';
+                                                    if($row['status'] ==1){
+                                                             echo '<td>
+                                                                    <span class="label label-success">Active</span>
+                                                                </td>';
+                                                        } else if($row['status'] ==0){
+                                                            echo '<td>
+                                                                    <span class="label label-danger">Deleted</span>
+                                                                </td>';
+                                                        }
+                                                        // else if($row['status'] ==2){
+                                                        //     echo '<td>
+                                                        //             <span class="label label-info">Hold</span>
+                                                        //         </td>';
+                                                        // }
+                                                        else{
+
+                                                        }
+
+                                                   echo'</tr>';
+
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- <tr>
+                                                    <td><span class="txt-dark weight-500">2</span>
+                                                    </td>
+                                                    <td>Beavis</td>
+                                                    <td class="lessWords">xyyz dsfdsfdsfsdf dsfsdfsdfsdf
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        <span class="label label-success">Active</span>
+                                                    </td>
+                                                </tr> -->
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--== Customer ==-->
+                        <div class="col-md-6">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Customer</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
+                                    <a class='dropdown-button drop-down-meta' href='#' data-activates='dropdown2'><i class="material-icons">more_vert</i></a>
+                                    <!-- Dropdown Structure -->
+                                    <ul id='dropdown2' class='dropdown-content'>
+                                        <li><a href="customer/add_customer.php?vkvbvjfgfikix=">Add New (B2C)</a>
+                                        </li>
+                                        <li><a href="customer/add_customer.php?vkvbvjfgfikix=ta">Add New (Travel Agent)</a>
+                                        </li>
+                                        <!-- <li><a href="#!">Edit</a>
+                                        </li>
+                                        <li><a href="#!">Update</a>
+                                        </li> -->
+                                        <li class="divider"></li>
+                                        <!-- <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
+                                        </li> -->
+                                        <li><a href="#!"><i class="material-icons">subject</i>View All</a>
+                                        </li>
+                                        <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <!-- <th>Budget</th> -->
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <?php
+                                                require '../connect.php';
+                                                $srno =1;
+                                                $stmt = $conn->prepare("SELECT * FROM customer where user_type='2' and (status='1' or status='0') and cust_id != '' order by cust_id desc limit 5");
+                                                $stmt->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+                                                        echo '<tr>
+                                                    <td><span class="txt-dark weight-500">'.$row['cust_id'].'</span>
+                                                    </td>
+                                                    <td>'.$row['firstname'].' '.$row['lastname'].'</td>
+                                                    <td class="lessWords">'.$row['address'].'
+                                                    </td>';
+                                                    if($row['status'] ==1){
+                                                             echo '<td>
+                                                                    <span class="label label-success">Active</span>
+                                                                </td>';
+                                                        } else if($row['status'] ==0){
+                                                            echo '<td>
+                                                                    <span class="label label-danger">Deleted</span>
+                                                                </td>';
+                                                        }
+                                                        // else if($row['status'] ==2){
+                                                        //     echo '<td>
+                                                        //             <span class="label label-info">Hold</span>
+                                                        //         </td>';
+                                                        // }
+                                                        else{
+
+                                                        }
+
+                                                   echo'</tr>';
+
+                                                    }
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
