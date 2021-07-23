@@ -29,11 +29,11 @@
                                        echo '<li class="'; echo (basename($_SERVER['PHP_SELF'])=='view_franchisee.php')? 'active':''; echo '">';
                                        echo '<a href="view_franchisee.php"><i class="sl sl-icon-folder"></i> View Franchisee List</a></li>' ;
                                     }else if($_SESSION["user_type_id_value"] =='6'){
-                                        echo '<li class="'; echo (basename($_SERVER['PHP_SELF'])=='add_franchisee.php')? 'active':''; echo '">';
-                                       echo '<a href="add_franchisee.php"><i class="sl sl-icon-user"></i> Add Sales Manager</a></li>' ;
+                                        echo '<li class="'; echo (basename($_SERVER['PHP_SELF'])=='add_sales_manager.php')? 'active':''; echo '">';
+                                       echo '<a href="add_sales_manager.php"><i class="sl sl-icon-user"></i> Add Sales Manager</a></li>' ;
 
-                                       echo '<li class="'; echo (basename($_SERVER['PHP_SELF'])=='view_franchisee.php')? 'active':''; echo '">';
-                                       echo '<a href="view_franchisee.php"><i class="sl sl-icon-folder"></i> View Sales Manager List</a></li>' ;
+                                       echo '<li class="'; echo (basename($_SERVER['PHP_SELF'])=='view_sales_manager.php')? 'active':''; echo '">';
+                                       echo '<a href="view_sales_manager.php"><i class="sl sl-icon-folder"></i> View Sales Manager List</a></li>' ;
                                     }else if($_SESSION["user_type_id_value"] =='7'){
                                         echo '<li class="'; echo (basename($_SERVER['PHP_SELF'])=='add_franchisee.php')? 'active':''; echo '">';
                                        echo '<a href="add_franchisee.php"><i class="sl sl-icon-user"></i> Add Branch Manager</a></li>' ;

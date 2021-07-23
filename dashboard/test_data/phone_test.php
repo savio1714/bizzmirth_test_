@@ -16,6 +16,12 @@ if($tablename == 2 ){
     $tname='franchisee';
 }else if($tablename == 5){
     $tname='sales_manager';
+}else if($tablename == 6){
+    $tname='branch_manager';
+}else if($tablename == 7){
+    $tname='regional_manager';
+}else{
+    
 }
 
 if((!empty($_POST["countrycode"]))|| (!empty($_POST["phoneTenDegit"]))){ 

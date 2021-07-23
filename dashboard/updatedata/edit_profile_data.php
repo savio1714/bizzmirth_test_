@@ -33,6 +33,10 @@ if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' |
 		updateData('franchisee',$user_type,$user_id,'franchisee_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
 	}else if($user_type =='5'){
 		updateData('sales_manager',$user_type,$user_id,'sales_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+	}else if($user_type =='6'){
+		updateData('branch_manager',$user_type,$user_id,'branch_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+	}else if($user_type =='7'){
+		updateData('regional_manager',$user_type,$user_id,'regional_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
 	}else{
 		echo 0;
 	}

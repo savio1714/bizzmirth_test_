@@ -4,14 +4,14 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
     echo '<script>location.href = "../login.php";</script>';
 }
 
-if($_SESSION["user_type_id_value"] !='5'){
+if($_SESSION["user_type_id_value"] !='6'){
     echo '<script>location.href = "../login.php";</script>';
 }
 
 $user_type =$_SESSION["user_type_id_value"];
 $user_id =$_SESSION["user_id"];
-$sm_firstname =$_SESSION["username2"];
-$sm_lastname =$_SESSION["lname"];
+$bm_firstname =$_SESSION["username2"];
+$bm_lastname =$_SESSION["lname"];
 
 $id = $_GET['vkvbvjfgfikix'];
 $country = $_GET['ncy'];
@@ -22,7 +22,7 @@ $city = $_GET['hct'];
 require '../connect.php';
 
 
-    $stmt = $conn->prepare("SELECT *, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `franchisee` where franchisee_id ='".$id."'");
+    $stmt = $conn->prepare("SELECT *, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `sales_manager` where sales_manager_id ='".$id."'");
     $stmt->execute();
      // set the resulting array to associative
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -30,6 +30,9 @@ require '../connect.php';
     if($stmt->rowCount()>0){
     foreach (($stmt->fetchAll()) as $key => $row) {
         // $fid=$row['id'];
+        $head_office=$row['head_office'];
+        $zone_name=$row['zone'];
+        $region_name=$row['region'];
         $firstname=$row['firstname'];
         // $username=$row['username'];
         $lastname=$row['lastname'];
@@ -89,7 +92,7 @@ require '../connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Edit Franchisee | Bizzmirth Holidays</title>
+    <title>Edit Sales Manager | Bizzmirth Holidays</title>
     <!-- Favicon -->
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
@@ -157,7 +160,7 @@ require '../connect.php';
                     <!-- Profile -->
                     <div class="col-lg-12 col-md-12 col-xs-12 padding-right-30">
                         <div class="dashboard-list-box">
-                            <h4 class="gray">Edit Franchisee Details</h4>
+                            <h4 class="gray">Edit Sales Manager Details</h4>
                             <div class="dashboard-list-box-static">
                                 
                                 <!-- Avatar -->
@@ -187,29 +190,29 @@ require '../connect.php';
 
                                 <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                        <label>Sales Manager ID</label>
-                                        <input id="sm_id" type="text" placeholder="Sales Manager ID" value="<?php echo $user_id?>" readonly>
+                                        <label>Branch Manager ID</label>
+                                        <input id="sm_id" type="text" placeholder="Branch Manager ID" value="<?php echo $user_id?>" readonly>
                                         <!-- <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                     </div>
                                     
 
                                    <div class="col-lg-6 col-md-6">
-                                        <label>Sales Manager Name</label>
-                                        <input id="sm_name"  type="text" placeholder="Sales Manager Name" value="<?php echo $sm_firstname . ' '. $sm_lastname;?>" readonly>
+                                        <label>Branch Manager Name</label>
+                                        <input id="sm_name"  type="text" placeholder="Branch Manager Name" value="<?php echo $bm_firstname . ' '. $bm_lastname;?>" readonly>
                                         <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                    </div>
                                 </div>
 
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Franchisee First Name</label>
+                                            <label>Sales Manager First Name</label>
                                             <input id="firstname" type="text" placeholder="Enter First Name" value="<?php echo $firstname?>">
                                             <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
                                     
 
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Franchisee Last Name</label>
+                                            <label>Sales Manager Last Name</label>
                                             <input id="lastname"  type="text" placeholder="Enter Last Name" value="<?php echo $lastname?>">
                                             <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                        </div>
@@ -402,6 +405,30 @@ require '../connect.php';
 
 
                                     <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <label>Head Office</label>
+                                            <input id="head_office" type="text" placeholder="India" value="<?php echo $head_office;?>">
+                                            <div id="headOfficeMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <label>Zone Name</label>
+                                            <input id="zone_name" type="text" placeholder="Panjim" value="<?php echo $zone_name;?>">
+                                            <div id="zoneMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+                                        </div>
+                                    
+
+                                        <div class="col-lg-6 col-md-6">
+                                            <label>Region Name</label>
+                                            <input id="region_name"  type="text" placeholder="Goa" value="<?php echo $region_name;?>">
+                                            <div id="regionMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+                                       </div>
+                                    </div>
+
+
+                                    <div class="row">
                                         <label class="margin-top-0" style="margin: 17px;">Upload Proof</label>
                                         
                                         <div class="col-lg-4 col-md-6 col-xs-6">
@@ -558,7 +585,7 @@ require '../connect.php';
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-xs-6">
-                                        <input type="hidden" id="testValue" name="testValue" value="4">
+                                        <input type="hidden" id="testValue" name="testValue" value="5">
                                         <input type="hidden" id="invalidimage1" name="invalidimage1" >
                                             <input type="hidden" id="invalidimage2" name="invalidimage2" >
                                             <input type="hidden" id="invalidimage3" name="invalidimage3" >
@@ -578,7 +605,7 @@ require '../connect.php';
 
 
                                     <div class="dashboard-list-box-static" style="float: clear;">
-                            <button id="edit_franchisee" class="button" >Save Changes</button>
+                            <button id="edit_sales_manager" class="button" >Save Changes</button>
                             <div id="regist" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                         </div>
 
@@ -590,7 +617,7 @@ require '../connect.php';
                 </div>
             </div>
 
-            <input id="f_id" type="hidden" value="<?php echo $id ;?>"  disabled>
+            <input id="s_id" type="hidden" value="<?php echo $id ;?>"  disabled>
 
 
             </div>

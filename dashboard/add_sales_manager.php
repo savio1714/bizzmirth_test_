@@ -4,79 +4,14 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
     echo '<script>location.href = "../login.php";</script>';
 }
 
-if($_SESSION["user_type_id_value"] !='5'){
+if($_SESSION["user_type_id_value"] !='6'){
     echo '<script>location.href = "../login.php";</script>';
 }
 
 $user_type =$_SESSION["user_type_id_value"];
 $user_id =$_SESSION["user_id"];
-$sm_firstname =$_SESSION["username2"];
-$sm_lastname =$_SESSION["lname"];
-
-$id = $_GET['vkvbvjfgfikix'];
-$country = $_GET['ncy'];
-$state = $_GET['mst'];
-$city = $_GET['hct'];
-
-
-require '../connect.php';
-
-
-    $stmt = $conn->prepare("SELECT *, (select city_name from cities where id = '".$city."'), (select state_name from states where id = '".$state."') as statename, (select city_name from cities where id = '".$city."') as city_name,(select country_name from countries where id = '".$country."') as countryname FROM `franchisee` where franchisee_id ='".$id."'");
-    $stmt->execute();
-     // set the resulting array to associative
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-    if($stmt->rowCount()>0){
-    foreach (($stmt->fetchAll()) as $key => $row) {
-        // $fid=$row['id'];
-        $firstname=$row['firstname'];
-        // $username=$row['username'];
-        $lastname=$row['lastname'];
-        $email=$row['email'];
-        $country_code=$row['country_code'];
-        $contact_no=$row['contact_no'];
-        $date_of_birth=$row['date_of_birth'];
-        $gender=$row['gender'];
-        $address=$row['address'];
-
-
-        // $id_proof=$row['id_proof'];
-        $profile_pic=$row['profile_pic'];
-        $kyc=$row['kyc'];
-        $pan_card=$row['pan_card'];
-        $aadhar_card=$row['aadhar_card'];
-        $voting_card=$row['voting_card'];
-        $bank_passbook=$row['bank_passbook'];
-
-        $city_name=$row['city_name'];
-        $statename=$row['statename'];
-        $countryname=$row['countryname'];
-        $pincode=$row['pincode'];
-
-
-
- 
-    }
-
-    $stmt2 = $conn->prepare("select sortname from countries where country_code = '".$country_code."'");
-    $stmt2->execute();
-     // set the resulting array to associative
-    $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-
-    if($stmt2->rowCount()>0){
-        foreach (($stmt2->fetchAll()) as $key2 => $row2) {
-            $sortname = $row2['sortname'];
-
-        }
-
-
-    }
-
-    }                                                      
-    else{
-                                                            
-    }
+$firstname =$_SESSION["username2"];
+$lastname =$_SESSION["lname"];
 
 
 
@@ -89,7 +24,7 @@ require '../connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Edit Franchisee | Bizzmirth Holidays</title>
+    <title>Add Sales Manager | Bizzmirth Holidays</title>
     <!-- Favicon -->
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/fav.ico">
@@ -116,12 +51,6 @@ require '../connect.php';
   left: 50%;
   top: 8%;
 }
-
-.imgsize{
-    width: 150px;
-    height: 150px;
-  /*  margin-bottom: 5%;*/
-}
     </style>
 </head>
 <body>
@@ -145,8 +74,6 @@ require '../connect.php';
 
              <div id="testpho"></div>
             <div id="testemails"></div>
-            <input id="phoneN" type="hidden" value="<?php echo $contact_no;?>" >
-            <input id="emailV" type="hidden" value="<?php echo $email;?>" >
             
 
             <div class="dashboard-content">
@@ -157,14 +84,14 @@ require '../connect.php';
                     <!-- Profile -->
                     <div class="col-lg-12 col-md-12 col-xs-12 padding-right-30">
                         <div class="dashboard-list-box">
-                            <h4 class="gray">Edit Franchisee Details</h4>
+                            <h4 class="gray">Sales Manager Details</h4>
                             <div class="dashboard-list-box-static">
                                 
                                 <!-- Avatar -->
                                 <div class="edit-profile-photo">
                                     
-                                    <img id="img" src="<?php echo '../uploading/'.$profile_pic;?>" alt="Profile Pic">
-                                    <input type="hidden" name="profile_pic" id="profile_pic" value="<?php echo $profile_pic;?>" disabled>
+                                    <img id="img" src="../images/user_icon.png" alt="">
+                                    <input type="hidden" name="profile_pic" id="profile_pic" disabled>
 
                                    <!--  <input type="file" id="file2" name="file2" /> -->
 
@@ -187,30 +114,32 @@ require '../connect.php';
 
                                 <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                        <label>Sales Manager ID</label>
-                                        <input id="sm_id" type="text" placeholder="Sales Manager ID" value="<?php echo $user_id?>" readonly>
+                                        <label>Branch Manager ID</label>
+                                        <input id="bm_id" type="text" placeholder="Branch Manager ID" value="<?php echo $user_id?>" readonly>
                                         <!-- <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                     </div>
                                     
 
                                    <div class="col-lg-6 col-md-6">
-                                        <label>Sales Manager Name</label>
-                                        <input id="sm_name"  type="text" placeholder="Sales Manager Name" value="<?php echo $sm_firstname . ' '. $sm_lastname;?>" readonly>
+                                        <label>Branch Manager Name</label>
+                                        <input id="bm_name"  type="text" placeholder="Branch Manager Name" value="<?php echo $firstname . ' '. $lastname;?>" readonly>
                                         <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                    </div>
                                 </div>
 
+                                
+
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Franchisee First Name</label>
-                                            <input id="firstname" type="text" placeholder="Enter First Name" value="<?php echo $firstname?>">
+                                            <label>Sales Manager First Name</label>
+                                            <input id="firstname" type="text" placeholder="Enter First Name">
                                             <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
                                     
 
                                         <div class="col-lg-6 col-md-6">
-                                            <label>Franchisee Last Name</label>
-                                            <input id="lastname"  type="text" placeholder="Enter Last Name" value="<?php echo $lastname?>">
+                                            <label>Sales Manager Last Name</label>
+                                            <input id="lastname"  type="text" placeholder="Enter Last Name">
                                             <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                        </div>
                                     </div>
@@ -231,7 +160,7 @@ require '../connect.php';
                                             $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                             ?>
                                             <select  id="countrycode">
-                                            <option value="<?php echo $country_code;?>"><?php echo '+'.$country_code.' ('.$sortname.') (Already Selected)' ; ?></option>
+                                            <option value="">Select Country Code</option>
                                             <?php 
                                             if($stmt->rowCount()>0){
                                                  foreach (($stmt->fetchAll()) as $key => $row) {  
@@ -244,7 +173,7 @@ require '../connect.php';
                                             </select>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                             <input id="phone" type="text" placeholder="Phone Number" value="<?php echo $contact_no?>">
+                                             <input id="phone" type="text" placeholder="Phone Number">
                                         </div>
                                     </div>
 
@@ -259,13 +188,13 @@ require '../connect.php';
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                         <label>Email Address</label>
-                                        <input id="emailvalue" type="text" placeholder="abc@xyz.com" value="<?php echo $email;?>">
+                                        <input id="emailvalue" type="text" placeholder="abc@xyz.com">
                                         <div id="emailMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                     </div>
 
                                     <div class="col-lg-6 col-md-6">
                                         <label>Date of Birth</label>
-                                        <input type="date" id="bdate" value="<?php echo $date_of_birth;?>">
+                                        <input type="date" id="bdate" >
                                         <div id="dobMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
                                     </div>
@@ -275,13 +204,13 @@ require '../connect.php';
                                         <div class="col-lg-6 col-md-6">
                                         <label>Gender</label>
 
-                                        <input id="check-a" type="radio" class="gender" name="gender" value="male" <?php if ($gender == 'male'){echo ' checked ';} ?> />
+                                        <input id="check-a" type="radio" class="gender" name="gender" value="male">
                                         <label style="display: inline-block;" for="check-a" >Male</label>
 
-                                        <input id="check-b" type="radio" class="gender" name="gender" value="female" <?php if ($gender == 'female'){echo ' checked ';} ?> />
+                                        <input id="check-b" type="radio" class="gender" name="gender" value="female">
                                         <label  style="display: inline-block;" for="check-b">Female</label>
 
-                                        <input id="check-c" type="radio" class="gender" name="gender" value="others" <?php if ($gender == 'others'){echo ' checked ';} ?> />
+                                        <input id="check-c" type="radio" class="gender" name="gender" value="others">
                                         <label style="display: inline-block;" for="check-c">Others</label>
                                          <div id="genderMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                     
@@ -314,7 +243,7 @@ require '../connect.php';
                                             ?>
                                     
                                         <select id="country" class="chosen-select-no-single" >
-                                             <option value="<?php echo $country;?>"><?php echo $countryname.' (Already Selected)' ; ?></option>
+                                             <option value="">Select Country</option>
                                             <?php 
                                             if($stmt->rowCount()>0){
                                                  foreach (($stmt->fetchAll()) as $key => $row) {  
@@ -332,25 +261,7 @@ require '../connect.php';
                                     <div class="col-lg-6 col-md-6">
                                         <label>State</label>
                                         <select id="mystate" class="chosen-select-no-single" >
-                                             <?php
-                                                        require '../connect.php';
-                                                        $stmt = $conn->prepare("SELECT * FROM states WHERE country_id = '".$country."' AND status = 1 ORDER BY state_name ASC");
-                                                        $stmt->execute();
-
-                                                                                                           
-                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                        ?>
-                                                        
-                                                        <option value="<?php echo $state;?>"><?php echo $statename.' (Already Selected)' ; ?></option>
-                                                        <?php 
-                                                        if($stmt->rowCount()>0){
-                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                                echo '<option value="'.$row['id'].'">'.$row['state_name'].'</option>'; 
-                                                            } 
-                                                        }else{ 
-                                                            echo '<option value="">State not available</option>'; 
-                                                        } 
-                                                        ?>
+                                             <option value="">Select country first</option>
                                         </select>
                                         <div id="stateMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                     </div>
@@ -363,32 +274,14 @@ require '../connect.php';
                                         <div class="col-lg-6 col-md-6">
                                             <label>City</label>
                                             <select id="city" class="chosen-select-no-single" >
-                                                <?php
-                                                        require '../connect.php';
-                                                        $stmt = $conn->prepare("SELECT * FROM cities WHERE state_id = '".$state."' AND status = 1 ORDER BY city_name ASC");
-                                                        $stmt->execute();
-
-                                                                                                           
-                                                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                        ?>
-                                                        
-                                                        <option value="<?php echo $city;?>"><?php echo $city_name.' (Already Selected)' ; ?></option>
-                                                        <?php 
-                                                        if($stmt->rowCount()>0){
-                                                             foreach (($stmt->fetchAll()) as $key => $row) {  
-                                                                echo '<option value="'.$row['id'].'">'.$row['city_name'].'</option>'; 
-                                                            } 
-                                                        }else{ 
-                                                            echo '<option value="">City not available</option>'; 
-                                                        } 
-                                                        ?>
+                                                <option value="">Select state first</option>  
                                             </select>
                                             <div id="cityMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6">
                                             <label>Zip Code</label>
-                                            <input type="text" id="pin"  placeholder="Pincode" value="<?php echo $pincode;?>" readonly>
+                                            <input type="text" id="pin"  placeholder="Pincode" readonly>
                                         </div>
                                         
                                     </div>
@@ -397,8 +290,33 @@ require '../connect.php';
                                     
 
                                     <label>Full Address</label>
-                                    <textarea id="address" placeholder="Enter Address" ><?php echo $address; ?></textarea>
+                                    <textarea id="address" placeholder="Enter Address"></textarea>
                                     <div id="addressMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <label>Head Office</label>
+                                            <input id="head_office" type="text" placeholder="India">
+                                            <div id="headOfficeMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <label>Zone Name</label>
+                                            <input id="zone_name" type="text" placeholder="Panjim">
+                                            <div id="zoneMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+                                        </div>
+                                    
+
+                                        <div class="col-lg-6 col-md-6">
+                                            <label>Region Name</label>
+                                            <input id="region_name"  type="text" placeholder="Goa">
+                                            <div id="regionMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div>
+                                       </div>
+                                    </div>
+
+                                    
 
 
                                     <div class="row">
@@ -407,17 +325,9 @@ require '../connect.php';
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                         
                                             <div class="edit-profile-photo">
-                                             <!-- <img id="img2" src="../images/id-proof-line.png" alt=""> -->
-
-                                             <?php
-                                                        if($kyc ==''){
-                                                            echo '<img src="../uploading/not_uploaded.png" alt="Kyc" class="imgsize" id="img2">';
-                                                        }else{
-                                                            echo '<img src="../uploading/'.$kyc.'" alt="KYC" class="imgsize" id="img2">';
-                                                        }
-                                                     ?>
+                                             <img id="img2" src="../images/id-proof-line.png" alt="">
                                         
-                                            <input type="hidden" name="kyc" id="kyc" value="<?php echo $kyc;?>" disabled>
+                                            <input type="hidden" name="kyc" id="kyc" disabled>
 
 
                                             <div class="change-photo-btn">
@@ -437,16 +347,9 @@ require '../connect.php';
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                             
                                             <div class="edit-profile-photo">
-                                             <!-- <img id="img3" src="../images/id-proof-line.png" alt=""> -->
-                                              <?php
-                                                        if($pan_card ==''){
-                                                            echo '<img src="../uploading/not_uploaded.png" alt="Pan Card" class="imgsize" id="img3">';
-                                                        }else{
-                                                            echo '<img src="../uploading/'.$pan_card.'" alt="Pan Card" class="imgsize"  id="img3">';
-                                                        }
-                                                     ?>
+                                             <img id="img3" src="../images/id-proof-line.png" alt="">
                                         
-                                            <input type="hidden" name="pan_card" id="pan_card" value="<?php echo $pan_card;?>" disabled>
+                                            <input type="hidden" name="pan_card" id="pan_card" disabled>
 
 
                                             <div class="change-photo-btn">
@@ -466,16 +369,9 @@ require '../connect.php';
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                             
                                             <div class="edit-profile-photo">
-                                             <!-- <img id="img4" src="../images/id-proof-line.png" alt=""> -->
-                                             <?php
-                                                        if($aadhar_card ==''){
-                                                            echo '<img src="../uploading/not_uploaded.png" alt="Aadhar Card" class="imgsize" id="img4">';
-                                                        }else{
-                                                            echo '<img src="../uploading/'.$aadhar_card.'" alt="Aadhar Card" class="imgsize" id="img4">';
-                                                        }
-                                                     ?>
+                                             <img id="img4" src="../images/id-proof-line.png" alt="">
                                         
-                                            <input type="hidden" name="aadhar_card" id="aadhar_card" value="<?php echo $aadhar_card;?>" disabled>
+                                            <input type="hidden" name="aadhar_card" id="aadhar_card" disabled>
 
 
                                             <div class="change-photo-btn">
@@ -501,16 +397,9 @@ require '../connect.php';
                                         <div class="col-lg-4 col-md-6 col-xs-6">
                                         
                                         <div class="edit-profile-photo">
-                                         <!-- <img id="img5" src="../images/id-proof-line.png" alt=""> -->
-                                         <?php
-                                                        if($voting_card ==''){
-                                                            echo '<img src="../uploading/not_uploaded.png" alt="Voting Card" class="imgsize" id="img5">';
-                                                        }else{
-                                                            echo '<img src="../uploading/'.$voting_card.'" alt="Voting Card" class="imgsize" id="img5">';
-                                                        }
-                                                     ?>
+                                         <img id="img5" src="../images/id-proof-line.png" alt="">
                                     
-                                        <input type="hidden" name="voting_card" id="voting_card" value="<?php echo $voting_card;?>" disabled>
+                                        <input type="hidden" name="voting_card" id="voting_card" disabled>
 
 
                                         <div class="change-photo-btn">
@@ -531,16 +420,9 @@ require '../connect.php';
                                         
                                         <div class="edit-profile-photo">
 
-                                         <!-- <img id="img6" src="../images/id-proof-line.png" alt=""> -->
-                                         <?php
-                                                        if($bank_passbook ==''){
-                                                            echo '<img src="../uploading/not_uploaded.png" alt="Bank Passbook" class="imgsize" id="img6">';
-                                                        }else{
-                                                            echo '<img src="../uploading/'.$bank_passbook.'" alt="Bank Passbook" class="imgsize" id="img6">';
-                                                        }
-                                                     ?>
+                                         <img id="img6" src="../images/id-proof-line.png" alt="">
                                     
-                                        <input type="hidden" name="passbook" id="passbook" value="<?php echo $bank_passbook;?>" disabled>
+                                        <input type="hidden" name="passbook" id="passbook" disabled>
 
 
                                         <div class="change-photo-btn">
@@ -558,7 +440,7 @@ require '../connect.php';
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-xs-6">
-                                        <input type="hidden" id="testValue" name="testValue" value="4">
+                                        <input type="hidden" id="testValue" name="testValue" value="5">
                                         <input type="hidden" id="invalidimage1" name="invalidimage1" >
                                             <input type="hidden" id="invalidimage2" name="invalidimage2" >
                                             <input type="hidden" id="invalidimage3" name="invalidimage3" >
@@ -578,7 +460,7 @@ require '../connect.php';
 
 
                                     <div class="dashboard-list-box-static" style="float: clear;">
-                            <button id="edit_franchisee" class="button" >Save Changes</button>
+                            <button id="registerSalesManager" class="button" >Register</button>
                             <div id="regist" style="display:none;color: #e74c3c;font-size: 85%;"></div>
                         </div>
 
@@ -590,8 +472,8 @@ require '../connect.php';
                 </div>
             </div>
 
-            <input id="f_id" type="hidden" value="<?php echo $id ;?>"  disabled>
-
+            <input id="utss" type="hidden" value="<?php echo $user_type;?>"  disabled>
+            <input id="uiss" type="hidden" value="<?php echo $user_id?>" disabled >
 
             </div>
 

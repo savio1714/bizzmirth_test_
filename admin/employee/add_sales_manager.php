@@ -47,11 +47,11 @@ if(!isset($_SESSION['username'])){
                 <div class="sb2-2-2">
                     <ul>
                         <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li><li class="active-bre"><a href="branch_manager.php">Branch Manager </a>
+                        </li><li class="active-bre"><a href="sales_manager.php">Sales Manager </a>
                         </li>
-                        <li class="active-bre"><a href="#"> Add Branch Manager </a>
+                        <li class="active-bre"><a href="#"> Add Sales Manager </a>
                         </li>
-                        <li class="page-back"><a href="branch_manager.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        <li class="page-back"><a href="sales_manager.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
                     </ul>
                 </div>
@@ -60,7 +60,7 @@ if(!isset($_SESSION['username'])){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Add New Branch Manager</h4>
+                                    <h4>Add New Sales Manager</h4>
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                 </div>
                                 <div class="tab-inn">
@@ -69,7 +69,7 @@ if(!isset($_SESSION['username'])){
                                             
                                             <div class="form-group col-md-6 col-sm-12">
                                                
-                                                <label for="branch_manager_id" style="margin-top: -6%;font-size: 0.8rem;">Regional Manager Id</label>
+                                                <label for="branch_manager_id" style="margin-top: -6%;font-size: 0.8rem;">Branch Manager Id</label>
 
                                                 <?php
                                                 require '../connect.php';
@@ -80,14 +80,14 @@ if(!isset($_SESSION['username'])){
                                                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                                 ?>
                                                 <select id="branch_manager_id"  class="selectdesign">
-                                                    <option value="">-- Select Regional Manager Id --</option>
+                                                    <option value="">-- Select Branch Manager Id --</option>
                                                     <?php 
                                                     if($stmt->rowCount()>0){
                                                          foreach (($stmt->fetchAll()) as $key => $row) {  
                                                             echo '<option value="'.$row['branch_manager_id'].'">'.$row['branch_manager_id'].' ('.$row['firstname'].' '.$row['lastname'].') </option>'; 
                                                         } 
                                                     }else{ 
-                                                        echo '<option value="">Regional Manager not available</option>'; 
+                                                        echo '<option value="">Branch Manager not available</option>'; 
                                                     } 
                                                     ?>
                                                 </select>
@@ -96,8 +96,8 @@ if(!isset($_SESSION['username'])){
                                             </div>
 
                                             <div class="form-group col-md-6 col-sm-12">
-                                                <label>Regional Manager Name</label>
-                                                <input type="text"  id="branch_manager_name" placeholder="No Regional Manager Name" readonly>
+                                                <label>Branch Manager Name</label>
+                                                <input type="text"  id="branch_manager_name" placeholder="No Branch Manager Name" readonly>
                                                 
                                             </div>
                                             

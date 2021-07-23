@@ -101,6 +101,27 @@ $(document).ready(function(){
   });
 
 
+  // Register Sales Manager
+
+  $("#registerSalesManager").click(function(e){
+
+    e.preventDefault();
+
+    registerSalesManager();
+    
+  });
+
+
+//edit Sales Manager
+  $("#edit_sales_manager").click(function(e){
+
+    e.preventDefault();
+
+    edit_sales_manager();
+    
+  });
+
+
   $(fname).keyup(function () { 
     fnameValue =fname.val().trim();
 
@@ -1461,6 +1482,277 @@ var edit_franchisee =  () =>{
   }
 
 };
+
+
+//Sales Manager
+
+//register Sales Manager by Branch Manager
+
+var registerSalesManager =  () =>{
+
+  var bm_name = $('#bm_name').val().trim();   
+    var firstname = $('#firstname').val().trim();
+    var lastname = $('#lastname').val().trim();
+    var contact_no = $('#phone').val().trim();
+    var email = $('#emailvalue').val().trim();
+    var gender = $('.gender:checked').val();
+    var bdate = $('#bdate').val();
+    var country_code = $('#countrycode').val();
+    var country = $('#country').val();
+    var state = $('#mystate').val();
+    var city = $('#city').val();
+    var pin = $('#pin').val();
+    var address = $('#address').val();
+
+    var profile_pic = $('#profile_pic').val();
+    var kyc = $('#kyc').val();
+    var pan_card = $('#pan_card').val();
+    var aadhar_card = $('#aadhar_card').val();
+    var voting_card = $('#voting_card').val();
+    var passbook = $('#passbook').val();
+    var head_office = $('#head_office').val();
+    var zone_name = $('#zone_name').val();
+    var region_name = $('#region_name').val();
+    var invalidimage1 = $('#invalidimage1').val();
+    var invalidimage2 = $('#invalidimage2').val();
+    var invalidimage3 = $('#invalidimage3').val();
+    var invalidimage4 = $('#invalidimage4').val();
+    var invalidimage5 = $('#invalidimage5').val();
+    var invalidimage6 = $('#invalidimage6').val();
+
+    var utss = $('#utss').val().trim();
+    var uiss = $('#uiss').val().trim();
+    
+    var testp= $('#testphone').val();
+    var testE= $('#testemail').val();
+
+
+    var characterLetters = /^[A-Za-z\s]+$/;
+      var phoneReg =/^[0-9]{10}$/;
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var specialChar = /[!@#$%^&*]/g;
+
+      var age =getdob(bdate);
+   
+
+
+
+    var datastring='firstname='+firstname+'&register_by='+utss+'&ref_id='+uiss+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&registrant='+bm_name+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+
+     if (profile_pic ===''){
+      getAllMessage('#profileMessage',"* Upload Profile Picture");
+      getAllMessage('#regist',"* Upload Profile Picture ");
+    }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+        getAllMessage('#fnameMessage',"* Enter Proper First Name");
+        getAllMessage('#regist',"* Enter Proper First Name ");
+    }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+      getAllMessage('#lnameMessage',"* Enter Proper Last Name");
+      getAllMessage('#regist',"* Enter Proper Last Name ");
+    }else if (!phoneReg.test(contact_no)){
+      getAllMessage('#phoneMessage',"* Enter Proper Phone Number");
+      getAllMessage('#regist',"* Enter Proper Phone Number ");
+    }else if (testp == '1'){
+      getAllMessage('#phoneMessage',"* Phone number already exists");
+      getAllMessage('#regist',"* Phone number already exists ");
+    }else if (email ==''){
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+      getAllMessage('#regist',"* Enter Proper Email ");
+    }else if (!emailReg.test(email)){
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+      getAllMessage('#regist',"* Enter Proper Email ");
+    }else if (testE == '1'){
+      getAllMessage('#emailMessage',"* Email already exists");
+      getAllMessage('#regist',"* Email already exists ");
+    }else if (bdate ==''){
+      getAllMessage('#dobMessage',"* Select Date of Birth");
+      getAllMessage('#regist',"* Select Date of Birth ");
+    }else if (age<18 ||  age>=90){
+      getAllMessage('#dobMessage',"* Sorry you are not eligible");
+      getAllMessage('#regist',"* Sorry you are not eligible ");
+    }else if (gender !== 'male' && gender !== 'female' && gender !== 'others'){
+      getAllMessage('#genderMessage',"* Select Gender");
+      getAllMessage('#regist',"* Select Gender ");
+    }else if (country ===''){
+      getAllMessage('#countryMessage',"* Select Country");
+      getAllMessage('#regist',"* Select Country ");
+    }else if (state ===''){
+      getAllMessage('#stateMessage',"* Select State");
+      getAllMessage('#regist',"* Select State ");
+    }else if (city ===''){
+      getAllMessage('#cityMessage',"* Select City");
+      getAllMessage('#regist',"* Select City ");
+    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+      getAllMessage('#addressMessage',"* Enter Proper Address");
+      getAllMessage('#regist',"* Enter Proper Address ");
+    }else if (head_office ==='' || specialChar.test(head_office)){
+      getAllMessage('#headOfficeMessage',"* Enter Head Office");
+      getAllMessage('#regist',"* Enter Head Office");
+    }else if (zone_name ==='' || specialChar.test(zone_name)){
+      getAllMessage('#zoneMessage',"* Enter Zone");
+      getAllMessage('#regist',"* Enter Zone");
+    }else if (region_name ==='' || specialChar.test(region_name)){
+      getAllMessage('#regionMessage',"* Enter Region Name");
+      getAllMessage('#regist',"* Enter Region Name");
+    }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'||  invalidimage5 =='2'  || invalidimage6 =='2'){
+      getAllMessage('#invalidImageMessage',"* Please Upload Proper Proof");
+      getAllMessage('#regist',"* Please Upload Proper Proof  ");
+    }else{
+
+
+    $.ajax({
+        type: "POST",
+        url: "sales_manager/submit_data.php",
+        data: datastring,
+        success: function (res) {
+        if (res==1) {
+          alert("Added Successfully");
+          window.location.reload();
+        }
+        else{
+          alert("failed");
+        }
+            },
+        });
+
+  }
+
+};
+
+
+//Edit Sales Manager Details by Branch Manager
+
+var edit_sales_manager =  () =>{
+
+  var head_office = $('#head_office').val().trim();
+  var zone_name = $('#zone_name').val().trim();
+  var region_name = $('#region_name').val().trim();
+    var firstname = $('#firstname').val().trim();
+    var lastname = $('#lastname').val().trim();
+    var contact_no = $('#phone').val().trim();
+    var email = $('#emailvalue').val().trim();
+    var gender = $('.gender:checked').val();
+    var bdate = $('#bdate').val();
+    var country_code = $('#countrycode').val();
+    var country = $('#country').val();
+    var state = $('#mystate').val();
+    var city = $('#city').val();
+    var pin = $('#pin').val();
+    var address = $('#address').val();
+
+    var profile_pic = $('#profile_pic').val();
+    var kyc = $('#kyc').val();
+    var pan_card = $('#pan_card').val();
+    var aadhar_card = $('#aadhar_card').val();
+    var voting_card = $('#voting_card').val();
+    var passbook = $('#passbook').val();
+    var invalidimage1 = $('#invalidimage1').val();
+    var invalidimage2 = $('#invalidimage2').val();
+    var invalidimage3 = $('#invalidimage3').val();
+    var invalidimage4 = $('#invalidimage4').val();
+    var invalidimage5 = $('#invalidimage5').val();
+    var invalidimage6 = $('#invalidimage6').val();
+
+    var sales_manager_id = $('#s_id').val().trim();
+
+
+    var testp= $('#testphone').val();
+    var testE= $('#testemail').val();
+ 
+    var phoneN =$('#phoneN').val();
+    var emailV =$('#emailV').val();
+
+    var characterLetters = /^[A-Za-z\s]+$/;
+      var phoneReg =/^[0-9]{10}$/;
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var specialChar = /[!@#$%^&*]/g;
+
+      var age =getdob(bdate);
+   
+
+
+
+    var datastring='firstname='+firstname+'&sales_manager_id='+sales_manager_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+
+     if (profile_pic ===''){
+      getAllMessage('#profileMessage',"* Upload Profile Picture");
+      getAllMessage('#regist',"* Upload Profile Picture ");
+    }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+        getAllMessage('#fnameMessage',"* Upload Profile Picture");
+        getAllMessage('#regist',"* Upload Profile Picture ");
+    }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+      getAllMessage('#regist',"* Enter Proper Last Name ");
+      getAllMessage('#lnameMessage',"* Enter Proper Last Name");
+    }else if (!phoneReg.test(contact_no)){
+      getAllMessage('#regist',"* Enter Proper Phone Number ");
+      getAllMessage('#phoneMessage',"* Enter Proper Phone Number");
+    }else if (testp == '1' && phoneN !=phone){
+      getAllMessage('#regist',"* Phone number already exists ");
+      getAllMessage('#phoneMessage',"* Phone number already exists");
+    }else if (email ==''){
+      getAllMessage('#regist',"* Enter Proper Email ");
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+    }else if (!emailReg.test(email)){
+      getAllMessage('#regist',"* Enter Proper Email ");
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+    }else if (testE == '1' && emailV !=email){
+      getAllMessage('#regist',"* Email already exists ");
+      getAllMessage('#emailMessage',"* Email already exists");
+    }else if (bdate ==''){
+      getAllMessage('#regist',"* Select Date of Birth ");
+      getAllMessage('#dobMessage',"* Select Date of Birth");
+    }else if (age<18 ||  age>=90){
+      getAllMessage('#regist',"* Sorry you are not eligible ");
+      getAllMessage('#dobMessage',"* Sorry you are not eligible");
+    }else if (gender !== 'male' && gender !== 'female' && gender !== 'others'){
+      getAllMessage('#regist',"* Select Gender ");
+      getAllMessage('#genderMessage',"* Select Gender");
+    }else if (country ===''){
+      getAllMessage('#regist',"* Select Country ");
+      getAllMessage('#countryMessage',"* Select Country");
+    }else if (state ===''){
+      getAllMessage('#regist',"* Select State ");
+      getAllMessage('#stateMessage',"* Select State");
+    }else if (city ===''){
+      getAllMessage('#regist',"* Select City ");
+      getAllMessage('#cityMessage',"* Select City");
+    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+      getAllMessage('#regist',"* Enter Proper Address ");
+      getAllMessage('#addressMessage',"* Enter Proper Address");
+    }else if (head_office ==='' || specialChar.test(head_office)){
+      getAllMessage('#headOfficeMessage',"* Enter Head Office");
+      getAllMessage('#regist',"* Enter Head Office");
+    }else if (zone_name ==='' || specialChar.test(zone_name)){
+      getAllMessage('#zoneMessage',"* Enter Zone");
+      getAllMessage('#regist',"* Enter Zone");
+    }else if (region_name ==='' || specialChar.test(region_name)){
+      getAllMessage('#regionMessage',"* Enter Region Name");
+      getAllMessage('#regist',"* Enter Region Name");
+    }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'||  invalidimage5 =='2'  || invalidimage6 =='2'){
+      getAllMessage('#regist',"* Please Upload Proper Proof ");
+      getAllMessage('#invalidImageMessage',"* Please Upload Proper Proof");
+    }else{
+
+
+    $.ajax({
+        type: "POST",
+        url: "sales_manager/edit_sales_manager_data.php",
+        data: datastring,
+        success: function (res) {
+        if (res==1) {
+          alert("Save Changes Successfully");
+          window.location.reload();
+        }
+        else{
+          alert("Failed To Save Changes");
+        }
+            },
+        });
+
+  }
+
+};
+
+
 
 
 
