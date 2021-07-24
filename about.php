@@ -74,8 +74,8 @@ session_start();
                             <i class="fa fa-superpowers" aria-hidden="true"></i>
                         </div>
                         <div class="about-content">
-                            <h3>Perfect Planning</h3>
-                            <p>Plan your perfect vacation with our travel agency. Choose among hundreds of all-inclusive offers!</p>
+                            <h3>Objective</h3>
+                            <p>Incorporation of human resources and development of seamless business process with the standardized time effort and speed!</p>
                         </div>
                     </div>
                 </div>
@@ -85,8 +85,8 @@ session_start();
                             <i class="fa fa-paw" aria-hidden="true"></i>
                         </div>
                         <div class="about-content">
-                            <h3>Secure Venues</h3>
-                            <p>We work hard to secure the best hotel rates in the most popular destinations. Search and book adventure tours now!</p>
+                            <h3>Vision </h3>
+                            <p>India is the source of Inspiration where ample amount of talent lies, Right skillset development emerges the nation to the world super economy, our vision is to become preferred and steemed end to end service provider to the diversified Sectors!</p>
                         </div>
                     </div>
                 </div>
@@ -96,8 +96,8 @@ session_start();
                             <i class="fa fa-fire" aria-hidden="true"></i>
                         </div>
                         <div class="about-content">
-                            <h3>Beautiful Memories</h3>
-                            <p>Book international vacation packages with us and create memories that will last a lifetime! Create History !</p>
+                            <h3>Mission </h3>
+                            <p>Comprehensive development of business to become the most recommended business resource with customer delight, win-win module for all the intermediaries !</p>
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ session_start();
     <!-- About Us Ends -->
 
     <!-- Our Team -->
-    <section class="our-team">
+    <!-- <section class="our-team">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -166,47 +166,47 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Our Team Ends -->
 
     <!-- Testimonials -->
-    <section class="testimonials">
+    <!-- <section class="testimonials">
         <div class="section-title text-center">
             <h2>Best Rated Travel Agency</h2>
             <div class="section-icon section-icon-white">
                 <i class="flaticon-diamond"></i>
             </div>       
-        </div>
+        </div> -->
         <!-- Paradise Slider -->
-        <div id="testimonial_094" class="carousel slide testimonial_094_indicators thumb_scroll_x swipe_x ps_easeOutSine" data-ride="carousel" data-pause="hover" data-interval="3000" data-duration="1000">
+        <!-- <div id="testimonial_094" class="carousel slide testimonial_094_indicators thumb_scroll_x swipe_x ps_easeOutSine" data-ride="carousel" data-pause="hover" data-interval="3000" data-duration="1000"> -->
 
 
             <!-- Indicators -->
-            <ol class="carousel-indicators">
+            <!-- <ol class="carousel-indicators">
                 <li data-target="#testimonial_094" data-slide-to="0" class="active">
-                    <img src="images/testemonial1.jpg" alt="testimonial_094_01"> <!-- 1st Image -->
+                    <img src="images/testemonial1.jpg" alt="testimonial_094_01">
                 </li>
                 <li data-target="#testimonial_094" data-slide-to="1">
-                    <img src="images/testemonial2.jpg" alt="testimonial_094_02"> <!-- 2nd Image -->
+                    <img src="images/testemonial2.jpg" alt="testimonial_094_02"> 
                 </li>
                 <li data-target="#testimonial_094" data-slide-to="2">
-                    <img src="images/testemonial3.jpg" alt="testimonial_094_03"> <!-- 3rd Image -->
+                    <img src="images/testemonial3.jpg" alt="testimonial_094_03"> 
                 </li>
                 <li data-target="#testimonial_094" data-slide-to="3">
-                    <img src="images/testemonial4.jpg" alt="testimonial_094_04"> <!-- 4th Image -->
+                    <img src="images/testemonial4.jpg" alt="testimonial_094_04"> 
                 </li>
                 <li data-target="#testimonial_094" data-slide-to="4">
-                    <img src="images/testemonial5.jpg" alt="testimonial_094_05"> <!-- 5th Image -->
+                    <img src="images/testemonial5.jpg" alt="testimonial_094_05"> 
                 </li>
-            </ol>
+            </ol> -->
 
             <!-- Wrapper For Slides -->
-            <div class="carousel-inner" role="listbox">
+            <!-- <div class="carousel-inner" role="listbox"> -->
 
                 <!-- First Slide -->
-                <div class="item active">
+                <!-- <div class="item active"> -->
                     <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
+                    <!-- <div class="testimonial_094_slide">
                         <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
                         <div class="deal-rating">
                             <span class="fa fa-star checked"></span>
@@ -215,15 +215,17 @@ session_start();
                             <span class="fa fa-star-o"></span>
                             <span class="fa fa-star-o"></span>
                         </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
+                        <h5><a href="#">Susan Doe, Houston</a></h5> -->
+                    <!-- </div> -->
+                     <!-- /Text Layer -->
+                <!-- </div> -->
+                 <!-- /item -->
                 <!-- End of First Slide -->
 
                 <!-- Second Slide -->
-                <div class="item">
+                <!-- <div class="item"> -->
                     <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
+                    <!-- <div class="testimonial_094_slide">
                         <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
                         <div class="deal-rating">
                             <span class="fa fa-star checked"></span>
@@ -233,14 +235,16 @@ session_start();
                             <span class="fa fa-star-o"></span>
                         </div>
                         <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
+                    </div> -->
+                     <!-- /Text Layer -->
+                <!-- </div>  -->
+                <!-- /item -->
                 <!-- End of Second Slide -->
 
                 <!-- Third Slide -->
-                <div class="item">
+                <!-- <div class="item"> -->
                     <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
+                    <!-- <div class="testimonial_094_slide">
                         <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
                         <div class="deal-rating">
                             <span class="fa fa-star checked"></span>
@@ -249,15 +253,17 @@ session_start();
                             <span class="fa fa-star-o"></span>
                             <span class="fa fa-star-o"></span>
                         </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
+                        <h5><a href="#">Susan Doe, Houston</a></h5> -->
+                    <!-- </div> -->
+                     <!-- /Text Layer -->
+                <!-- </div>  -->
+                <!-- /item -->
                 <!-- End of Third Slide -->
 
                 <!-- Fourth Slide -->
-                <div class="item">
+                <!-- <div class="item"> -->
                     <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
+                   <!--  <div class="testimonial_094_slide">
                         <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
                         <div class="deal-rating">
                             <span class="fa fa-star checked"></span>
@@ -266,15 +272,17 @@ session_start();
                             <span class="fa fa-star-o"></span>
                             <span class="fa fa-star-o"></span>
                         </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
+                        <h5><a href="#">Susan Doe, Houston</a></h5> -->
+                    <!-- </div>  -->
+                    <!-- /Text Layer -->
+                <!-- </div>  -->
+                <!-- /item -->
                 <!-- End of Fourth Slide -->
 
                 <!-- Fifth Slide -->
-                <div class="item">
+                <!-- <div class="item"> -->
                     <!-- Text Layer -->
-                    <div class="testimonial_094_slide">
+                    <!-- <div class="testimonial_094_slide">
                         <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur adipiscing luctus massa nteger ut purus ac augue commodo commodo unc nec mi eu justo tempor consectetuer tiam.</p>
                         <div class="deal-rating">
                             <span class="fa fa-star checked"></span>
@@ -283,17 +291,21 @@ session_start();
                             <span class="fa fa-star-o"></span>
                             <span class="fa fa-star-o"></span>
                         </div>
-                        <h5><a href="#">Susan Doe, Houston</a></h5>
-                    </div> <!-- /Text Layer -->
-                </div> <!-- /item -->
+                        <h5><a href="#">Susan Doe, Houston</a></h5> -->
+                    <!-- </div> -->
+                     <!-- /Text Layer -->
+                <!-- </div> -->
+                 <!-- /item -->
                 <!-- End of Fifth Slide -->
-            </div> <!-- End of Wrapper For Slides -->
-        </div> <!-- End Paradise Slider -->
-    </section>
+            <!-- </div>  -->
+            <!-- End of Wrapper For Slides -->
+        <!-- </div> -->
+         <!-- End Paradise Slider -->
+    <!-- </section> -->
     <!-- Testimonials -->
 
     <!-- Trusted Partners -->
-    <section class="trusted-partners">
+    <!-- <section class="trusted-partners">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-xs-4">
@@ -319,7 +331,7 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Trusted Partners Ends -->
 
     <!-- Footer -->

@@ -16,7 +16,7 @@
                 <!--== LEFT MENU ==-->
                 <div class="sb2-13">
                     <ul class="collapsible" data-collapsible="accordion">
-                        <li><a href="../index2.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index2.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                        <li><a href="../index.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
                         </li>
                          <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Employee</a>
                             <div class="collapsible-body left-sub-menu">
@@ -51,19 +51,18 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Package</a>
+                        <!-- <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Package</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='add_new_packages.php')? 'menu-active':''?>" href="#">Add New Packages</a>
                                     </li>
                                     <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='all_packages.php')? 'menu-active':''?>" href="#">All Packages</a>
                                     </li>
-                                    <!-- <li><a href="../customer/b2c_test.php">B2C test</a>
-                                    </li> -->
+                                    
                                     
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <li><a href="../logout.php"><i class="fa fa-bar-chart" aria-hidden="true"></i> Logout</a>
                         </li>
                       <!--  <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-umbrella" aria-hidden="true"></i> Tour Packages</a>

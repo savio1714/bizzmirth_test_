@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../index.php";</script>';
+    echo '<script>location.href = "../login.php";</script>';
 }
 
 
@@ -113,7 +113,7 @@ if($editfor == 'pending'){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li><li class="active-bre"><a href="branch_manager.php">Branch Manager </a>
                         </li>
                         <li class="active-bre"><a href="#"> Edit Branch Manager </a>

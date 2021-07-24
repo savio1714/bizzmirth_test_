@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../index.php";</script>';
+    echo '<script>location.href = "../login.php";</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -53,11 +53,11 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="../index2.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="active-bre"><a href="#">Travel Agent</a>
                         </li>
-                        <li class="page-back"><a href="../index2.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
+                        <li class="page-back"><a href="../"><i class="fa fa-backward" aria-hidden="true"></i> Back</a></li>
                     </ul>
                 </div>
 
@@ -72,11 +72,11 @@ if(!isset($_SESSION['username'])){
                                     <ul id="dr-users" class="dropdown-content">
                                         <li><a href="add_travel_agent.php">Add Travel Agent</a>
                                         </li>
-                                        <li><a href="#">Download List</a>
+                                        <!-- <li><a href="#">Download List</a> -->
                                         <!-- <li><a href="download_list.php?vkvbvjfgfikix=Pending">Download List</a> -->
-                                        </li>
+                                        <!-- </li>
                                         <li><a href="#"><i class="material-icons">subject</i>View All</a>
-                                        </li>
+                                        </li> -->
                                     </ul>
 
                                     <!-- Dropdown Structure -->
@@ -160,9 +160,9 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-register-list"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-register-list" class="dropdown-content">
-                                        <li><a href="#">Download List</a>
-                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Registered">Download List</a> -->
-                                        </li>
+                                       <!--  <li><a href="#">Download List</a>
+ -->                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Registered">Download List</a> -->
+                                        <!-- </li> -->
                                         <!-- <li><a href="user-edit.html">Edit</a>
                                         </li>
                                         <li><a href="#!">Update</a>
@@ -170,8 +170,8 @@ if(!isset($_SESSION['username'])){
                                         <li class="divider"></li>
                                         <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
                                         </li> -->
-                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
-                                        </li>
+                                        <!-- <li><a href="#"><i class="material-icons">subject</i>View All</a>
+                                        </li> -->
                                     </ul>
 
                                     <!-- Dropdown Structure -->

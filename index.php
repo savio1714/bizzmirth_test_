@@ -140,9 +140,96 @@ session_start();
     </section>
     <!-- Banner Ends -->
 
+    <section class="amazing-tours">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Amazing Tours</h2>
+                <p>Coming Soon </p>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="at-item box-item">
+                        <div class="at-image">
+                            <img src="images/amazing/goa.jpg" alt="Image">
+                            <div class="at-overlay"></div>
+                        </div>
+                        <div class="at-content">
+                            <h3><a href="#">Goa</a></h3>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="at-item box-item">
+                        <div class="at-image">
+                            <img src="images/amazing/manali.jpg" alt="Image">
+                            <div class="at-overlay"></div>
+                        </div>
+                        <div class="at-content">
+                            <h3><a href="#">Manali</a></h3>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="at-item box-item">
+                        <div class="at-image">
+                            <img src="images/amazing/shimla.jpg" alt="Image">
+                            <div class="at-overlay"></div>
+                        </div>
+                        <div class="at-content">
+                            <h3><a href="#">Shimla</a></h3>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="at-item box-item">
+                        <div class="at-image">
+                            <img src="images/amazing/coorg.jpg" alt="Image">
+                            <div class="at-overlay"></div>
+                        </div>
+                        <div class="at-content">
+                            <h3><a href="#">Coorg</a></h3>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="at-item box-item">
+                        <div class="at-image">
+                            <img src="images/amazing/kochi.jpg" alt="Image">
+                            <div class="at-overlay"></div>
+                        </div>
+                        <div class="at-content">
+                            <h3><a href="#">Kochi</a></h3>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="at-item box-item">
+                        <div class="at-image">
+                            <img src="images/amazing/jammu.jpg" alt="Image">
+                            <div class="at-overlay"></div>
+                        </div>
+                        <div class="at-content">
+                            <h3><a href="#">Jammu</a></h3>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+
 
     <!-- Amazing Tours -->
-    <section class="amazing-tours">
+
+    <!-- <section class="amazing-tours">
         <div class="container">
             <div class="section-title text-center">
                 <h2>Amazing Tours</h2>
@@ -225,11 +312,13 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+    
     <!-- Amazing Tours Ends -->
 
     <!-- Popular Packages --> 
-    <section class="popular-packages">
+
+    <!-- <section class="popular-packages">
         <div class="container">
             <div class="section-title text-center">
                 <h2>Popular Packages</h2>
@@ -243,7 +332,7 @@ session_start();
                     <div class="package-item box-item">
                         <div class="package-image">
                             <img src="images/amazing/popgoa.jpg" alt="Image">
-                            <!-- <p class="package-days"><i class="flaticon-time"></i> 5 days</p> -->
+                            
                         </div>
                         <div class="package-content">
                             <h4>Surfing Goa, India</h4>
@@ -268,7 +357,7 @@ session_start();
                     <div class="package-item box-item">
                         <div class="package-image">
                             <img src="images/amazing/popcoorg.jpg" alt="Image">
-                            <!-- <p class="package-days"><i class="flaticon-time"></i> 3 days</p> -->
+                            
                         </div>
                         <div class="package-content">
                             <h4>Adventure in Coorg</h4>
@@ -293,7 +382,7 @@ session_start();
                     <div class="package-item box-item">
                         <div class="package-image">
                             <img src="images/amazing/popmanali.jpg" alt="Image">
-                            <!-- <p class="package-days"><i class="flaticon-time"></i> 1 days</p> -->
+                            
                         </div>
                         <div class="package-content">
                             <h4>Hot Air Ballooning, Manali</h4>
@@ -318,7 +407,7 @@ session_start();
                     <div class="package-item box-item">
                         <div class="package-image">
                             <img src="images/amazing/popshimla.jpg" alt="Image">
-                            <!-- <p class="package-days"><i class="flaticon-time"></i> 2 days</p> -->
+                            
                         </div>
                         <div class="package-content">
                             <h4>Skiing in Shimla </h4>
@@ -341,20 +430,23 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
     <!-- Popular Packages Ends -->
-     <section class="countdown-section">
+
+     <!-- <section class="countdown-section">
         <div class="container">
             <div class="countdown-title">
-                <h2>Special Tour in August, Discover <span>Goa</span> <!-- for 50 Customers  -->with <span>Discount 30%</span></h2>
+                <h2>Special Tour in August, Discover <span>Goa</span> with <span>Discount 30%</span></h2>
                 <p>It’s limited seating! Hurry up</p>
             </div>
             <div class="countdown countdown-container container">
                 <p id="demo"></p>
-            </div><!-- /.countdown-wrapper -->
+            </div>
         </div>
         <div class="testimonial-overlay"></div>
-    </section>
+    </section> -->
+    <!-- ******************* -->
 
     <!-- Deals -->
     <!-- <section class="deals">
@@ -532,10 +624,13 @@ session_start();
             </div>
         </div>
     </section> -->
+
+    <!-- ***************************** -->
     <!-- Bucket Lists Ends -->
 
     <!-- Top Destinations -->
-    <section class="top-destinations-1">
+
+   <!--  <section class="top-destinations-1">
         <div class="container">
             <div class="section-title text-center">
                 <h2>Top Destinations</h2>
@@ -616,9 +711,10 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+    
     <!-- Top Destination Ends -->
-
+<!-- ***************************** -->
 
     <!-- Deals On Sale -->
     <!-- <section class="deals-on-sale">
@@ -859,6 +955,8 @@ session_start();
             </ul>
         </div>
     </section> -->
+
+    <!-- ***************************** -->
     <!-- Trusted Partners Ends -->
 
     <!-- Footer -->

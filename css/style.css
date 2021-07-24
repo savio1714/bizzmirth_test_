@@ -4551,7 +4551,7 @@ header.head-style-1{
 }
 .head-style-1 .nav.navbar-nav > li > a{
   color: #fff;
-  padding:10px 13px;
+  padding:16px 14px;
 }
 .head-style-1 .nav.navbar-nav > li > a:hover, .head-style-1 .nav.navbar-nav > li.active > a, .head-style-1 .navbar-default .navbar-nav>.active>a{
   background: #cac9c966;
