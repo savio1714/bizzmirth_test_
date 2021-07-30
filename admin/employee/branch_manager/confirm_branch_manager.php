@@ -8,8 +8,13 @@ $state= $_POST["st"];
 $string="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#%^*()";
 $password = substr(str_shuffle($string), 0,8);
 
+$rm_id= $_POST["rm_id"];
+
 $status= '1';
 $user_type_id= '6';
+$register_by ='7';
+
+
 
 
 //Get State Short Name
@@ -65,6 +70,14 @@ function getManagerId($conn,$state){
 
 
 
+	//log file
+$title="Confirm Branch Manager";
+$message=$uid." has been approved";
+$message2=$uid." has been approved";
+$fromWhom="1";
+
+
+
 
 
 
@@ -92,7 +105,27 @@ function getManagerId($conn,$state){
 		));
 
 		if($result2){
-			echo 1;
+
+			$sql4= "INSERT INTO logs (user_id,title,message,message2, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+				$stmt4 =$conn->prepare($sql4);
+
+				$result3=$stmt4->execute(array(
+				':user_id' => $uid,
+				':title' => $title,
+				':message' => $message,
+				':message2' =>$message2,
+				':reference_no' => $rm_id,
+				':register_by' => $register_by,
+				':from_whom' => $fromWhom
+				));
+
+				if($result3){
+					echo 1;
+				}
+				else{
+				echo 0	;
+				}
+			// echo 1;
 		}
 		else{
 		echo 0	;

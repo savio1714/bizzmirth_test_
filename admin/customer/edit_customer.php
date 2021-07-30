@@ -23,7 +23,7 @@ if($editfor == 'pending'){
     $identifier_name = 'cust_id=';
 }
 
-
+ 
     require '../connect.php';
 
 
@@ -611,6 +611,7 @@ if($editfor == 'pending'){
                                             </div>
 
                                             <input type="hidden" id="testValue" name="testValue" value="2">
+                                            <input type="hidden" id="ta_id" name="ta_id" value="<?php echo $reference_no;?>">
                                             <input type="hidden" id="editfor" name="editfor" value="<?php echo $editfor;?>">
                                             <input type="hidden" id="testiod" name="testiod" value="<?php echo $id;?>">
                                             <input type="hidden" id="invalidimage1" name="invalidimage1" >

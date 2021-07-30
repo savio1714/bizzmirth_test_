@@ -125,17 +125,17 @@ if(!isset($_SESSION['username'])){
                                                         "pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["state"]. '")\'><i class="material-icons dp48">verified_user</i></a>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["state"]. '","' .$row["reference_no"]. '")\'><i class="material-icons dp48">verified_user</i></a>
                                                     </td>
                                                 </tr>';
 
                                                 $srno++;
 
                                                     }
-                                                      
+                                                       
                                                 } 
                                                     else{
                                                         echo '<tr>
@@ -258,7 +258,7 @@ if(!isset($_SESSION['username'])){
                                                         }else{
                                                             echo '<td>
                                                         <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["sales_manager_id"]. '",
-                                                        "registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        "registered","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>';
                                                         }
                                                     
@@ -339,9 +339,9 @@ $(document).ready( function () {
     };
 
 
-    function deletefunc(id,smid,action)
+    function deletefunc(id,smid,action,bm_id)
     { 
-    var dataString = 'id='+ id+'&smid='+smid+'&action='+action;
+    var dataString = 'id='+ id+'&smid='+smid+'&action='+action+'&bm_id='+bm_id;
 
 
       $.ajax({
@@ -365,9 +365,9 @@ $(document).ready( function () {
     };
 
 
-    function confirmfunc(id,email,st)
+    function confirmfunc(id,email,st,bm_id)
     { 
-    var dataString = 'id='+ id+'&uname='+email+'&st='+st;
+    var dataString = 'id='+ id+'&uname='+email+'&st='+st+'&bm_id='+bm_id;
 
 
       $.ajax({

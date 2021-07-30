@@ -68,7 +68,7 @@ if(!isset($_SESSION['username'])){
 						<ul>
 							<li>
 								<div class="ad-hom-box ad-hom-box-1">
-									<span class="ad-hom-col-com ad-hom-col-1"><i class="fa fa-bar-chart"></i></span>
+									<span class="ad-hom-col-com ad-hom-col-1"><i class="fa fa-users"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;"> Total Franchisee</span></p>
                                         <?php
@@ -95,7 +95,7 @@ if(!isset($_SESSION['username'])){
 							</li>
 							<li>
 								<div class="ad-hom-box ad-hom-box-2">
-									<span class="ad-hom-col-com ad-hom-col-2"><i class="fa fa-usd"></i></span>
+									<span class="ad-hom-col-com ad-hom-col-2"><i class="fa fa-users"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;">Total Travel Agent</span></p>
                                      <?php
@@ -122,7 +122,7 @@ if(!isset($_SESSION['username'])){
 							</li>
 							<li>
 								<div class="ad-hom-box ad-hom-box-3">
-									<span class="ad-hom-col-com ad-hom-col-3"><i class="fa fa-address-card-o"></i></span>
+									<span class="ad-hom-col-com ad-hom-col-3"><i class="fa fa-users"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;"> Total Customer</span></p>
                                     <?php
@@ -149,7 +149,7 @@ if(!isset($_SESSION['username'])){
 							</li>
 							<li>
 								<div class="ad-hom-box ad-hom-box-4">
-									<span class="ad-hom-col-com ad-hom-col-4"><i class="fa fa-envelope-open-o"></i></span>
+									<span class="ad-hom-col-com ad-hom-col-4"><i class="fa fa-users"></i></span>
 									<div class="ad-hom-view-com">
 									<p><i class="fa  fa-arrow-up up"></i> <span style="font-size: 11px;"> Total Employee</span></p>
 									 <?php
@@ -1211,11 +1211,46 @@ if(!isset($_SESSION['username'])){
                                 </div>
                                 <div class="tab-inn list-act-hom">
                                     <ul>
-                                        <li class="list-act-hom-con">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            <h4><span>24 July, 2021</span> Not At Updated</h4>
-                                            <!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p> -->
-                                        </li>
+
+                                        <?php
+                                                require 'connect.php';
+                                                $stmt = $conn->prepare("SELECT * FROM logs where from_whom='1' and status='1' order by  register_date desc limit 8");
+                                                $stmt->execute();
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
+
+                                                        $title=$row['title'];
+                                                        $message2=$row['message2'];
+                                                        $ref_no =$row['reference_no'];
+
+                                                        $ld= new DateTime($row['register_date']);
+                                                        $latestDate= $ld->format('d M, Y'); 
+                                                        
+
+                                                        
+                                                        
+                                                        echo '<li class="list-act-hom-con">
+                                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                                <h4><span>'.$latestDate.'</span> '.$title.'</h4>
+                                                                <p>'.$message2.'.</p>
+                                                            </li>';
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo ' <li class="list-act-hom-con">
+                                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                                    <h6> No Latest Activity</h6>
+                                                                    
+                                                                </li>';
+                                                    }
+                                        ?>
+
+
+                                    
                                         <!-- <li class="list-act-hom-con">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                             <h4><span>08 Jun, 2017</span> City Tour and Evening Free</h4>

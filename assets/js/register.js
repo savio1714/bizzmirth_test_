@@ -122,6 +122,27 @@ $(document).ready(function(){
   });
 
 
+   // Register Branch Manager
+
+  $("#registerBranchManager").click(function(e){
+
+    e.preventDefault();
+
+    registerBranchManager();
+    
+  });
+
+
+//edit Branch Manager
+  $("#edit_branch_manager").click(function(e){
+
+    e.preventDefault();
+
+    edit_branch_manager();
+    
+  });
+
+
   $(fname).keyup(function () { 
     fnameValue =fname.val().trim();
 
@@ -761,6 +782,7 @@ var register_customer =  () =>{
 
 var edit_customer =  () =>{
 
+    var ta_id = $('#ta_id').val().trim();
  
     var firstname = $('#firstname').val().trim();
     var lastname = $('#lastname').val().trim();
@@ -810,7 +832,7 @@ var edit_customer =  () =>{
 
 
 
-    var datastring='firstname='+firstname+'&cust_id='+cust_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age;
+    var datastring='firstname='+firstname+'&cust_id='+cust_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&ta_id='+ta_id;
 
      if (profile_pic ===''){
       getAllMessage('#profileMessage',"* Upload Profile Picture");
@@ -1111,7 +1133,8 @@ var registerTravelAgent =  () =>{
 
 var edit_travel_agent =  () =>{
 
- 
+    var f_id = $('#f_id').val().trim();
+
     var firstname = $('#firstname').val().trim();
     var lastname = $('#lastname').val().trim();
     var contact_no = $('#phone').val().trim();
@@ -1160,7 +1183,7 @@ var edit_travel_agent =  () =>{
 
 
 
-    var datastring='firstname='+firstname+'&travel_agent_id='+travel_agent_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age;
+    var datastring='firstname='+firstname+'&travel_agent_id='+travel_agent_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&f_id='+f_id;
 
      if (profile_pic ===''){
       getAllMessage('#profileMessage',"* Upload Profile Picture");
@@ -1220,7 +1243,8 @@ var edit_travel_agent =  () =>{
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
-          window.location.reload();
+          // window.location.reload();
+          location.href = "view_travel_agent.php";
         }
         else{
           alert("Failed To Save Changes");
@@ -1362,7 +1386,8 @@ var registerFranchisee =  () =>{
 
 var edit_franchisee =  () =>{
 
- 
+    var sm_id = $('#sm_id').val().trim();
+
     var firstname = $('#firstname').val().trim();
     var lastname = $('#lastname').val().trim();
     var contact_no = $('#phone').val().trim();
@@ -1411,7 +1436,7 @@ var edit_franchisee =  () =>{
 
 
 
-    var datastring='firstname='+firstname+'&franchisee_id='+franchisee_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age;
+    var datastring='firstname='+firstname+'&franchisee_id='+franchisee_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&sm_id='+sm_id;
 
      if (profile_pic ===''){
       getAllMessage('#profileMessage',"* Upload Profile Picture");
@@ -1471,7 +1496,8 @@ var edit_franchisee =  () =>{
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
-          window.location.reload();
+          // window.location.reload();
+          location.href = "view_franchisee.php";
         }
         else{
           alert("Failed To Save Changes");
@@ -1489,7 +1515,7 @@ var edit_franchisee =  () =>{
 //register Sales Manager by Branch Manager
 
 var registerSalesManager =  () =>{
-
+ 
   var bm_name = $('#bm_name').val().trim();   
     var firstname = $('#firstname').val().trim();
     var lastname = $('#lastname').val().trim();
@@ -1623,6 +1649,7 @@ var registerSalesManager =  () =>{
 
 var edit_sales_manager =  () =>{
 
+ var bm_id = $('#bm_id').val().trim();
   var head_office = $('#head_office').val().trim();
   var zone_name = $('#zone_name').val().trim();
   var region_name = $('#region_name').val().trim();
@@ -1671,7 +1698,7 @@ var edit_sales_manager =  () =>{
 
 
 
-    var datastring='firstname='+firstname+'&sales_manager_id='+sales_manager_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+    var datastring='firstname='+firstname+'&sales_manager_id='+sales_manager_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name+'&bm_id='+bm_id;
 
      if (profile_pic ===''){
       getAllMessage('#profileMessage',"* Upload Profile Picture");
@@ -1740,7 +1767,8 @@ var edit_sales_manager =  () =>{
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
-          window.location.reload();
+          location.href = "view_sales_manager.php";
+          // window.location.reload();
         }
         else{
           alert("Failed To Save Changes");
@@ -1754,7 +1782,275 @@ var edit_sales_manager =  () =>{
 
 
 
+//Branch Manager
 
+//register Branch Manager by Regional Manager
+
+var registerBranchManager =  () =>{
+
+  var rm_name = $('#rm_name').val().trim();   
+    var firstname = $('#firstname').val().trim();
+    var lastname = $('#lastname').val().trim();
+    var contact_no = $('#phone').val().trim();
+    var email = $('#emailvalue').val().trim();
+    var gender = $('.gender:checked').val();
+    var bdate = $('#bdate').val();
+    var country_code = $('#countrycode').val();
+    var country = $('#country').val();
+    var state = $('#mystate').val();
+    var city = $('#city').val();
+    var pin = $('#pin').val();
+    var address = $('#address').val();
+
+    var profile_pic = $('#profile_pic').val();
+    var kyc = $('#kyc').val();
+    var pan_card = $('#pan_card').val();
+    var aadhar_card = $('#aadhar_card').val();
+    var voting_card = $('#voting_card').val();
+    var passbook = $('#passbook').val();
+    var head_office = $('#head_office').val();
+    var zone_name = $('#zone_name').val();
+    var region_name = $('#region_name').val();
+    var invalidimage1 = $('#invalidimage1').val();
+    var invalidimage2 = $('#invalidimage2').val();
+    var invalidimage3 = $('#invalidimage3').val();
+    var invalidimage4 = $('#invalidimage4').val();
+    var invalidimage5 = $('#invalidimage5').val();
+    var invalidimage6 = $('#invalidimage6').val();
+
+    var utss = $('#utss').val().trim();
+    var uiss = $('#uiss').val().trim();
+    
+    var testp= $('#testphone').val();
+    var testE= $('#testemail').val();
+
+
+    var characterLetters = /^[A-Za-z\s]+$/;
+      var phoneReg =/^[0-9]{10}$/;
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var specialChar = /[!@#$%^&*]/g;
+
+      var age =getdob(bdate);
+   
+
+
+
+    var datastring='firstname='+firstname+'&register_by='+utss+'&ref_id='+uiss+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&registrant='+rm_name+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+
+     if (profile_pic ===''){
+      getAllMessage('#profileMessage',"* Upload Profile Picture");
+      getAllMessage('#regist',"* Upload Profile Picture ");
+    }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+        getAllMessage('#fnameMessage',"* Enter Proper First Name");
+        getAllMessage('#regist',"* Enter Proper First Name ");
+    }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+      getAllMessage('#lnameMessage',"* Enter Proper Last Name");
+      getAllMessage('#regist',"* Enter Proper Last Name ");
+    }else if (!phoneReg.test(contact_no)){
+      getAllMessage('#phoneMessage',"* Enter Proper Phone Number");
+      getAllMessage('#regist',"* Enter Proper Phone Number ");
+    }else if (testp == '1'){
+      getAllMessage('#phoneMessage',"* Phone number already exists");
+      getAllMessage('#regist',"* Phone number already exists ");
+    }else if (email ==''){
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+      getAllMessage('#regist',"* Enter Proper Email ");
+    }else if (!emailReg.test(email)){
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+      getAllMessage('#regist',"* Enter Proper Email ");
+    }else if (testE == '1'){
+      getAllMessage('#emailMessage',"* Email already exists");
+      getAllMessage('#regist',"* Email already exists ");
+    }else if (bdate ==''){
+      getAllMessage('#dobMessage',"* Select Date of Birth");
+      getAllMessage('#regist',"* Select Date of Birth ");
+    }else if (age<18 ||  age>=90){
+      getAllMessage('#dobMessage',"* Sorry you are not eligible");
+      getAllMessage('#regist',"* Sorry you are not eligible ");
+    }else if (gender !== 'male' && gender !== 'female' && gender !== 'others'){
+      getAllMessage('#genderMessage',"* Select Gender");
+      getAllMessage('#regist',"* Select Gender ");
+    }else if (country ===''){
+      getAllMessage('#countryMessage',"* Select Country");
+      getAllMessage('#regist',"* Select Country ");
+    }else if (state ===''){
+      getAllMessage('#stateMessage',"* Select State");
+      getAllMessage('#regist',"* Select State ");
+    }else if (city ===''){
+      getAllMessage('#cityMessage',"* Select City");
+      getAllMessage('#regist',"* Select City ");
+    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+      getAllMessage('#addressMessage',"* Enter Proper Address");
+      getAllMessage('#regist',"* Enter Proper Address ");
+    }else if (head_office ==='' || specialChar.test(head_office)){
+      getAllMessage('#headOfficeMessage',"* Enter Head Office");
+      getAllMessage('#regist',"* Enter Head Office");
+    }else if (zone_name ==='' || specialChar.test(zone_name)){
+      getAllMessage('#zoneMessage',"* Enter Zone");
+      getAllMessage('#regist',"* Enter Zone");
+    }else if (region_name ==='' || specialChar.test(region_name)){
+      getAllMessage('#regionMessage',"* Enter Region Name");
+      getAllMessage('#regist',"* Enter Region Name");
+    }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'||  invalidimage5 =='2'  || invalidimage6 =='2'){
+      getAllMessage('#invalidImageMessage',"* Please Upload Proper Proof");
+      getAllMessage('#regist',"* Please Upload Proper Proof  ");
+    }else{
+
+
+    $.ajax({
+        type: "POST",
+        url: "branch_manager/submit_data.php",
+        data: datastring,
+        success: function (res) {
+        if (res==1) {
+          alert("Added Successfully");
+          window.location.reload();
+        }
+        else{
+          alert("failed");
+        }
+            },
+        });
+
+  }
+
+};
+
+
+//Edit Branch Manager Details by Regional Manager
+
+var edit_branch_manager =  () =>{
+
+  var rmid = $('#rm_id').val().trim();//log
+  var head_office = $('#head_office').val().trim();
+  var zone_name = $('#zone_name').val().trim();
+  var region_name = $('#region_name').val().trim();
+    var firstname = $('#firstname').val().trim();
+    var lastname = $('#lastname').val().trim();
+    var contact_no = $('#phone').val().trim();
+    var email = $('#emailvalue').val().trim();
+    var gender = $('.gender:checked').val();
+    var bdate = $('#bdate').val();
+    var country_code = $('#countrycode').val();
+    var country = $('#country').val();
+    var state = $('#mystate').val();
+    var city = $('#city').val();
+    var pin = $('#pin').val();
+    var address = $('#address').val();
+
+    var profile_pic = $('#profile_pic').val();
+    var kyc = $('#kyc').val();
+    var pan_card = $('#pan_card').val();
+    var aadhar_card = $('#aadhar_card').val();
+    var voting_card = $('#voting_card').val();
+    var passbook = $('#passbook').val();
+    var invalidimage1 = $('#invalidimage1').val();
+    var invalidimage2 = $('#invalidimage2').val();
+    var invalidimage3 = $('#invalidimage3').val();
+    var invalidimage4 = $('#invalidimage4').val();
+    var invalidimage5 = $('#invalidimage5').val();
+    var invalidimage6 = $('#invalidimage6').val();
+
+    var branch_manager_id = $('#bm_id').val().trim();
+
+
+    var testp= $('#testphone').val();
+    var testE= $('#testemail').val();
+ 
+    var phoneN =$('#phoneN').val();
+    var emailV =$('#emailV').val();
+
+    var characterLetters = /^[A-Za-z\s]+$/;
+      var phoneReg =/^[0-9]{10}$/;
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var specialChar = /[!@#$%^&*]/g;
+
+      var age =getdob(bdate);
+   
+
+
+
+    var datastring='firstname='+firstname+'&branch_manager_id='+branch_manager_id+'&lastname='+lastname+'&email='+email+'&gender='+gender+'&country_code='+country_code+'&phone='+contact_no+'&bdate='+bdate+'&address='+address+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name+'&rmid='+rmid;
+
+     if (profile_pic ===''){
+      getAllMessage('#profileMessage',"* Upload Profile Picture");
+      getAllMessage('#regist',"* Upload Profile Picture ");
+    }else if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
+        getAllMessage('#fnameMessage',"* Upload Profile Picture");
+        getAllMessage('#regist',"* Upload Profile Picture ");
+    }else if (lastname ==='' || !lastname.match(characterLetters) || lastname.length <= 2){
+      getAllMessage('#regist',"* Enter Proper Last Name ");
+      getAllMessage('#lnameMessage',"* Enter Proper Last Name");
+    }else if (!phoneReg.test(contact_no)){
+      getAllMessage('#regist',"* Enter Proper Phone Number ");
+      getAllMessage('#phoneMessage',"* Enter Proper Phone Number");
+    }else if (testp == '1' && phoneN !=phone){
+      getAllMessage('#regist',"* Phone number already exists ");
+      getAllMessage('#phoneMessage',"* Phone number already exists");
+    }else if (email ==''){
+      getAllMessage('#regist',"* Enter Proper Email ");
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+    }else if (!emailReg.test(email)){
+      getAllMessage('#regist',"* Enter Proper Email ");
+      getAllMessage('#emailMessage',"* Enter Proper Email");
+    }else if (testE == '1' && emailV !=email){
+      getAllMessage('#regist',"* Email already exists ");
+      getAllMessage('#emailMessage',"* Email already exists");
+    }else if (bdate ==''){
+      getAllMessage('#regist',"* Select Date of Birth ");
+      getAllMessage('#dobMessage',"* Select Date of Birth");
+    }else if (age<18 ||  age>=90){
+      getAllMessage('#regist',"* Sorry you are not eligible ");
+      getAllMessage('#dobMessage',"* Sorry you are not eligible");
+    }else if (gender !== 'male' && gender !== 'female' && gender !== 'others'){
+      getAllMessage('#regist',"* Select Gender ");
+      getAllMessage('#genderMessage',"* Select Gender");
+    }else if (country ===''){
+      getAllMessage('#regist',"* Select Country ");
+      getAllMessage('#countryMessage',"* Select Country");
+    }else if (state ===''){
+      getAllMessage('#regist',"* Select State ");
+      getAllMessage('#stateMessage',"* Select State");
+    }else if (city ===''){
+      getAllMessage('#regist',"* Select City ");
+      getAllMessage('#cityMessage',"* Select City");
+    }else if (address ==='' || specialChar.test(address) || address.length <= 7){
+      getAllMessage('#regist',"* Enter Proper Address ");
+      getAllMessage('#addressMessage',"* Enter Proper Address");
+    }else if (head_office ==='' || specialChar.test(head_office)){
+      getAllMessage('#headOfficeMessage',"* Enter Head Office");
+      getAllMessage('#regist',"* Enter Head Office");
+    }else if (zone_name ==='' || specialChar.test(zone_name)){
+      getAllMessage('#zoneMessage',"* Enter Zone");
+      getAllMessage('#regist',"* Enter Zone");
+    }else if (region_name ==='' || specialChar.test(region_name)){
+      getAllMessage('#regionMessage',"* Enter Region Name");
+      getAllMessage('#regist',"* Enter Region Name");
+    }else if (invalidimage1 =='2' || invalidimage2 =='2' || invalidimage3 =='2' || invalidimage4 =='2'||  invalidimage5 =='2'  || invalidimage6 =='2'){
+      getAllMessage('#regist',"* Please Upload Proper Proof ");
+      getAllMessage('#invalidImageMessage',"* Please Upload Proper Proof");
+    }else{
+
+
+    $.ajax({
+        type: "POST",
+        url: "branch_manager/edit_branch_manager_data.php",
+        data: datastring,
+        success: function (res) {
+        if (res==1) {
+          alert("Save Changes Successfully");
+          location.href = "view_branch_manager.php";
+          // window.location.reload();
+        }
+        else{
+          alert("Failed To Save Changes");
+        }
+            },
+        });
+
+  }
+
+};
 
 
 

@@ -2,14 +2,23 @@
 require "../connect.php";
 
 // $id= $_POST["testiod"];
+$ta_id= $_POST["ta_id"];
 $editfor= $_POST["editfor"];
 // $franchisee_id=$_POST['franchisee_id'];
 if($editfor == 'pending'){
 	$identifier_id= $_POST["testiod"];
 	$identifier_name = 'id=';
+
+	$message="Updated Customer details from ".$editfor. " list";
+$message2="Updated Customer details from ".$editfor. " list";
+
 }else if($editfor == 'registered') {
 	$identifier_id= $_POST["testiod"];
 	$identifier_name = 'cust_id=';
+
+	$message=$identifier_id. " Details has been updated from ".$editfor. " list";
+$message2=$identifier_id. " Details has been updated from ".$editfor. " list";
+
 }
 
 $firstname=$_POST['firstname'];
@@ -34,6 +43,12 @@ $city=$_POST['city'];
 
 $user_type_id = '2';
 
+$title="Edit Customer";
+
+
+$fromWhom="1";
+$register_by="3";
+ 
 
 if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''){
 	
@@ -74,7 +89,26 @@ $sql1 = "UPDATE customer SET firstname=:firstname,lastname=:lastname,country_cod
 		));
 
 		if($result2){
-			echo 1;
+			$sql3= "INSERT INTO logs (user_id,title,message,message2, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+			$stmt3 =$conn->prepare($sql3);
+
+			$result3=$stmt3->execute(array(
+			':user_id' => $identifier_id,
+			':title' => $title,
+			':message' => $message,
+			':message2' =>$message2,
+			':reference_no' => $ta_id,
+			':register_by' => $register_by,
+			':from_whom' => $fromWhom
+			));
+
+			if($result3){
+				echo 1;
+			}
+			else{
+				echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 0	;

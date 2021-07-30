@@ -115,7 +115,7 @@ if(!isset($_SESSION['username'])){
                                                         <a href="#" onclick=\'editfunc("' .$row["id"]. '","' .$row["reference_no"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '","pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending","")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["reference_no"]. '")\'><i class="material-icons dp48">verified_user</i></a>
@@ -218,7 +218,7 @@ if(!isset($_SESSION['username'])){
                                                         "registered")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["cust_id"]. '","'.$row["cust_id"]. '","registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["cust_id"]. '","'.$row["cust_id"]. '","registered","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     
                                                 </tr>';
@@ -282,9 +282,9 @@ if(!isset($_SESSION['username'])){
     };
 
 
-    function deletefunc(id,cid,action)
+    function deletefunc(id,cid,action,ta_id)
     { 
-    var dataString = 'id='+ id+'&cid='+cid+'&action='+action;
+    var dataString = 'id='+ id+'&cid='+cid+'&action='+action+'&ta_id='+ta_id;
 
 
       $.ajax({

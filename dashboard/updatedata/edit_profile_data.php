@@ -21,22 +21,26 @@ $state= $_POST["state"];
 $city= $_POST["city"];
 $pincode= $_POST["pincode"];
 
+$title="Update Profile Details";
+$message="You have updated your profile details";
+$operation="update";
+
 
 if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''){
 
 	
 	if($user_type =='2'){
-		updateData('customer',$user_type,$user_id,'cust_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+		updateData('customer',$user_type,$user_id,'cust_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation);
 	}else if($user_type =='3'){
-		updateData('travel_agent',$user_type,$user_id,'travel_agent_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+		updateData('travel_agent',$user_type,$user_id,'travel_agent_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation);
 	}else if($user_type =='4'){
-		updateData('franchisee',$user_type,$user_id,'franchisee_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+		updateData('franchisee',$user_type,$user_id,'franchisee_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation);
 	}else if($user_type =='5'){
-		updateData('sales_manager',$user_type,$user_id,'sales_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+		updateData('sales_manager',$user_type,$user_id,'sales_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation);
 	}else if($user_type =='6'){
-		updateData('branch_manager',$user_type,$user_id,'branch_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+		updateData('branch_manager',$user_type,$user_id,'branch_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation);
 	}else if($user_type =='7'){
-		updateData('regional_manager',$user_type,$user_id,'regional_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic);
+		updateData('regional_manager',$user_type,$user_id,'regional_manager_id',$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation);
 	}else{
 		echo 0;
 	}
@@ -49,7 +53,7 @@ if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' |
 
 
 
-function updateData($tablename,$user_type,$user_id,$user_id_colunmName,$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic){
+function updateData($tablename,$user_type,$user_id,$user_id_colunmName,$firstname,$lastname,$phone,$email,$gender,$dob,$country,$state,$city,$pincode,$address,$profile_pic,$title,$message,$operation){
 
 	require "../../connect.php";
 
@@ -87,7 +91,26 @@ function updateData($tablename,$user_type,$user_id,$user_id_colunmName,$firstnam
 		));
 
 		if($result2){
-			echo 1;
+
+			$sql3= "INSERT INTO logs (title,message,operation, reference_no, register_by, from_whom) VALUES (:title ,:message, :operation, :reference_no, :register_by, :from_whom)";
+			$stmt3 =$conn->prepare($sql3);
+
+			$result3=$stmt3->execute(array(
+			':title' => $title,
+			':message' => $message,
+			':operation' =>$operation,
+			':reference_no' => $user_id,
+			':register_by' => $user_type,
+			':from_whom' => $user_type
+			));
+
+			if($result3){
+				echo 1;
+			}
+			else{
+			echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 1	;

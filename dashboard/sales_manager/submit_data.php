@@ -33,6 +33,12 @@ $ref_id = $_POST['ref_id'];
 $registrant = $_POST['registrant'];
 $user_type = "5";
 
+$title="Add Sales Manager";
+$message="Added New Sales Manager by You";
+$operation="add";
+
+$fromWhom="6";
+
 
 if($firstname != '' || $lastname != '' || $email != '' || $country_code != '' || $phone_no != '' || $bdate != '' || $address !='' || $pincode != '' || $head_office != '' || $zone_name != '' || $region_name != ''){
 
@@ -69,7 +75,26 @@ if($firstname != '' || $lastname != '' || $email != '' || $country_code != '' ||
 		));
 
 		if($result2){
-			echo 1;
+			
+			$sql2= "INSERT INTO logs (title,message,operation, reference_no, register_by, from_whom) VALUES (:title ,:message, :operation, :reference_no, :register_by, :from_whom)";
+			$stmt =$conn->prepare($sql2);
+
+			$result=$stmt->execute(array(
+			':title' => $title,
+			':message' => $message,
+			':operation' =>$operation,
+			':reference_no' => $ref_id,
+			':register_by' => $register_by,
+			':from_whom' => $fromWhom
+			));
+
+			if($result){
+				echo 1;
+			}
+			else{
+			echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 0	;

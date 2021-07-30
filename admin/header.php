@@ -45,7 +45,7 @@
                     <li><a href="#" class="waves-effect"><i class="fa fa-undo" aria-hidden="true"></i> Backup Data</a>
                     </li> -->
                     <li class="divider"></li>
-                    <li><a href="logout.php" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    <li><a href="logout.php" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                     </li>
                 </ul>
             </div>

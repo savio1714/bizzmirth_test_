@@ -125,10 +125,10 @@ if(!isset($_SESSION['username'])){
                                                         "pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '")\'><i class="material-icons dp48">verified_user</i></a>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["reference_no"]. '")\'><i class="material-icons dp48">verified_user</i></a>
                                                     </td>
                                                 </tr>';
 
@@ -228,7 +228,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>
                                                         <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["franchisee_id"]. '",
-                                                        "registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        "registered","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     
                                                 </tr>';
@@ -307,9 +307,9 @@ $(document).ready( function () {
     };
 
 
-    function deletefunc(id,tid,action)
+    function deletefunc(id,fid,action,sm_id)
     { 
-    var dataString = 'id='+ id+'&tid='+tid+'&action='+action;
+    var dataString = 'id='+id+'&fid='+fid+'&action='+action+'&sm_id='+sm_id;
 
 
       $.ajax({
@@ -333,9 +333,9 @@ $(document).ready( function () {
     };
 
 
-    function confirmfunc(id,email)
+    function confirmfunc(id,email,sm_id)
     { 
-    var dataString = 'id='+ id+'&uname='+email;
+    var dataString = 'id='+ id+'&uname='+email+'&sm_id='+sm_id;
 
 
       $.ajax({

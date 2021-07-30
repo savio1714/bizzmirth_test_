@@ -20,7 +20,7 @@ $lastname =$_SESSION["lname"];
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 
 <head>
-
+ 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -125,7 +125,7 @@ $lastname =$_SESSION["lname"];
                                                     <td>
                                                       <button type="button" onclick=\'editfunc("' .$row["franchisee_id"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '")\' class="btn btn-primary">Edit</button>
                                                       
-                                                    <button type="button"  onclick=\'deletefunc("' .$row["franchisee_id"]. '")\' class="btn btn-danger">Delete</button>
+                                                    <button type="button"  onclick=\'deletefunc("' .$row["franchisee_id"]. '","'.$user_id.'")\' class="btn btn-danger">Delete</button>
                                                     </td>
                                                     
                                                     
@@ -238,9 +238,9 @@ $lastname =$_SESSION["lname"];
     <script type="text/javascript">
 
 
-    function deletefunc(franchisee_id)
+    function deletefunc(franchisee_id,sm_id)
     { 
-    var dataString = 'franchisee_id='+ franchisee_id;
+    var dataString = 'franchisee_id='+ franchisee_id+'&sm_id='+sm_id;
 
 
       $.ajax({

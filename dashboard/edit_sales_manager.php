@@ -191,14 +191,14 @@ require '../connect.php';
                                 <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                         <label>Branch Manager ID</label>
-                                        <input id="sm_id" type="text" placeholder="Branch Manager ID" value="<?php echo $user_id?>" readonly>
+                                        <input id="bm_id" type="text" placeholder="Branch Manager ID" value="<?php echo $user_id?>" readonly>
                                         <!-- <div id="fnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                     </div>
                                     
 
                                    <div class="col-lg-6 col-md-6">
                                         <label>Branch Manager Name</label>
-                                        <input id="sm_name"  type="text" placeholder="Branch Manager Name" value="<?php echo $bm_firstname . ' '. $bm_lastname;?>" readonly>
+                                        <input id="bm_name"  type="text" placeholder="Branch Manager Name" value="<?php echo $bm_firstname . ' '. $bm_lastname;?>" readonly>
                                         <!-- <div id="lnameMessage" style="display:none;color: #e74c3c;font-size: 85%;"></div> -->
                                    </div>
                                 </div>

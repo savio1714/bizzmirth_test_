@@ -1,7 +1,7 @@
 <?php 
 require "../../connect.php";
 
-
+ 
 $id= $_POST["id"];
 $uname= $_POST["uname"];
 $state= $_POST["st"];
@@ -10,6 +10,10 @@ $password = substr(str_shuffle($string), 0,8);
 
 $status= '1';
 $user_type_id= '7';
+
+
+$ref_no= "1";
+$register_by ='1';
 
 //Get State Short Name
 $stmt = $conn->prepare("SELECT * FROM states WHERE id='".$state."' AND status = 1");
@@ -64,6 +68,13 @@ function getManagerId($conn,$state){
 	$uid= getManagerId($conn,$state);
 
 
+		//log file
+$title="Confirm Regional Manager";
+$message=$uid." has been approved";
+$message2=$uid." has been approved";
+$fromWhom="1";
+
+
 
 	$sql1 = "UPDATE regional_manager SET status=:status,regional_manager_id=:regional_manager_id WHERE id=:id";
 	$stmt = $conn->prepare($sql1);
@@ -88,7 +99,26 @@ function getManagerId($conn,$state){
 		));
 
 		if($result2){
-			echo 1;
+			$sql4= "INSERT INTO logs (user_id,title,message,message2, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+				$stmt4 =$conn->prepare($sql4);
+
+				$result3=$stmt4->execute(array(
+				':user_id' => $uid,
+				':title' => $title,
+				':message' => $message,
+				':message2' =>$message2,
+				':reference_no' => $ref_no,
+				':register_by' => $register_by,
+				':from_whom' => $fromWhom
+				));
+
+				if($result3){
+					echo 1;
+				}
+				else{
+				echo 0	;
+				}
+			// echo 1;
 		}
 		else{
 		echo 0	;

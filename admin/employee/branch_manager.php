@@ -125,10 +125,10 @@ if(!isset($_SESSION['username'])){
                                                         "pending")\'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","","pending","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["state"]. '")\'><i class="material-icons dp48">verified_user</i></a>
+                                                        <a href="#" onclick=\'confirmfunc("' .$row["id"]. '","' .$row["email"]. '","' .$row["state"]. '","' .$row["reference_no"]. '")\'><i class="material-icons dp48">verified_user</i></a>
                                                     </td>
                                                 </tr>';
 
@@ -257,8 +257,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>';
                                                         }else{
                                                             echo '<td>
-                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["branch_manager_id"]. '",
-                                                        "registered")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="#" onclick=\'deletefunc("' .$row["id"]. '","'.$row["branch_manager_id"]. '","registered","' .$row["reference_no"]. '")\'><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>';
                                                         }
                                                     
@@ -339,9 +338,9 @@ $(document).ready( function () {
     };
 
 
-    function deletefunc(id,bmid,action)
+    function deletefunc(id,bmid,action,rm_id)
     { 
-    var dataString = 'id='+ id+'&bmid='+bmid+'&action='+action;
+    var dataString = 'id='+ id+'&bmid='+bmid+'&action='+action+'&rm_id='+rm_id;
 
 
       $.ajax({
@@ -365,9 +364,9 @@ $(document).ready( function () {
     };
 
 
-    function confirmfunc(id,email,st)
+    function confirmfunc(id,email,st,rm_id)
     { 
-    var dataString = 'id='+ id+'&uname='+email+'&st='+st;
+    var dataString = 'id='+ id+'&uname='+email+'&st='+st+'&rm_id='+rm_id;
 
 
       $.ajax({

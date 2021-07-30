@@ -125,7 +125,7 @@ $lastname =$_SESSION["lname"];
                                                     <td>
                                                       <button type="button" onclick=\'editfunc("' .$row["sales_manager_id"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '")\' class="btn btn-primary">Edit</button>
                                                       
-                                                    <button type="button"  onclick=\'deletefunc("' .$row["sales_manager_id"]. '")\' class="btn btn-danger">Delete</button>
+                                                    <button type="button"  onclick=\'deletefunc("' .$row["sales_manager_id"]. '","'.$user_id.'")\' class="btn btn-danger">Delete</button>
                                                     </td>
                                                     
                                                     
@@ -154,7 +154,7 @@ $lastname =$_SESSION["lname"];
                                 <ul>
                                     <?php 
 
-                                      $sql2= $conn->prepare("SELECT COUNT(*) as c FROM sales_manager where user_type='4' and reference_no='".$user_id."' and status='1'");
+                                      $sql2= $conn->prepare("SELECT COUNT(*) as c FROM sales_manager where user_type='5' and reference_no='".$user_id."' and status='1'");
                                         $sql2->execute();
                                         $sql2->setFetchMode(PDO::FETCH_ASSOC);
                                         foreach (($sql2->fetchAll()) as $key => $row) {
@@ -238,9 +238,9 @@ $lastname =$_SESSION["lname"];
     <script type="text/javascript">
 
 
-    function deletefunc(sales_manager_id)
+    function deletefunc(sales_manager_id,bm_id)
     { 
-    var dataString = 'sales_manager_id='+ sales_manager_id;
+    var dataString = 'sales_manager_id='+ sales_manager_id+'&bm_id='+bm_id;
 
 
       $.ajax({
@@ -264,9 +264,9 @@ $lastname =$_SESSION["lname"];
     };
 
 
-    function editfunc(taid,cut,st,ct)
+    function editfunc(smid,cut,st,ct)
     { 
-        window.location.href='edit_sales_manager.php?vkvbvjfgfikix='+taid+'&ncy='+cut+'&mst='+st+'&hct='+ct;  
+        window.location.href='edit_sales_manager.php?vkvbvjfgfikix='+smid+'&ncy='+cut+'&mst='+st+'&hct='+ct;  
     };
 
 

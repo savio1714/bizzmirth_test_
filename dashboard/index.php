@@ -56,7 +56,7 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
                     <!-- Item -->
                     <div class="col-lg-3 col-md-6 col-xs-6">
                         <div class="dashboard-stat color-1">
-                            <div class="dashboard-stat-content"><h4>6</h4> <span>Total Activities</span></div>
+                            <div class="dashboard-stat-content"><h4>0</h4> <span>Total Activities</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
                             <div class="dashboard-stat-item"><p>Check your total activities</p></div>
                         </div>
@@ -65,7 +65,7 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
                     <!-- Item -->
                     <div class="col-lg-3 col-md-6 col-xs-6">
                         <div class="dashboard-stat color-2">
-                            <div class="dashboard-stat-content"><h4>726</h4> <span>Total Bookings</span></div>
+                            <div class="dashboard-stat-content"><h4>0</h4> <span>Total Bookings</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Line-Chart"></i></div>
                             <div class="dashboard-stat-item"><p>Check your total bookings</p></div>
                         </div>
@@ -75,7 +75,7 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
                     <!-- Item -->
                     <div class="col-lg-3 col-md-6 col-xs-6">
                         <div class="dashboard-stat color-3">
-                            <div class="dashboard-stat-content"><h4>95</h4> <span>Total Reviews</span></div>
+                            <div class="dashboard-stat-content"><h4>0</h4> <span>Total Reviews</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
                             <div class="dashboard-stat-item"><p>Check your reviews</p></div>
                         </div>
@@ -83,7 +83,7 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
 
                     <div class="col-lg-3 col-md-6 col-xs-6">
                         <div class="dashboard-stat color-4">
-                            <div class="dashboard-stat-content"><h4>126</h4> <span>Total Offers</span></div>
+                            <div class="dashboard-stat-content"><h4>0</h4> <span>Total Offers</span></div>
                             <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
                             <div class="dashboard-stat-item"><p>Your offers</p></div>
                         </div>
@@ -107,14 +107,14 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>01/01/2017</td>
-                                            <td class="t-id">C001</td>
+                                            <td colspan="6"> No Booking...</td>
+                                           <!--  <td class="t-id">C001</td>
                                             <td>Dubai</td>
                                             <td>5</td>
                                             <td>$300.00</td>
-                                            <td><a href="#" class="button">View</a></td>
+                                            <td><a href="#" class="button">View</a></td> -->
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>01/01/2017</td>
                                             <td class="t-id">C081</td>
                                             <td>Grece - Zakynthos</td>
@@ -137,7 +137,7 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
                                             <td>5</td>
                                             <td>$300.00</td>
                                             <td><a href="#" class="button">View</a></td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -150,120 +150,117 @@ if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || 
                         <div class="dashboard-list-box with-icons margin-top-20">
                             <h4 class="gray">Recent Activities</h4>
                             <ul>
-                                <li>
-                                    <i class="list-box-icon sl sl-icon-layers"></i> Your listing <strong><a href="#">Hotel Govendor</a></strong> has been approved!
-                                    <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                                </li>
 
-                                <li>
-                                    <i class="list-box-icon sl sl-icon-star"></i> Kathy Brown left a review <div class="numerical-rating" data-rating="5.0"></div> on <strong><a href="#">Burger House</a></strong>
-                                    <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                                </li>
+                                 <?php
+                                                require '../connect.php';
+                                                $stmt = $conn->prepare("SELECT * FROM logs where (from_whom='".$_SESSION['user_type_id_value']."' and register_by='".$_SESSION['user_type_id_value']."') and reference_no='".$_SESSION['user_id']."' and status='1' order by  register_date desc limit 8");
+                                                $stmt->execute();
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-                                <li>
-                                    <i class="list-box-icon sl sl-icon-heart"></i> Someone bookmarked your <strong><a href="#">Burger House</a></strong> listing!
-                                    <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                                </li>
+                                                if($stmt->rowCount()>0){
+                                                    foreach (($stmt->fetchAll()) as $key => $row) {
 
-                                <li>
-                                    <i class="list-box-icon sl sl-icon-star"></i> Kathy Brown left a review <div class="numerical-rating" data-rating="3.0"></div> on <strong><a href="#">Airport</a></strong>
-                                    <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                                </li>
+                                                        $title=$row['title'];
+                                                        $message2=$row['message'];
+                                                        $ref_no =$row['reference_no'];
 
-                                <li>
-                                    <i class="list-box-icon sl sl-icon-heart"></i> Someone bookmarked your <strong><a href="#">Burger House</a></strong> listing!
+                                                        $ld= new DateTime($row['register_date']);
+                                                        $latestDate= $ld->format('d M, Y'); 
+                                                        
+
+                                                        
+                                                        
+                                                        echo '
+                                                         <li>
+                                                            <i class="list-box-icon sl sl-icon-clock"></i>
+                                                            '.$latestDate. '<h5>'.$message2.'</h5>
+                                                        </li>
+
+
+
+                                                        ';
+
+                                                    }
+                                                      
+                                                } 
+                                                    else{
+                                                        echo ' <li>
+                                                                    <i class="list-box-icon sl sl-icon-clock"></i>
+                                                                    No Recent Activity
+                                                                    
+                                                                </li>';
+                                                    }
+                                        ?>
+                                <!-- <li>
+                                    <i class="list-box-icon sl sl-icon-clock"></i> Your listing <strong><a href="#">Hotel Govendor</a></strong> has been approved!
                                     <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                                </li>
+                                </li> -->
+
+                                
 
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="row"> 
-                    <div class="col-lg-12 col-md-12 col-xs-12 traffic">
+                <?php 
+
+                if($_SESSION['user_type_id_value'] =='2'){
+
+                    require '../connect.php';
+                    echo '<div class="row"> 
+                        <div class="col-lg-12 col-md-12 col-xs-12 traffic">
                         <div class="dashboard-list-box margin-top-20 user-list">
-                            <h4 class="gray">Referral Customer</h4>
-                            <ul>
-                                <li>
-                                    <div class="user-list-item">
-                                        <div class="user-list-image">
-                                            <img src="../images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="user-list-content">
-                                            <h4>Loural Teak</h4>
-                                            <span>Post Manager</span>
-                                        </div>
-                                        <div class="user-btns">
-                                            <a href="#" class="button">View</a>
-                                            <a href="#" class="button">Edit</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="user-list-item">
-                                        <div class="user-list-image">
-                                            <img src="../images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="user-list-content">
-                                            <h4>Jim Gordon</h4>
-                                            <span>Post Manager</span>
-                                        </div>
-                                        <div class="user-btns">
-                                            <a href="#" class="button">View</a>
-                                            <a href="#" class="button">Edit</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="user-list-item">
-                                        <div class="user-list-image">
-                                            <img src="../images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="user-list-content">
-                                            <h4>Loural Teak</h4>
-                                            <span>Post Manager</span>
-                                        </div>
-                                        <div class="user-btns">
-                                            <a href="#" class="button">View</a>
-                                            <a href="#" class="button">Edit</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="user-list-item">
-                                        <div class="user-list-image">
-                                            <img src="../images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="user-list-content">
-                                            <h4>Loural Teak</h4>
-                                            <span>Post Manager</span>
-                                        </div>
-                                        <div class="user-btns">
-                                            <a href="#" class="button">View</a>
-                                            <a href="#" class="button">Edit</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="user-list-item">
-                                        <div class="user-list-image">
-                                            <img src="../images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="user-list-content">
-                                            <h4>Joseph Dean</h4>
-                                            <span>Post Manager</span>
-                                        </div>
-                                        <div class="user-btns">
-                                            <a href="#" class="button">View</a>
-                                            <a href="#" class="button">Edit</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                   
-                </div>
+                        <h4 class="gray">Referral Customer</h4>
+                        <ul>';
+
+                    $stmt4 = $conn->prepare("SELECT * FROM customer where user_type='2' and  customer_reference_no='".$_SESSION['user_id']."' and status='1' order by level");
+                                                $stmt4->execute();
+
+                                                    // set the resulting array to associative
+                                                $stmt4->setFetchMode(PDO::FETCH_ASSOC);
+
+                                                if($stmt4->rowCount()>0){
+                                                    foreach (($stmt4->fetchAll()) as $key4 => $row4) {
+                                                        $profile_pic=$row4['profile_pic'];
+                                                        $firstname=$row4['firstname'];
+                                                        $lastname=$row4['lastname'];
+                                                        $cust_id=$row4['cust_id'];
+                                                    
+                                                                echo'<li>
+                                                                    <div class="user-list-item">
+                                                                        <div class="user-list-image">
+                                                                            <img src="../uploading/'.$profile_pic.'" alt="">
+                                                                        </div>
+                                                                        <div class="user-list-content">
+                                                                            <h4>'.$firstname.' '.$lastname.'</h4>
+                                                                            <span>Customer</span>
+                                                                        </div>
+                                                                        <div class="user-btns">
+                                                                            <a href="view_referral_customer_details?dsfctiddfs='.$cust_id.'" class="button">View</a>';
+                                                                            // <a href="#" class="button">Edit</a>
+                                                                        echo '</div>
+                                                                    </div>
+                                                                </li>';
+                                                            }
+                                                            
+                                                }else{
+                                                    echo'<li>
+                                                           <div class="user-list-item">
+                                                                No Referral Customer
+                                                            </div>
+                                                        </li>';
+
+                                                }
+                        echo'   
+                                    </ul>
+                                </div>
+                            </div>
+                                                           
+                        </div>';
+                    }
+
+                ?>
+                
                 
             </div>
             <!-- Content / End -->

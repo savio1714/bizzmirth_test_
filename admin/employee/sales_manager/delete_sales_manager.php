@@ -4,18 +4,31 @@ $today = date('Y-m-d H:i:s' );
 
 require "../../connect.php";
 
+$bm_id= $_POST["bm_id"];
 $action= $_POST["action"];
 $id= $_POST["id"];
 $user_type="5";
 
 if($action == 'pending'){
+	$sm_id = ""; //set sales manager id to empty
 	$status= '0';
 }else if($action == 'registered') {
+	$sm_id = $_POST["smid"]; //sales manager id
 	$status= '3';
 }
 
 // $status= '0';
+ $title="Delete Sales Manager";
+if($sm_id ==''){
+	$message="Deleted Sales Manager from ".$action. " list";
+	$message2="Deleted Sales Manager from ".$action. " list";
+}else{
+	$message="Deleted Sales Manager(".$sm_id.") from ".$action. " list";
+	$message2="Deleted Sales Manager(".$sm_id.") from ".$action. " list";
+}
 
+$fromWhom="1";
+$register_by="6";
 
 
 	$sql1 = "UPDATE sales_manager SET status=:status, deleted_date=:deleted_date WHERE id=:id";
@@ -27,7 +40,26 @@ if($action == 'pending'){
 	));
 
 	if ($result) {
-		echo 1;
+
+		$sql3= "INSERT INTO logs (title,message,message2, reference_no, register_by, from_whom) VALUES (:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+		$stmt3 =$conn->prepare($sql3);
+
+		$result3=$stmt3->execute(array(
+		':title' => $title,
+		':message' => $message,
+		':message2' =>$message2,
+		':reference_no' => $bm_id,
+		':register_by' => $register_by,
+		':from_whom' => $fromWhom
+		));
+
+		if($result3){
+			echo 1;
+		}
+		else{
+			echo 0	;
+		}
+		// echo 1;
 
 	}
 	else{

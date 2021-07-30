@@ -1,6 +1,7 @@
 <?php
 require "../../connect.php";
 
+$fid= $_POST["f_id"];
 
 $travel_agent_id=$_POST['travel_agent_id'];
 $firstname=$_POST['firstname'];
@@ -25,6 +26,14 @@ $city=$_POST['city'];
 
 $user_type_id = '3';
 
+$message=$travel_agent_id." details has been updated";
+$title="Edit Travel Agent";
+
+
+$fromWhom="4";
+$register_by="4";
+$operation="update";
+ 
 
 if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''){
 	
@@ -65,7 +74,26 @@ $sql1 = "UPDATE travel_agent SET firstname=:firstname,lastname=:lastname,email=:
 		));
 
 		if($result2){
-			echo 1;
+			$sql3= "INSERT INTO logs (user_id,title,message,operation, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :operation, :reference_no, :register_by, :from_whom)";
+			$stmt3 =$conn->prepare($sql3);
+
+			$result3=$stmt3->execute(array(
+			':user_id' => $travel_agent_id,
+			':title' => $title,
+			':message' => $message,
+			':operation' =>$operation,
+			':reference_no' => $fid,
+			':register_by' => $register_by,
+			':from_whom' => $fromWhom
+			));
+
+			if($result3){
+				echo 1;
+			}
+			else{
+				echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 0	;

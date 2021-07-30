@@ -4,7 +4,7 @@ $today = date('Y-m-d H:i:s' );
 
 require "../connect.php";
 
-
+$ta_id= $_POST["ta_id"];
 $id= $_POST["id"];
 $user_type="2";
 
@@ -13,9 +13,27 @@ $editfor= $_POST["action"];
 
 if($editfor == 'pending'){
     $identifier_name = 'id=';
+    $cust_id = ""; //set Franchisee id to empty
 }else if($editfor == 'registered') {
     $identifier_name = 'cust_id=';
+    $cust_id = $_POST["cid"]; //set Franchisee id
 }
+
+
+
+ $title="Delete Customer";
+if($cust_id ==''){
+	$message="Deleted Customer from ".$editfor. " list";
+	$message2="Deleted Customer from ".$editfor. " list";
+}else{
+	$message="Deleted Customer(".$cust_id.") from ".$editfor. " list";
+	$message2="Deleted Customer(".$cust_id.") from ".$editfor. " list";
+}
+
+$fromWhom="1";
+$register_by="3"; 
+
+
 
 
 
@@ -28,8 +46,26 @@ if($editfor == 'pending'){
 	));
 
 	if ($result) {
-		echo 1;
+		$sql3= "INSERT INTO logs (title,message,message2, reference_no, register_by, from_whom) VALUES (:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+		$stmt3 =$conn->prepare($sql3);
 
+		$result3=$stmt3->execute(array(
+		':title' => $title,
+		':message' => $message,
+		':message2' =>$message2,
+		':reference_no' => $ta_id,
+		':register_by' => $register_by,
+		':from_whom' => $fromWhom
+		));
+
+		if($result3){
+			echo 1;
+		}
+		else{
+			echo 0	;
+		}
+		// echo 1;
+ 
 	}
 	else{
 		echo 0;

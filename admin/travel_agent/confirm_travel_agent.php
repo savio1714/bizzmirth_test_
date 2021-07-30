@@ -9,6 +9,9 @@ $password = substr(str_shuffle($string), 0,8);
 $status= '1';
 $user_type_id= '3';
 
+$f_id= $_POST["f_id"];
+$register_by ='4';
+
 date_default_timezone_set('Asia/Calcutta');
 $todayYear = date('Y' );
 
@@ -58,6 +61,11 @@ if($sql2->rowCount()>0){
 
 }
 
+//log file
+$title="Confirm Travel Agent";
+$message=$uid." has been approved";
+$message2=$uid." has been approved";
+$fromWhom="1";
 
 
 	$sql1 = "UPDATE travel_agent SET status=:status,travel_agent_id=:travel_agent_id WHERE id=:id";
@@ -83,7 +91,26 @@ if($sql2->rowCount()>0){
 		));
 
 		if($result2){
-			echo 1;
+			$sql4= "INSERT INTO logs (user_id,title,message,message2, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+				$stmt4 =$conn->prepare($sql4);
+
+				$result3=$stmt4->execute(array(
+				':user_id' => $uid,
+				':title' => $title,
+				':message' => $message,
+				':message2' =>$message2,
+				':reference_no' => $f_id,
+				':register_by' => $register_by,
+				':from_whom' => $fromWhom
+				));
+
+				if($result3){
+					echo 1;
+				}
+				else{
+				echo 0	;
+				}
+			// echo 1;
 		}
 		else{
 		echo 0	;

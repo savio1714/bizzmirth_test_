@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../index.php";</script>';
+    echo '<script>location.href = "../login.php";</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -50,9 +50,11 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Consultant Customer</a>
+                        <li class="active-bre"><a href="#"> Packages</a>
+                        </li>
+                        <li class="page-back"><a href="../"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
                     </ul>
                 </div>
@@ -61,21 +63,21 @@ if(!isset($_SESSION['username'])){
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>User Details</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                                    <h4>Packages</h4>
+                                    <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-users" class="dropdown-content">
-                                        <li><a href="user-add.html">Add New</a>
+                                        <li><a href="add_new_packages.php">Add New</a>
                                         </li>
-                                        <li><a href="user-edit.html">Edit</a>
-                                        </li>
-                                        <li><a href="#!">Update</a>
-                                        </li>
-                                        <li class="divider"></li>
+                                        <!-- <li><a href="edit_package.php">Edit</a>
+                                        </li> -->
+                                        <!-- <li><a href="#!">Update</a>
+                                        </li> -->
+                                        <!-- <li class="divider"></li>
                                         <li><a href="#!"><i class="material-icons">delete</i>Delete</a>
                                         </li>
                                         <li><a href="user-view.html"><i class="material-icons">subject</i>View All</a>
-                                        </li>
+                                        </li> -->
                                     </ul>
 
                                     <!-- Dropdown Structure -->
@@ -86,13 +88,11 @@ if(!isset($_SESSION['username'])){
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>User</th>
-                                                    <th>Name</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Country</th>
-                                                    <th>Listings</th>
-                                                    <th>View</th>
+                                                    <th>Picture</th>
+                                                    <th>Package Name</th>
+                                                    <th>Total Price</th>
+                                                    <th>Display Cost</th>
+                                                    <th>Product Type</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
@@ -101,234 +101,245 @@ if(!isset($_SESSION['username'])){
                                                 <tr>
                                                     <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
                                                     </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
                                                     </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
                                                         <span class="label label-primary">02</span>
                                                     </td>
                                                     <td>
                                                         <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="../images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
-                                                        <span class="label label-primary">02</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="../images/user/3.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
-                                                        <span class="label label-primary">02</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="../images/user/4.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
-                                                        <span class="label label-primary">02</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="../images/user/5.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
-                                                        <span class="label label-primary">02</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="../images/user/6.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
-                                                        <span class="label label-primary">02</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
+
                                                 <tr>
                                                     <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
                                                     </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
                                                     </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
                                                         <span class="label label-primary">02</span>
                                                     </td>
                                                     <td>
                                                         <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="../images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
-                                                        <span class="label label-primary">02</span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </td>
-                                                </tr>
+
                                                 <tr>
                                                     <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
                                                     </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
                                                     </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
                                                         <span class="label label-primary">02</span>
                                                     </td>
                                                     <td>
                                                         <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
+
                                                 <tr>
-                                                    <td><span class="list-img"><img src="../images/user/3.png" alt=""></span>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
                                                     </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
                                                     </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
                                                         <span class="label label-primary">02</span>
                                                     </td>
                                                     <td>
                                                         <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
+
                                                 <tr>
-                                                    <td><span class="list-img"><img src="../images/user/4.png" alt=""></span>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
                                                     </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
                                                     </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>Australia</td>
-                                                    <td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
                                                         <span class="label label-primary">02</span>
                                                     </td>
                                                     <td>
                                                         <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                    </td>
+                                                    </td> -->
                                                     <td>
-                                                        <a href="user-edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
+
+                                                <tr>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
+                                                    </td>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
+                                                    </td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
+                                                        <span class="label label-primary">02</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    </td> -->
+                                                    <td>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
+                                                    </td>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
+                                                    </td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
+                                                        <span class="label label-primary">02</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    </td> -->
+                                                    <td>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
+                                                    </td>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
+                                                    </td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
+                                                        <span class="label label-primary">02</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    </td> -->
+                                                    <td>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
+                                                    </td>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
+                                                    </td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
+                                                        <span class="label label-primary">02</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    </td> -->
+                                                    <td>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
+                                                    </td>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
+                                                    </td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
+                                                        <span class="label label-primary">02</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    </td> -->
+                                                    <td>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><span class="list-img"><img src="../images/user/1.png" alt=""></span>
+                                                    </td>
+                                                    <td><a href="#"><span class="list-enq-name">Package Name</span><!-- <span class="list-enq-city">Illunois, United States</span> --></a>
+                                                    </td>
+                                                    <td>45,000/-</td>
+                                                    <td>50,000/-</td>
+                                                    <td>Simple</td>
+                                                   <!--  <td>
+                                                        <span class="label label-primary">02</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="user-view.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    </td> -->
+                                                    <td>
+                                                        <a href="edit_package.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                               
                                             </tbody>
                                         </table>
                                     </div>

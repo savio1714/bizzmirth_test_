@@ -154,7 +154,7 @@ if($editfor == 'pending'){
                                                    <div class="row">
                                             
                                                     <div class="input-field col-md-12 col-sm-12">
-                                                        <input id="rmid" type="text" value="'.$sales_manager_id.'" readonly>
+                                                        <input id="smid" type="text" value="'.$sales_manager_id.'" readonly>
                                                         
                                                         <label for="rmid">Employee No.</label>
                                                     </div>
@@ -572,6 +572,7 @@ if($editfor == 'pending'){
                                             </div>
 
                                             <input type="hidden" id="testValue" name="testValue" value="5">
+                                             <input type="hidden" id="bm_id" name="bm_id" value="<?php echo $reference_no;?>">
                                             <input type="hidden" id="editfor" name="editfor" value="<?php echo $editfor;?>">
                                             <input type="hidden" id="testiod" name="testiod" value="<?php echo $id;?>">
                                             <input type="hidden" id="invalidimage1" name="invalidimage1" >

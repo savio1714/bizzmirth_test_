@@ -29,6 +29,11 @@ $state=$_POST['state'];
 $city=$_POST['city'];
 $user_type="6";
 $register_by="7";
+
+$title="Add Branch Manager";
+$message="Added New Branch Manager by ".$rm_id;
+$message2="Added New Branch Manager by ".$rm_id;
+$fromWhom="1";
 // $register_by="5";
 
 
@@ -66,7 +71,26 @@ $result2=$stmt3->execute(array(
 ));
 
 if($result2){
-	echo 1;
+
+	$sql2= "INSERT INTO logs (title,message,message2, reference_no, register_by, from_whom) VALUES (:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+	$stmt =$conn->prepare($sql2);
+
+	$result=$stmt->execute(array(
+	':title' => $title,
+	':message' => $message,
+	':message2' =>$message2,
+	':reference_no' => $rm_id,
+	':register_by' => $register_by,
+	':from_whom' => $fromWhom
+	));
+
+	if($result){
+		echo 1;
+	}
+	else{
+	echo 0	;
+	}
+	// echo 1;
 }
 else{
 echo 0	;

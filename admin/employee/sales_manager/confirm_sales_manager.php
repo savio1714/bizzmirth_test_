@@ -10,6 +10,11 @@ $password = substr(str_shuffle($string), 0,8);
 $status= '1';
 $user_type_id= '5';
 
+
+$bm_id= $_POST["bm_id"];
+$register_by ='6';
+
+
 // date_default_timezone_set('Asia/Calcutta');
 // $todayYear = date('Y' );
 
@@ -30,7 +35,7 @@ if($stmt->rowCount()>0){
 	$state='GA';
 }
 
-
+ 
 
 function getManagerId($conn,$state){
 	$string2 ="1234567890";
@@ -69,6 +74,12 @@ function getManagerId($conn,$state){
 
 	$uid= getManagerId($conn,$state);
 
+		//log file
+$title="Confirm Sales Manager";
+$message=$uid." has been approved";
+$message2=$uid." has been approved";
+$fromWhom="1";
+
 
 
 	$sql1 = "UPDATE sales_manager SET status=:status,sales_manager_id=:sales_manager_id WHERE id=:id";
@@ -94,7 +105,26 @@ function getManagerId($conn,$state){
 		));
 
 		if($result2){
-			echo 1;
+			$sql4= "INSERT INTO logs (user_id,title,message,message2, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+				$stmt4 =$conn->prepare($sql4);
+
+				$result3=$stmt4->execute(array(
+				':user_id' => $uid,
+				':title' => $title,
+				':message' => $message,
+				':message2' =>$message2,
+				':reference_no' => $bm_id,
+				':register_by' => $register_by,
+				':from_whom' => $fromWhom
+				));
+
+				if($result3){
+					echo 1;
+				}
+				else{
+				echo 0	;
+				}
+			// echo 1;
 		}
 		else{
 		echo 0	;

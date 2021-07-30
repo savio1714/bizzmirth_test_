@@ -1,6 +1,7 @@
 <?php
 require "../../connect.php";
 
+$smid= $_POST["sm_id"];
 
 $franchisee_id=$_POST['franchisee_id'];
 $firstname=$_POST['firstname'];
@@ -25,7 +26,15 @@ $city=$_POST['city'];
 
 $user_type_id = '4';
 
+$message=$franchisee_id." details has been updated";
+$title="Edit Franchisee";
 
+
+$fromWhom="5";
+$register_by="5";
+$operation="update";
+
+ 
 if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''){
 	
 
@@ -65,7 +74,26 @@ $sql1 = "UPDATE franchisee SET firstname=:firstname,lastname=:lastname,email=:em
 		));
 
 		if($result2){
-			echo 1;
+			$sql3= "INSERT INTO logs (user_id,title,message,operation, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :operation, :reference_no, :register_by, :from_whom)";
+			$stmt3 =$conn->prepare($sql3);
+
+			$result3=$stmt3->execute(array(
+			':user_id' => $franchisee_id,
+			':title' => $title,
+			':message' => $message,
+			':operation' =>$operation,
+			':reference_no' => $smid,
+			':register_by' => $register_by,
+			':from_whom' => $fromWhom
+			));
+
+			if($result3){
+				echo 1;
+			}
+			else{
+				echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 0	;

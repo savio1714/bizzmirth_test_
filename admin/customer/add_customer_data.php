@@ -31,11 +31,18 @@ $user_type="2";
 
 if($travel_agent_id ==''){
 	$register_by="1";
+	$message="Added new customer through B2C";
+	$message2="Added new customer through B2C";
 }else{
 	$register_by="3";
+	$message="Added new customer by ".$travel_agent_id;
+	$message2="Added new customer by ".$travel_agent_id;
 }
 
-
+ $title="Add Customer";
+// $message="Added new Travel Agent by ".$franchisee_id;
+// $message2="Added new Travel Agent by ".$franchisee_id;
+$fromWhom="1";
 
 
 $sql= "INSERT INTO customer (firstname,lastname, email, country_code, contact_no , date_of_birth,age,gender,country,state,city,pincode,address,profile_pic, kyc,pan_card,aadhar_card,voting_card,bank_passbook,user_type,registrant,reference_no,register_by,level,customer_reference_no) VALUES (:firstname ,:lastname, :email, :country_code, :phone_no, :bdate, :age, :gender , :country, :state, :city, :pincode,:address,:profile_pic ,:kyc,:pan_card,:aadhar_card,:voting_card,:passbook,  :user_type,:registrant,  :travel_agent_id, :register_by,:level,:customer_level)";
@@ -70,7 +77,25 @@ $result2=$stmt3->execute(array(
 ));
 
 if($result2){
-	echo 1;
+	$sql2= "INSERT INTO logs (title,message,message2, reference_no, register_by, from_whom) VALUES (:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+	$stmt =$conn->prepare($sql2);
+
+	$result=$stmt->execute(array(
+	':title' => $title,
+	':message' => $message,
+	':message2' =>$message2,
+	':reference_no' => $travel_agent_id,
+	':register_by' => $register_by,
+	':from_whom' => $fromWhom
+	));
+
+	if($result){
+		echo 1;
+	}
+	else{
+	echo 0	;
+	}
+	// echo 1;
 }
 else{
 echo 0	;

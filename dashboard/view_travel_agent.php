@@ -83,7 +83,7 @@ $lastname =$_SESSION["lname"];
                                   </tr>
                                 </thead>
                                 <tbody>
-
+ 
                                      <?php
                                                 require '../connect.php';
 
@@ -123,7 +123,7 @@ $lastname =$_SESSION["lname"];
                                                     <td>
                                                       <button type="button" onclick=\'editfunc("' .$row["travel_agent_id"]. '","' .$row["country"]. '","' .$row["state"]. '","' .$row["city"]. '")\' class="btn btn-primary">Edit</button>
                                                       
-                                                    <button type="button"  onclick=\'deletefunc("' .$row["travel_agent_id"]. '")\' class="btn btn-danger">Delete</button>
+                                                    <button type="button"  onclick=\'deletefunc("' .$row["travel_agent_id"]. '","'.$user_id.'")\' class="btn btn-danger">Delete</button>
                                                     </td>
                                                     
                                                     
@@ -225,9 +225,9 @@ $lastname =$_SESSION["lname"];
     <script type="text/javascript">
 
 
-    function deletefunc(travel_agent_id)
+    function deletefunc(travel_agent_id,f_id)
     { 
-    var dataString = 'travel_agent_id='+ travel_agent_id;
+    var dataString = 'travel_agent_id='+ travel_agent_id+'&f_id='+f_id;
 
 
       $.ajax({

@@ -530,6 +530,7 @@ if($editfor == 'pending'){
                                             </div>
 
                                             <input type="hidden" id="testValue" name="testValue" value="3">
+                                            <input type="hidden" id="sm_id" name="sm_id" value="<?php echo $reference_no;?>">
                                             <input type="hidden" id="editfor" name="editfor" value="<?php echo $editfor;?>">
                                             <input type="hidden" id="testiod" name="testiod" value="<?php echo $id;?>">
                                             <input type="hidden" id="invalidimage1" name="invalidimage1" >

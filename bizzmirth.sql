@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2021 at 07:45 AM
+-- Generation Time: Jul 30, 2021 at 02:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -289,7 +289,27 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `user_type_id`, `register_date`, `status`) VALUES
-(1, 'admin', 'admin@32', '1', '1', '2021-07-22 05:33:03', 1);
+(1, 'admin', 'admin@32', '1', '1', '2021-07-30 12:00:32', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(99) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `message2` text NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `register_by` varchar(100) NOT NULL COMMENT '	0-deleted 1-admin 2-customer 3-TA 4-F 5-SM 6-BM 7-RM',
+  `from_whom` int(11) NOT NULL,
+  `operation` varchar(99) NOT NULL,
+  `register_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(99) NOT NULL DEFAULT '1' COMMENT '	0-deleted 1-registered 2- Deleted'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -555,6 +575,12 @@ ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `regional_manager`
 --
 ALTER TABLE `regional_manager`
@@ -629,6 +655,12 @@ ALTER TABLE `franchisee`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `regional_manager`

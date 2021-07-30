@@ -4,11 +4,17 @@ $today = date('Y-m-d H:i:s' );
 
 require "../../connect.php";
 
-
+$sm_id= $_POST["sm_id"];
 $franchisee_id= $_POST["franchisee_id"];
 $user_type="4";
 
 $status= '0';
+
+$title="Delete Franchisee";
+$fromWhom="5";
+$register_by="5";
+$message="You have deleted Franchisee with ID ".$franchisee_id;
+$operation="delete";
 
 
 
@@ -39,7 +45,25 @@ if(isset($_POST["franchisee_id"])){
 	));
 
 	if ($result2) {
-		echo 1;
+		$sql3= "INSERT INTO logs (title,message,operation, reference_no, register_by, from_whom) VALUES (:title ,:message, :operation, :reference_no, :register_by, :from_whom)";
+		$stmt3 =$conn->prepare($sql3);
+
+		$result3=$stmt3->execute(array(
+		':title' => $title,
+		':message' => $message,
+		':operation' =>$operation,
+		':reference_no' => $sm_id,
+		':register_by' => $register_by,
+		':from_whom' => $fromWhom
+		));
+
+		if($result3){
+			echo 1;
+		}
+		else{
+			echo 0	;
+		}
+		// echo 1;
 
 	}
 	else{

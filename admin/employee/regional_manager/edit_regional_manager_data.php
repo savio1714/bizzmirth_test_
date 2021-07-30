@@ -7,11 +7,16 @@ $editfor= $_POST["editfor"];
 if($editfor == 'pending'){
 	$identifier_id= $_POST["testiod"];
 	$identifier_name = 'id=';
+	$message="Updated Regional Manager Details from ".$editfor. " list";
+$message2="Updated Regional Manager Details from ".$editfor. " list";
+
 }else if($editfor == 'registered') {
 	$identifier_id= $_POST["testiod"];
 	$identifier_name = 'regional_manager_id=';
+	$message=$identifier_id. " Details has been updated from ".$editfor. " list";
+$message2=$identifier_id. " Details has been updated from ".$editfor. " list";
 }
-
+ 
 $head_office=$_POST['head_office'];
 $zone_name=$_POST['zone_name'];
 $region_name=$_POST['region_name']; 
@@ -37,6 +42,13 @@ $state=$_POST['state'];
 $city=$_POST['city'];
 
 $user_type_id = '7';
+
+$title="Edit Regional Manager";
+
+
+$fromWhom="1";
+$register_by="1";
+$ref_no="1";
 
 
 if($firstname !='' ||$lastname !='' ||$phone !='' ||$email !='' ||$gender !='' ||$dob !='' ||$address !='' ||$profile_pic !=''||$country !=''||$state !=''||$city !=''||$head_office !=''||$zone_name !=''||$region_name !=''){
@@ -81,7 +93,27 @@ $sql1 = "UPDATE regional_manager SET firstname=:firstname,lastname=:lastname,cou
 		));
 
 		if($result2){
-			echo 1;
+			
+			$sql3= "INSERT INTO logs (user_id,title,message,message2, reference_no, register_by, from_whom) VALUES (:user_id,:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+			$stmt3 =$conn->prepare($sql3);
+
+			$result3=$stmt3->execute(array(
+			':user_id' => $identifier_id,
+			':title' => $title,
+			':message' => $message,
+			':message2' =>$message2,
+			':reference_no' => $ref_no,
+			':register_by' => $register_by,
+			':from_whom' => $fromWhom
+			));
+
+			if($result3){
+				echo 1;
+			}
+			else{
+				echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 0	;

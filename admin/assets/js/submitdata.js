@@ -117,7 +117,8 @@ $('#addTravelAgent').click(function(e){
             e.preventDefault();
             
             var editfor = $('#editfor').val();
-            var franchisee_id = $('#franchisee_id').val();
+            var fid = $('#f_id').val();
+            // var franchisee_id = $('#franchisee_id').val();
             var testiod = $('#testiod').val();
             var franchisee_name = $('#franchisee_name').val();
             var firstname = $('#firstname').val().trim();
@@ -162,7 +163,7 @@ $('#addTravelAgent').click(function(e){
 
 
 
-            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age;
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&fid='+fid;
 
           if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
               alert("Enter Proper First Name");
@@ -346,7 +347,8 @@ $('#addFranchisee').click(function(e){
             e.preventDefault();
             
             var editfor = $('#editfor').val();
-            var sales_manager_id = $('#sales_manager_id').val();
+            var smid = $('#sm_id').val(); //edit log
+            // var sales_manager_id = $('#sales_manager_id').val();
             var testiod = $('#testiod').val();
             var sales_manager_name = $('#sales_manager_name').val();
             var firstname = $('#firstname').val().trim();
@@ -391,7 +393,7 @@ $('#addFranchisee').click(function(e){
 
 
 
-            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age;
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&smid='+smid;
 
           if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
               alert("Enter Proper First Name");
@@ -586,6 +588,7 @@ $('#addCustomer').click(function(e){
             e.preventDefault();
             
             var editfor = $('#editfor').val();
+            var ta_id = $('#ta_id').val();
             var travel_agent_id = $('#travel_agent_id').val();
             var reference_no = $('#reference_no').val();
             var testiod = $('#testiod').val();
@@ -632,7 +635,7 @@ $('#addCustomer').click(function(e){
 
 
 
-            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age;
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&ta_id='+ta_id;
 
           if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
               alert("Enter Proper First Name");
@@ -1201,9 +1204,9 @@ $('#addSalesManager').click(function(e){
 
   $('#editBranchManager').click(function(e){
             e.preventDefault();
-            
+             
             var editfor = $('#editfor').val();
-            // var rmid = $('#rmid').val();
+            var rmid = $('#rm_id').val();
             var head_office = $('#head_office').val();
             var zone_name = $('#zone_name').val();
             var region_name = $('#region_name').val();
@@ -1250,7 +1253,7 @@ $('#addSalesManager').click(function(e){
 
 
 
-            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name+'&rmid='+rmid;;
 
           if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
               alert("Enter Proper First Name");
@@ -1325,7 +1328,7 @@ $('#addSalesManager').click(function(e){
             e.preventDefault();
             
             var editfor = $('#editfor').val();
-            // var rmid = $('#rmid').val();
+            var bmid = $('#bm_id').val(); //edit log
             var head_office = $('#head_office').val();
             var zone_name = $('#zone_name').val();
             var region_name = $('#region_name').val();
@@ -1372,7 +1375,7 @@ $('#addSalesManager').click(function(e){
 
 
 
-            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name;
+            var dataString = 'testiod='+testiod+'&editfor='+editfor+'&firstname='+firstname+'&lastname='+lastname+'&phone='+phone+'&email='+email+'&gender='+gender+'&dob='+dob+'&address='+address+'&profile_pic='+profile_pic+'&kyc='+kyc+'&pan_card='+pan_card+'&aadhar_card='+aadhar_card+'&voting_card='+voting_card+'&passbook='+passbook+'&country_code='+country_code+'&country='+country+'&state='+state+'&city='+city+'&pincode='+pin+'&age='+age+'&head_office='+head_office+'&zone_name='+zone_name+'&region_name='+region_name+'&bmid='+bmid;
 
           if (firstname ==='' || !firstname.match(characterLetters) || firstname.length <= 2){
               alert("Enter Proper First Name");

@@ -34,24 +34,31 @@ $ref_id = $_POST['ref_id'];
 $registrant = $_POST['registrant'];
 $user_type = "2";
 
+
+$title="Add Customer";
+$message="Added New Customer by You";
+$operation="add";
+
+$fromWhom="3";
+ 
 if(!empty($_POST["customer_level"])){
 	if($level == '' || $level > 5){
 		echo 0;
 	}else{
 
-		addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$country,$state,$city,$pincode,$address,$bdate,$age,$gender,$profile_pic,$kyc,$pan_card,$aadhar_card,$voting_card,$passbook,$register_by,$ref_id,$registrant,$customer_reference_no,$level,$user_type,$conn);
+		addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$country,$state,$city,$pincode,$address,$bdate,$age,$gender,$profile_pic,$kyc,$pan_card,$aadhar_card,$voting_card,$passbook,$register_by,$ref_id,$registrant,$customer_reference_no,$level,$user_type,$conn,$title,$message,$operation,$fromWhom);
 		
 	}
 
 }else{
 
-	addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$country,$state,$city,$pincode,$address,$bdate,$age,$gender,$profile_pic,$kyc,$pan_card,$aadhar_card,$voting_card,$passbook,$register_by,$ref_id,$registrant,$customer_reference_no,$level,$user_type,$conn);
+	addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$country,$state,$city,$pincode,$address,$bdate,$age,$gender,$profile_pic,$kyc,$pan_card,$aadhar_card,$voting_card,$passbook,$register_by,$ref_id,$registrant,$customer_reference_no,$level,$user_type,$conn,$title,$message,$operation,$fromWhom);
 		
 }
 
 
 
-function  addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$country,$state,$city,$pincode,$address,$bdate,$age,$gender,$profile_pic,$kyc,$pan_card,$aadhar_card,$voting_card,$passbook,$register_by,$ref_id,$registrant,$customer_reference_no,$level,$user_type,$conn){
+function  addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$country,$state,$city,$pincode,$address,$bdate,$age,$gender,$profile_pic,$kyc,$pan_card,$aadhar_card,$voting_card,$passbook,$register_by,$ref_id,$registrant,$customer_reference_no,$level,$user_type,$conn,$title,$message,$operation,$fromWhom){
 
 	$sql= "INSERT INTO customer (firstname,lastname, email, country_code, contact_no , date_of_birth, age,gender,country,state,city,pincode,address,profile_pic,kyc,user_type,pan_card,aadhar_card,voting_card,bank_passbook,register_by,reference_no,registrant,customer_reference_no,level) VALUES (:firstname ,:lastname, :email, :country_code, :phone_no, :bdate, :age,  :gender , :country, :state, :city, :pincode,:address,:profile_pic ,:kyc,  :user_type, :pan_card, :aadhar_card, :voting_card, :passbook, :register_by, :ref_id, :registrant, :customer_reference_no, :level)";
 		$stmt3 =$conn->prepare($sql);
@@ -85,7 +92,25 @@ function  addCustomer($firstname,$lastname,$email,$country_code,$phone_no,$count
 		));
 
 		if($result2){
-			echo 1;
+			$sql2= "INSERT INTO logs (title,message,operation, reference_no, register_by, from_whom) VALUES (:title ,:message, :operation, :reference_no, :register_by, :from_whom)";
+			$stmt =$conn->prepare($sql2);
+
+			$result=$stmt->execute(array(
+			':title' => $title,
+			':message' => $message,
+			':operation' =>$operation,
+			':reference_no' => $ref_id,
+			':register_by' => $register_by,
+			':from_whom' => $fromWhom
+			));
+
+			if($result){
+				echo 1;
+			}
+			else{
+			echo 0	;
+			}
+			// echo 1;
 		}
 		else{
 		echo 0	;

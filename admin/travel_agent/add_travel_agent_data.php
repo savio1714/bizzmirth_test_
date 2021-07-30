@@ -27,6 +27,11 @@ $city=$_POST['city'];
 $user_type="3";
 $register_by="4";
 
+ $title="Add Travel Agent";
+$message="Added new Travel Agent by ".$franchisee_id;
+$message2="Added new Travel Agent by ".$franchisee_id;
+$fromWhom="1";
+
 
 
 $sql= "INSERT INTO travel_agent (firstname,lastname, email, country_code, contact_no , date_of_birth,age,gender,country,state,city,pincode,address,profile_pic, kyc,pan_card,aadhar_card,voting_card,bank_passbook,user_type,registrant,reference_no,register_by) VALUES (:firstname ,:lastname, :email, :country_code, :phone_no, :bdate, :age, :gender , :country, :state, :city, :pincode,:address,:profile_pic ,:kyc,:pan_card,:aadhar_card,:voting_card,:passbook,  :user_type,:registrant,  :franchisee_id, :register_by)";
@@ -59,7 +64,25 @@ $result2=$stmt3->execute(array(
 ));
 
 if($result2){
-	echo 1;
+	$sql2= "INSERT INTO logs (title,message,message2, reference_no, register_by, from_whom) VALUES (:title ,:message, :message2, :reference_no, :register_by, :from_whom)";
+	$stmt =$conn->prepare($sql2);
+
+	$result=$stmt->execute(array(
+	':title' => $title,
+	':message' => $message,
+	':message2' =>$message2,
+	':reference_no' => $franchisee_id,
+	':register_by' => $register_by,
+	':from_whom' => $fromWhom
+	));
+
+	if($result){
+		echo 1;
+	}
+	else{
+	echo 0	;
+	}
+	// echo 1;
 }
 else{
 echo 0	;
