@@ -33,7 +33,7 @@ $(document).ready(function(){
 
        $.ajax({
         type: "POST",
-        url: "login/submit_data.php",
+        url: "login_data/submit_data.php",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -41,7 +41,7 @@ $(document).ready(function(){
           // alert("login ");
           // window.open("index2.php");
           // alert();
-          location.href = "index.php";
+          location.href = "./";
         }
         else{
           alert("username and password not correct");

@@ -62,13 +62,13 @@
                             <div class="footer-recent-post footer-margin">
                                 <h3>Quick Links</h3>
                                 <ul>
-                                    <li><a href="index.php">Home <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="about.php">About us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="contactus.php">Contact us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="index">Home <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="about">About us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="contactus">Contact us <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     <!-- <li><a href="#">FAQ <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
-                                    <li><a href="privacypolicy.php">Privacy Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="cancellation_policy.php">Cancellation & Refund Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    <li><a href="terms_condition.php">Terms & Conditions <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="privacypolicy">Privacy Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="cancellation_policy">Cancellation & Refund Policy <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    <li><a href="terms_condition">Terms & Conditions <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                   <!--   <li><a href="#">View all Cruises <i class="fa fa-angle-right" aria-hidden="true"></i></a></li> -->
                                 </ul>
                             </div>

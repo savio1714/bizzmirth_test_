@@ -5150,6 +5150,11 @@ p.top-price{
     display: none;
   }
 }
+@media only screen and (max-width: 500px){
+    [hidden]{
+    display: none;
+  }
+   }
 @media(max-width: 767px){
   .section-title{
     padding: 0;
@@ -5191,6 +5196,8 @@ p.top-price{
   .head-style-1 .upper-head{
     display: none;
   }
+  
+  
   .style-1 #js_frm_040{
     height: 400px;
   }

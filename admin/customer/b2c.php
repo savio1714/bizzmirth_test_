@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -64,12 +64,12 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-users" class="dropdown-content">
-                                        <li><a href="add_customer.php?vkvbvjfgfikix=">Add Customer</a>
+                                        <li><a href="add_customer?vkvbvjfgfikix=">Add Customer</a>
                                         </li>
-                                        <!-- <li><a href="#">Download List</a> -->
-                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Pending">Download List</a> -->
-                                       <!--  </li>
-                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
+                                        
+                                        <li><a href="download_list?vkvbvjfgfikix=Pending&fsdfdsfsdf=b2c">Download List</a>
+                                        </li>
+                                       <!--  <li><a href="#"><i class="material-icons">subject</i>View All</a>
                                         </li> -->
                                     </ul>
 
@@ -154,9 +154,9 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-register-list"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-register-list" class="dropdown-content">
-                                        <!-- <li><a href="#">Download List</a> -->
-                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Registered">Download List</a> -->
-                                        <!-- </li> -->
+                                        
+                                        <li><a href="download_list?vkvbvjfgfikix=Registered&fsdfdsfsdf=b2c">Download List</a>
+                                        </li>
                                         <!-- <li><a href="user-edit.html">Edit</a>
                                         </li>
                                         <li><a href="#!">Update</a>
@@ -278,7 +278,7 @@ if(!isset($_SESSION['username'])){
 
     function editfunc(id,refno,cut,st,ct,editfor)
     { 
-        window.location.href='edit_customer.php?vkvbvjfgfikix='+id+'&nohbref='+refno+'&ncy='+cut+'&mst='+st+'&hct='+ct+'&editfor='+editfor;  
+        window.location.href='edit_customer?vkvbvjfgfikix='+id+'&nohbref='+refno+'&ncy='+cut+'&mst='+st+'&hct='+ct+'&editfor='+editfor;  
     };
 
 
@@ -289,7 +289,7 @@ if(!isset($_SESSION['username'])){
 
       $.ajax({
         type: "POST",
-        url: "delete_customer.php",
+        url: "delete_customer",
         data: dataString,
         cache: false,
           success:function(data){
@@ -315,7 +315,7 @@ if(!isset($_SESSION['username'])){
 
       $.ajax({
         type: "POST",
-        url: "confirm_customer.php",
+        url: "confirm_customer",
         data: dataString,
         cache: false,
           success:function(data){

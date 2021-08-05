@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -70,12 +70,11 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-users" class="dropdown-content">
-                                        <li><a href="add_travel_agent.php">Add Travel Agent</a>
+                                        <li><a href="add_travel_agent">Add Travel Agent</a>
                                         </li>
-                                        <!-- <li><a href="#">Download List</a> -->
-                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Pending">Download List</a> -->
-                                        <!-- </li>
-                                        <li><a href="#"><i class="material-icons">subject</i>View All</a>
+                                        <li><a href="download_list?vkvbvjfgfikix=Pending">Download List</a>
+                                       </li>
+                                        <!-- <li><a href="#"><i class="material-icons">subject</i>View All</a>
                                         </li> -->
                                     </ul>
 
@@ -160,9 +159,9 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-register-list"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-register-list" class="dropdown-content">
-                                       <!--  <li><a href="#">Download List</a>
- -->                                        <!-- <li><a href="download_list.php?vkvbvjfgfikix=Registered">Download List</a> -->
-                                        <!-- </li> -->
+                                      <!-- <li><a href="#">Download List</a> -->
+                                        <li><a href="download_list?vkvbvjfgfikix=Registered">Download List</a>
+                                        </li>
                                         <!-- <li><a href="user-edit.html">Edit</a>
                                         </li>
                                         <li><a href="#!">Update</a>
@@ -299,7 +298,7 @@ $(document).ready( function () {
 
     function editfunc(id,refno,cut,st,ct,editfor)
     { 
-        window.location.href='edit_travel_agent.php?vkvbvjfgfikix='+id+'&nohbref='+refno+'&ncy='+cut+'&mst='+st+'&hct='+ct+'&editfor='+editfor;  
+        window.location.href='edit_travel_agent?vkvbvjfgfikix='+id+'&nohbref='+refno+'&ncy='+cut+'&mst='+st+'&hct='+ct+'&editfor='+editfor;  
     };
 
 
@@ -310,7 +309,7 @@ $(document).ready( function () {
 
       $.ajax({
         type: "POST",
-        url: "delete_travel_agent.php",
+        url: "delete_travel_agent",
         data: dataString,
         cache: false,
           success:function(data){
@@ -336,7 +335,7 @@ $(document).ready( function () {
 
       $.ajax({
         type: "POST",
-        url: "confirm_travel_agent.php",
+        url: "confirm_travel_agent",
         data: dataString,
         cache: false,
           success:function(data){

@@ -1,6 +1,6 @@
 <div class="dashboard-sticky-nav">
                 <div class="content-left pull-left">
-                    <a href="index.php"><img src="../images/bizzmirth.png" alt="logo"></a>
+                    <a href="./"><img src="../images/bizzmirth.png" alt="logo"></a>
                 </div>
                 <!-- <div class="content-right pull-right"> -->
                     <!-- <div class="search-bar">
@@ -84,10 +84,10 @@
                         </a>
                         <ul class="dropdown-menu">
                              <!-- <li><a href="#"><i class="sl sl-icon-settings"></i>Settings</a></li> -->
-                            <li><a href="../index.php"><i class="sl sl-icon-home"></i>Home</a></li>
-                            <li><a href="dashboard_my_profile.php"><i class="sl sl-icon-user"></i>Profile</a></li>
-                            <li><a href="changepassword.php"><i class="sl sl-icon-lock"></i>Change Password</a></li>
-                            <li><a href="../login.php" class="mylogout"><i class="sl sl-icon-power"></i>Logout</a></li>
+                            <li><a href="../"><i class="sl sl-icon-home"></i>Home</a></li>
+                            <li><a href="dashboard_my_profile"><i class="sl sl-icon-user"></i>Profile</a></li>
+                            <li><a href="changepassword"><i class="sl sl-icon-lock"></i>Change Password</a></li>
+                            <li><a href="../login" class="mylogout"><i class="sl sl-icon-power"></i>Logout</a></li>
                         </ul>
                     </div>
                     <!-- <div class="dropdown">

@@ -1,12 +1,12 @@
 <?php
 session_start();
 if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 
 }
 
 if($_SESSION["user_type_id_value"] !='2'){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 $user_type =$_SESSION["user_type_id_value"];
@@ -171,36 +171,36 @@ $lastname =$_SESSION["lname"];
     <script type="text/javascript">
 
 
-    function deletefunc(travel_agent_id)
-    { 
-    var dataString = 'travel_agent_id='+ travel_agent_id;
+    // function deletefunc(travel_agent_id)
+    // { 
+    // var dataString = 'travel_agent_id='+ travel_agent_id;
 
 
-      $.ajax({
-        type: "POST",
-        url: "travel_agent/delete_travel_agent.php",
-        data: dataString,
-        cache: false,
-          success:function(data){
-            if(data == 11 ){
+    //   $.ajax({
+    //     type: "POST",
+    //     url: "travel_agent/delete_travel_agent",
+    //     data: dataString,
+    //     cache: false,
+    //       success:function(data){
+    //         if(data == 11 ){
 
-            alert("Delete Succesfully");
-             window.location.reload();
-          }
-          else{
+    //         alert("Delete Succesfully");
+    //          window.location.reload();
+    //       }
+    //       else{
 
-          alert("deletion failed");
-        }
-      }
-      });
+    //       alert("deletion failed");
+    //     }
+    //   }
+    //   });
           
-    };
+    // };
 
 
-    function editfunc(taid,cut,st,ct)
-    { 
-        window.location.href='edit_travel_agent.php?vkvbvjfgfikix='+taid+'&ncy='+cut+'&mst='+st+'&hct='+ct;  
-    };
+    // function editfunc(taid,cut,st,ct)
+    // { 
+    //     window.location.href='edit_travel_agent?vkvbvjfgfikix='+taid+'&ncy='+cut+'&mst='+st+'&hct='+ct;  
+    // };
 
 
     </script>

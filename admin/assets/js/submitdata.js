@@ -806,7 +806,7 @@ $('#addReginalManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "regional_manager/add_regional_manager_data.php",
+                url: "rm/add_regional_manager_data.php",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -928,7 +928,7 @@ $('#addReginalManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "regional_manager/edit_regional_manager_data.php",
+                url: "rm/edit_regional_manager_data.php",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -1052,7 +1052,7 @@ $('#addBranchManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "branch_manager/add_branch_manager_data.php",
+                url: "bm/add_branch_manager_data.php",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -1177,7 +1177,7 @@ $('#addSalesManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "sales_manager/add_sales_manager_data.php",
+                url: "sm/add_sales_manager_data.php",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -1299,7 +1299,7 @@ $('#addSalesManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "branch_manager/edit_branch_manager_data.php",
+                url: "bm/edit_branch_manager_data.php",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -1421,7 +1421,7 @@ $('#addSalesManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "sales_manager/edit_sales_manager_data.php",
+                url: "sm/edit_sales_manager_data.php",
                 data: dataString,
                 cache: false,
                   success:function(data){

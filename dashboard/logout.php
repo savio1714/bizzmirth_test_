@@ -21,7 +21,7 @@ if(isset($_COOKIE['user2'])){
 }
 	
 	
-  header("location: ../login.php");
+  header("location: ../login");
 
 
 ?>

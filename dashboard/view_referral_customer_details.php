@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 
@@ -11,7 +11,7 @@ $user_id =$_SESSION["user_id"];
 $custid = $_GET['dsfctiddfs'];
 
 if($_SESSION["user_type_id_value"] !='2'){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 

@@ -1,11 +1,11 @@
 <?php
 session_start();
 if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 if($_SESSION["user_type_id_value"] !='7'){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 $user_type =$_SESSION["user_type_id_value"];
@@ -518,31 +518,31 @@ $lastname =$_SESSION["lname"];
     <script type="text/javascript">
     $('#file').change(function(){
 
-        uploadfun('#file','../uploading/upload.php','#img','#profile_pic','Please Upload Profile','profile_pic','#invalidimage1');
+        uploadfun('#file','../uploading/upload','#img','#profile_pic','Please Upload Profile','profile_pic','#invalidimage1');
     });
 
     $('#file2').change(function(){
 
-        uploadfun('#file2','../uploading/upload.php','#img2','#kyc','Please Upload Proper KYC','kyc','#invalidimage2');
+        uploadfun('#file2','../uploading/upload','#img2','#kyc','Please Upload Proper KYC','kyc','#invalidimage2');
     });
 
     $('#file3').change(function(){
 
-        uploadfun('#file3','../uploading/upload.php','#img3','#pan_card','Please Upload PAN Card','pancard','#invalidimage3');
+        uploadfun('#file3','../uploading/upload','#img3','#pan_card','Please Upload PAN Card','pancard','#invalidimage3');
     });
     $('#file4').change(function(){
 
-        uploadfun('#file4','../uploading/upload.php','#img4','#aadhar_card','Please Upload Aadhar Card','aadhar','#invalidimage4');
+        uploadfun('#file4','../uploading/upload','#img4','#aadhar_card','Please Upload Aadhar Card','aadhar','#invalidimage4');
     });
 
     $('#file5').change(function(){
 
-        uploadfun('#file5','../uploading/upload.php','#img5','#voting_card','Please Upload Voting Card','voting','#invalidimage5');
+        uploadfun('#file5','../uploading/upload','#img5','#voting_card','Please Upload Voting Card','voting','#invalidimage5');
     });
 
     $('#file6').change(function(){
 
-        uploadfun('#file6','../uploading/upload.php','#img6','#passbook','Please Upload Bank Passbook','passbook','#invalidimage6');
+        uploadfun('#file6','../uploading/upload','#img6','#passbook','Please Upload Bank Passbook','passbook','#invalidimage6');
     });
 
 

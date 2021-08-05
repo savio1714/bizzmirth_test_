@@ -26,6 +26,8 @@
      display: none;
    }
 
+   
+
 
 
 
@@ -59,12 +61,12 @@
     <section class="breadcrumb-outer text-center">
         <div class="container">
             <div class="breadcrumb-content">
-                <h2>Login/Register</h2>
+                <h2>login/Register</h2>
                 <nav aria-label="breadcrumb">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                         <!-- <li class="breadcrumb-item"><a href="#">Shop</a></li> -->
-                        <li class="breadcrumb-item active" aria-current="page">Login/Register</li>
+                        <li class="breadcrumb-item active" aria-current="page">login/Register</li>
                     </ul>
                 </nav>
             </div>
@@ -480,7 +482,7 @@
     <script src="js/plugin.js"></script>
     <script src="js/main.js"></script>
     <script src="js/preloader.js"></script>
-    <script src="login/login.js"></script>
+    <script src="login_data/login.js"></script>
     <script src="assets/js/register.js"></script>
     <!-- <script src="assets/js/upload_file.js"></script> -->
 

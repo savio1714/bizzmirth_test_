@@ -10,9 +10,10 @@
                     </div>
                     <div class="login-btn pull-right">
                         <?php if(isset($_SESSION['username2'])){echo ' <a href="dashboard/" ><i class="fa fa-user-plus"></i> Dashboard</a>
-                        <a href="login.php" class="my2logout"><i class="fa fa-user-plus mylogout"></i> Logout</a>';
+                        <a href="login" class="my2logout"><i class="fa fa-user-plus mylogout"></i> Logout</a>';
                     }else { echo '
-                        <a class="active" href="login.php" ><i class="fa fa-unlock-alt "></i> Login / Register</a>';}?>
+                        <a class="active" href="login" ><i class="fa fa-unlock-alt "></i> Login / Register</a>';}
+                        ?>
                        
                         <!-- <a href="login.php"><i class="fa fa-user-plus"></i> Register</a> -->
                     </div>
@@ -28,15 +29,27 @@
                         <!-- start Navbar (Header) -->
                     <nav class="navbar navbar-default navbar-sticky-function navbar-arrow">
                         <div class="logo pull-left">
-                            <a href="index.html"><img alt="Image" src="images/bizzmirth.png" class="colorlogo"></a>
-                            <a href="index.html"><img alt="image" src="images/bizzmirth.png" class="whitelogo"></a>
+                            <a href="./"><img alt="Image" src="images/bizzmirth.png" class="colorlogo"></a>
+                            <a href="./"><img alt="image" src="images/bizzmirth.png" class="whitelogo"></a>
                         </div>
                         <div id="navbar" class="navbar-nav-wrapper">
                             <ul class="nav navbar-nav" id="responsive-menu">
-                                <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'active':''?>"> <a href="index.php"> Home </a>
+                                <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'active':''?>"> <a href="./"> Home </a>
                                 </li>
-                                <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='about.php')? 'active':''?>"> <a href="about.php"> About us </a></li>
-                                  <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='contactus.php')? 'active':''?>"> <a href="contactus.php"> Contact us </a></li>
+                                <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='about.php')? 'active':''?>"> <a href="about"> About us </a></li>
+                                  <li class="<?php echo (basename($_SERVER['PHP_SELF'])=='contactus.php')? 'active':''?>"> <a href="contactus"> Contact us </a></li>
+
+                                  <?php if(isset($_SESSION['username2'])){echo '
+                                        <div><li class="" hidden> <a href="dashboard/"> Dashboard</a></li></div>
+                                        <div><li class="" hidden> <a  href="login" class="my2logout"> Logout</a></li></div>';
+                                 
+                                }else { echo '
+                                    <div><li class="(basename($_SERVER["PHP_SELF"])=="login.php")? "active":"" hidden> <a href="login"> Login / Register </a></li></div>';
+                                }
+                                    ?>
+                                  <!-- <div><li class="<?php echo (basename($_SERVER['PHP_SELF'])=='login.php')? 'active':''?> " hidden> <a href="login"> Login / Register </a></li></div> -->
+                                  
+                                  
                               
                             </ul>
                         </div><!--/.nav-collapse -->

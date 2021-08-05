@@ -21,7 +21,7 @@ $(document).ready(function(){
         if (res==1) {
           // alert("login ");
           // window.open("index2.php");
-          location.href = "index.php";
+          location.href = "./";
         }
         else{
           alert("username and password not correct");

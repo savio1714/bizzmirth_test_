@@ -1,12 +1,12 @@
 <?php
 session_start();
 if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 
 }
 
 if($_SESSION["user_type_id_value"] !='4'){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 $user_type =$_SESSION["user_type_id_value"];
@@ -167,23 +167,23 @@ $lastname =$_SESSION["lname"];
                                         $pagLink = "";       
                                       
                                         if($page>=2){   
-                                            echo "<li><a href='view_travel_agent.php?page=".($page-1)."'> <i class='sl sl-icon-arrow-left'></i> </a></li>";   
+                                            echo "<li><a href='view_travel_agent?page=".($page-1)."'> <i class='sl sl-icon-arrow-left'></i> </a></li>";   
                                         }       
                                                    
                                         for ($i=1; $i<=$total_pages; $i++) {   
                                           if ($i == $page) {   
-                                              $pagLink .= "<li><a class='current-page' href='view_travel_agent.php?page="  
+                                              $pagLink .= "<li><a class='current-page' href='view_travel_agent?page="  
                                                                                 .$i."'>".$i." </a></li>";   
                                           }               
                                           else  {   
-                                              $pagLink .= "<li><a href='view_travel_agent.php?page=".$i."'>   
+                                              $pagLink .= "<li><a href='view_travel_agent?page=".$i."'>   
                                                                                 ".$i." </a></li>";     
                                           }   
                                         };     
                                         echo $pagLink;   
                                   
                                         if($page<$total_pages){   
-                                            echo "<li><a href='view_travel_agent.php?page=".($page+1)."'> <i class='sl sl-icon-arrow-right'></i> </a></li>";   
+                                            echo "<li><a href='view_travel_agent?page=".($page+1)."'> <i class='sl sl-icon-arrow-right'></i> </a></li>";   
                                         }   
                                   
                                       ?>
@@ -232,7 +232,7 @@ $lastname =$_SESSION["lname"];
 
       $.ajax({
         type: "POST",
-        url: "travel_agent/delete_travel_agent.php",
+        url: "travel_agent/delete_travel_agent",
         data: dataString,
         cache: false,
           success:function(data){
@@ -253,7 +253,7 @@ $lastname =$_SESSION["lname"];
 
     function editfunc(taid,cut,st,ct)
     { 
-        window.location.href='edit_travel_agent.php?vkvbvjfgfikix='+taid+'&ncy='+cut+'&mst='+st+'&hct='+ct;  
+        window.location.href='edit_travel_agent?vkvbvjfgfikix='+taid+'&ncy='+cut+'&mst='+st+'&hct='+ct;  
     };
 
 

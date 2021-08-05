@@ -28,10 +28,8 @@ $output="";
                 $output .='<th>Travel Agent ID</th>';
             }
     	$output .= '	
-    		<th>First Name</th>
-    		<th>Last Name</th>
+    		<th>Name</th>
     		<th>Email</th>
-    		<th>Country Code</th>
     		<th>Contact No.</th>
     		<th>Date Of Birth</th>
     		<th>Age</th>
@@ -51,7 +49,18 @@ $output="";
         $bdate= $bd->format('d-m-Y'); 
 
         $rd= new DateTime($row['register_date']);
-        $rDate= $rd->format('d-m-Y'); 
+        $rDate= $rd->format('d-m-Y');
+
+        // to get franchisee name
+        $sql4= $conn->prepare("SELECT firstname,lastname FROM `franchisee` where franchisee_id='".$row['reference_no']."'");
+            $sql4->execute();
+            $sql4->setFetchMode(PDO::FETCH_ASSOC);
+            if($sql4->rowCount()>0){
+                foreach (($sql4->fetchAll()) as $key4 => $row4) {
+                    $f_name=$row4['firstname']. ' ' .$row4['lastname'];
+                }
+            }
+ 
 
     	$sql2= $conn->prepare("select *,(select city_name from cities where id = '".$row['city']."') as city_name,(select state_name from states where id = '".$row['state']."') as statename from countries where id = '".$row['country']."' ");
 		$sql2->execute();
@@ -81,11 +90,9 @@ $output="";
             }
             $output .= '
     		
-    		<td>'.$row['firstname'].'</td>
-    		<td>'.$row['lastname'].'</td>
+    		<td>'.$row['firstname'].' '.$row['lastname'].'</td>
     		<td>'.$row['email'].'</td>
-    		<td>+'.$country_code.'</td>
-    		<td>'.$row['contact_no'].'</td>
+    		<td>+'.$country_code.' '.$row['contact_no'].'</td>
     		<td>'.$bdate.'</td>
     		<td>'.$row['age'].'</td>
     		<td>'.$row['gender'].'</td>
@@ -95,7 +102,7 @@ $output="";
     		<td>'.$row['pincode'].'</td>
     		<td>'.$row['address'].'</td>
     		<td>'.$row['reference_no'].'</td>
-    		<td>'.$row['registrant'].'</td>
+    		<td>'.$f_name.'</td>
     		<td>'.$rDate.'</td>
     	</tr>';
 
@@ -103,11 +110,11 @@ $output="";
  
     }
     $output .= '</table>';
-    header('Content-Type:application/xls');
+    header("Content-Type: application/xls");
     if($name == 'Pending'){
-        header('Content-Disposition:attachment;filename=Pending_Travel_Agent_List.xls');
+        header("Content-Disposition: attachment;filename=Pending_Travel_Agent_List.xls");
     }else if($name == 'Registered'){
-        header('Content-Disposition:attachment;filename=Registered_Travel_Agent_List.xls');
+        header("Content-Disposition: attachment;filename=Registered_Travel_Agent_List.xls");
     }
     
 
@@ -116,7 +123,13 @@ $output="";
     echo $output;
     }                                                      
     else{
-    	echo 'No Pending Data';
+
+        if($name == 'Pending'){
+            echo 'No Pending Data';
+        }else if($name == 'Registered'){
+            echo 'No Registered Data';
+        }
+    	
                                                             
     }
 

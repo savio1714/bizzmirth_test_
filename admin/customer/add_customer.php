@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 ?>
@@ -53,15 +53,15 @@ if(!isset($_SESSION['username'])){
 
                             if($_GET['vkvbvjfgfikix'] =='ta'){
                                 echo '
-                                <li class="active-bre"><a href="travel_agent_customer.php">Travel Agent Customer</a>
+                                <li class="active-bre"><a href="travel_agent_customer">Travel Agent Customer</a>
                                 </li>
-                                <li class="page-back"><a href="travel_agent_customer.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                                <li class="page-back"><a href="travel_agent_customer"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>';
                             }else{
                                 echo '
-                                <li class="active-bre"><a href="b2c.php">B2C</a>
+                                <li class="active-bre"><a href="b2c">B2C</a>
                                 </li>
-                                <li class="page-back"><a href="b2c.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                                <li class="page-back"><a href="b2c"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>';
                             }?>
                         <li class="active-bre"><a href="#"> Add Customer </a>
@@ -551,31 +551,31 @@ if(!isset($_SESSION['username'])){
 <script type="text/javascript">
     $('#file').change(function(){
 
-        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic','#invalidimage1');
+        uploadfun('#file','../../uploading/upload','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic','#invalidimage1');
     });
 
     $('#file2').change(function(){
 
-        uploadfun('#file2','../../uploading/upload.php','#img2','#kyc','Please Upload Proper KYC','.preview2','kyc','#invalidimage2');
+        uploadfun('#file2','../../uploading/upload','#img2','#kyc','Please Upload Proper KYC','.preview2','kyc','#invalidimage2');
     });
 
     $('#file3').change(function(){
 
-        uploadfun('#file3','../../uploading/upload.php','#img3','#pan_card','Please Upload PAN Card','.preview3','pancard','#invalidimage3');
+        uploadfun('#file3','../../uploading/upload','#img3','#pan_card','Please Upload PAN Card','.preview3','pancard','#invalidimage3');
     });
     $('#file4').change(function(){
 
-        uploadfun('#file4','../../uploading/upload.php','#img4','#aadhar_card','Please Upload Aadhar Card','.preview4','aadhar','#invalidimage4');
+        uploadfun('#file4','../../uploading/upload','#img4','#aadhar_card','Please Upload Aadhar Card','.preview4','aadhar','#invalidimage4');
     });
 
     $('#file5').change(function(){
 
-        uploadfun('#file5','../../uploading/upload.php','#img5','#voting_card','Please Upload Voting Card','.preview5','voting','#invalidimage5');
+        uploadfun('#file5','../../uploading/upload','#img5','#voting_card','Please Upload Voting Card','.preview5','voting','#invalidimage5');
     });
 
     $('#file6').change(function(){
 
-        uploadfun('#file6','../../uploading/upload.php','#img6','#passbook','Please Upload Bank Passbook','.preview6','passbook','#invalidimage6');
+        uploadfun('#file6','../../uploading/upload','#img6','#passbook','Please Upload Bank Passbook','.preview6','passbook','#invalidimage6');
     });
 
 
@@ -628,7 +628,7 @@ if(!isset($_SESSION['username'])){
         if(countryID){
             $.ajax({
                 type:'POST',
-                url:'../address/countrydata.php',
+                url:'../address/countrydata',
                 data:'country_id='+countryID,
                 success:function(htmll){
                     
@@ -653,7 +653,7 @@ if(!isset($_SESSION['username'])){
             if(stateID){
                 $.ajax({
                     type:'POST',
-                    url:'../address/countrydata.php',
+                    url:'../address/countrydata',
                     data:'state_id='+stateID,
                     success:function(html){
                         $('#city').html(html);
@@ -673,7 +673,7 @@ if(!isset($_SESSION['username'])){
             if(cityID){
                  $.ajax({
                           type:'POST',
-                          url:'../address/pincode.php',
+                          url:'../address/pincode',
                           data:'city_id='+cityID,
                           success:function(response){
                              // $('#pin').html(response);

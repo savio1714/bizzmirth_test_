@@ -95,7 +95,7 @@
     <script src="js/plugin.js"></script>
     <script src="js/main.js"></script>
     <script src="js/preloader.js"></script>
-    <script src="login/login.js"></script>
+    <script src="login_data/login.js"></script>
     <script src="assets/js/register.js"></script>
     <script src="assets/js/upload_file.js"></script>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['username2']) || !isset($_SESSION['user_type_id_value']) || !isset($_SESSION['user_id']) ){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 
@@ -392,7 +392,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
 
         $('#file').change(function(){
 
-        uploadfun('#file','../uploading/upload.php','#img','#profile_pic','Please Upload Profile','profile_pic','#invalidimage1');
+        uploadfun('#file','../uploading/upload','#img','#profile_pic','Please Upload Profile','profile_pic','#invalidimage1');
     });
 
     //upload function
@@ -452,7 +452,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
         if(countryID){
             $.ajax({
                 type:'POST',
-                url:'../registration/countrydata.php',
+                url:'../registration/countrydata',
                 data:'country_id='+countryID,
                 success:function(htmll){
                     // console.log(htmll);
@@ -485,7 +485,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
             if(stateID){
                 $.ajax({
                     type:'POST',
-                    url:'../registration/countrydata.php',
+                    url:'../registration/countrydata',
                     data:'state_id='+stateID,
                     success:function(html){
                         $('#city').html(html);
@@ -502,7 +502,7 @@ function getAddressParts($country,$countryValue,$state,$stateValue,$city,$cityVa
             if(cityID){
                  $.ajax({
                           type:'POST',
-                          url:'../registration/pincode.php',
+                          url:'../registration/pincode',
                           data:'city_id='+cityID,
                           success:function(response){
                              // $('#pin').html(response);

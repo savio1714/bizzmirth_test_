@@ -16,16 +16,16 @@
                 <!--== LEFT MENU ==-->
                 <div class="sb2-13">
                     <ul class="collapsible" data-collapsible="accordion">
-                        <li><a href="index.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i>Dashboard</a>
+                        <li><a href="./" class="<?php echo (basename($_SERVER['PHP_SELF'])=='index.php')? 'menu-active':''?>"><i class="fa fa-bar-chart" aria-hidden="true"></i>Dashboard</a>
                         </li>
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i>Employee</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='regional_manager.php')? 'menu-active':''?>" href="employee/regional_manager.php">Regional Manager</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='regional_manager.php')? 'menu-active':''?>" href="employee/regional_manager">Regional Manager</a>
                                     </li>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='branch_manager.php')? 'menu-active':''?>" href="employee/branch_manager.php">Branch Manager</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='branch_manager.php')? 'menu-active':''?>" href="employee/branch_manager">Branch Manager</a>
                                     </li>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='sales_manager.php')? 'menu-active':''?>" href="employee/sales_manager.php">Sales Manager</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='sales_manager.php')? 'menu-active':''?>" href="employee/sales_manager">Sales Manager</a>
                                     </li>
                                     
                                      
@@ -33,21 +33,21 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="franchisee/franchisee.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='franchisee.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i>Franchisee</a>
+                        <li><a href="franchisee/franchisee" class="<?php echo (basename($_SERVER['PHP_SELF'])=='franchisee.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i>Franchisee</a>
                         </li>
-                        <li><a href="travel_agent/travel_agent.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i>Travel Agent</a>
+                        <li><a href="travel_agent/travel_agent" class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent.php')? 'menu-active':''?>"><i class="fa fa-user" aria-hidden="true"></i>Travel Agent</a>
                         </li>
                          <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Customer</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='b2c.php')? 'menu-active':''?>" href="customer/b2c.php">B2C</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='b2c.php')? 'menu-active':''?>" href="customer/b2c">B2C</a>
                                     </li>
-                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent_customer.php')? 'menu-active':''?>" href="customer/travel_agent_customer.php">Travel Agent Customer</a>
+                                    <li><a class="<?php echo (basename($_SERVER['PHP_SELF'])=='travel_agent_customer.php')? 'menu-active':''?>" href="customer/travel_agent_customer">Travel Agent Customer</a>
                                     </li> 
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="category/manage_categories.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='manage_categories.php')? 'menu-active':''?>"><i class="fa fa-list-alt" aria-hidden="true"></i>Category</a>
+                        <li><a href="category/manage_categories" class="<?php echo (basename($_SERVER['PHP_SELF'])=='manage_categories.php')? 'menu-active':''?>"><i class="fa fa-list-alt" aria-hidden="true"></i>Category</a>
                         </li>
                        <!--  <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Category</a>
                             <div class="collapsible-body left-sub-menu">
@@ -61,10 +61,10 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <li><a href="packages/all_packages.php" class="<?php echo (basename($_SERVER['PHP_SELF'])=='all_packages.php')? 'menu-active':''?>"><i class="fa fa-plane" aria-hidden="true"></i>Packages</a>
+                        <li><a href="packages/all_packages" class="<?php echo (basename($_SERVER['PHP_SELF'])=='all_packages.php')? 'menu-active':''?>"><i class="fa fa-plane" aria-hidden="true"></i>Packages</a>
                         </li>
                         
-                        <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                         </li>
                      
                     </ul>
