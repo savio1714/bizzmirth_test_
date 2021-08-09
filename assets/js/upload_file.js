@@ -10,7 +10,7 @@ $('#file2').change(function(){
     if(file_size<2097152) {
 
       $.ajax({
-        url: 'upload/upload_profile.php',
+        url: 'upload/upload_profile',
         type: 'post',
         data: fd,
         contentType: false,
@@ -46,7 +46,7 @@ $('#file').change(function(){
     if(file_size<2097152) {
 
       $.ajax({
-        url: 'upload/upload.php',
+        url: 'upload/upload',
         type: 'post',
         data: fd,
         contentType: false,

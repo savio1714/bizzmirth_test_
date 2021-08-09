@@ -347,7 +347,7 @@ $(document).ready( function () {
 
       $.ajax({
         type: "POST",
-        url: "regional_manager/delete_regional_manager",
+        url: "rm/delete_regional_manager",
         data: dataString,
         cache: false,
           success:function(data){
@@ -373,7 +373,7 @@ $(document).ready( function () {
 
       $.ajax({
         type: "POST",
-        url: "regional_manager/confirm_regional_manager",
+        url: "rm/confirm_regional_manager",
         data: dataString,
         cache: false,
           success:function(data){

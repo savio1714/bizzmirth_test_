@@ -397,7 +397,7 @@ var validateOnlyZero = (input) =>{
 
       $.ajax({
         type: "POST",
-        url: "registration/submit_data.php",
+        url: "registration/submit_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -438,7 +438,7 @@ var classHas = (input) =>{
 //         if(countryID){
 //             $.ajax({
 //                 type:'POST',
-//                 url:'registration/countrydata.php',
+//                 url:'registration/countrydata',
 //                 data:'country_id='+countryID,
 //                 success:function(html){
 //                     $('#state').html(html);
@@ -456,7 +456,7 @@ var classHas = (input) =>{
     //     if(stateID){
     //         $.ajax({
     //             type:'POST',
-    //             url:'registration/countrydata.php',
+    //             url:'registration/countrydata',
     //             data:'state_id='+stateID,
     //             success:function(html){
     //                 $('#city').html(html);
@@ -473,7 +473,7 @@ var classHas = (input) =>{
 //         if(cityID){
 //              $.ajax({
 //                       type:'POST',
-//                       url:'registration/pincode.php',
+//                       url:'registration/pincode',
 //                       data:'city_id='+cityID,
 //                       success:function(response){
 //                          $('#pin').val(response); 
@@ -490,7 +490,7 @@ var classHas = (input) =>{
         if(custID){
             $.ajax({
                 type:'POST',
-                url:'../registration/find_level.php',
+                url:'../registration/find_level',
                 data:'custID='+custID,
                 success:function(res){
                     if (res != 0 ){
@@ -520,7 +520,7 @@ var classHas = (input) =>{
         if(countryID){
             $.ajax({
                 type:'POST',
-                url:'../registration/countrydata.php',
+                url:'../registration/countrydata',
                 data:'country_id='+countryID,
                 success:function(htmll){
 
@@ -547,7 +547,7 @@ var classHas = (input) =>{
             if(stateID){
                 $.ajax({
                     type:'POST',
-                    url:'../registration/countrydata.php',
+                    url:'../registration/countrydata',
                     data:'state_id='+stateID,
                     success:function(html){
                         $('#city').html(html);
@@ -566,7 +566,7 @@ var classHas = (input) =>{
             if(cityID){
                  $.ajax({
                           type:'POST',
-                          url:'../registration/pincode.php',
+                          url:'../registration/pincode',
                           data:'city_id='+cityID,
                           success:function(response){
                              // $('#pin').html(response);
@@ -599,7 +599,7 @@ var classHas = (input) =>{
       $.ajax({
 
         type:'POST',
-         url:'registration/phonetest.php',
+         url:'registration/phonetest',
         data:'phone='+phone_noValue+'&countrycode='+code,
           success:function(response){
             if(response == 1){
@@ -616,7 +616,7 @@ var classHas = (input) =>{
       $.ajax({
 
         type:'POST',
-         url:'registration/emailtest.php',
+         url:'registration/emailtest',
         data:'email='+emailtest,
           success:function(response){
             if(response == 1){
@@ -760,7 +760,7 @@ var register_customer =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "customer/submit_data.php",
+        url: "customer/submit_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -887,7 +887,7 @@ var edit_customer =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "customer/edit_customer_data.php",
+        url: "customer/edit_customer_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -988,7 +988,7 @@ var edit_customer =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "updatedata/edit_profile_data.php",
+        url: "updatedata/edit_profile_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -1111,7 +1111,7 @@ var registerTravelAgent =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "travel_agent/submit_data.php",
+        url: "travel_agent/submit_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -1238,13 +1238,13 @@ var edit_travel_agent =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "travel_agent/edit_travel_agent_data.php",
+        url: "travel_agent/edit_travel_agent_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
           // window.location.reload();
-          location.href = "view_travel_agent.php";
+          location.href = "view_travel_agent";
         }
         else{
           alert("Failed To Save Changes");
@@ -1364,7 +1364,7 @@ var registerFranchisee =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "franchisee/submit_data.php",
+        url: "franchisee/submit_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -1491,13 +1491,13 @@ var edit_franchisee =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "franchisee/edit_franchisee_data.php",
+        url: "franchisee/edit_franchisee_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
           // window.location.reload();
-          location.href = "view_franchisee.php";
+          location.href = "view_franchisee";
         }
         else{
           alert("Failed To Save Changes");
@@ -1627,7 +1627,7 @@ var registerSalesManager =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "sales_manager/submit_data.php",
+        url: "sales_manager/submit_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -1762,12 +1762,12 @@ var edit_sales_manager =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "sales_manager/edit_sales_manager_data.php",
+        url: "sales_manager/edit_sales_manager_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
-          location.href = "view_sales_manager.php";
+          location.href = "view_sales_manager";
           // window.location.reload();
         }
         else{
@@ -1899,7 +1899,7 @@ var registerBranchManager =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "branch_manager/submit_data.php",
+        url: "branch_manager/submit_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
@@ -2034,12 +2034,12 @@ var edit_branch_manager =  () =>{
 
     $.ajax({
         type: "POST",
-        url: "branch_manager/edit_branch_manager_data.php",
+        url: "branch_manager/edit_branch_manager_data",
         data: datastring,
         success: function (res) {
         if (res==1) {
           alert("Save Changes Successfully");
-          location.href = "view_branch_manager.php";
+          location.href = "view_branch_manager";
           // window.location.reload();
         }
         else{
@@ -2077,7 +2077,7 @@ var phonetest2 = (phone_noValue,code,testValue) =>{
       $.ajax({
 
         type:'POST',
-         url:'test_data/phone_test.php',
+         url:'test_data/phone_test',
         data:'phone='+phone_noValue+'&countrycode='+code+'&tablename='+testValue,
           success:function(response){
             if(response == 1){
@@ -2096,7 +2096,7 @@ var phonetest2 = (phone_noValue,code,testValue) =>{
       $.ajax({
 
         type:'POST',
-         url:'test_data/emailtest.php',
+         url:'test_data/emailtest',
         data:'email='+emailtest+'&tablename='+testValue,
           success:function(response){
             if(response == 1){

@@ -38,7 +38,7 @@ $(document).ready(function(){
 
        $.ajax({
         type: "POST",
-        url: "changepass/change_password.php",
+        url: "changepass/change_password",
         data: datastring,
         success: function (res) {
         if (res==1) {

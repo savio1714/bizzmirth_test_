@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../login.php";</script>';
+    echo '<script>location.href = "../login";</script>';
 }
 
 ?>
@@ -46,12 +46,12 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li><li class="active-bre"><a href="manage_categories.php">Categories </a>
+                        <li><a href="../"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li><li class="active-bre"><a href="manage_categories">Categories </a>
                         </li>
                         <li class="active-bre"><a href="#"> Add New Sub Category  </a>
                         </li>
-                        <li class="page-back"><a href="manage_categories.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        <li class="page-back"><a href="manage_categories"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
                     </ul>
                 </div>
@@ -74,15 +74,31 @@ if(!isset($_SESSION['username'])){
 
                                             <div class="form-group col-md-6 col-sm-12">
                                                 <label>Parent Category</label>
+
+                                                <?php
+                                                require '../connect.php';
+                                                $stmt = $conn->prepare("SELECT * FROM category WHERE status = 1 ORDER BY category_name ASC");
+                                                $stmt->execute();
+
+                                                                                                   
+                                                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                ?>
                                                 <select id="category" class="selectdesign">
                                                     <option value="">--Select Category--</option>
-                                                    <option value="">1</option>
-                                                    <option value="">2</option> 
+                                                    <?php 
+                                                    if($stmt->rowCount()>0){
+                                                         foreach (($stmt->fetchAll()) as $key => $row) {  
+                                                            echo '<option value="'.$row['id'].'">'.$row['category_name'].'</option>'; 
+                                                        } 
+                                                    }else{ 
+                                                        echo '<option value="">No Category Available </option>'; 
+                                                    } 
+                                                    ?>
                                                     
                                                 </select>
-                                                </div>
+                                            </div>
 
-                                        <div class="input-field col-md-col-md-12 col-sm-12">
+                                         <div class="input-field col-md-col-md-12 col-sm-12">
                                                 <input id="description" type="text" >
                                                 <label for="description">Description</label>
                                             </div>
@@ -91,15 +107,15 @@ if(!isset($_SESSION['username'])){
                                                     <div class="file-field input-field">
                                                         <div class="btn">
                                                             <span>Upload</span>
-                                                            <input type="file" id="file3" name="file3">
+                                                            <input type="file" id="file" name="file">
                                                         </div>
                                                         <div class="file-path-wrapper">
                                                             <input class="file-path validate" type="text"  >
                                                              <input type="hidden" name="picture" id="picture" disabled>
                                                         </div>
                                                     </div>
-                                                    <div class="preview3" id="preview3">
-                                                    <img alt="picture" class="imgsize" id="img3">
+                                                    <div class="preview1" id="preview1">
+                                                    <img alt="picture" class="imgsize" id="img">
                                                     </div>
                                                 
                                             </div>
@@ -107,13 +123,7 @@ if(!isset($_SESSION['username'])){
                                             
                                              
 <div>
-                                            <!-- <input type="hidden" id="testValue" name="testValue" value="5">
                                             <input type="hidden" id="invalidimage1" name="invalidimage1" >
-                                            <input type="hidden" id="invalidimage2" name="invalidimage2" >
-                                            <input type="hidden" id="invalidimage3" name="invalidimage3" >
-                                            <input type="hidden" id="invalidimage4" name="invalidimage4" >
-                                            <input type="hidden" id="invalidimage5" name="invalidimage5" >
-                                            <input type="hidden" id="invalidimage6" name="invalidimage6" > -->
                                           <!--   <div class="input-field col s6" >
 
                                             </div> -->
@@ -123,9 +133,9 @@ if(!isset($_SESSION['username'])){
                                         
                                         <div class="row">
                                             <div class="input-field col s12" style="margin-top: 20px;">
-                                               <!--  <a href="registered_customer.php" class="waves-effect waves-light btn-large">Back</a> -->
+                                               <!--  <a href="registered_customer" class="waves-effect waves-light btn-large">Back</a> -->
 
-                                                 <a href="#" class="waves-effect waves-light btn-large" >SAVE</a>
+                                                 <a href="#" class="waves-effect waves-light btn-large" id="addSubCategory" >SAVE</a>
                                                 
                                             </div>
                                            
@@ -167,7 +177,7 @@ if(!isset($_SESSION['username'])){
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script src="../js/chosen.jquery.js"></script>
 <!--     <script src="../js/chosen.min.js"></script> -->
-<script type="text/javascript" src="../assets/js/submitdata.js"></script>
+<script type="text/javascript" src="../assets/js/product.js"></script>
 
 
     <!-- <script src="../../assets/js/upload_file.js"></script> -->
@@ -177,34 +187,11 @@ if(!isset($_SESSION['username'])){
 
 </html>
 <script type="text/javascript">
-    $('#file').change(function(){
+     $('#file').change(function(){
 
-        uploadfun('#file','../../uploading/upload.php','#img','#profile_pic','Please Upload Profile','.preview1','profile_pic','#invalidimage1');
+        uploadfun('#file','../../uploading/upload','#img','#picture','Please Upload Picture','.preview1','subcategory','#invalidimage1');
     });
 
-    $('#file2').change(function(){
-
-        uploadfun('#file2','../../uploading/upload.php','#img2','#kyc','Please Upload Proper KYC','.preview2','kyc','#invalidimage2');
-    });
-
-    $('#file3').change(function(){
-
-        uploadfun('#file3','../../uploading/upload.php','#img3','#pan_card','Please Upload PAN Card','.preview3','pancard','#invalidimage3');
-    });
-    $('#file4').change(function(){
-
-        uploadfun('#file4','../../uploading/upload.php','#img4','#aadhar_card','Please Upload Aadhar Card','.preview4','aadhar','#invalidimage4');
-    });
-
-    $('#file5').change(function(){
-
-        uploadfun('#file5','../../uploading/upload.php','#img5','#voting_card','Please Upload Voting Card','.preview5','voting','#invalidimage5');
-    });
-
-    $('#file6').change(function(){
-
-        uploadfun('#file6','../../uploading/upload.php','#img6','#passbook','Please Upload Bank Passbook','.preview6','passbook','#invalidimage6');
-    });
 
 
 //upload function
@@ -250,89 +237,3 @@ if(!isset($_SESSION['username'])){
 
 </script>
 
-<script type="text/javascript">
-    $('#country').on('change', function(){
-        var countryID = $(this).val();
-        if(countryID){
-            $.ajax({
-                type:'POST',
-                url:'../address/countrydata.php',
-                data:'country_id='+countryID,
-                success:function(htmll){
-                    
-
-                    $('#mystate').html(htmll); 
-                      $('#city').html('<option value="">Select state first</option>'); 
-
-                    
-                }
-            }); 
-        }else{
-            $('#mystate').html('<option value="">Select country first</option>');
-            $('#city').html('<option value="">Select state first</option>');
-            $('#pin').val('');   
-        }
-        });
-        
-        $('#mystate').on('change', function(){
-            // alert();
-            var stateID = $(this).val();
-            if(stateID){
-                $.ajax({
-                    type:'POST',
-                    url:'../address/countrydata.php',
-                    data:'state_id='+stateID,
-                    success:function(html){
-                        $('#city').html(html);
-                       
-                    }
-                }); 
-            }else{
-                $('#city').html('<option value="">Select state first</option>');
-                $('#pin').val('');   
-            }
-        });
-
-        $('#city').on('change', function(){
-            var cityID = $(this).val();
-            if(cityID){
-                 $.ajax({
-                          type:'POST',
-                          url:'../address/pincode.php',
-                          data:'city_id='+cityID,
-                          success:function(response){
-                             // $('#pin').html(response);
-                             $('#pin').val(response); 
-                          }
-                      }); 
-            }else{
-                $('#city').html('<option value="">Select state first</option>');
-                $('#pin').val('');  
-            }
-        });
-
-        $('#branch_manager_id').on('change', function(){
-            var branch_manager_id = $(this).val();
-            var bm_id='';
-            if(branch_manager_id == ''){
-                bm_id='-1'
-            }else{
-                bm_id=branch_manager_id;
-            }
-
-            if(bm_id){
-                 $.ajax({
-                          type:'POST',
-                          url:'../agents/branch_manager_name.php',
-                          data:'branch_manager_id='+bm_id,
-                          success:function(response){
-                             // $('#pin').html(response);
-                             $('#branch_manager_name').val(response); 
-                          }
-                      }); 
-            }else{
-                
-            }
-        });
-
-</script>

@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    echo '<script>location.href = "../index.php";</script>';
+    echo '<script>location.href = "../index";</script>';
 }
 ?>
 <!DOCTYPE html>
@@ -50,11 +50,11 @@ if(!isset($_SESSION['username'])){
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="../"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="active-bre"><a href="#"> Categories</a>
                         </li>
-                        <li class="page-back"><a href="../index.php"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        <li class="page-back"><a href="../"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
                     </ul>
                 </div>
@@ -67,9 +67,9 @@ if(!isset($_SESSION['username'])){
                                     <!-- <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p> -->
                                     <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
                                     <ul id="dr-users" class="dropdown-content">
-                                        <li><a href="add_new_category.php">Add New Category</a>
+                                        <li><a href="add_new_category">Add New Category</a>
                                         </li>
-                                        <li><a href="add_new_subcategory.php">Add New Subcategory</a>
+                                        <li><a href="add_new_subcategory">Add New Subcategory</a>
                                         </li>
                                         <!-- <li><a href="edit_category.php">Edit</a>
                                         </li> -->
@@ -105,7 +105,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -119,7 +119,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -132,7 +132,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -145,7 +145,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -158,7 +158,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -171,7 +171,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -184,7 +184,7 @@ if(!isset($_SESSION['username'])){
                                                     </td>
                                                     <td>Sub Category Name</td>
                                                     <td>
-                                                        <a href="edit_category.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a href="edit_category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </td>
                                                     <td>
                                                         <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>

@@ -53,8 +53,12 @@ session_start();
 <div class="container">
     
  <h2> Terms and Conditions </h2>
+<ul>
+    <li>
+    Travel agents do acknowledge that Travel agents have already read and accepted the following terms of use prior to accessing bizzholidays.com (Bizzmirth is affiliated under TBO) services. <br><br>
+</li>
+</ul>
 
-Travel agents do acknowledge that Travel agents have already read and accepted the following terms of use prior to accessing bizzholidays.com (Bizzmirth is affiliated under TBO) services. <br><br>
 
 <h3>No Liability </h3>
 By accessing this web site, you agree that bizzholidays.com (Bizzmirth is affiliated under TBO). will not be held liable for any direct, indirect or consequential loss or damage arising out of the use of the information and materials contained herein or from your access to other materials on the Internet via links from this web site.

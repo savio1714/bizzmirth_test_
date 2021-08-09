@@ -347,7 +347,7 @@ $(document).ready( function () {
 
       $.ajax({
         type: "POST",
-        url: "branch_manager/delete_branch_manager",
+        url: "bm/delete_branch_manager",
         data: dataString,
         cache: false,
           success:function(data){
@@ -373,7 +373,7 @@ $(document).ready( function () {
 
       $.ajax({
         type: "POST",
-        url: "branch_manager/confirm_branch_manager",
+        url: "bm/confirm_branch_manager",
         data: dataString,
         cache: false,
           success:function(data){

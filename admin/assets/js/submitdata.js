@@ -87,13 +87,13 @@ $('#addTravelAgent').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "add_travel_agent_data.php",
+                url: "add_travel_agent_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Added Successfuly");
-                        location.href = "travel_agent.php";
+                        location.href = "travel_agent";
                   }
                   else{
 
@@ -203,13 +203,13 @@ $('#addTravelAgent').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "edit_travel_agent_data.php",
+                url: "edit_travel_agent_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Edited Successfuly");
-                        location.href = "travel_agent.php";
+                        location.href = "travel_agent";
                   }
                   else{
 
@@ -318,13 +318,13 @@ $('#addFranchisee').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "add_franchisee_data.php",
+                url: "add_franchisee_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Added Successfuly");
-                        location.href = "franchisee.php";
+                        location.href = "franchisee";
                   }
                   else{
 
@@ -433,13 +433,13 @@ $('#addFranchisee').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "edit_franchisee_data.php",
+                url: "edit_franchisee_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Edited Successfuly");
-                        location.href = "franchisee.php";
+                        location.href = "franchisee";
                   }
                   else{
 
@@ -548,7 +548,7 @@ $('#addCustomer').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "add_customer_data.php",
+                url: "add_customer_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -556,11 +556,11 @@ $('#addCustomer').click(function(e){
 
                       if(travel_agent_id==''){
                         alert("Register Successfuly");
-                        location.href = "b2c.php";
+                        location.href = "b2c";
                         }
                       else{
                         alert("Register Successfuly");
-                        location.href = "travel_agent_customer.php";
+                        location.href = "travel_agent_customer";
 
 
                          }
@@ -675,7 +675,7 @@ $('#addCustomer').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "edit_customer_data.php",
+                url: "edit_customer_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
@@ -683,11 +683,11 @@ $('#addCustomer').click(function(e){
 
                       if(travel_agent_id ==''){
                         alert("Edited Successfuly");
-                        location.href = "b2c.php";
+                        location.href = "b2c";
                         }
                       else{
                         alert("Edited Successfuly");
-                        location.href = "travel_agent_customer.php";
+                        location.href = "travel_agent_customer";
 
 
                          }
@@ -806,13 +806,13 @@ $('#addReginalManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "rm/add_regional_manager_data.php",
+                url: "rm/add_regional_manager_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Added Successfuly");
-                        location.href = "regional_manager.php";
+                        location.href = "regional_manager";
                   }
                   else{
 
@@ -928,13 +928,13 @@ $('#addReginalManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "rm/edit_regional_manager_data.php",
+                url: "rm/edit_regional_manager_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Edited Successfuly");
-                        location.href = "regional_manager.php";
+                        location.href = "regional_manager";
                   }
                   else{
 
@@ -1052,13 +1052,13 @@ $('#addBranchManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "bm/add_branch_manager_data.php",
+                url: "bm/add_branch_manager_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Added Successfuly");
-                        location.href = "branch_manager.php";
+                        location.href = "branch_manager";
                   }
                   else{
 
@@ -1177,13 +1177,13 @@ $('#addSalesManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "sm/add_sales_manager_data.php",
+                url: "sm/add_sales_manager_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Added Successfuly");
-                        location.href = "sales_manager.php";
+                        location.href = "sales_manager";
                   }
                   else{
 
@@ -1299,13 +1299,13 @@ $('#addSalesManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "bm/edit_branch_manager_data.php",
+                url: "bm/edit_branch_manager_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Edited Successfuly");
-                        location.href = "branch_manager.php";
+                        location.href = "branch_manager";
                   }
                   else{
 
@@ -1421,13 +1421,13 @@ $('#addSalesManager').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "sm/edit_sales_manager_data.php",
+                url: "sm/edit_sales_manager_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
                         alert("Edited Successfuly");
-                        location.href = "sales_manager.php";
+                        location.href = "sales_manager";
                   }
                   else{
 
@@ -1555,14 +1555,14 @@ $('#addEmployee').click(function(e){
           }else{
               $.ajax({
                 type: "POST",
-                url: "add_employee_data.php",
+                url: "add_employee_data",
                 data: dataString,
                 cache: false,
                   success:function(data){
                     if(data == 1){
 
                        alert("Register Successfuly");
-                        location.href = "add_employee.php";
+                        location.href = "add_employee";
                       }
                         
                   else{
@@ -1608,7 +1608,7 @@ var phonetest = (phone_noValue,code,testValue) =>{
       $.ajax({
 
         type:'POST',
-         url:'../test_data/phone_test.php',
+         url:'../test_data/phone_test',
         data:'phone='+phone_noValue+'&countrycode='+code+'&tablename='+testValue,
           success:function(response){
             if(response == 1){
@@ -1627,7 +1627,7 @@ var phonetest = (phone_noValue,code,testValue) =>{
       $.ajax({
 
         type:'POST',
-         url:'../test_data/emailtest.php',
+         url:'../test_data/emailtest',
         data:'email='+emailtest+'&tablename='+testValue,
           success:function(response){
             if(response == 1){
@@ -1688,7 +1688,7 @@ $('#customer_level').on('change', function(){
         if(custID){
             $.ajax({
                 type:'POST',
-                url:'../../registration/find_level.php',
+                url:'../../registration/find_level',
                 data:'custID='+custID,
                 success:function(res){
                     if (res != 0 ){
@@ -1725,7 +1725,7 @@ $('#customer_level').on('change', function(){
             if(tagent_id){
                  $.ajax({
                           type:'POST',
-                          url:'../agents/travel_agent_name.php',
+                          url:'../agents/travel_agent_name',
                           data:'travel_agent_id='+tagent_id,
                           success:function(response){
                              // $('#pin').html(response);
